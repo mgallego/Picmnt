@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
 	    new SFM\PicmntBundle\SFMPicmntBundle(),         
 	    new FOS\UserBundle\FOSUserBundle(),
+	    new SFM\UserBundle\SFMUserBundle(),
 
         );
 

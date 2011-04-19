@@ -4,8 +4,8 @@ sfm:
     
 
 fos_user_security:
-    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+    resource: "@SFMUserBundle/Resources/config/routing/security.xml"
 
 fos_user_user:
-    resource: "@FOSUserBundle/Resources/config/routing/user.xml"
+    resource: "@SFMUserBundle/Resources/config/routing/user.xml"
     prefix: /user
