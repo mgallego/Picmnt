@@ -1,12 +1,11 @@
-_welcome:
-    pattern:  /
-    defaults: { _controller: AcmeDemoBundle:Welcome:index }
-
-_demo_secured:
-    resource: "@AcmeDemoBundle/Controller/SecuredController.php"
+sfm:
+    resource: "@SFMPicmntBundle/Controller/IndexController.php"
     type:     annotation
+    
 
-_demo:
-    resource: "@AcmeDemoBundle/Controller/DemoController.php"
-    type:     annotation
-    prefix:   /demo
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+
+fos_user_user:
+    resource: "@FOSUserBundle/Resources/config/routing/user.xml"
+    prefix: /user

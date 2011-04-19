@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>{% block title %}Picmnt{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" media="all" href="{{ asset('bundles/picmntbundle/stylesheets/reset.css')}}"
+    <link rel="stylesheet" type="text/css" media="all" href="{{ asset('bundles/picmntbundle/stylesheets/960.css')}}">
+    <link rel="stylesheet" type="text/css" media="all" href="{{ asset('bundles/picmntbundle/stylesheets/text.css')}}">
+    <link rel="stylesheet" type="text/css" media="all" href="{{ asset('bundles/picmntbundle/stylesheets/layout.css')}}">
+ <!--[if lt IE 9]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+  <body id="home">
+    <header>
+      <div class="container_12 clearfix">
+	<div class="grid_12">
+	  <h1>
+	    <a href="{{ path('home') }}" title="Picmnt">Picmnt</a>
+	  </h1>
+	  <nav>
+	    <ul>
+	      <li><a href="{{ path('_security_login') }}" title="login">Login</a></li>
+	      <li>|</li>
+	      	      <li><a href="{{ path('fos_user_user_new') }}" title="sigin">Sign in</a></li>
+	    </ul> 	   
+	  </nav>
+	</div>
+      	
+      </div>
+     </header>
+    <!-- <div id="separator"></div>  -->
+
+     <section id="content">
+    {% block content %}
+     {% endblock %}     
+     </section>
+
+    <footer>
+
+      <ul>
+	<li>Blog</li>
+	<li>About</li>
+	<li>Terms</li>
+      </ul>
+
+      <div id="copyright">
+	Copyright © 2011 Picmnt
+      </div>
+    </footer>
+  </body>
+</html>

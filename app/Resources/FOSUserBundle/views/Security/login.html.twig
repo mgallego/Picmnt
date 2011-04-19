@@ -1,0 +1,30 @@
+{% extends "SFMPicmntBundle::layout.html.twig" %}
+
+{% block content %}
+{% if error %}
+    <div>{{ error }}</div>
+{% endif %}
+<div class="login">
+
+<form action="{{ path("_security_check") }}" method="post">
+<fieldset>
+<legend>Login</legend>
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="_username" value="{{ last_username }}" />
+    <br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="_password" />
+    <br>
+    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+    <label for="remember_me">Remember Me</label>
+    <br>
+    <input type="submit" name="login" />
+
+
+</form>
+  </fieldset>
+<p>
+    <a href="{{ path('fos_user_user_request_reset_password') }}">{% trans 'Forgotten password' from 'FOSUserBundle' %}</a>
+</p>
+</div>
+{% endblock content %}
