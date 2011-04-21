@@ -9,6 +9,7 @@ security:
             form_login:
                 provider: fos_userbundle
                 login_path: /login
+                default_target_path: /p
             anonymous: true
             logout: true
 
