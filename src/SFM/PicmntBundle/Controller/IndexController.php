@@ -18,6 +18,15 @@ class IndexController extends Controller
       	return array();
     }
 
+    //Secure home
+    /**
+     * @extra:Route("/p", name="secure_home")
+     * @extra:Template()
+     */
+    public function indexSecureAction()
+    {
+      return array();
+    }
 
 
 

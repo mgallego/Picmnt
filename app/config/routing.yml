@@ -1,8 +1,7 @@
 sfm:
     resource: "@SFMPicmntBundle/Controller/IndexController.php"
     type:     annotation
-    
-
+  
 fos_user_security:
     resource: "@SFMUserBundle/Resources/config/routing/security.xml"
 

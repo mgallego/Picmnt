@@ -30,3 +30,4 @@ security:
         # Secured part of the site (all site here and an admin part for admin users)
         - { path: ^/admin/, role: ROLE_ADMIN }
         - { path: ^/demo/secured/.*, role: ROLE_USER }
+        - { path: ^/p , role: ROLE_USER }
