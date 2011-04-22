@@ -21,15 +21,15 @@
 	  <nav>
 	    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 	    <ul>
-	      <li>{% trans 'Hello %username%' with { '%username%': app.user.getUsername() } from 'FOSUserBundle' %}</li>
+	      <li>{% trans 'Hello %username%' with { '%username%': app.user.getUsername() } %}</li>
 	      <li>|</li>
-      	      <li><a href="{{ path('_security_logout') }}">Logout</a></li>
+      	      <li><a href="{{ path('_security_logout') }}">{% trans 'Logout' %}</a></li>
 	    </ul> 	   
 	    {% else %}
 	    <ul>
-	      <li><a href="{{ path('_security_login') }}" title="login">Login</a></li>
+	      <li><a href="{{ path('_security_login') }}" title="login">{% trans 'Login' %}</a></li>
 	      <li>|</li>
-      	      <li><a href="{{ path('fos_user_user_new') }}" title="sigin">Sign in</a></li>
+      	      <li><a href="{{ path('fos_user_user_new') }}" title="sigin">{% trans 'Sign in' %}</a></li>
 	    </ul> 	   
 	    {% endif %}
 	  </nav>

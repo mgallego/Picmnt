@@ -20,7 +20,7 @@ class IndexController extends Controller
 
     //Secure home
     /**
-     * @extra:Route("/p", name="secure_home")
+     * @extra:Route("/p/{_locale}", name="secure_home")
      * @extra:Template()
      */
     public function indexSecureAction()
