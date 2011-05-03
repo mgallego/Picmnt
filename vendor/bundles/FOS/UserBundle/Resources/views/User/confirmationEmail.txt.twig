@@ -1,11 +1,1 @@
-{% set username = user.getUsername() %}
-{% trans from 'FOSUserBundle' %}
-    Welcome %username%!
-    Hello %username%!
-
-    To finish validating your account - please visit %confirmationUrl%
-
-    Regards,
-
-    the Team.
-{% endtrans %}
+{{ 'user.email.confirmation'|trans({'%username%': user.getUsername(), '%confirmationUrl%': confirmationUrl}, 'FOSUserBundle') }}

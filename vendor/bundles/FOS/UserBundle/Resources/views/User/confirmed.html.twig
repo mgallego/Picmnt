@@ -1,4 +1,7 @@
-{% set username = user.getUsername() %}
-{% trans from 'FOSUserBundle' %}
-    Congrats %username%, your account is now confirmed.
-{% endtrans %}
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block content %}
+
+    {{ 'user.confirmed.message'|trans({'%username%': user.getUsername()}, 'FOSUserBundle') }}
+    
+{% endblock content %}
