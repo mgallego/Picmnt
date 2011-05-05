@@ -71,8 +71,8 @@ fos_user:
     class:
         model:
             user: SFM\PicmntBundle\Entity\User
-        form:
-            user: FOS\UserBundle\Form\UserForm
+#        form:
+#            user: FOS\UserBundle\Form\UserForm
 
     template:
 #         engine:  FOSUserBundle::layout.html.twig

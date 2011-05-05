@@ -9,14 +9,14 @@
 <form action="{{ path("_security_check") }}" method="post">
 <fieldset>
 <legend>Login</legend>
-    <label for="username">{% trans 'Username:' %}</label>
+    <label for="username">{{ 'Username:' | trans }}</label>
     <input type="text" id="username" name="_username" value="{{ last_username }}" />
     <br>
-    <label for="password">{% trans 'Password:' %}</label>
+    <label for="password">{{ 'Password:' | trans }}</label>
     <input type="password" id="password" name="_password" />
     <br>
     <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-    <label for="remember_me">{% trans 'Remember Me' %}</label>
+    <label for="remember_me">{{ 'Remember Me' | trans }}</label>
     <br>
     <input type="submit" name="login" />
 
@@ -24,7 +24,7 @@
 </form>
   </fieldset>
 <p>
-    <a href="{{ path('fos_user_user_request_reset_password') }}">{% trans 'Forgotten password' %}</a>
+    <a href="{{ path('fos_user_user_request_reset_password') }}">{{ 'Forgotten password' | trans }}</a>
 </p>
 </div>
 {% endblock content %}
