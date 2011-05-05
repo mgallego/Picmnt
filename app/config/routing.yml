@@ -1,7 +1,11 @@
-sfm:
+sfm_index:
     resource: "@SFMPicmntBundle/Controller/IndexController.php"
     type:     annotation
   
+sfm_image:
+    resource: "@SFMPicmntBundle/Controller/ImageController.php"
+    type:     annotation
+
 fos_user_security:
     resource: "@SFMUserBundle/Resources/config/routing/security.xml"
 
