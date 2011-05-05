@@ -3,7 +3,7 @@
 
 <h1>Dentro de la zona segura</h1>
 
-{% trans 'Logged in as %username%' with { '%username%': app.user.getUsername() } from 'FOSUserBundle' %}
+{{ 'Logged in as %username%' | trans({ '%username%': app.user.getUsername() }) }}
   
 {% endblock %}
 

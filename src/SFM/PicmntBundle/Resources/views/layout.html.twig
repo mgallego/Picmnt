@@ -21,15 +21,15 @@
 	  <nav>
 	    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 	    <ul>
-	      <li>{% trans 'Hello %username%' with { '%username%': app.user.getUsername() } %}</li>
+	      <li>{{  'Hello %username%' | trans({ '%username%': app.user.getUsername() }) }}</li>
 	      <li>|</li>
-      	      <li><a href="{{ path('_security_logout') }}">{% trans 'Logout' %}</a></li>
+      	      <li><a href="{{ path('_security_logout') }}">{{ 'Logout' | trans }}</a></li>
 	    </ul> 	   
 	    {% else %}
 	    <ul>
-	      <li><a href="{{ path('_security_login') }}" title="login">{% trans 'Login' %}</a></li>
+	      <li><a href="{{ path('_security_login') }}" title="login">{{ 'Login' | trans }}</a></li>
 	      <li>|</li>
-      	      <li><a href="{{ path('fos_user_user_new') }}" title="sigin">{% trans 'Sign in' %}</a></li>
+      	      <li><a href="{{ path('fos_user_user_new') }}" title="sigin">{{  'Sign in' | trans }}</a></li>
 	    </ul> 	   
 	    {% endif %}
 	  </nav>
@@ -38,7 +38,6 @@
       </div>
      </header>
     <!-- <div id="separator"></div>  -->
-
      <section id="content">
     {% block content %}
      {% endblock %}     
