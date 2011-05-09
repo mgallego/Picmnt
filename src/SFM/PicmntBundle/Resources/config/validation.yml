@@ -1,0 +1,4 @@
+SFM\PicmntBundle\Entity\Image:
+  properties:
+    url:
+      - NotBlank: ~

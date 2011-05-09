@@ -7,8 +7,6 @@ use Symfony\Component\HttpFoundation\Request;
 use SFM\PicmntBundle\Entity\Image;
 use SFM\PicmntBundle\Entity\User;
 use FOS\UserBundle\Entity\UserManager;
-use SFM\PicmntBundle\Form\UploadForm;
-
 
 class ImageController extends Controller
 {
@@ -36,8 +34,11 @@ class ImageController extends Controller
   }
 
 
-
   //Upload an image url into the database
+
+  /************************************************************************
+   ************************ UPLOAD ACTTION ********************************
+   ***********************************************************************/
 
   /**
    * @extra:Route("/img/upload", name="img_upload")
@@ -57,7 +58,8 @@ class ImageController extends Controller
     //calling the form
     $form = $this->get('form.factory')
       ->createBuilder('form', $image)
-      ->add('url', 'text')
+      ->add('url', 'url')
+      //add('FieldName', 'type')
       ->getForm();
     
     //retrieving the request
@@ -74,8 +76,9 @@ class ImageController extends Controller
 	$em->persist($image);
 	$em->flush();
 	
-		  return $this->redirect($this->generateUrl('secure_home'));
-	}
+	return $this->redirect($this->generateUrl('secure_home'));
+	
+      }
     }
         
     return array('form' => $form->createView(),);

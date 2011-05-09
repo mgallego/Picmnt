@@ -18,6 +18,14 @@
 	      <source>Logout</source>
 	      <target>Desconectar</target>
 	    </trans-unit>
+	    <trans-unit id="5">
+	      <source>Url</source>
+	      <target>Ruta</target>
+	    </trans-unit>
+	    <trans-unit id="6">
+	      <source>Please insert the URL of the image</source>
+	      <target>Por favor introduzca la ruta de la imágen</target>
+	    </trans-unit>
         </body>
     </file>
 </xliff>

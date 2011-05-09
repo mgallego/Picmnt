@@ -1,16 +1,15 @@
 {% extends "SFMPicmntBundle::layout.html.twig" %}
 {% block content %}
 
-<h1>Dentro de la zona segura</h1>
+{{ 'Please insert the URL of the image' | trans }}
 
-{# {{ 'Logged in as %username%' | trans({ '%username%': app.user.getUsername() }) }} #}
-
-{# {{ foo }}
-{{ bar }} #}
 
 <form action="{{ path('img_upload') }}" method="post" {{ form_enctype(form) }}>
 
-  {{ form_widget(form) }}
+  <div>
+    {{  form_label(form.url , 'Url' | trans ) }}
+    {{ form_widget(form.url) }}
+  </div>
 
   <input type="submit" />
 

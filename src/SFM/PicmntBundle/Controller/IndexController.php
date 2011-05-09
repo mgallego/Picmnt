@@ -29,5 +29,14 @@ class IndexController extends Controller
     }
 
 
+    //Language Selector
+    /**
+     * @extra:Route("/lang/{_locale}", name="lang")
+     */
+    public function langAction()
+    {
+	return $this->redirect($this->generateUrl('secure_home'));
+    }
+
 
 }
