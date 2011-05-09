@@ -10,6 +10,8 @@ namespace SFM\PicmntBundle\Entity;
  */
 class UserInfo
 {
+
+  
     /**
      * @var integer $userId
      *
@@ -18,6 +20,7 @@ class UserInfo
      * @orm:GeneratedValue(strategy="IDENTITY")
      */
     private $userId;
+
 
     /**
      * @var string $name
@@ -32,17 +35,6 @@ class UserInfo
      * @orm:Column(name="Last_Name", type="string", length=45, nullable=false)
      */
     private $lastName;
-
-    /**
-     * @var User
-     *
-     * @orm:ManyToOne(targetEntity="User")
-     * @orm:JoinColumns({
-     *   @orm:JoinColumn(name="User_id1", referencedColumnName="id")
-     * })
-     */
-    private $user1;
-
 
 
     /**
@@ -105,13 +97,5 @@ class UserInfo
         $this->user1 = $user1;
     }
 
-    /**
-     * Get user1
-     *
-     * @return SFM\PicmntBundle\Entity\User $user1
-     */
-    public function getUser1()
-    {
-        return $this->user1;
-    }
+
 }

@@ -3,11 +3,18 @@
 
 <h1>Dentro de la zona segura</h1>
 
-{{ 'Logged in as %username%' | trans({ '%username%': app.user.getUsername() }) }}
+{# {{ 'Logged in as %username%' | trans({ '%username%': app.user.getUsername() }) }} #}
 
-{{ foo }}
-{{ bar }}
+{# {{ foo }}
+{{ bar }} #}
 
+<form action="{{ path('img_upload') }}" method="post" {{ form_enctype(form) }}>
+
+  {{ form_widget(form) }}
+
+  <input type="submit" />
+
+</form>
   
 {% endblock %}
 

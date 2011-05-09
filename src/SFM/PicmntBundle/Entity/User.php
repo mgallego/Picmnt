@@ -15,4 +15,13 @@ class User extends BaseUser
    * @orm:generatedValue(strategy="AUTO")
    */
   protected $id;
+
+
+
+  /**
+   * @OneToOne(targetEntity="User_Info")
+   * @JoinColumn(name="User_Id", referencedColumnName="id")
+   */
+  private $userInfo;
+
 }
