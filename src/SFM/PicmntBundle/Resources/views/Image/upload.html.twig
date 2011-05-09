@@ -11,6 +11,9 @@
     {{ form_widget(form.url) }}
   </div>
 
+  {# necesary for the correct use of the form, without this the form is not valid #}
+  {{ form_rest(form) }}
+
   <input type="submit" />
 
 </form>
