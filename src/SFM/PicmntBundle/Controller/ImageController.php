@@ -10,34 +10,11 @@ use FOS\UserBundle\Entity\UserManager;
 
 class ImageController extends Controller
 {
-
-  //@TODO:Delete at the end of the controller developer, is for debug mode only
-  //Testing an insertion into the database
-  /**
-   * @extra:Route("/img/test_add", name="img_add_test")
-   */
-  public function testAddAction()
-  {
-    //declare the entity manager
-    $em = $this->get('doctrine.orm.entity_manager');
-    
-    $image = new Image();
-    
-    $image->setIdImage(999);
-    $image->setUserId(1);
-    $image->setUrl('add_test');
-    
-    $em->persist($image);
-    $em->flush();
-
-    return $this->redirect($this->generateUrl('secure_home'));
-  }
-
-
-  //Upload an image url into the database
-
+  
   /************************************************************************
    ************************ UPLOAD ACTTION ********************************
+   ************************************************************************
+   ************** Upload an image url into the database *******************
    ***********************************************************************/
 
   /**
