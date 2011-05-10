@@ -47,6 +47,18 @@ class UserInfo
         return $this->userId;
     }
 
+
+    /**
+     * Set userId
+     *
+     * @param integer $userId
+     */
+    public function setUserId($userId)
+    {
+      $this->userId = $userId;
+    }
+   
+
     /**
      * Set name
      *
@@ -87,15 +99,6 @@ class UserInfo
         return $this->lastName;
     }
 
-    /**
-     * Set user1
-     *
-     * @param SFM\PicmntBundle\Entity\User $user1
-     */
-    public function setUser1(\SFM\PicmntBundle\Entity\User $user1)
-    {
-        $this->user1 = $user1;
-    }
 
 
 }
