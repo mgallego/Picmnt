@@ -13,11 +13,7 @@ class ImageControllerTest extends WebTestCase
 
     $secureAccess = new SecureAccess();
 
-    $login = $secureAccess->getData();
-
-    $crawler = $login["crawler"];
-
-    $client = $login["client"];
+    $client = $secureAccess->getClient();
 
     $crawler = $client->request('GET','/img/upload');
     

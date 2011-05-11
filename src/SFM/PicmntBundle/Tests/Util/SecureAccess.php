@@ -7,11 +7,13 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 class SecureAccess extends WebTestCase
 {
 
-  public function getData()
+  public function getClient()
   {
 
     $client = $this->createClient();
 
+    $crawler = $client->request('GET','/logout');
+    
     $crawler = $client->request('GET','/login');
 
     $form = $crawler->selectButton('login')->form();
@@ -21,9 +23,7 @@ class SecureAccess extends WebTestCase
 
     $crawler = $client->submit($form);
     
-    $login =  array("crawler" => $crawler, "client" => $client);
-
-    return $login;
+    return $client;
 
   }
 

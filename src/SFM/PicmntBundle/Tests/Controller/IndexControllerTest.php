@@ -25,17 +25,11 @@ class IndexControllerTest extends WebTestCase
 
     $secureAccess = new SecureAccess();
 
-    $login = $secureAccess->getData();
+    $client = $secureAccess->getClient();
 
-    $client = $login["client"];
-
-    $crawler = $login["crawler"];
-    
     $crawler = $client->request('GET','/p');
     
     $this->assertTrue($crawler->filter('html:contains("Hello")')->count() > 0);
-
-    return $crawler;
 
   }
   
