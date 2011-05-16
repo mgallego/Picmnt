@@ -4,6 +4,15 @@
 <h1>Dentro de la zona segura</h1>
 
 {{ 'Logged in as %username%' | trans({ '%username%': app.user.getUsername() }) }}
+
+
+<a id="fBIframe" href="{{ path('img_upload') }}" title="upload">{{ 'Upload an image' | trans }}</a>
+
+{# <a id="inline" href="#data">This shows content of element who as id="data"</a>
+
+<div style="display:none"><div id="data">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div></div>
+#}
+
   
 {% endblock %}
 

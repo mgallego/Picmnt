@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>{% block title %}Picmnt{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" media="all" href="{{ asset('bundles/picmntbundle/stylesheets/reset.css')}}"
+    <link rel="stylesheet" type="text/css" media="all" href="{{ asset('bundles/picmntbundle/stylesheets/960.css')}}">
+    <link rel="stylesheet" type="text/css" media="all" href="{{ asset('bundles/picmntbundle/stylesheets/text.css')}}">
+    <link rel="stylesheet" type="text/css" media="all" href="{{ asset('bundles/picmntbundle/stylesheets/layout.css')}}">
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('bundles/picmntbundle/fancybox/jquery.fancybox-1.3.4.css')}}">
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ asset('bundles/picmntbundle/fancybox/jquery.fancybox-1.3.4.pack.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/picmntbundle/js/picmnt.js') }}"> </script>
+    
+    <!--[if lt IE 9]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+
+
+  </head>
+  <body>
+    {% block body %}{% endblock %}
+  </body>
+</html>

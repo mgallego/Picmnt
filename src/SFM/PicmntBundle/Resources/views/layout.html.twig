@@ -1,17 +1,6 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>{% block title %}Picmnt{% endblock %}</title>
-    <link rel="stylesheet" type="text/css" media="all" href="{{ asset('bundles/picmntbundle/stylesheets/reset.css')}}"
-    <link rel="stylesheet" type="text/css" media="all" href="{{ asset('bundles/picmntbundle/stylesheets/960.css')}}">
-    <link rel="stylesheet" type="text/css" media="all" href="{{ asset('bundles/picmntbundle/stylesheets/text.css')}}">
-    <link rel="stylesheet" type="text/css" media="all" href="{{ asset('bundles/picmntbundle/stylesheets/layout.css')}}">
- <!--[if lt IE 9]>
-                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
-</head>
-  <body id="home">
+{% extends "SFMPicmntBundle::base.html.twig" %}
+
+{% block body %}
     <header>
       <div class="container_12 clearfix">
 	<div class="grid_12">
@@ -55,5 +44,4 @@
 	Copyright © 2011 Picmnt
       </div>
     </footer>
-  </body>
-</html>
+ {% endblock %}

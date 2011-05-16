@@ -1,10 +1,12 @@
-{% extends "SFMPicmntBundle::layout.html.twig" %}
-{% block content %}
+{% extends "SFMPicmntBundle::head.html.twig" %}
+
+
+
+{% block body %}
 
 {{ 'Please insert the URL of the image' | trans }}
 
-
-<form action="{{ path('img_upload') }}" method="post" {{ form_enctype(form) }}>
+<form id="upload_form" action="{{ path('img_upload') }}" method="post" {{ form_enctype(form) }} >
 
   <div>
     {{  form_label(form.url , 'Url' | trans ) }}
@@ -14,9 +16,10 @@
   {# necesary for the correct use of the form, without this the form is not valid #}
   {{ form_rest(form) }}
 
-  <input type="submit" />
+  <input type="submit" onsubmit="parent.$.fancybox.close(); return false" id="upload" />
 
 </form>
   
 {% endblock %}
+
 
