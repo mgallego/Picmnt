@@ -22,14 +22,21 @@
 	    </ul> 	   
 	    {% endif %}
 	  </nav>
-	</div>
+	 </div>
       	
       </div>
      </header>
     <!-- <div id="separator"></div>  -->
      <section id="content">
-    {% block content %}
-     {% endblock %}     
+       {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+       <ul>
+	 <li><a href="{{ path('img_random') }}">{{ 'Random Image' | trans }}</a></li>
+       </ul>
+       {% endif %}
+
+
+       {% block content %}
+       {% endblock %}     
      </section>
 
     <footer>

@@ -26,6 +26,11 @@
 	      <source>Please insert the URL of the image</source>
 	      <target>Por favor introduzca la ruta de la imágen</target>
 	    </trans-unit>
+	    <trans-unit id="7">
+	      <source>Random Image</source>
+	      <target>Imágen Aleatoria</target>
+	    </trans-unit>
+
         </body>
     </file>
 </xliff>

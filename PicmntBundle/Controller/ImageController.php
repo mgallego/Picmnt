@@ -9,7 +9,7 @@ use SFM\PicmntBundle\Entity\User;
 use FOS\UserBundle\Entity\UserManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-
+use Doctrine\ORM\Query\ResultSetMapping;
 
 class ImageController extends Controller
 {
@@ -67,6 +67,40 @@ class ImageController extends Controller
     return array('form' => $form->createView(),);
     
   }
-  
+
+ /**
+   * @Route("/img/random", name="img_random")
+   * @Template()
+   */
+  public function getRandomImageAction(){
+
+    $rsm = new ResultSetMapping;
+    $rsm->addEntityResult('SFM\PicmntBundle\Entity\Image','i');
+    $rsm->addFieldResult('i', 'idImage','idImage');
+    $rsm->addFieldResult('i','url','url');
+    
+
+    $image = new Image();
+
+    $em = $this->get('doctrine')->getEntityManager();
+
+    //$query = $em->createQuery('SELECT i.url, \''.rand().'\' rand FROM SFM\PicmntBundle\Entity\Image i ORDER BY rand');
+
+    $query = $em->createNativeQuery('SELECT url, id_image AS idImage FROM Image ORDER BY rand() limit 1', $rsm);
+    
+    $images = $query->getResult();
+
+    $image = $images[0];
+
+    //    print_r($images);
+
+    //    echo $image->getUrl();
+
+    return array('image'=>$image->getUrl());
+
+  }
+ 
+
+   
 
 }
