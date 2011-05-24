@@ -4,14 +4,17 @@ namespace SFM\PicmntBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+
 
 class IndexController extends Controller
 {
 
   //Home page, only show the page
     /**
-    * @extra:Route("/", name="home")
-    * @extra:Template()
+    * @Route("/", name="home")
+    * @Template()
     */
     public function indexAction()
     {
@@ -20,8 +23,8 @@ class IndexController extends Controller
 
     //Secure home
     /**
-     * @extra:Route("/p", name="secure_home")
-     * @extra:Template()
+     * @Route("/p", name="secure_home")
+     * @Template()
      */
     public function indexSecureAction()
     {
@@ -31,7 +34,7 @@ class IndexController extends Controller
 
     //Language Selector
     /**
-     * @extra:Route("/lang/{_locale}", name="lang")
+     * @Route("/lang/{_locale}", name="lang")
      */
     public function langAction()
     {

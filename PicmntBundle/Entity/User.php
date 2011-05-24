@@ -1,27 +1,30 @@
 <?php
+
 namespace SFM\PicmntBundle\Entity;
+use Doctrine\ORM\Mapping as ORM;
 
 use FOS\UserBundle\Entity\User as BaseUser;
 
 /**
  * PSN\MainBundle\Entity\User
- * @orm:Entity
+ * @ORM\Entity
+ * @ORM\Table(name="User")
  */
 class User extends BaseUser
 {
   /**
-   * @orm:Id
-   * @orm:Column(type="integer")
-   * @orm:generatedValue(strategy="AUTO")
+   * @ORM\Id
+   * @ORM\Column(type="integer")
+   * @ORM\generatedValue(strategy="AUTO")
    */
   protected $id;
 
 
+  public function __construct()
+  {
+    parent::__construct();
+    // your own logic
+  }
 
-  /**
-   * @OneToOne(targetEntity="User_Info")
-   * @JoinColumn(name="User_Id", referencedColumnName="id")
-   */
-  private $userInfo;
 
 }
