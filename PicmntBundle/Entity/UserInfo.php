@@ -1,12 +1,12 @@
 <?php
-
+use Doctrine\ORM\Mapping as ORM;
 namespace SFM\PicmntBundle\Entity;
 
 /**
  * SFM\PicmntBundle\Entity\UserInfo
  *
- * @orm:Table(name="User_Info")
- * @orm:Entity
+ * @ORM\Table(name="User_Info")
+ * @ORM\Entity
  */
 class UserInfo
 {
@@ -15,9 +15,9 @@ class UserInfo
     /**
      * @var integer $userId
      *
-     * @orm:Column(name="User_id", type="integer", nullable=false)
-     * @orm:Id
-     * @orm:GeneratedValue(strategy="IDENTITY")
+     * @ORM\Column(name="User_id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $userId;
 
@@ -25,7 +25,7 @@ class UserInfo
     /**
      * @var string $name
      *
-     * @orm:Column(name="Name", type="string", length=45, nullable=false)
+     * @ORM\Column(name="Name", type="string", length=45, nullable=false)
      */
     private $name;
 

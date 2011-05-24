@@ -7,6 +7,9 @@ use Symfony\Component\HttpFoundation\Request;
 use SFM\PicmntBundle\Entity\Image;
 use SFM\PicmntBundle\Entity\User;
 use FOS\UserBundle\Entity\UserManager;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+
 
 class ImageController extends Controller
 {
@@ -18,8 +21,8 @@ class ImageController extends Controller
    ***********************************************************************/
 
   /**
-   * @extra:Route("/img/upload", name="img_upload")
-   * @extra:Template()
+   * @Route("/img/upload", name="img_upload")
+   * @Template()
    */
   public function uploadAction()
   {
@@ -41,14 +44,17 @@ class ImageController extends Controller
     
     //retrieving the request
     $request = $this->get('request');
-    
+ 
+   
     if ($request->getMethod() == 'POST'){
       $form->bindRequest($request);
       
+
       if ($form->isValid()) {
 
+
 	//persist in the database
-	$em = $this->get('doctrine.orm.entity_manager');     
+	$em = $this->get('doctrine')->getEntityManager();     
    	
 	$em->persist($image);
 	$em->flush();
@@ -62,4 +68,5 @@ class ImageController extends Controller
     
   }
   
+
 }
