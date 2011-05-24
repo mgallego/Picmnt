@@ -18,7 +18,19 @@ class IndexController extends Controller
     */
     public function indexAction()
     {
-      	return array();
+      
+
+      if ($this->get('security.context')->isGranted('ROLE_USER')){
+
+	return $this->redirect($this->generateUrl('secure_home'));
+	
+      }
+      else{
+	
+	return array();
+
+      }
+       
     }
 
     //Secure home
@@ -28,7 +40,10 @@ class IndexController extends Controller
      */
     public function indexSecureAction()
     {
-      return array();
+      //  return array();
+ 
+       	return $this->redirect($this->generateUrl('img_random'));
+
     }
 
 
