@@ -1,12 +1,13 @@
 <?php
 
 namespace SFM\PicmntBundle\Entity;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * SFM\PicmntBundle\Entity\Image
  *
- * @orm:Table(name="Image")
- * @orm:Entity
+ * @ORM\Table(name="Image")
+ * @ORM\Entity
  */
 class Image
 {
@@ -14,23 +15,23 @@ class Image
     /**
      * @var integer $idImage
      *
-     * @orm:Column(name="id_image", type="integer", nullable=false)
-     * @orm:Id
-     * @orm:GeneratedValue(strategy="AUTO")
+     * @ORM\Column(name="id_image", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $idImage;
 
     /**
      * @var integer $userId
      *
-     * @orm:Column(name="user_id", type="integer", nullable=false)
+     * @ORM\Column(name="user_id", type="integer", nullable=false)
      */
     private $userId;
 
     /**
      * @var string $url
      *
-     * @orm:Column(name="Url", type="string", length=255, nullable=false)
+     * @ORM\Column(name="Url", type="string", length=255, nullable=false)
      */
     private $url;
 

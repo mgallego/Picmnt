@@ -44,14 +44,17 @@ class ImageController extends Controller
     
     //retrieving the request
     $request = $this->get('request');
-    
+ 
+   
     if ($request->getMethod() == 'POST'){
       $form->bindRequest($request);
       
+
       if ($form->isValid()) {
 
+
 	//persist in the database
-	$em = $this->get('doctrine.orm.entity_manager');     
+	$em = $this->get('doctrine')->getEntityManager();     
    	
 	$em->persist($image);
 	$em->flush();
@@ -65,4 +68,5 @@ class ImageController extends Controller
     
   }
   
+
 }

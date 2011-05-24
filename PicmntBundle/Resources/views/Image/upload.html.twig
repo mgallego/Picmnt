@@ -1,4 +1,4 @@
-{% extends "SFMPicmntBundle::base.html.twig" %}
+{#{% extends "SFMPicmntBundle::base.html.twig" %}#}
 
 
 {% block body %}
@@ -15,7 +15,7 @@
   {# necesary for the correct use of the form, without this the form is not valid #}
   {{ form_rest(form) }}
 
-  <input type="submit" onsubmit="parent.$.fancybox.close(); return false" id="upload" />
+  <input type="submit" id="upload" /> {# onsubmit="parent.$.fancybox.close(); return false" id="upload" /> #}
 
 </form>
   
