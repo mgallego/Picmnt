@@ -147,6 +147,14 @@ footer #copyright{
     width: 100%;
 }
 
+#content .slider-data{
+
+    width: 3em;
+    padding: 0 0 0 .5em;
+    background-color: transparent;
+
+}
+
 /* General
 _-------------------------------------------------------------------------------------------------*/
 

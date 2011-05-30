@@ -30,7 +30,30 @@
 	      <source>Random Image</source>
 	      <target>Imágen Aleatoria</target>
 	    </trans-unit>
-
+	    <trans-unit id="8">
+	      <source>Rendering...</source>
+	      <target>Renderizando...</target>
+	    </trans-unit>
+	    <trans-unit id="9">
+	      <source>Brightness/Contrast</source>
+	      <target>Brillo/Contraste</target>
+	    </trans-unit>
+	    <trans-unit id="10">
+	      <source>Brightness</source>
+	      <target>Brillo</target>
+	    </trans-unit>
+	    <trans-unit id="11">
+	      <source>Contrast</source>
+	      <target>Contraste</target>
+	    </trans-unit>
+	    <trans-unit id="12">
+	      <source>Saturation</source>
+	      <target>Saturacion</target>
+	    </trans-unit>
+	    <trans-unit id="13">
+	      <source>Exposure</source>
+	      <target>Exposicion</target>
+	    </trans-unit>
         </body>
     </file>
 </xliff>

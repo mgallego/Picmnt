@@ -10,16 +10,25 @@
     <link rel="stylesheet" type="text/css" media="all" href="{{ asset('bundles/picmntbundle/stylesheets/layout.css')}}">
     <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('bundles/picmntbundle/fancybox/jquery.fancybox-1.3.4.css')}}">
 
-   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
-    <script type="text/javascript" src="{{ asset('bundles/picmntbundle/fancybox/jquery.fancybox-1.3.4.pack.js')}}"></script>
+    <link rel="stylesheet" type="text/css" media="all" href="{{ asset('bundles/picmntbundle/jqueryUI/css/custom-theme/jquery-ui-1.8.13.custom.css') }}">
+
+   <!--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>-->
+
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>  
+
+  <script type="text/javascript" src="{{ asset('bundles/picmntbundle/fancybox/jquery.fancybox-1.3.4.pack.js')}}"></script>
     <script type="text/javascript" src="{{ asset('bundles/picmntbundle/js/picmnt.js') }}"> </script>
     <script type="text/javascript" src="{{ asset('bundles/picmntbundle/CamanJS/caman.full.min.js') }}"> </script>
+
+  
+    <script type="text/javascript" src="{{ asset('bundles/picmntbundle/jqueryUI/js/jquery-ui-1.8.13.custom.min.js') }}"></script>
+
 
     <!--[if lt IE 9]>
         <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
 
-   <script type="text/javascript">
+{#   <script type="text/javascript">
       
       Caman.remoteProxy = "{{ asset('bundles/picmntbundle/CamanJS/proxies/caman_proxy.php') }}";
 
@@ -30,6 +39,29 @@
       });
     </script>
     
+#}
+
+<script type="text/javascript">
+ function applyFilter(){
+	
+	var vBrightness = $( "#sBrightness" ).slider( "value" );
+	var vContrast = $( "#sContrast" ).slider( "value" );
+	var vSaturation = $( "#sSaturation" ).slider( "value" );
+	var vExposure = $( "#sExposure" ).slider( "value" );
+
+        Caman.remoteProxy = "{{ asset('bundles/picmntbundle/CamanJS/proxies/caman_proxy.php') }}";
+
+	Caman("#image-to-modify", function () {
+	    $( "#render-in-progress" ).show();
+	    this.revert(function(){
+		this.brightness(vBrightness).contrast(vContrast).saturation(vSaturation).exposure(vExposure).render();
+		$( "#render-in-progress" ).hide();
+	    });
+	    
+	});
+    };
+</script>
+
 
   </head>
   <body>
