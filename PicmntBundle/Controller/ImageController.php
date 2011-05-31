@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use SFM\PicmntBundle\Entity\Image;
 use SFM\PicmntBundle\Entity\User;
+use SFM\PicmntBundle\Repositories\ImageUp;
 use FOS\UserBundle\Entity\UserManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -30,6 +31,8 @@ class ImageController extends Controller
  
      $image = new Image();
     
+     $imageUp = new ImageUp();
+
     //retrieving the user information 
     $user = $this->container->get('security.context')->getToken()->getUser();
     
@@ -38,7 +41,7 @@ class ImageController extends Controller
         
     //calling the form
     $form = $this->get('form.factory')
-      ->createBuilder('form')
+      ->createBuilder('form', $imageUp)
       ->add('dataFile', 'file')
       //add('FieldName', 'type')
       ->getForm();
@@ -78,6 +81,11 @@ class ImageController extends Controller
 
 	return $this->redirect($this->generateUrl('secure_home'));
 	
+      }
+      else {
+
+	return array('form' => $form->createView(),);
+
       }
     }
         
