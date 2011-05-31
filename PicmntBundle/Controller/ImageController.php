@@ -10,6 +10,7 @@ use FOS\UserBundle\Entity\UserManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Doctrine\ORM\Query\ResultSetMapping;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class ImageController extends Controller
 {
@@ -37,8 +38,8 @@ class ImageController extends Controller
         
     //calling the form
     $form = $this->get('form.factory')
-      ->createBuilder('form', $image)
-      ->add('url', 'url')
+      ->createBuilder('form')
+      ->add('dataFile', 'file')
       //add('FieldName', 'type')
       ->getForm();
     
@@ -54,11 +55,27 @@ class ImageController extends Controller
 
 
 	//persist in the database
-	$em = $this->get('doctrine')->getEntityManager();     
+	/*	$em = $this->get('doctrine')->getEntityManager();     
    	
 	$em->persist($image);
 	$em->flush();
+	*/
 	
+	$files=$request->files->get($form->getName());
+
+	$uploadedFile=$files["dataFile"]["file"]; //"dataFile" is the name on the field
+
+	//once you have the uploadedFile object there is some sweet functions you can run
+	$uploadedFile->getPath();//returns current (temporary) path
+	$uploadedFile->getOriginalName();
+	$uploadedFile->getMimeType();
+
+	//and most important is move(),
+	$uploadedFile->move(
+	  $_SERVER['DOCUMENT_ROOT']."/uploads",
+	  $uploadedFile->getOriginalName());
+
+
 	return $this->redirect($this->generateUrl('secure_home'));
 	
       }

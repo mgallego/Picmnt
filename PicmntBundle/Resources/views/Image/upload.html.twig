@@ -8,8 +8,8 @@
 <form id="upload_form" action="{{ path('img_upload') }}" method="post" {{ form_enctype(form) }} >
 
   <div>
-    {{  form_label(form.url , 'Url' | trans ) }}
-    {{ form_widget(form.url) }}
+    {{  form_label(form.dataFile , 'Url' | trans ) }}
+    {{ form_widget(form.dataFile) }}
   </div>
 
   {# necesary for the correct use of the form, without this the form is not valid #}
