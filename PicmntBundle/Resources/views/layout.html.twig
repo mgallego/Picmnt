@@ -31,8 +31,8 @@
        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
        <ul>
 	 <li><a href="{{ path('img_random') }}">{{ 'Random Image' | trans }}</a></li>
-<li> <a id="fBIframe" href="{{ path('img_upload') }}" title="upload">{{ 'Upload an image' | trans }}</a>
-</li>
+	 {#<li><a id="fBIframe" href="{{ path('img_upload') }}" title="upload">{{ 'Upload an image' | trans }}</a></li>#}
+	 <li><a  href="{{ path('img_upload') }}" title="upload">{{ 'Upload an image' | trans }}</a></li>
        </ul>
        {% endif %}
 

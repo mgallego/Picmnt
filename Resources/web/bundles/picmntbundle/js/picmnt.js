@@ -11,7 +11,7 @@ $(document).ready(function() {
     });
 
     //submit the upload form and close de fancybox iframe
-    $('#upload_form').submit(function(){
+    $('#upload_form_deactivated').submit(function(){
 	
 	$.ajax({
 	    
