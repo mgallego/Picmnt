@@ -9,7 +9,7 @@ class ImageUp
  
   /**
    * @Assert\File(maxSize = "1M", mimeTypes = {
-   *   "image/jpg",
+   *   "image/jpeg",
    *   "image/png"
    * })
    */

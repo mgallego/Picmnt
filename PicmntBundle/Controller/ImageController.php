@@ -73,13 +73,32 @@ class ImageController extends Controller
 	$uploadedFile->getOriginalName();
 	$uploadedFile->getMimeType();
 
+	
+	if ($uploadedFile->getMimeType() == 'image/png' ){
+	  $extension = '.png';
+	}
+	else{
+	  $extension = '.jpg';
+	}
+	  
+
+	$newFileName = $image->getUserId().'_'.date("ymdHis").'_'.rand(1,9999).$extension;
+	
 	//and most important is move(),
 	$uploadedFile->move(
 	  $_SERVER['DOCUMENT_ROOT']."/uploads",
-	  $uploadedFile->getOriginalName());
+	  // $uploadedFile->getOriginalName()
+	  $newFileName );
 
+	$image->setUrl($newFileName);
 
-	return $this->redirect($this->generateUrl('secure_home'));
+	//persist in the database
+	$em = $this->get('doctrine')->getEntityManager();     
+   	
+	$em->persist($image);
+	$em->flush();
+	
+	return $this->redirect($this->generateUrl('img_edit', array("id_image" => $image->getIdImage())));
 	
       }
       else {
@@ -92,6 +111,22 @@ class ImageController extends Controller
     return array('form' => $form->createView(),);
     
   }
+
+  /**
+   * @Route("/img/edit/{id_image}", name="img_edit")
+   * @Template()
+   */
+  public function editImageAction($id_image){
+
+    $image = new Image();
+
+    $em = $this->get('doctrine')->getEntityManager();     
+    
+    $image = $em->find('SFMPicmntBundle:Image',$id_image);
+
+    return array("image_url" => 'uploads/'.$image->getUrl());
+  }
+
 
  /**
    * @Route("/img/random", name="img_random")
@@ -121,7 +156,7 @@ class ImageController extends Controller
 
     //    echo $image->getUrl();
 
-    return array('image'=>$image->getUrl());
+    return array('image'=> 'uploads/'.$image->getUrl());
 
   }
  
