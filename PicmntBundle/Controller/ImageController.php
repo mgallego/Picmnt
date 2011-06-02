@@ -12,6 +12,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Doctrine\ORM\Query\ResultSetMapping;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use SFM\PicmntBundle\Util\ImageUtil;
+
 
 class ImageController extends Controller
 {
@@ -90,6 +92,10 @@ class ImageController extends Controller
 	  // $uploadedFile->getOriginalName()
 	  $newFileName );
 
+	$imageUtil = new ImageUtil();
+
+	$imageUtil->resizeImage('uploads/'.$newFileName);
+
 	$image->setUrl($newFileName);
 
 	//persist in the database
@@ -123,6 +129,8 @@ class ImageController extends Controller
     $em = $this->get('doctrine')->getEntityManager();     
     
     $image = $em->find('SFMPicmntBundle:Image',$id_image);
+
+    print_r(exif_read_data('uploads/'.$image->geturl()));
 
     return array("image_url" => 'uploads/'.$image->getUrl());
   }
