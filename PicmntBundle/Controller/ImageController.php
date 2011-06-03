@@ -33,6 +33,7 @@ class ImageController extends Controller
  
      $image = new Image();
     
+     //this object is use for the validators
      $imageUp = new ImageUp();
 
     //retrieving the user information 
@@ -58,14 +59,6 @@ class ImageController extends Controller
 
       if ($form->isValid()) {
 
-
-	//persist in the database
-	/*	$em = $this->get('doctrine')->getEntityManager();     
-   	
-	$em->persist($image);
-	$em->flush();
-	*/
-	
 	$files=$request->files->get($form->getName());
 
 	$uploadedFile=$files["dataFile"]["file"]; //"dataFile" is the name on the field
@@ -76,6 +69,7 @@ class ImageController extends Controller
 	$uploadedFile->getMimeType();
 
 	
+	//rerieving the file extension
 	if ($uploadedFile->getMimeType() == 'image/png' ){
 	  $extension = '.png';
 	}
@@ -84,18 +78,20 @@ class ImageController extends Controller
 	}
 	  
 
+	//creating a new name for the file
 	$newFileName = $image->getUserId().'_'.date("ymdHis").'_'.rand(1,9999).$extension;
 	
 	//and most important is move(),
 	$uploadedFile->move(
 	  $_SERVER['DOCUMENT_ROOT']."/uploads",
-	  // $uploadedFile->getOriginalName()
 	  $newFileName );
 
 	$imageUtil = new ImageUtil();
 
+	//resize the image if is necesary
 	$imageUtil->resizeImage('uploads/'.$newFileName);
 
+	//save the url of the image (name) into the database
 	$image->setUrl($newFileName);
 
 	//persist in the database
@@ -103,20 +99,30 @@ class ImageController extends Controller
    	
 	$em->persist($image);
 	$em->flush();
-	
+
+	//show the edit image page
 	return $this->redirect($this->generateUrl('img_edit', array("id_image" => $image->getIdImage())));
 	
       }
       else {
 
+	//return the same form view
 	return array('form' => $form->createView(),);
 
       }
     }
         
+    //create the first form
     return array('form' => $form->createView(),);
     
   }
+
+
+  /************************************************************************
+   ************************ EDIT IMAGE  ACTTION ***************************
+   ************************************************************************
+   ************** Edit an uploaded image ************** *******************
+   ***********************************************************************/
 
   /**
    * @Route("/img/edit/{id_image}", name="img_edit")
@@ -124,14 +130,14 @@ class ImageController extends Controller
    */
   public function editImageAction($id_image){
 
+    //retrieving the image info
     $image = new Image();
 
     $em = $this->get('doctrine')->getEntityManager();     
     
     $image = $em->find('SFMPicmntBundle:Image',$id_image);
 
-    print_r(exif_read_data('uploads/'.$image->geturl()));
-
+    //show the image un the edit view
     return array("image_url" => 'uploads/'.$image->getUrl());
   }
 
@@ -142,12 +148,13 @@ class ImageController extends Controller
    */
   public function getRandomImageAction(){
 
+
+    //preparing the sql statement
     $rsm = new ResultSetMapping;
     $rsm->addEntityResult('SFM\PicmntBundle\Entity\Image','i');
     $rsm->addFieldResult('i', 'idImage','idImage');
     $rsm->addFieldResult('i','url','url');
     
-
     $image = new Image();
 
     $em = $this->get('doctrine')->getEntityManager();
@@ -158,17 +165,12 @@ class ImageController extends Controller
     
     $images = $query->getResult();
 
+    //obtain the image
     $image = $images[0];
 
-    //    print_r($images);
-
-    //    echo $image->getUrl();
-
+    //show the view with the image
     return array('image'=> 'uploads/'.$image->getUrl());
 
   }
  
-
-   
-
 }
