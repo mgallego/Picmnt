@@ -137,10 +137,66 @@ class ImageController extends Controller
     
     $image = $em->find('SFMPicmntBundle:Image',$id_image);
 
-    //show the image un the edit view
-    return array("image_url" => 'uploads/'.$image->getUrl());
+    //retrieving the user information 
+    $user = $this->container->get('security.context')->getToken()->getUser();
+
+    //compare the actual user and the property of the image
+    if ($user->getId() != $image->getUserId()) { //diferent user
+      //show an error twig
+    }
+    else{
+
+      //calling the form
+      $form = $this->get('form.factory')
+	->createBuilder('form', $image)
+	->add('title', 'text')
+	->add('description','textarea')
+	->add('category','text')
+	->add('tags','text')
+	//add('FieldName', 'type')
+	->getForm();
+
+
+
+      //retrieving the request
+      $request = $this->get('request');
+      
+   
+      if ($request->getMethod() == 'POST'){
+	$form->bindRequest($request);
+      
+
+	if ($form->isValid()) {
+
+	  print($image->getidImage());
+	  print($image->getTitle());
+	  print($image->getDescription());
+
+	  $em->persist($image);
+	  $em->flush();
+	
+	  return $this->redirect($this->generateUrl('img_random'));
+
+
+	}
+	else
+	  {
+
+	    return array("image_url" => 'uploads/'.$image->getUrl(), 'form' => $form->createView(), 'id_image'=>$id_image);
+	  }
+      }
+      //show the image un the edit view
+      return array("image_url" => 'uploads/'.$image->getUrl(), 'form' => $form->createView(), 'id_image'=>$id_image);
+    }
   }
 
+
+
+  /************************************************************************
+   *******************  GET RANDOM IMAGE ACTION ***************************
+   ************************************************************************
+   ************** Reurn a random image ************************************
+   ***********************************************************************/
 
  /**
    * @Route("/img/random", name="img_random")
@@ -154,14 +210,16 @@ class ImageController extends Controller
     $rsm->addEntityResult('SFM\PicmntBundle\Entity\Image','i');
     $rsm->addFieldResult('i', 'idImage','idImage');
     $rsm->addFieldResult('i','url','url');
-    
+    $rsm->addFieldResult('i','title','title');
+    $rsm->addFieldResult('i','description','description');
+
     $image = new Image();
 
     $em = $this->get('doctrine')->getEntityManager();
 
     //$query = $em->createQuery('SELECT i.url, \''.rand().'\' rand FROM SFM\PicmntBundle\Entity\Image i ORDER BY rand');
 
-    $query = $em->createNativeQuery('SELECT url, id_image AS idImage FROM Image ORDER BY rand() limit 1', $rsm);
+    $query = $em->createNativeQuery('SELECT url, id_image AS idImage, title, description FROM Image ORDER BY rand() limit 1', $rsm);
     
     $images = $query->getResult();
 
@@ -169,7 +227,7 @@ class ImageController extends Controller
     $image = $images[0];
 
     //show the view with the image
-    return array('image'=> 'uploads/'.$image->getUrl());
+    return array('image'=> 'uploads/'.$image->getUrl(),'title'=>$image->getTitle(),'description'=>$image->getDescription(), 'id_image'=>$image->getIdImage()  );
 
   }
  

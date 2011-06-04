@@ -2,9 +2,19 @@
 
 {% block content %}
 
+<h2>{{ title }}
+  <a href="{{ path('img_edit', { 'id_image': id_image }) }}">( {{ 'Edit' | trans }} )</a>
+</h2>
+
+
+
+
 {# load de image to modify #}
 <img src="{{ asset(image) }}" id="image-to-modify"/>
 
+<div id="img_descrition">
+  <h3>{{ description }}</h3>
+</div>
 
 <div class="modify-control" style="width:320px">
    

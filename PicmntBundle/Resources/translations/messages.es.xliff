@@ -23,8 +23,8 @@
 	      <target>Ruta</target>
 	    </trans-unit>
 	    <trans-unit id="6">
-	      <source>Please insert the URL of the image</source>
-	      <target>Por favor introduzca la ruta de la imágen</target>
+	      <source>Please select an image</source>
+	      <target>Por favor seleccione una imágen</target>
 	    </trans-unit>
 	    <trans-unit id="7">
 	      <source>Random Image</source>
@@ -48,11 +48,35 @@
 	    </trans-unit>
 	    <trans-unit id="12">
 	      <source>Saturation</source>
-	      <target>Saturacion</target>
+	      <target>Saturación</target>
 	    </trans-unit>
 	    <trans-unit id="13">
 	      <source>Exposure</source>
-	      <target>Exposicion</target>
+	      <target>Exposición</target>
+	    </trans-unit>
+	    <trans-unit id="14">
+	      <source>Edit</source>
+	      <target>Editar</target>
+	    </trans-unit>
+	    <trans-unit id="15">
+	      <source>Title</source>
+	      <target>Título</target>
+	    </trans-unit>
+	    <trans-unit id="16">
+	      <source>Description</source>
+	      <target>Descripción</target>
+	    </trans-unit>
+	    <trans-unit id="17">
+	      <source>Category</source>
+	      <target>Categoría</target>
+	    </trans-unit>
+	    <trans-unit id="18">
+	      <source>Tags</source>
+	      <target>Etiquetas</target>
+	    </trans-unit>
+	    <trans-unit id="19">
+	      <source>Upload an image</source>
+	      <target>Subir una imágen</target>
 	    </trans-unit>
         </body>
     </file>

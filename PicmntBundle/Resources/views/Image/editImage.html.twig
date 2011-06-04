@@ -4,5 +4,38 @@
 
 <img src="{{ asset(image_url) }}"/> 
 
+<form action="{{ path('img_edit', { 'id_image': id_image }) }}" method="post" {{ form_enctype(form) }}>
+
+
+  <div>
+    {{ form_errors(form.title) }}
+    {{ form_label(form.title, 'Title' | trans) }}
+    {{ form_widget(form.title) }}
+  </div>
+
+  <div>
+    {{ form_errors(form.description) }}
+    {{ form_label(form.description, 'Description' | trans) }}
+    {{ form_widget(form.description) }}
+  </div>
+
+  <div>
+    {{ form_errors(form.category) }}
+    {{ form_label(form.category, 'Category' | trans) }}
+    {{ form_widget(form.category) }}
+  </div>
+  
+  <div>
+    {{ form_errors(form.tags) }}
+    {{ form_label(form.tags, 'Tags' | trans) }}
+    {{ form_widget(form.tags) }}
+  </div>
+    
+  {{ form_rest(form) }}
+
+  <input type="submit" />
+
+</form>
+
 {% endblock %}
 
