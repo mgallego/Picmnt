@@ -231,4 +231,42 @@ class ImageController extends Controller
 
   }
  
+
+
+
+ /**
+   * @Route("/img/show/{selection}", name="img_show")
+   * @Template()
+   */
+  public function getImageAction($selection){
+
+
+    //preparing the sql statement
+    $rsm = new ResultSetMapping;
+    $rsm->addEntityResult('SFM\PicmntBundle\Entity\Image','i');
+    $rsm->addFieldResult('i', 'idImage','idImage');
+    $rsm->addFieldResult('i','url','url');
+    $rsm->addFieldResult('i','title','title');
+    $rsm->addFieldResult('i','description','description');
+
+    $image = new Image();
+
+    $em = $this->get('doctrine')->getEntityManager();
+
+    if ($selection = 'random' ){
+      $query = $em->createNativeQuery('SELECT url, id_image AS idImage, title, description FROM Image ORDER BY rand() limit 1', $rsm);
+    }
+    
+    $images = $query->getResult();
+
+    //obtain the image
+    $image = $images[0];
+
+    //show the view with the image
+    return array('image'=> 'uploads/'.$image->getUrl(),'title'=>$image->getTitle(),'description'=>$image->getDescription(), 'id_image'=>$image->getIdImage()  );
+
+  }
+ 
+
+
 }

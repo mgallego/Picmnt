@@ -1,6 +1,7 @@
 imports:
     - { resource: parameters.ini }
     - { resource: security.yml }
+    - { resource: "@SFMPicmntBundle/Resources/config/menu.xml" }
 
 framework:
     secret:          %secret%
@@ -64,3 +65,6 @@ fos_user:
             user: SFM\PicmntBundle\Entity\User
     template:
          theme: SFMPicmntBundle::layout.html.twig
+
+knplabs_menu:
+    twig: true

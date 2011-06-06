@@ -49,6 +49,7 @@ header nav a{
     border-radius: 25px;
 }
 
+/*
 header ul{
     list-style-type: none;
     margin: 0 auto;
@@ -61,6 +62,25 @@ header li{
     padding: 5px;
     
 }
+*/
+
+header ul{
+    width: 100%;
+    list-style-type: none;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+
+
+}
+
+header li {
+   	paddig: 12px;
+	margin: 12px;
+	display: inline;
+#	float: center;
+}
+
 
 /* Footer
 ----------------------------------------------------------------------------------------------------*/

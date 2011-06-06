@@ -7,6 +7,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
+//menubundle
+use Knplabs\Bundle\MenuBundle\MenuItem;
+
+
 
 class IndexController extends Controller
 {
@@ -40,9 +44,7 @@ class IndexController extends Controller
      */
     public function indexSecureAction()
     {
-      //  return array();
- 
-       	return $this->redirect($this->generateUrl('img_random'));
+      return $this->redirect($this->generateUrl('img_random'));
 
     }
 

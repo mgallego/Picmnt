@@ -1,0 +1,62 @@
+{% extends "SFMPicmntBundle::layout.html.twig" %}
+
+{% block content %}
+
+<h2>{{ title }}
+  <a href="{{ path('img_edit', { 'id_image': id_image }) }}">( {{ 'Edit' | trans }} )</a>
+</h2>
+
+
+
+
+{# load de image to modify #}
+<img src="{{ asset(image) }}" id="image-to-modify"/>
+
+<div id="img_descrition">
+  <h3>{{ description }}</h3>
+</div>
+
+<div class="modify-control" style="width:320px">
+   
+  <div id="render-in-progress" style="display:none">
+    <p>{{ 'Rendering...' | trans }}</p>
+    <img src="http://camanjs.com/imgs/ajax-loader.gif" id="preset-rendering" />
+  </div>
+  
+  <div id="accordion">
+    <h3><a href="#">{#{{ 'Brightness/Contrast' | trans }}#} {{ 'Brightness' | trans }} 
+	<input type="text" id="bAmount" style="border:0" class="slider-data"/> / 
+	{{ 'Contrast' | trans }}
+    	<input type="text" id="cAmount" style="border:0" class="slider-data"/> </a></h3>
+    <div>
+
+      <div id="sBrightness"></div>
+
+      <br/>
+
+      <div id="sContrast"></div>
+      
+    </div>
+    <h3><a href="#">{{ 'Exposure' | trans }} <input type="text" id="aExposure" style="border:0" class="slider-data"/></a></h3>
+    <div>
+
+      <div id="sExposure"></div>
+
+    </div>
+
+    <h3><a href="#">{{ 'Saturation' | trans }}<input type="text" id="aSaturation" style="border:0" class="slider-data"/></a></h3>
+    <div>
+      
+      <div id="sSaturation"></div>
+       
+    </div>
+  </div>
+  
+</div>
+
+
+
+
+{% endblock %}
+
+
