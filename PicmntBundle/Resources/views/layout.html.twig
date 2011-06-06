@@ -10,7 +10,11 @@
 	  <nav>
 	    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 	    <ul>
-	      <li><a href="{{ path('usr_edit', {'userId': app.user.getId()}) }}">{{  'Hello %username%' | trans({ '%username%': app.user.getUsername() }) }}</a></li>
+	      <li>
+		<a href="{{ path('usr_edit', {'userId': app.user.getId()}) }}">
+		  <img src="/uploads/avatarsmall/avatar{{ app.user.getId }}.jpg">{{  'Hello %username%' | trans({ '%username%': app.user.getUsername() }) }}
+		</a>
+	      </li>
 	      <li>|</li>
       	      <li><a href="{{ path('_security_logout') }}">{{ 'Logout' | trans }}</a></li>
 	    </ul> 	   

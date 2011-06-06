@@ -89,7 +89,7 @@ class ImageController extends Controller
 	$imageUtil = new ImageUtil();
 
 	//resize the image if is necesary
-	$imageUtil->resizeImage('uploads/'.$newFileName);
+	$imageUtil->resizeImage('uploads/'.$newFileName, 800);
 
 	//save the url of the image (name) into the database
 	$image->setUrl($newFileName);

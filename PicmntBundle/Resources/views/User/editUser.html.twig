@@ -2,6 +2,8 @@
 
 {% block content %}
 
+<img src="/uploads/avatarbig{{ asset(avatar) }}"/>
+
 <form action="{{ path('usr_edit', { 'userId': userId }) }}" method="post" {{ form_enctype(form) }}>
 
 {{ form_widget(form) }}

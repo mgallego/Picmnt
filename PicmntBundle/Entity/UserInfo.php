@@ -40,6 +40,14 @@ class UserInfo
      */
     private $lastName;
 
+    /**
+     * @var string $avatar
+     *
+     * @ORM\Column(name="avatar", type="string", length=255, nullable=true)
+     */
+    private $avatar;
+
+
 
     /**
      * Get userId
@@ -103,6 +111,24 @@ class UserInfo
         return $this->lastName;
     }
 
+
+    /**
+     * Set avatar
+     *
+     * @param string $avatar
+     */
+    public function setAvatar($avatar){
+      $this->avatar = $avatar;
+    }
+
+    /**
+     * Get avatar
+     *
+     * @return string $avatar
+     */
+    public function getAvatar(){
+      return $this->avatar;
+    }
 
 
 }
