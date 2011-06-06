@@ -13,7 +13,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Doctrine\ORM\Query\ResultSetMapping;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use SFM\PicmntBundle\Util\ImageUtil;
-
+use Pagerfanta\Adapter\DoctrineORMAdapter;
 
 class ImageController extends Controller
 {
@@ -240,30 +240,32 @@ class ImageController extends Controller
    */
   public function getImageAction($selection){
 
+    $em = $this->get('doctrine.orm.entity_manager');
+    
+
+    if ($selection == 'last') {
+      $dql = "SELECT a FROM SFMPicmntBundle:Image a order by a.idImage desc";
+    }
+
+
+    $query = $em->createQuery($dql);
+
 
     //preparing the sql statement
-    $rsm = new ResultSetMapping;
-    $rsm->addEntityResult('SFM\PicmntBundle\Entity\Image','i');
-    $rsm->addFieldResult('i', 'idImage','idImage');
-    $rsm->addFieldResult('i','url','url');
-    $rsm->addFieldResult('i','title','title');
-    $rsm->addFieldResult('i','description','description');
-
-    $image = new Image();
-
-    $em = $this->get('doctrine')->getEntityManager();
-
-    if ($selection = 'random' ){
-      $query = $em->createNativeQuery('SELECT url, id_image AS idImage, title, description FROM Image ORDER BY rand() limit 1', $rsm);
-    }
+ 
+    $adapter = $this->get('knplabs_paginator.adapter');
+    $adapter->setQuery($query);
+    $adapter->setDistinct(true);
     
-    $images = $query->getResult();
 
-    //obtain the image
-    $image = $images[0];
+    $paginator = new \Zend\Paginator\Paginator($adapter);
+    $paginator->setCurrentPageNumber($this->get('request')->query->get('page', 1));
+    $paginator->setItemCountPerPage(1);
+    $paginator->setPageRange(1);
 
-    //show the view with the image
-    return array('image'=> 'uploads/'.$image->getUrl(),'title'=>$image->getTitle(),'description'=>$image->getDescription(), 'id_image'=>$image->getIdImage()  );
+
+    return array("paginator"=>$paginator );
+
 
   }
  

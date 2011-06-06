@@ -2,19 +2,23 @@
 
 {% block content %}
 
-<h2>{{ title }}
-  <a href="{{ path('img_edit', { 'id_image': id_image }) }}">( {{ 'Edit' | trans }} )</a>
+<div id="navigation">
+    {{ paginator|paginate }}
+</div>
+
+{% for image in paginator %}
+
+<h2>{{ image.title }}
+  <a href="{{ path('img_edit', { 'id_image': image.idImage }) }}">( {{ 'Edit' | trans }} )</a>
 </h2>
-
-
-
-
 {# load de image to modify #}
-<img src="{{ asset(image) }}" id="image-to-modify"/>
+<img src="/uploads{{ asset(image.url) }}" id="image-to-modify"/>
 
 <div id="img_descrition">
-  <h3>{{ description }}</h3>
+  <h3>{{ image.description }}</h3>
 </div>
+
+{% endfor %}
 
 <div class="modify-control" style="width:320px">
    
@@ -53,6 +57,7 @@
   </div>
   
 </div>
+
 
 
 
