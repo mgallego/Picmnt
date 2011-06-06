@@ -1,6 +1,10 @@
 <?php
-use Doctrine\ORM\Mapping as ORM;
+
 namespace SFM\PicmntBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * SFM\PicmntBundle\Entity\UserInfo
@@ -32,7 +36,7 @@ class UserInfo
     /**
      * @var string $lastName
      *
-     * @orm:Column(name="Last_Name", type="string", length=45, nullable=false)
+     * @ORM\Column(name="Last_Name", type="string", length=45, nullable=false)
      */
     private $lastName;
 

@@ -20,8 +20,8 @@ class MainMenu extends Menu{
 
     $this->addChild('Home', $router->generate('home'));
     $this->addChild('Random Image', $router->generate('img_random'));
+    $this->addChild('Lastest Upload', $router->generate('img_show', array('selection'=>'last')));
     $this->addChild('Upload Image', $router->generate('img_upload'));
-    //    $this->addChild('Home', $router->generate('home'));
     //    $this->addChild('Home', $router->generate('home'));
     //    $this->addChild('Home', $router->generate('home'));
     // ... add more children

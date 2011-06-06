@@ -13,7 +13,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Doctrine\ORM\Query\ResultSetMapping;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use SFM\PicmntBundle\Util\ImageUtil;
-use Pagerfanta\Adapter\DoctrineORMAdapter;
+
 
 class ImageController extends Controller
 {
