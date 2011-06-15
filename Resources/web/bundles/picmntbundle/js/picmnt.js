@@ -1,5 +1,8 @@
 $(document).ready(function() {
 
+  
+    $( "button, input:submit").button();
+
     //open a fancybox like a new iframe
     $("#fBIframe").fancybox({
 	'width': '50%',
