@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use SFM\PicmntBundle\Entity\Image;
 use SFM\PicmntBundle\Entity\User;
+use SFM\PicmntBundle\Entity\UserVote;
 use SFM\PicmntBundle\Repositories\ImageUp;
 use FOS\UserBundle\Entity\UserManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -232,13 +233,13 @@ class ImageController extends Controller
   }
  
 
-
-
  /**
    * @Route("/img/show/{selection}", name="img_show")
    * @Template()
    */
   public function getImageAction($selection){
+
+    $userVote = new UserVote();
 
     $em = $this->get('doctrine.orm.entity_manager');
     
@@ -263,12 +264,76 @@ class ImageController extends Controller
     $paginator->setItemCountPerPage(1);
     $paginator->setPageRange(1);
 
+    $items = $paginator->getCurrentItems();
 
-    return array("paginator"=>$paginator );
+    $image = new Image();
 
+    //return the current object of the paginator
+    $image = $items[0];
+    
+    //parameters for the Javascript votef button in the layaout
+    $parameters = Array("idImage"=>$image->getIdImage(), "voted"=>$this->hasVoted($image->getIdImage()));
+
+    return array("paginator"=>$paginator, "parameters"=>$parameters );
 
   }
- 
 
+
+  public function hasVoted($idImage){
+    
+    //load the current users data
+    $user = $this->container->get('security.context')->getToken()->getUser();
+
+    $repository = $this->get('doctrine')
+      ->getEntityManager()
+      ->getRepository('SFMPicmntBundle:UserVote');
+
+    //query the votes of the user for this image
+    $query = $repository->createQueryBuilder('uv')
+      ->where('uv.userId = :userId AND uv.idImage = :idImage')
+      ->setParameters(array('userId'=>$user->getId(), 'idImage'=>$idImage))
+      ->getQuery();
+
+    $userVote = $query->getResult();
+    
+    
+    if (!$userVote) { //if the image has not voted
+      return 0;
+    }
+    else{
+      return 1;
+    }
+
+  }
+
+
+ /**
+   * @Route("/img/vote/{idImage}", name="img_vote")
+   */
+  public function voteAction($idImage){
+
+    if ($this->hasVoted($idImage) == 0){
+
+      $image = new Image();
+      
+      $userVote = new UserVote();
+      
+      $em = $this->get('doctrine')->getEntityManager();     
+      
+      $image = $em->find('SFMPicmntBundle:Image',$idImage);
+      
+      $image->sumVotes();
+      
+      $user = $this->container->get('security.context')->getToken()->getUser();
+      
+      $userVote->setIdImage($idImage);
+      $userVote->setuserId($user->getId());
+    
+      $em->persist($image);
+      $em->persist($userVote);
+      $em->flush();
+    }    
+
+  }
 
 }

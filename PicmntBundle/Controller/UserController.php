@@ -78,14 +78,15 @@ class UserController extends Controller
 	    
 	    
 	    //rerieving the file extension
+	    /*
 	    if ($uploadedFile->getMimeType() == 'image/png' ){
 	      $extension = '.png';
 	    }
 	    else{
 	      $extension = '.jpg';
 	    }
-	    
-	    
+	    */
+	    $extension = '.jpg';
 	    //creating a new name for the file
 	    $newFileName = 'avatar'.$userId.$extension;
 	    

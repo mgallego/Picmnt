@@ -2,17 +2,61 @@
 
 {% block content %}
 
+{% for image in paginator %}
+
+<script type="text/javascript">
+  $(document).ready(function(){
+  
+  
+  $( "button, input:submit").button();
+  
+  if ( {{ parameters.voted }} == 0){
+
+  $('#voted').hide();
+  $('#btnVote').show(); 
+  
+  }
+  else{
+
+  $('#voted').show();
+  $('#btnVote').hide(); 
+  }
+
+
+  $('#btnVote').click(function(){
+  
+  $.ajax({ url: "{{ path('img_vote', { 'idImage': parameters.idImage }) }}" ,
+   succes:  sumVote()
+   })
+  }
+  );
+  
+  });
+  
+  function sumVote(){
+  $('#numVotes').html(parseInt($('#numVotes').html()) + 1);
+  $('#btnVote').hide(); 
+  $('#voted').show(); 
+  };
+</script>
+
 <div id="navigation">
     {{ paginator|paginate }}
 </div>
 
-{% for image in paginator %}
+{# {% for image in paginator %} #}
 
 <h2>{{ image.title }}
   <a href="{{ path('img_edit', { 'id_image': image.idImage }) }}">( {{ 'Edit' | trans }} )</a>
 </h2>
 {# load de image to modify #}
 <img src="/uploads{{ asset(image.url) }}" id="image-to-modify"/>
+
+{# Votes #}
+<div id="numVotes">{{ image.votes }}</div>
+
+<button id="btnVote">{{ 'Vote' | trans }}</button>
+<button id="voted">{{ 'Voted' | trans }}</button>
 
 <div id="img_descrition">
   <h3>{{ image.description }}</h3>

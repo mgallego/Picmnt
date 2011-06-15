@@ -71,6 +71,13 @@ class Image
     private $tags;
 
     /**
+     * @var integer $votes
+     *
+     * @ORM\Column(name="votes", type="integer", nullable="false")
+     */
+    private $votes;
+
+    /**
      * Set idImage
      *
      * @param integer $idImage
@@ -202,6 +209,29 @@ class Image
      */
     public function getTags(){
       return $this->tags;
+    }
+
+    /**
+     * Set votes
+     *
+     * @param integer $votes
+     */
+    public function setVotes($votes){
+      $this->votes = $votes;
+    }
+
+    /**
+     * get votes
+     *
+     * @return integer $votes
+     */
+    public function getVotes(){
+      return $this->votes;
+    }
+
+
+    public function sumVotes(){
+      $this->votes = $this->getVotes() + 1;
     }
 
 }

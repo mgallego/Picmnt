@@ -78,6 +78,14 @@
 	      <source>Upload an image</source>
 	      <target>Subir una imágen</target>
 	    </trans-unit>
+	    <trans-unit id="20">
+	      <source>Vote</source>
+	      <target>Votar</target>
+	    </trans-unit>
+	    <trans-unit id="21">
+	      <source>Voted</source>
+	      <target>Votada</target>
+	    </trans-unit>
         </body>
     </file>
 </xliff>
