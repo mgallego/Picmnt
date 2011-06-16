@@ -25,25 +25,21 @@ class ImageController extends Controller
    ************************************************************************
    ************** Upload an image url into the database *******************
    ***********************************************************************/
-
   /**
    * @Route("/img/upload", name="img_upload")
    * @Template()
    */
   public function uploadAction()
   {
- 
-     $image = new Image();
+    
+    //retrieving the user information 
+    $user = $this->container->get('security.context')->getToken()->getUser();
+
+    $image = new Image();
     
      //this object is use for the validators
      $imageUp = new ImageUp();
-
-    //retrieving the user information 
-    $user = $this->container->get('security.context')->getToken()->getUser();
-    
-    //insert the actual loged User
-    $image->setUserId($user->getId());
-        
+            
     //calling the form
     $form = $this->get('form.factory')
       ->createBuilder('form', $imageUp)
@@ -81,7 +77,7 @@ class ImageController extends Controller
 	  
 
 	//creating a new name for the file
-	$newFileName = $image->getUserId().'_'.date("ymdHis").'_'.rand(1,9999).$extension;
+	$newFileName = $user->getId().'_'.date("ymdHis").'_'.rand(1,9999).$extension;
 	
 	//and most important is move(),
 	$uploadedFile->move(
@@ -95,6 +91,11 @@ class ImageController extends Controller
 
 	//save the url of the image (name) into the database
 	$image->setUrl($newFileName);
+	$image->setVotes(0);
+
+	//$user->addImages($image);
+
+	$image->setUser($user);
 
 	//persist in the database
 	$em = $this->get('doctrine')->getEntityManager();     
@@ -103,7 +104,7 @@ class ImageController extends Controller
 	$em->flush();
 
 	//show the edit image page
-	return $this->redirect($this->generateUrl('img_edit', array("id_image" => $image->getIdImage())));
+	return $this->redirect($this->generateUrl('img_edit', array("id_image" => $user->getImage->getIdImage())));
 	
       }
       else {
@@ -118,6 +119,7 @@ class ImageController extends Controller
     return array('form' => $form->createView(),);
     
   }
+
 
 
   /************************************************************************
@@ -143,7 +145,7 @@ class ImageController extends Controller
     $user = $this->container->get('security.context')->getToken()->getUser();
 
     //compare the actual user and the property of the image
-    if ($user->getId() != $image->getUserId()) { //diferent user
+    if ($user->getId() != $image->getUser()->getId()) { //diferent user
       //show an error twig
     }
     else{

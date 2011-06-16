@@ -21,12 +21,12 @@ class User extends BaseUser
 
 
   /**
-   * @ORM\OneToMany(targetEntity="Image", mappedBy="userInfo")
+   * @ORM\OneToMany(targetEntity="Image", mappedBy="userInfo", cascade={"persist"})
    */
   private $images;
 
   /**
-   * @ORM\OneToOne(targetEntity="UserInfo", mappedBy="user")
+   * @ORM\OneToOne(targetEntity="UserInfo", mappedBy="user", cascade={"persist"})
    */
   private $userInfo;
 
@@ -42,7 +42,7 @@ class User extends BaseUser
      *
      * @param SFM\PicmntBundle\Entity\Image $images
      */
-    public function addPonencias(\SFM\PicmntBundle\Entity\Image $images)
+    public function addImages(\SFM\PicmntBundle\Entity\Image $images)
     {
       $this->images[] = $images;
     }
@@ -78,6 +78,4 @@ class User extends BaseUser
       return $this->userInfo;
     }
     
-
-
 }
