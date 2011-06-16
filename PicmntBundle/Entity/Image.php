@@ -41,7 +41,7 @@ class Image
      *
      * @ORM\Column(name="title", type="string", length=255, nullable=true)
      *
-     *  @Assert\MaxLength(255)
+     * @Assert\MaxLength(255)
      */
     private $title;
 

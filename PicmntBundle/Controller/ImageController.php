@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use SFM\PicmntBundle\Entity\Image;
 use SFM\PicmntBundle\Entity\User;
 use SFM\PicmntBundle\Entity\UserVote;
+use SFM\PicmntBundle\Entity\ImageComment;
 use SFM\PicmntBundle\Repositories\ImageUp;
 use FOS\UserBundle\Entity\UserManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -120,7 +121,7 @@ class ImageController extends Controller
 
 
   /************************************************************************
-   ************************ EDIT IMAGE  ACTTION ***************************
+   ************************ EDIT IMAGE  ACTION ***************************
    ************************************************************************
    ************** Edit an uploaded image ************** *******************
    ***********************************************************************/
@@ -271,10 +272,13 @@ class ImageController extends Controller
     //return the current object of the paginator
     $image = $items[0];
     
+    
+
     //parameters for the Javascript votef button in the layaout
     $parameters = Array("idImage"=>$image->getIdImage(), "voted"=>$this->hasVoted($image->getIdImage()));
 
-    return array("paginator"=>$paginator, "parameters"=>$parameters );
+    return array("paginator"=>$paginator, "parameters"=>$parameters, 
+                 "comments"=>$this->getComments($image->getIdImage()) );
 
   }
 
@@ -305,6 +309,29 @@ class ImageController extends Controller
     }
 
   }
+
+
+  public function getComments($idImage)
+  {
+
+    $repository = $this->get('doctrine')
+      ->getEntityManager()
+      ->getRepository('SFMPicmntBundle:ImageComment');
+
+    //query the votes of the user for this image
+    $query = $repository->createQueryBuilder('c')
+      ->where('c.idImage = :idImage')
+      ->setParameter('idImage',  $idImage)
+      ->getQuery();
+
+    $imageComments = $query->getResult();
+    
+
+    return $imageComments;
+
+  }
+
+
 
 
  /**
