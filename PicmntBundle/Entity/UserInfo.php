@@ -19,7 +19,7 @@ class UserInfo
     /**
      * @var integer $userId
      *
-     * @ORM\Column(name="User_id", type="integer", nullable=false)
+     * @ORM\Column(name="user_id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
@@ -46,8 +46,12 @@ class UserInfo
      * @ORM\Column(name="avatar", type="string", length=255, nullable=true)
      */
     private $avatar;
-
-
+ 
+    /**
+     * @ORM\OneToOne(targetEntity="User", inversedBy="user")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
 
     /**
      * Get userId
@@ -69,7 +73,6 @@ class UserInfo
     {
       $this->userId = $userId;
     }
-   
 
     /**
      * Set name
@@ -129,6 +132,28 @@ class UserInfo
     public function getAvatar(){
       return $this->avatar;
     }
+
+    /**
+     * Set user
+     *
+     * @param SFM\PicmntBundle\Entity\User $user
+     */
+    public function setUserInfo(\SFM\PicmntBundle\Entity\User $user)
+    {
+      $this->user = $user;
+    }
+
+
+    /**
+     * Get user
+     *
+     * @return SFM\PicmntBundle\Entity\User $user
+     */
+    public function getUser()
+    {
+      return $this->user;
+    }
+
 
 
 }

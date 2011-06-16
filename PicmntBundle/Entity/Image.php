@@ -23,13 +23,6 @@ class Image
     private $idImage;
 
     /**
-     * @var integer $userId
-     *
-     * @ORM\Column(name="user_id", type="integer", nullable=false)
-     */
-    private $userId;
-
-    /**
      * @var string $url
      *
      * @ORM\Column(name="Url", type="string", length=255, nullable=false)
@@ -78,6 +71,13 @@ class Image
     private $votes;
 
     /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="images", cascade={"remove"})
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    protected $user;
+
+
+    /**
      * Set idImage
      *
      * @param integer $idImage
@@ -95,27 +95,6 @@ class Image
     public function getIdImage()
     {
         return $this->idImage;
-    }
-
-    /**
-     * Set userId
-     *
-     * @param integer $userId
-     */
-    public function setUserId($userId)
-    {
-        $this->userId = $userId;
-    }
-
-
-    /**
-     * Get userId
-     *
-     * @return integer $userId
-     */
-    public function getUserId()
-    {
-        return $this->userId;
     }
 
     /**
@@ -230,8 +209,30 @@ class Image
     }
 
 
+    /**
+     * Set user
+     *
+     * @param SFM\PicmntBundle\Entity\User $user
+     */
+    public function setUserInfo(\SFM\PicmntBundle\Entity\User $user)
+    {
+      $this->user = $user;
+    }
+
+    /**
+     * Get user
+     *
+     * @return SFM\PicmntBundle\Entity\User $user
+     */
+    public function getUser()
+    {
+      return $this->user;
+    }
+
     public function sumVotes(){
       $this->votes = $this->getVotes() + 1;
     }
+
+    
 
 }

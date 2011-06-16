@@ -272,7 +272,11 @@ class ImageController extends Controller
     //return the current object of the paginator
     $image = $items[0];
     
-    
+    //    print($image->getUser()->getUserInfo()->getName());
+    //    print($image->getUser()->getEmail());
+    //     $user = $this->container->get('security.context')->getToken()->getUser();
+
+    //     print($user->getUserInfo()->getName());
 
     //parameters for the Javascript votef button in the layaout
     $parameters = Array("idImage"=>$image->getIdImage(), "voted"=>$this->hasVoted($image->getIdImage()));
