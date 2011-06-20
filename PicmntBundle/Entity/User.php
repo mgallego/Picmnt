@@ -30,11 +30,28 @@ class User extends BaseUser
    */
   private $userInfo;
 
+  /**
+   * @ORM\ManyToMany(targetEntity="Image", mappedBy="userVotes")
+   */
+  protected $imageVotes;
+
+  /**
+   * @ORM\OneToMany(targetEntity="ImageComment", mappedBy="user", cascade={"persist"})
+   */
+  private $imageComments;
+
+
+  ////////////////////////////////////////////
+  ///////////  METHODS  //////////////////////
+  ////////////////////////////////////////////
+
   
   public function __construct()
   {
     parent::__construct();
     $this->images = new \Doctrine\Common\Collections\ArrayCollection();
+    $this->imageVotes = new \Doctrine\Common\Collections\ArrayCollection();
+    $this->imageComments = new \Doctrine\Common\Collections\ArrayCollection();
   }
 
     /**
@@ -57,7 +74,7 @@ class User extends BaseUser
       return $this->images;
     }
 
-    /**
+     /**
      * Set userInfo
      *
      * @param SFM\PicmntBundle\Entity\UserInfo $userInfo
@@ -77,5 +94,66 @@ class User extends BaseUser
     {
       return $this->userInfo;
     }
-    
+
+    /**
+     * Add imageVotes
+     *
+     * @param SFM\PicmntBundle\Entity\Image $imageVotes
+     */
+    public function addImageVites(\SFM\PicmntBundle\Entity\Image $imageVotes)
+    {
+      if (!$this->hasImage($imageVotes)){
+	$this->imageVites[] = $imageVotes;
+	return true;
+      }
+      
+      return false;
+    }
+
+    public function hasImage(\SFM\PicmntBundle\Entity\Image $image)
+    {
+
+      foreach ($this->imageVotes as $value)
+	{
+	  if ($value->getIdImage() == $image->getIdImage())
+	    {
+	      return true;
+	    }
+	}
+      return false;
+    }
+      
+
+    /**
+     * Get userVotes
+     *
+     * @return SFM\PicmnBundle\Entity\Image $imageVotes
+     */
+    public function getImageVotes()
+    {
+      return $this->imageVotes;
+    }
+ 
+    /**
+     * Add imageComments
+     *
+     * @param SFM\PicmntBundle\Entity\ImageComment $imageComments
+     */
+    public function addImageComments(\SFM\PicmntBundle\Entity\ImageComment $imageComments)
+    {
+      $this->imageComments[] = $imageComments;
+    }
+
+    /**
+     * Get imageComments
+     *
+     * @return SFM\PicmntBundle\Entity\Image $imageComments
+     */
+    public function getImageComments()
+    {
+      return $this->imageComments;
+    }
+
+
+   
 }

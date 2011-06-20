@@ -26,23 +26,6 @@ class ImageComment
 
 
   /**
-   * @var integer $idImage
-   *
-   * @ORM\Column(name="id_image", type="integer", nullable="false")
-   *
-   */
-  private $idImage;
-
-  
-  /**
-   * @var integer $userId
-   *
-   * @ORM\Column(name="user_id", type="integer", nullable="false")
-   *
-   */
-  private $userId;
-
-  /**
    *@ var string $comment
    *
    * @ORM\Column(name="comment", type="string", length=255, nullable="false")
@@ -51,6 +34,18 @@ class ImageComment
    */
   private $comment;
 
+
+  /**
+   * @ORM\ManyToOne(targetEntity="User", inversedBy="imageComments", cascade={"remove"})
+   * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+   */
+  protected $user;
+
+  /**
+   * @ORM\ManyToOne(targetEntity="Image", inversedBy="imageComments", cascade={"remove"})
+   * @ORM\JoinColumn(name="id_image", referencedColumnName="id_image")
+   */
+  protected $image;
 
   /**
    * get idComment
@@ -68,47 +63,6 @@ class ImageComment
    */
   public function setIdComment($idComment){
     $this->idComment = $idComment;
-  }
-
-
-/**
-   * get idImage
-   *
-   * @return integer $idimage
-   */
-  public function getIdImage(){
-    return $this->idImage;
-  }
-
-  /**
-   * Set idImage
-   *
-   * @param integer $idImage
-   */
-  public function setIdImage($idImage){
-    $this->idImage = $idImage;
-  }
-
-   
-  /**
-   * Get userId
-   *
-   * @return integer $userId
-   */
-  public function getUserId()
-  {
-    return $this->userId;
-  }
-  
-
-  /**
-   * Set userId
-   *
-   * @param integer $userId
-   */
-  public function setUserId($userId)
-  {
-    $this->userId = $userId;
   }
    
   /**
@@ -131,5 +85,50 @@ class ImageComment
   {
     $this->comment = $comment;
   }
+
+
+  /**
+   * Set user
+   *
+   * @param SFM\PicmntBundle\Entity\User $user
+   */
+  public function setUser(\SFM\PicmntBundle\Entity\User $user)
+  {
+    $this->user = $user;
+  }
+  
+  /**
+   * Get user
+   *
+   * @return SFM\PicmntBundle\Entity\User $user
+   */
+  public function getUser()
+  {
+      return $this->user;
+  }
+
+
+  /**
+   * Set image
+   *
+   * @param SFM\PicmntBundle\Entity\Image $image
+   */
+  public function setImage(\SFM\PicmntBundle\Entity\Image $image)
+  {
+    $this->image = $image;
+  }
+  
+  /**
+   * Get image
+   *
+   * @return SFM\PicmntBundle\Entity\Image $image
+   */
+  public function getImage()
+  {
+      return $this->image;
+  }
+
+
+
 
 }

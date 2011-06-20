@@ -78,6 +78,31 @@ class Image
 
 
     /**
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="image")
+     * @ORM\JoinTable(name="User_Vote",
+     *      joinColumns={@ORM\JoinColumn(name="id_image", referencedColumnName="id_image")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="user_id")}
+     * )
+     */
+    protected $userVotes;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="ImageComment", mappedBy="image", cascade={"persist"})
+     */
+    private $imageComments;
+
+
+
+
+    public function __consruct()
+    {
+      $this->userVotes = new \Doctrine\Common\Collections\ArrayCollection();
+      $this->imageComments = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+
+
+    /**
      * Set idImage
      *
      * @param integer $idImage
@@ -229,10 +254,65 @@ class Image
       return $this->user;
     }
 
+    /**
+     * Add userVote
+     *
+     * @param SFM\PicmntBundle\Entity\User $userVotes
+     */
+    public function addUserVotes(\SFM\Picmntbundle\Entity\User $userVotes)
+    {
+
+      $this->userVotes[] = $userVotes;
+    }
+
+
+    public function hasUserVotes(\SFM\PicmntBundle\Entity\User $user)
+    {
+      foreach ($this->userVotes as $value)
+	{
+	  if ($value->getId() == $user->getuserId()){
+	    return true;
+	  }
+	}
+      return false;
+    }
+
+    /**
+     * Get userVote
+     *
+     * @return Doctrine\Commmon\Collections\Collencion $userVote
+     */
+    public function getUserVotes()
+    {
+      return $this->serVotes;
+    }
+
+
     public function sumVotes(){
       $this->votes = $this->getVotes() + 1;
     }
 
-    
+ 
+    /**
+     * Add imageComments
+     *
+     * @param SFM\PicmntBundle\Entity\ImageComment $imageComments
+     */
+    public function addImageComments(\SFM\PicmntBundle\Entity\ImageComment $imageComments)
+    {
+      $this->imageComments[] = $imageComments;
+    }
+
+    /**
+     * Get imageComments
+     *
+     * @return SFM\PicmntBundle\Entity\Image $imageComments
+     */
+    public function getImageComments()
+    {
+      return $this->imageComments;
+    }   
+
+   
 
 }

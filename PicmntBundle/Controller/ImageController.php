@@ -248,7 +248,7 @@ class ImageController extends Controller
     
 
     if ($selection == 'last') {
-      $dql = "SELECT a FROM SFMPicmntBundle:Image a order by a.idImage desc";
+      $dql = "SELECT a FROM SFMPicmntBundle:Image a ";//order by a.idImage desc";
     }
 
 
@@ -284,7 +284,7 @@ class ImageController extends Controller
     $parameters = Array("idImage"=>$image->getIdImage(), "voted"=>$this->hasVoted($image->getIdImage()));
 
     return array("paginator"=>$paginator, "parameters"=>$parameters, 
-                 "comments"=>$this->getComments($image->getIdImage()) );
+      "comments"=>$image->getImageComments());//$image->getImageComments());//$this->getComments($image->getIdImage()) );
 
   }
 
@@ -337,9 +337,6 @@ class ImageController extends Controller
 
   }
 
-
-
-
  /**
    * @Route("/img/vote/{idImage}", name="img_vote")
    */
@@ -347,11 +344,7 @@ class ImageController extends Controller
 
     if ($this->hasVoted($idImage) == 0){
 
-      $image = new Image();
-      
-      $userVote = new UserVote();
-      
-      $em = $this->get('doctrine')->getEntityManager();     
+      $em = $this->get('doctrine')->getEntityManager();
       
       $image = $em->find('SFMPicmntBundle:Image',$idImage);
       
@@ -359,12 +352,11 @@ class ImageController extends Controller
       
       $user = $this->container->get('security.context')->getToken()->getUser();
       
-      $userVote->setIdImage($idImage);
-      $userVote->setuserId($user->getId());
+      $image->addUserVotes($user);
     
       $em->persist($image);
-      $em->persist($userVote);
       $em->flush();
+      
     }    
 
   }
