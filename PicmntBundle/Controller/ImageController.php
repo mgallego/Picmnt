@@ -248,7 +248,7 @@ class ImageController extends Controller
     
 
     if ($selection == 'last') {
-      $dql = "SELECT a FROM SFMPicmntBundle:Image a ";//order by a.idImage desc";
+      $dql = "SELECT a FROM SFMPicmntBundle:Image a order by a.idImage desc";
     }
 
 
@@ -274,18 +274,12 @@ class ImageController extends Controller
     //return the current object of the paginator
     $image = $items[0];
     
-    //    print($image->getUser()->getUserInfo()->getName());
-    //    print($image->getUser()->getEmail());
-    //     $user = $this->container->get('security.context')->getToken()->getUser();
-
-    //     print($user->getUserInfo()->getName());
-
-    //parameters for the Javascript votef button in the layaout
+    //parameters for the Javascript votef button in the layout
     $parameters = Array("idImage"=>$image->getIdImage(), "voted"=>$this->hasVoted($image->getIdImage()));
 
-    return array("paginator"=>$paginator, "parameters"=>$parameters, 
-      "comments"=>$image->getImageComments());//$image->getImageComments());//$this->getComments($image->getIdImage()) );
 
+    return array("paginator"=>$paginator, "parameters"=>$parameters, 
+      "comments"=>$image->getImageComments());
   }
 
 
@@ -313,27 +307,6 @@ class ImageController extends Controller
     else{
       return 1;
     }
-
-  }
-
-
-  public function getComments($idImage)
-  {
-
-    $repository = $this->get('doctrine')
-      ->getEntityManager()
-      ->getRepository('SFMPicmntBundle:ImageComment');
-
-    //query the votes of the user for this image
-    $query = $repository->createQueryBuilder('c')
-      ->where('c.idImage = :idImage')
-      ->setParameter('idImage',  $idImage)
-      ->getQuery();
-
-    $imageComments = $query->getResult();
-    
-
-    return $imageComments;
 
   }
 
