@@ -1,6 +1,7 @@
 <?php
 
 namespace SFM\PicmntBundle\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -9,6 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="Image")
  * @ORM\Entity
+ * @ORM\Entity(repositoryClass="SFM\PicmntBundle\Entity\ImageRepository")
  */
 class Image
 {

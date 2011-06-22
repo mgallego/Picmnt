@@ -14,7 +14,8 @@ class ImageTest extends \PHPUnit_Framework_TestCase
       $this->assertEquals(1, $image->getIdImage());
     }
 
-    public function testUserId()
+          
+/*    public function testUserId()
     {
       $image = $this->getImage();
       $this->assertNull($image->getUserId());
@@ -22,7 +23,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
       $image->setUserId(1);
       $this->assertEquals(1, $image->getUserId());
     }
-
+*/
     public function testUrl()
     {
       $image = $this->getImage();
@@ -38,4 +39,5 @@ class ImageTest extends \PHPUnit_Framework_TestCase
       return $this->getMockForAbstractClass('SFM\PicmntBundle\Entity\Image');
     }
 
+    
 }

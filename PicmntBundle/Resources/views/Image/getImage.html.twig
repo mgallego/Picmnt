@@ -60,7 +60,7 @@
   <h3>{{ image.description }}</h3>
 </div>
 
-{% endfor %}
+{#{% endfor %}#}
 
 <div class="modify-control" style="width:320px">
    
@@ -102,6 +102,22 @@
 
 <div id="comments">
 
+<form action="{{ path('comment', { 'idImage': image.idImage }) }}" method="post" {{ form_enctype(formComment) }}>
+
+  <div>
+    {{ form_errors(formComment.comment) }}
+    {{ form_label(formComment.comment, 'Comment' | trans) }}
+    {{ form_widget(formComment.comment) }}
+  </div>
+
+  {{ form_rest(formComment) }}
+
+  <input type="hidden" name="page" value="{{ parameters.page }}"/>
+  <input type="hidden" name="selection" value="{{ parameters.selection }}"}/>
+
+  <input type="submit" />
+
+</form>
   {% for comment in comments %} 
 
   <div id="comment">
@@ -113,7 +129,7 @@
 
   {% endfor %}
 
-
+{% endfor %}
 </div>
 
 

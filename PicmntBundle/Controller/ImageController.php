@@ -4,17 +4,24 @@ namespace SFM\PicmntBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use SFM\PicmntBundle\Entity\Image;
-use SFM\PicmntBundle\Entity\User;
-use SFM\PicmntBundle\Entity\UserVote;
-use SFM\PicmntBundle\Entity\ImageComment;
 use SFM\PicmntBundle\Repositories\ImageUp;
-use FOS\UserBundle\Entity\UserManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Doctrine\ORM\Query\ResultSetMapping;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+
+//Entities
+use SFM\PicmntBundle\Entity\Image;
+use SFM\PicmntBundle\Entity\User;
+use SFM\PicmntBundle\Entity\UserVote;
+use SFM\PicmntBundle\Entity\ImageComment;
+use FOS\UserBundle\Entity\UserManager;
+
+
+//Classes
 use SFM\PicmntBundle\Util\ImageUtil;
+
+use Symfony\Component\HttpFoundation\Response;
 
 
 class ImageController extends Controller
@@ -121,7 +128,7 @@ class ImageController extends Controller
   }
 
 
-
+ 
   /************************************************************************
    ************************ EDIT IMAGE  ACTION ***************************
    ************************************************************************
@@ -237,14 +244,16 @@ class ImageController extends Controller
  
 
  /**
-   * @Route("/img/show/{selection}", name="img_show")
+   * @Route("/img/show2/{selection}", name="img_show2")
    * @Template()
    */
-  public function getImageAction($selection){
+  public function getImage2Action($selection){
 
     $userVote = new UserVote();
 
-    $em = $this->get('doctrine.orm.entity_manager');
+    $em = $this->get('doctrine')->getEntityManager();
+    
+    //$em = $this->get('doctrine.orm.entity_manager');
     
 
     if ($selection == 'last') {
@@ -275,14 +284,78 @@ class ImageController extends Controller
     $image = $items[0];
     
     //parameters for the Javascript votef button in the layout
-    $parameters = Array("idImage"=>$image->getIdImage(), "voted"=>$this->hasVoted($image->getIdImage()));
+    $parameters = Array("idImage"=>$image->getIdImage(), "voted"=>$this->hasVoted($image->getIdImage())
+		  , "page"=>$paginator->getCurrentPageNumber(), "selection"=>$selection);
 
+    $imageComment = new ImageComment();
+
+    //comments form
+    $formComment = $this->get('form.factory')
+      ->createBuilder('form', $imageComment)
+      ->add('comment', 'text')
+      ->getForm();
+
+    //test
+    $imageNext = $em->getRepository('SFMPicmntBundle:Image')->findNext($image->getIdImage(),'p.idImage DESC');
+    
+    print($imageNext[0]->getIdImage(). ' actual '. $image->getIdImage());
+    
+    //    print_r($this->redirect($this->generateUrl('comment'.'/184')));
 
     return array("paginator"=>$paginator, "parameters"=>$parameters, 
-      "comments"=>$image->getImageComments());
+      "comments"=>$image->getImageComments(), "formComment"=>$formComment->createView());
   }
 
 
+  
+   /**
+   * @Route("/img/show/{selection}", defaults={"idImage"="0"}),
+   * @Route("/img/show/{selection}/{idImage}", name="img_show")
+   * //@Template()
+   */
+  public function getImageAction($selection, $idImage = 0){
+
+      //get the conection
+      $em = $this->get('doctrine')->getEntityManager();
+      
+      $image = new Image();
+      
+      if ($selection == 'last')
+      {
+         
+          if ($idImage == 0)
+          {
+             //get the last record 
+             $images = $em->getRepository('SFMPicmntBundle:Image')->findFirst('p.idImage DESC');
+             
+             $image = $images[0];
+
+           }
+           else
+           {
+               $image = $em->find('SFMPicmntBundle:Image',$idImage);
+               
+               if (!$image)
+               {
+                   return new Response('<html><head></head><body>404 404 404</body></html>');	
+               }
+
+               
+           }
+          
+      }
+      
+        print($image->getIdImage());
+      
+        return new Response('<html><head></head><body></body></html>');	
+    
+    }
+
+  
+  
+  
+  
+  
   public function hasVoted($idImage){
     
     //load the current users data
