@@ -286,7 +286,7 @@ class Image
      */
     public function getUserVotes()
     {
-      return $this->serVotes;
+      return $this->userVotes;
     }
 
 
