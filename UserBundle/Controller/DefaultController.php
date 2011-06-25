@@ -8,6 +8,6 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('SFMUserBundle:Default:index.html.twig');
+        //return $this->render('SFMUserBundle:index.html.twig');
     }
 }

@@ -16,13 +16,13 @@
 		</a>
 	      </li>
 	      <li>|</li>
-      	      <li><a href="{{ path('_security_logout') }}">{{ 'Logout' | trans }}</a></li>
+      	      <li><a href="{{ path('fos_user_security_logout') }}">{{ 'Logout' | trans }}</a></li>
 	    </ul> 	   
 	    {% else %}
 	    <ul>
-	      <li><a href="{{ path('_security_login') }}" title="login">{{ 'Login' | trans }}</a></li>
+	      <li><a href="{{ path('fos_user_security_login') }}" title="login">{{ 'Login' | trans }}</a></li>
 	      <li>|</li>
-      	      <li><a href="{{ path('fos_user_user_new') }}" title="sigin">{{  'Sign in' | trans }}</a></li>
+      	      <li><a href="{{ path('fos_user_registration_register') }}" title="sigin">{{  'Sign in' | trans }}</a></li>
 	    </ul> 	   
 	    {% endif %}
 
@@ -32,7 +32,7 @@
 	<div id="menu">
 	  {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 
-	  {{ menu('main') }}
+	  {#{{ menu('main') }}#}
 
 	  {% endif %}
 	</div>

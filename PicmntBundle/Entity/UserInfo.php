@@ -138,7 +138,7 @@ class UserInfo
      *
      * @param SFM\PicmntBundle\Entity\User $user
      */
-    public function setUserInfo(\SFM\PicmntBundle\Entity\User $user)
+    public function setUser(\SFM\PicmntBundle\Entity\User $user)
     {
       $this->user = $user;
     }

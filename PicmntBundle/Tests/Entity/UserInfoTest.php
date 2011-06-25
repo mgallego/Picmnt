@@ -2,39 +2,62 @@
 
 namespace SFM\PicmntBundle\Tests\Entity;
 
-class UserInfoTest extends \PHPUnit_Framework_TestCase
-{
+use SFM\PicmntBundle\Entity\UserInfo;
+use SFM\PicmntBundle\Entity\User;
 
-  public function testUserId()
-  {
-    $userInfo = $this->getUserInfo();
-    $this->assertNull($userInfo->getUserId());
+class UserInfoTest extends \PHPUnit_Framework_TestCase {
 
-    $userInfo->setUserId(1);
-    $this->assertEquals(1,$userInfo->getUserId());
-  }
+    public function testUserId() {
+        $userInfo = $this->getUserInfo();
+        $this->assertNull($userInfo->getUserId());
 
-  public function testName()
-  {
-    $userInfo = $this->getUserInfo();
-    $this->assertNull($userInfo->getName());
+        $userInfo->setUserId(1);
+        $this->assertEquals(1, $userInfo->getUserId());
+    }
 
-    $userInfo->setName('UserName');
-    $this->assertEquals('UserName', $userInfo->getName());
-  }
+    public function testName() {
+        $userInfo = $this->getUserInfo();
+        $this->assertNull($userInfo->getName());
 
-  public function tesLastName()
-  {
-    $userInfo -> $this->getUserInfo();
-    $this->assertNull($userInfo->getLastName());
+        $userInfo->setName('UserName');
+        $this->assertEquals('UserName', $userInfo->getName());
+    }
 
-    $userInfo->setLastName('LastName');
-    $this->assertEquals('LastName',$userInfo->getLastName());
-  }
+    public function tesLastName() {
+        $userInfo->$this->getUserInfo();
+        $this->assertNull($userInfo->getLastName());
 
-   protected function getUserinfo()
-  {
-    return $this->getMockForAbstractClass('SFM\PicmntBundle\Entity\UserInfo');
-  }
+        $userInfo->setLastName('LastName');
+        $this->assertEquals('LastName', $userInfo->getLastName());
+    }
+
+    function testAvatar() {
+
+        $userInfo = new UserInfo();
+
+        $this->assertNull($userInfo->getAvatar());
+
+        $userInfo->setAvatar('Avatar');
+
+        $this->assertEquals('Avatar', $userInfo->getAvatar());
+    }
+
+    function testUser(){
+        
+        $userInfo = new UserInfo();
+        
+        $this->assertNull($userInfo->getUser());
+        
+        $user = new User();
+        
+        $userInfo->setUser($user);
+        
+        $this->assertNotNull($userInfo->getUser());
+        
+    }
+    
+    protected function getUserinfo() {
+        return $this->getMockForAbstractClass('SFM\PicmntBundle\Entity\UserInfo');
+    }
 
 }
