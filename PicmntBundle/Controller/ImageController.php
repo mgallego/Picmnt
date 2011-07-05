@@ -322,16 +322,16 @@ class ImageController extends Controller
       
       if ($selection == 'last')
       {
-         
-          if ($idImage == 0)
+	
+	if ($idImage == 0)
           {
-             //get the last record 
-             $images = $em->getRepository('SFMPicmntBundle:Image')->findFirst('p.idImage DESC');
-             
-             $image = $images[0];
+	    //get the last record 
+	    $images = $em->getRepository('SFMPicmntBundle:Image')->findFirst('p.idImage DESC');
+			 
+	    $image = $images[0];
              
            }
-           else
+	    else
            {
                $image = $em->find('SFMPicmntBundle:Image',$idImage);
                
@@ -342,7 +342,6 @@ class ImageController extends Controller
 
                
            }
-          
       }
       
         print($image->getIdImage());
@@ -351,11 +350,8 @@ class ImageController extends Controller
     
     }
 
-  
-  
-  
-  
-  
+
+    
   public function hasVoted($idImage){
     
     //load the current users data

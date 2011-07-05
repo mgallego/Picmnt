@@ -38,9 +38,9 @@ class ImageRepository extends EntityRepository
         $qb = $this->_em->createQueryBuilder();
         
         $qb->add('select', 'p')
-            ->add('from', 'SFMPicmntBundle:Image p')
-            ->add('orderBy', $orderBy)
-            ->setMaxResults(1 );
+	  ->add('from', 'SFMPicmntBundle:Image p');
+	  //->add('orderBy', $orderBy);
+	  //->setMaxResults(1);
         
         $query = $qb->getQuery();  
 
