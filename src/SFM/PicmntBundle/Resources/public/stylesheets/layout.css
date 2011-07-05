@@ -1,0 +1,187 @@
+@import url("components.css");
+
+body {
+	background: #FFF;
+}
+
+/* Header
+----------------------------------------------------------------------------------------------------*/
+
+header {
+	background: #FFF;
+	padding: 15px 25px;
+	height: 148px;
+}
+
+header h1 {
+	float: left;
+	margin: 0;
+}
+
+header h1 a {
+	background: url("../images/Picmnt-logo.png");
+	background-repeat: no-repeat;
+	float: left;
+	height: 148px;
+	overflow: hidden;
+	text-indent: -900px;
+	width: 251px;
+}
+
+
+header nav {
+    float: right;
+    #margin: 10px -50px 0;
+    #background: #FFF;
+    #color: #000;
+    
+}
+
+header nav a{
+    color: #000;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 4px 10px;
+    float: rigth;
+    overflow: visible;
+    -moz-border-radius: 25px;
+    -webkit-border-radius: 25px;
+    border-radius: 25px;
+}
+
+/*
+header ul{
+    list-style-type: none;
+    margin: 0 auto;
+    padding: 0;
+    text-align: right;
+}
+
+header li{
+    display: inline;
+    padding: 5px;
+    
+}
+*/
+
+header ul{
+    width: 100%;
+    list-style-type: none;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+
+
+}
+
+header li {
+   	paddig: 12px;
+	margin: 12px;
+	display: inline;
+#	float: center;
+}
+
+
+/* Footer
+----------------------------------------------------------------------------------------------------*/
+
+footer {
+	background: #f3f1f1;
+	color: #000;
+	padding: 15px;
+}
+
+
+footer ul{
+    width: 100%;
+    list-style-type: none;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+
+
+}
+
+footer li {
+   	paddig: 12px;
+	margin: 12px;
+	display: inline;
+#	float: center;
+}
+
+footer #copyright{
+    text-align: center;
+    font-size: x-small;
+    color: #8F8F8F;
+}
+
+/* Content
+--------------------------------------------------------------------------------------------------*/
+
+#content{
+    min-height: 400px;
+}
+
+    
+
+#content .construction{
+    text-align: center;
+
+}
+
+#content .login{
+    width: 300px;
+    float: center;
+    background: #f3f1f1;
+    padding: 5px 5px;
+#    margin:  0 auto 0 auto;
+    margin: auto;
+    border: 1px solid #AAA;
+
+}
+
+#content .login legend{
+    text-align: center;
+    padding: 0px 10px 10px 0;
+}
+
+#content .login input{
+    text-align: left;
+    padding: .2em;
+}
+
+#content .login label{
+   float: left;
+   width: 40%;
+
+}
+
+#content .login submit{
+    display: block;
+    margin: 1em 0;
+
+}
+
+#content .login fieldset{
+    float: left;
+    width: 100%;
+}
+
+#content .slider-data{
+
+    width: 3em;
+    padding: 0 0 0 .5em;
+    background-color: transparent;
+
+}
+
+/* General
+_-------------------------------------------------------------------------------------------------*/
+
+#separator{
+    background: #fdfdfd;
+    width: 100%;
+    padding: 2px;
+
+
+}

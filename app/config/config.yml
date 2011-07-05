@@ -67,6 +67,3 @@ fos_user:
 
 knplabs_menu:
     twig: true
-
-knplabs_paginator: 
-    templating: ~ # enables view helper and twig
