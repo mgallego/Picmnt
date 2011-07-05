@@ -19,7 +19,8 @@ class ImageControllerTest extends WebTestCase
     
     //print_r($crawler->text());
 
-    $this->assertTrue($crawler->filter('html:contains("insert the URL")')->count() > 0);
+    $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Status 200");
+    $this->assertTrue($crawler->filter('html:contains("Picmnt")')->count() > 0, "the URL contains the Picmnt word");
 
   }
 
