@@ -244,10 +244,10 @@ class ImageController extends Controller
  
 
  /**
-   * @Route("/img/show/{selection}", name="img_show")
+   * @Route("/img/show3/{selection}", name="img_show")
    * @Template()
    */
-  public function getImageAction($selection){
+  public function getImage3Action($selection){
 
     $userVote = new UserVote();
 
@@ -309,11 +309,11 @@ class ImageController extends Controller
 
   
    /**
-   * @Route("/img/show2/{selection}", defaults={"idImage"="0"}),
-   * @Route("/img/show2/{selection}/{idImage}", name="img_show2")
+   * @Route("/img/show/{selection}", defaults={"idImage"="0"}),
+   * @Route("/img/show/{selection}/{idImage}", name="img_show2")
    * //@Template()
    */
-  public function getImage2Action($selection, $idImage = 0){
+  public function getImageAction($selection, $idImage = 0){
 
       //get the conection
       $em = $this->get('doctrine')->getEntityManager();
@@ -329,7 +329,7 @@ class ImageController extends Controller
 	    $images = $em->getRepository('SFMPicmntBundle:Image')->findFirst('p.idImage DESC');
 			 
 	    $image = $images[0];
-             
+
            }
 	    else
            {
