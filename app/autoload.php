@@ -16,7 +16,7 @@ $loader->registerNamespaces(array(
     'Assetic'          => __DIR__.'/../vendor/assetic/src',
     'Metadata'         => __DIR__.'/../vendor/metadata/src',
     'FOS'              => __DIR__.'/../vendor/bundles',
-    'Knplabs'          => __DIR__.'/../vendor/bundles',
+    'Knp'          => __DIR__.'/../vendor/bundles',
 
 ));
 $loader->registerPrefixes(array(
