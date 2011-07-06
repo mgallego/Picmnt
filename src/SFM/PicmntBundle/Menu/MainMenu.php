@@ -2,7 +2,7 @@
 
 namespace SFM\PicmntBundle\Menu;
 
-use Knplabs\Bundle\MenuBundle\Menu;
+use Knp\Bundle\MenuBundle\Menu;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Router;
 
