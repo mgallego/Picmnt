@@ -27,11 +27,6 @@ use Symfony\Component\HttpFoundation\Response;
 class ImageController extends Controller
 {
   
-  /************************************************************************
-   ************************ UPLOAD ACTTION ********************************
-   ************************************************************************
-   ************** Upload an image url into the database *******************
-   ***********************************************************************/
   /**
    * @Route("/img/upload", name="img_upload")
    * @Template()
@@ -129,11 +124,7 @@ class ImageController extends Controller
 
 
  
-  /************************************************************************
-   ************************ EDIT IMAGE  ACTION ***************************
-   ************************************************************************
-   ************** Edit an uploaded image ************** *******************
-   ***********************************************************************/
+
 
   /**
    * @Route("/img/edit/{id_image}", name="img_edit")
@@ -203,11 +194,6 @@ class ImageController extends Controller
 
 
 
-  /************************************************************************
-   *******************  GET RANDOM IMAGE ACTION ***************************
-   ************************************************************************
-   ************** Reurn a random image ************************************
-   ***********************************************************************/
 
  /**
    * @Route("/img/random", name="img_random")
@@ -315,40 +301,56 @@ class ImageController extends Controller
    */
   public function getImageAction($selection, $idImage = 0){
 
-      //get the conection
       $em = $this->get('doctrine')->getEntityManager();
       
-      $image = new Image();
-      
-      if ($selection == 'last')
-      {
+      $image = new Image(); 
+      $image = null;
+
+      if ($selection == 'last'){
 	
-	if ($idImage == 0)
-          {
-	    //get the last record 
-	    $images = $em->getRepository('SFMPicmntBundle:Image')->findFirst('p.idImage DESC');
-			 
-	    $image = $images[0];
+	$image = $em->find('SFMPicmntBundle:Image',$idImage);
+	
+	if (!$image){
 
-           }
-	    else
-           {
-               $image = $em->find('SFMPicmntBundle:Image',$idImage);
-               
-               if (!$image)
-               {
-                   return new Response('<html><head></head><body>404 404 404</body></html>');	
-               }
-
-               
-           }
+	  $images = $em->getRepository('SFMPicmntBundle:Image')->findFirst('p.idImage DESC');
+	  
+	}
       }
+      elseif ($selection == 'next'){
+
+	$images = $em->getRepository('SFMPicmntBundle:Image')->findNext($idImage, 'p.idImage DESC');
+
+	if (!$images){
+	  
+	  $images = $em->getRepository('SFMPicmntBundle:Image')->findFirst('p.idImage DESC');	  
+	  
+	}
+	
+      }
+      elseif ($selection == 'previous'){
+
+	$images = $em->getRepository('SFMPicmntBundle:Image')->findPrevious($idImage, 'p.idImage DESC');
+
+	if (!$images){
+	  
+	  $images = $em->getRepository('SFMPicmntBundle:Image')->findFirst('p.idImage DESC');	  
+	  
+	}
+
+
+      }
+
+
+      if (!$image){
+	$image = $images[0];
+      }
+
       
-        print($image->getIdImage());
-      
-        return new Response('<html><head></head><body></body></html>');	
-    
-    }
+      return new Response('<html><head></head><body>'.$image->getIdImage().'<br/>Picmnt  <input type="hidden" value="idImage" id="idImage"/><a href="/app_dev.php/img/show/last">enlace</a></body></html>');	
+
+
+  }
+
 
 
     
