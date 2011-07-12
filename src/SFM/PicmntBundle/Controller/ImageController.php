@@ -293,62 +293,67 @@ class ImageController extends Controller
   }
 
 
-  
-   /**
-   * @Route("/img/show/{selection}", defaults={"idImage"="0"}),
-   * @Route("/img/show/{selection}/{idImage}", name="img_show2")
-   * //@Template()
+
+  /**
+   * @Route("/img/show/last/{idImage}", defaults={"idImage"="0"}, name="img_show_last")
    */
-  public function getImageAction($selection, $idImage = 0){
+  public function getLastAction($idImage = 0){
+    
+    $em = $this->get('doctrine')->getEntityManager();
+    
+    $image = $em->find('SFMPicmntBundle:Image',$idImage);
+	
+    if (!$image){
 
-      $em = $this->get('doctrine')->getEntityManager();
+      $images = $em->getRepository('SFMPicmntBundle:Image')->findFirst('p.idImage DESC');
+      $image = $images[0];
       
-      $image = new Image(); 
-      $image = null;
-
-      if ($selection == 'last'){
-	
-	$image = $em->find('SFMPicmntBundle:Image',$idImage);
-	
-	if (!$image){
-
-	  $images = $em->getRepository('SFMPicmntBundle:Image')->findFirst('p.idImage DESC');
-	  
-	}
-      }
-      elseif ($selection == 'next'){
-
-	$images = $em->getRepository('SFMPicmntBundle:Image')->findNext($idImage, 'p.idImage DESC');
-
-	if (!$images){
-	  
-	  $images = $em->getRepository('SFMPicmntBundle:Image')->findFirst('p.idImage DESC');	  
-	  
-	}
-	
-      }
-      elseif ($selection == 'previous'){
-
-	$images = $em->getRepository('SFMPicmntBundle:Image')->findPrevious($idImage, 'p.idImage DESC');
-
-	if (!$images){
-	  
-	  $images = $em->getRepository('SFMPicmntBundle:Image')->findFirst('p.idImage DESC');	  
-	  
-	}
-
-
-      }
-
-
-      if (!$image){
-	$image = $images[0];
-      }
-
-      
+    }
+    
       return new Response('<html><head></head><body>'.$image->getIdImage().'<br/>Picmnt  <input type="hidden" value="idImage" id="idImage"/><a href="/app_dev.php/img/show/last">enlace</a></body></html>');	
+    
+  }
 
+  /**
+   * @Route("/img/show/last/next/{idImage}", defaults={"idImage"="0"}, name="img_show_last_next")
+   */
+  public function getLastNextAction($idImage = 0){
 
+    $em = $this->get('doctrine')->getEntityManager();
+    
+    $images = $em->getRepository('SFMPicmntBundle:Image')->findNext($idImage, 'p.idImage DESC');
+
+    if (!$images){
+
+      $images = $em->getRepository('SFMPicmntBundle:Image')->findFirst('p.idImage DESC');    
+
+    }
+
+    $image = $images[0];
+
+      return new Response('<html><head></head><body>'.$image->getIdImage().'<br/>Picmnt  <input type="hidden" value="idImage" id="idImage"/><a href="/app_dev.php/img/show/last">enlace</a></body></html>');	
+        
+  }
+
+  /**
+   * @Route("/img/show/last/previous/{idImage}", defaults={"idImage"="0"}, name="img_show_last_previous")
+   */
+  public function getLastPreviousAction($idImage = 0){
+
+    $em = $this->get('doctrine')->getEntityManager();
+    
+    $images = $em->getRepository('SFMPicmntBundle:Image')->findPrevious($idImage, 'p.idImage DESC');
+
+    if (!$images){
+
+      $images = $em->getRepository('SFMPicmntBundle:Image')->findFirst('p.idImage DESC');    
+
+    }
+
+    $image = $images[0];
+
+      return new Response('<html><head></head><body>'.$image->getIdImage().'<br/>Picmnt  <input type="hidden" value="idImage" id="idImage"/><a href="/app_dev.php/img/show/last">enlace</a></body></html>');	
+        
   }
 
 
