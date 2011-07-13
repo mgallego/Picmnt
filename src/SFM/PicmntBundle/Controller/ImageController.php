@@ -301,10 +301,8 @@ class ImageController extends Controller
     
     $em = $this->get('doctrine')->getEntityManager();
     
-    $image = $em->find('SFMPicmntBundle:Image',$idImage);
+    if (!$image = $em->find('SFMPicmntBundle:Image',$idImage)){
 	
-    if (!$image){
-
       $images = $em->getRepository('SFMPicmntBundle:Image')->findFirst('p.idImage DESC');
       $image = $images[0];
       
@@ -321,9 +319,7 @@ class ImageController extends Controller
 
     $em = $this->get('doctrine')->getEntityManager();
     
-    $images = $em->getRepository('SFMPicmntBundle:Image')->findNext($idImage, 'p.idImage DESC');
-
-    if (!$images){
+    if ( ! $images = $em->getRepository('SFMPicmntBundle:Image')->findNext($idImage, 'p.idImage DESC')){
 
       $images = $em->getRepository('SFMPicmntBundle:Image')->findFirst('p.idImage DESC');    
 
@@ -342,9 +338,7 @@ class ImageController extends Controller
 
     $em = $this->get('doctrine')->getEntityManager();
     
-    $images = $em->getRepository('SFMPicmntBundle:Image')->findPrevious($idImage, 'p.idImage DESC');
-
-    if (!$images){
+    if ( ! $images = $em->getRepository('SFMPicmntBundle:Image')->findPrevious($idImage, 'p.idImage DESC')){
 
       $images = $em->getRepository('SFMPicmntBundle:Image')->findFirst('p.idImage DESC');    
 
