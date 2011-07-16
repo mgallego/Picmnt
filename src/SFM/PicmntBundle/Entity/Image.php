@@ -83,7 +83,7 @@ class Image
      * @ORM\ManyToMany(targetEntity="User", inversedBy="image")
      * @ORM\JoinTable(name="User_Vote",
      *      joinColumns={@ORM\JoinColumn(name="id_image", referencedColumnName="id_image")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="user_id")}
+     *      inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")}
      * )
      */
     protected $userVotes;

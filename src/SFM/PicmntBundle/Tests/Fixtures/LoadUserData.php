@@ -15,8 +15,6 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder;
 
-use SFM\PicmntBundle\Entity\User;
-
 /**
  * @author Lea Haensenberger
  */
@@ -24,18 +22,19 @@ class LoadUserData implements FixtureInterface {
 
     public function load($manager)
     {
-      //$user = new \Liip\FooBundle\Entity\User();
-        $user = new User();
-        $user->setName('foo bar');
-        $user->setEmail('foo@bar.com');
-        // Set according to your security context settings
-        $encoder = new MessageDigestPasswordEncoder('sha1', true, 3);
-        $user->setPassword($encoder->encodePassword('12341234', $user->getSalt()));
-        $user->setAlgorithm('sha1');
-        $user->setEnabled(true);
-        $user->setConfirmationToken(null);
-        $manager->persist($user);
+      $user = new \SFM\PicmntBundle\Entity\User();
 
-        $manager->flush();
+      $user->setUserName('moises');
+      $user->setEmail('foo@bar.com');
+      // Set according to your security context settings
+      $encoder = new MessageDigestPasswordEncoder('sha1', true, 3);
+      $user->setPassword($encoder->encodePassword('password2jkjk', $user->getSalt()));
+      $user->setAlgorithm('sha1');
+      $user->setEnabled(true);
+      $user->setConfirmationToken(null);
+      $manager->persist($user);
+
+      $manager->flush();
+
     }
 }

@@ -21,7 +21,7 @@ class User extends BaseUser
 
 
   /**
-   * @ORM\OneToMany(targetEntity="Image", mappedBy="userInfo", cascade={"persist"})
+   * @ORM\OneToMany(targetEntity="Image", mappedBy="user", cascade={"persist"})
    */
   private $images;
 
