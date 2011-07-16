@@ -64,6 +64,10 @@ fos_user:
     user_class: SFM\PicmntBundle\Entity\User
     template:
          theme: SFMPicmntBundle::layout.html.twig
+    encoder:
+         algorithm:          sha512
+         encode_as_base64:   false
+         iterations:         1
 
 knp_menu:
     twig: true

@@ -8,11 +8,8 @@ use Liip\FunctionalTestBundle\Test\WebTestCase;
 
 class SecureAccess extends WebTestCase
 {
-
-  public function getClient()
+    public function getClient()
   {
-
-    echo 'entrando por aquií';
 
     $this->loadFixtures(array('SFM\PicmntBundle\Tests\Fixtures\LoadUserData'));
 
@@ -23,14 +20,15 @@ class SecureAccess extends WebTestCase
     $crawler = $client->request('GET','/login');
 
     $form = $crawler->selectButton('login')->form();
-
-    $form['_username'] = 'moises';
-    $form['_password'] = 'password';
-
+    
+    $form['_username'] = 'userTest';
+    $form['_password'] = 'passwordTest';
+    
     $crawler = $client->submit($form);
     
     return $client;
 
   }
+
 
 }

@@ -1,40 +1,31 @@
 <?php
 
-/*
- * This file is part of the Liip/FunctionalTestBundle
- *
- * (c) Lukas Kahwe Smith <smith@pooteeweet.org>
- *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
- */
 
 namespace SFM\PicmntBundle\Tests\Fixtures;
 
-use Doctrine\ORM\EntityManager;
 use Doctrine\Common\DataFixtures\FixtureInterface;
-use Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
-/**
- * @author Lea Haensenberger
- */
-class LoadUserData implements FixtureInterface {
+use SFM\Picmnt\Entity\User;
 
-    public function load($manager)
-    {
-      $user = new \SFM\PicmntBundle\Entity\User();
-
-      $user->setUserName('moises');
-      $user->setEmail('foo@bar.com');
-      // Set according to your security context settings
-      $encoder = new MessageDigestPasswordEncoder('sha1', true, 3);
-      $user->setPassword($encoder->encodePassword('password2jkjk', $user->getSalt()));
-      $user->setAlgorithm('sha1');
-      $user->setEnabled(true);
-      $user->setConfirmationToken(null);
-      $manager->persist($user);
-
-      $manager->flush();
-
-    }
+class LoadUserData implements FixtureInterface, ContainerAwareInterface
+{
+  protected $userManager;
+ 
+  public function setContainer(ContainerInterface $container = null)
+  {
+    $this->userManager = $container->get('fos_user.user_manager');
+  }
+ 
+  public function load($em)
+  {
+    $user = $this->userManager->createUser();
+    $user->setUsername('userTest');
+    $user->setEmail('test@picmnt.com');
+    $user->setPlainPassword('passwordTest');
+    $user->setEnabled(true);
+    $this->userManager->updateUser($user);
+    
+  }
 }
