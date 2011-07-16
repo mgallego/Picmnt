@@ -2,13 +2,17 @@
 
 namespace SFM\PicmntBundle\Tests\Util;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+//use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+
+use Liip\FunctionalTestBundle\Test\WebTestCase;
 
 class SecureAccess extends WebTestCase
 {
 
   public function getClient()
   {
+
+    $this->loadFixtures(array('SFM\PicmntBundle\Tests\Fixtures\LoadUserData'));
 
     $client = $this->createClient();
 

@@ -5,8 +5,6 @@ namespace SFM\PicmntBundle\Tests\Controller;
 use SFM\PicmntBundle\Tests\Util\SecureAccess;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-use SFM\PicmntBundle\DataFixtures\ORM\LoadUserData;
-
 class IndexControllerTest extends WebTestCase {
 
   public function testIndex() {
@@ -18,10 +16,6 @@ class IndexControllerTest extends WebTestCase {
   }
 
   public function testIndexSecure() {
-
-    $loadUserData = new LoadUserData();
-
-    $loadUserData->load($this->get('doctrine')->getEntityManager());
 
     $secureAccess = new SecureAccess();
     $client = $secureAccess->getClient();

@@ -19,6 +19,7 @@ $loader->registerNamespaces(array(
     'Doctrine\\Common' => __DIR__.'/../vendor/doctrine-common/lib',
     'FOS'              => __DIR__.'/../vendor/bundles',
     'Knp'          => __DIR__.'/../vendor/bundles',
+    'Liip' => __DIR__.'/../vendor/bundles',
 
 ));
 $loader->registerPrefixes(array(

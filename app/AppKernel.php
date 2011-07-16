@@ -23,6 +23,8 @@ class AppKernel extends Kernel
 	    new SFM\UserBundle\SFMUserBundle(),
 	    //new Knplabs\Bundle\MenuBundle\KnplabsMenuBundle(),
 	    new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+	    new Liip\FunctionalTestBundle\LiipFunctionalTestBundle(),
+
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
