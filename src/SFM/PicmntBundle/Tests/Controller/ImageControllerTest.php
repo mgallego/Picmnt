@@ -64,16 +64,17 @@ class ImageControllerTest extends WebTestCase
     $this->assertTrue($crawler->filter('html:contains("Picmnt")')->count() > 0, "the URL contains the Picmnt word");
 
     $crawler = $client->request('GET', '/img/show/last/999');
-    $this->assertTrue($crawler->filter('html:contains("179")')->count() > 0, "Finding an error image");
+    $this->assertTrue($crawler->filter('html:contains("1")')->count() > 0, "Finding an error image");
 
-    $crawler = $client->request('GET', '/img/show/last/179');
-    $this->assertTrue($crawler->filter('html:contains("179")')->count() > 0, "Finding an Image");
+    $crawler = $client->request('GET', '/img/show/last/1');
+    $this->assertTrue($crawler->filter('html:contains("1")')->count() > 0, "Finding an Image");
     
-    $crawler = $client->request('GET', '/img/show/last/next/184');
-    $this->assertTrue($crawler->filter('html:contains("183")')->count() > 0, "Finding the next image");
+    $crawler = $client->request('GET', '/img/show/last/next/9');
+    $this->assertTrue($crawler->filter('html:contains("8")')->count() > 0, "Finding the next image");
 
-    $crawler = $client->request('GET', '/img/show/last/previous/183');
-    $this->assertTrue($crawler->filter('html:contains("184")')->count() > 0, "Finding the next image");
+    $crawler = $client->request('GET', '/img/show/last/previous/8');
+    //    echo $crawler->text();
+    $this->assertTrue($crawler->filter('html:contains("9")')->count() > 0, "Finding the next image");
 
 
   }

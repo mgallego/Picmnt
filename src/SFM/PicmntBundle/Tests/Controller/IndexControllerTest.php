@@ -22,9 +22,8 @@ class IndexControllerTest extends WebTestCase {
     $secureAccess = new SecureAccess();
     
     $client = $secureAccess->getClient();
-    //$crawler = $client->request('GET', '/img/random');
-    $crawler = $client->request('GET', '/img/upload');
-    //    print_r($crawler->text());
+    $crawler = $client->request('GET', '/img/random');
+    //print_r($crawler->text());
     $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Status 200");
     $this->assertTrue($crawler->filter('html:contains("Picmnt")')->count() > 0);
   }

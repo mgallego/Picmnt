@@ -195,35 +195,19 @@ class ImageController extends Controller
 
 
 
- /**
+  /**
    * @Route("/img/random", name="img_random")
    * @Template()
    */
-  public function getRandomImageAction(){
-
-
-    //preparing the sql statement
-    $rsm = new ResultSetMapping;
-    $rsm->addEntityResult('SFM\PicmntBundle\Entity\Image','i');
-    $rsm->addFieldResult('i', 'idImage','idImage');
-    $rsm->addFieldResult('i','url','url');
-    $rsm->addFieldResult('i','title','title');
-    $rsm->addFieldResult('i','description','description');
-
-    $image = new Image();
+  public function getRandomImageAction()
+  {
 
     $em = $this->get('doctrine')->getEntityManager();
-
-    //$query = $em->createQuery('SELECT i.url, \''.rand().'\' rand FROM SFM\PicmntBundle\Entity\Image i ORDER BY rand');
-
-    $query = $em->createNativeQuery('SELECT url, id_image AS idImage, title, description FROM Image ORDER BY rand() limit 1', $rsm);
-    
-    $images = $query->getResult();
-
-    //obtain the image
+        	
+    $images = $em->getRepository('SFMPicmntBundle:Image')->getRandom();
+          
     $image = $images[0];
 
-    //show the view with the image
     return array('image'=> 'uploads/'.$image->getUrl(),'title'=>$image->getTitle(),'description'=>$image->getDescription(), 'id_image'=>$image->getIdImage()  );
 
   }
