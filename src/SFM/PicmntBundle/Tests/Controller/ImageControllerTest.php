@@ -73,7 +73,7 @@ class ImageControllerTest extends WebTestCase
     $this->assertTrue($crawler->filter('html:contains("8")')->count() > 0, "Finding the next image");
 
     $crawler = $client->request('GET', '/img/show/last/previous/8');
-    //    echo $crawler->text();
+    //echo $crawler->text();
     $this->assertTrue($crawler->filter('html:contains("9")')->count() > 0, "Finding the next image");
 
 
