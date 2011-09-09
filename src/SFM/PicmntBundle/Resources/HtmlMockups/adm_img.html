@@ -1,0 +1,274 @@
+<!DOCTYPE html> 
+<html lang="es"> 
+  <head> 
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+
+    
+    <title>Picmnt | Albita vestida de mantel</title>
+
+
+    <link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap-1.2.0.min.css">
+    <link rel="stylesheet" type="text/css" media="all" href="/bundles/sfmpicmnt/stylesheets/layout.css"> 
+
+
+    <script src="http://code.jquery.com/jquery-1.5.2.min.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/application.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.js"></script>
+
+    <script src="http://autobahn.tablesorter.com/jquery.tablesorter.min.js"></script> 
+
+
+    <!------->
+
+    
+    <link rel="stylesheet" type="text/css" media="all" href="/bundles/sfmpicmnt/jqueryUI/css/custom-theme/jquery-ui-1.8.13.custom.css"> 
+    
+    
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>  
+    
+    <script type="text/javascript" src="/bundles/sfmpicmnt/fancybox/jquery.fancybox-1.3.4.pack.js"></script> 
+    <script type="text/javascript" src="/bundles/sfmpicmnt/js/picmnt.js"> </script> 
+    <script type="text/javascript" src="/bundles/sfmpicmnt/CamanJS/caman.full.min.js"> </script> 
+    
+    
+    <script type="text/javascript" src="/bundles/sfmpicmnt/jqueryUI/js/jquery-ui-1.8.13.custom.min.js"></script> 
+    
+    <script type="text/javascript" >
+      $(function() {
+      $("table#sortTableExample").tablesorter({ sortList: [[1,0]] });
+      });
+    </script>
+
+    <script type="text/javascript"> 
+      function applyFilter(){
+      
+      var vBrightness = $( "#sBrightness" ).slider( "value" );
+      var vContrast = $( "#sContrast" ).slider( "value" );
+      var vSaturation = $( "#sSaturation" ).slider( "value" );
+      var vExposure = $( "#sExposure" ).slider( "value" );
+      
+      Caman.remoteProxy = "/bundles/sfmpicmnt/CamanJS/proxies/caman_proxy.php";
+      
+      Caman("#image-to-modify", function () {
+      $( "#render-in-progress" ).show();
+      this.revert(function(){
+      this.brightness(vBrightness).contrast(vContrast).saturation(vSaturation).exposure(vExposure).render();
+      $( "#render-in-progress" ).hide();
+      });
+      
+      });
+      };
+    </script> 
+    
+  </head>
+  <body>
+
+    <section id="topbar">
+      <!-- Topbar
+	   ================================================== -->
+      <div class="topbar">
+
+	<div class="topbar-inner">
+
+          <div class="container">
+
+            <h3><a href="#">Picmnt</a></h3>
+
+	    <ul class="nav">
+	      <li><a href="#">Todas</a></li>
+	      <li><a href="#">Retratos</a></li>
+	      <li><a href="#">Bodegones</a></li>
+	      <li><a href="#">Deportes</a></li>
+	      <li><a href="#">Animales</a></li>
+	      <li><a href="#">Arquitectura</a></li>
+	    </ul>
+
+	    <ul class="nav secondary-nav">
+	      <li class="dropdown">
+ 		  <a href="#" class="dropdown-toggle">Moises Gallego</a>
+		  <ul class="dropdown-menu">
+		  <li><a href="modi_img.html">Preferencias</a></li>
+		  <li class="divider"></li>
+		  <li><a href="index.html">Logout</a></li>
+		</ul>
+	      </li>
+	    </ul>
+          </div>
+	</div>
+      </div>
+    </section>
+
+    <!-- pagina
+	 ================================================= -->
+
+    <section id="content" style="padding-top: 50px"> <!-- style="background:#DDE"> mostrar fonde de otro color-->
+      <div class="container-fluid">
+	
+	<div style="background:#FFF">
+
+
+	  <!-- Pestanas
+	       ================================================= -->
+	  
+	  <section id="pestanas">
+
+	    <div id="row">
+
+	      <ul class="tabs" style="align: right">
+		<li><a href="show_img.html">Aleatorio</a></li>
+		<li><a href="#">Últimas</a></li>
+		<li><a href="mis_img.html">Mi Perfil</a></li>
+		<li><a href="subir_img.html">Subir Imagen</a></li>
+		<li class="active"><a href="admin.html">Admin</a></li>
+	      </ul>
+
+	    </div>
+
+	  </section>
+
+
+	  <!-- Pagina
+	       ================================================ -->
+
+	   
+	  <section id="page" class="container">
+	    <div class="row">
+	      <div class="span7 colunm offset11">
+		<ul class="pills">
+		  <li><a href="admin.html">General</a></li>
+		  <li><a href="adm_users.html">Usuarios</a></li>
+		  <li class="active"><a href="adm_img">Imagenes</a></li>
+	      </div>
+	    </div>
+
+
+	    <!-- Datos
+		 =========================================== -->
+	    
+	    <div class="row">
+	      <div class="span11 column">
+		<form action="#" >
+		      <fieldset>
+			<legend>Consultar Imágenes</legend>
+			 
+			<table>
+			  <tr>
+			    <td>			<div class="input">
+			      <input class="xlarge" id="url" name="url" size="30" type="text" />
+			    </div>
+			    </td>
+			    <td><button type="submit" class="btn primary">Enviar</button></td>
+ 			  </tr>
+
+			</table>
+
+
+
+		      </fieldset>
+		    </form>
+	      </div>
+	      
+	    </div>
+
+	    <div class="row">
+	      <table class="zebra-striped" id="sortTableExample">
+		<thead>
+		  <tr>
+		    <th>#</th>
+		    <th>Nombre</th>
+		    <th>User</th>
+		    <th>Categoria</th>
+		    <th>Fecha de Alta</th>
+		    <th></th>
+		    <th>Acciones</th>
+		    <th></th>
+		  </tr>
+		</thead>
+		<tbody>
+		  <tr>
+		    <td>1</td>
+		    <td>Foto de Alba</td>
+		    <td>mgallego</td>
+		    <td>Retrato</td>
+		    <td>01/01/2011</td>
+		    <td><a href="#">Ver</a></td>
+		    <td><a href="#">Eliminar</a></td>
+		    <td><a href="#">Bloquear</a></td>
+		  </tr>
+		  <tr>
+		    <td>2</td>
+		    <td>Foto de Edificio</td>
+		    <td>osukaru</td>
+		    <td>Arquitectura</td>
+		    <td>01/01/2011</td>
+		    <td><a href="#">Ver</a></td>
+		    <td><a href="#">Eliminar</a></td>
+		    <td><a href="#">Bloquear</a></td>
+		  </tr>
+		  <tr>
+		    <td>3</td>
+		    <td>Foto de Futbolista</td>
+		    <td>jperez</td>
+		    <td>Deporte</td>
+		    <td>01/01/2011</td>
+		    <td><a href="#">Ver</a></td>
+		    <td><a href="#">Eliminar</a></td>
+		    <td><a href="#">Bloquear</a></td>
+		  </tr>
+		  <tr>
+		    <td>4</td>
+		    <td>Foto de Botijo</td>
+		    <td>ajaleo</td>
+		    <td>Bodegones</td>
+		    <td>01/01/2011</td>
+		    <td><a href="#">Ver</a></td>
+		    <td><a href="#">Eliminar</a></td>
+		    <td><a href="#">Bloquear</a></td>
+		  </tr>
+		  <tr>
+		    <td>5</td>
+		    <td>Foto de Perrete</td>
+		    <td>urandom</td>
+		    <td>Animales</td>
+		    <td>01/01/2011</td>
+		    <td><a href="#">Ver</a></td>
+		    <td><a href="#">Eliminar</a></td>
+		    <td><a href="#">Bloquear</a></td>
+		  </tr>
+		</tbody>
+	      </table>
+
+	    </div>
+
+	  </section> <!-- page -->
+	</div>
+
+      </div>
+    </section>
+
+    <!--  footer
+	  ========================================== -->
+    <footer style="height:90px; padding-top: 30px">
+      <div class="container">
+
+	<div>
+      <ul> 
+	<li><a href="#">Blog</a></li> 
+	<li><a href="#">About</a></li> 
+	<li><a href="#">Terms</a></li> 
+      </ul> 
+
+	</div>
+	<div id="social" style="text-align: right; padding-top: 10px;">
+	  <ul>
+	    <li><a href="#"><img src="img/Facebook.png" width="50px" /></a></li>
+	    <li><a href="#"><img src="img/Twitter.png" width="50px"/></a></li>
+	  </ul>
+
+	</div>
+      </div>
+
+    </footer>
+
+  </body>
+</html>
