@@ -10,19 +10,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Doctrine\ORM\Query\ResultSetMapping;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-//Entities
 use SFM\PicmntBundle\Entity\Image;
 use SFM\PicmntBundle\Entity\User;
 use SFM\PicmntBundle\Entity\UserVote;
 use SFM\PicmntBundle\Entity\ImageComment;
 use FOS\UserBundle\Entity\UserManager;
 
-
-//Classes
 use SFM\PicmntBundle\Util\ImageUtil;
-
 use Symfony\Component\HttpFoundation\Response;
-
 
 class ImageController extends Controller
 {
@@ -123,9 +118,6 @@ class ImageController extends Controller
   }
 
 
- 
-
-
   /**
    * @Route("/img/edit/{id_image}", name="img_edit")
    * @Template()
@@ -191,8 +183,6 @@ class ImageController extends Controller
       return array("image_url" => 'uploads/'.$image->getUrl(), 'form' => $form->createView(), 'id_image'=>$id_image);
     }
   }
-
-
 
 
   /**
@@ -322,7 +312,7 @@ class ImageController extends Controller
 
     $em = $this->get('doctrine')->getEntityManager();
     
-    if ( ! $images = $em->getRepository('SFMPicmntBundle:Image')->findPrevious($idImage, 'p.idImage DESC')){
+    if ( ! $images = $em->getRepository('SFMPicmntBundle:Image')->findPrevious($idImage, 'p.idImage')){
 
       $images = $em->getRepository('SFMPicmntBundle:Image')->findFirst('p.idImage DESC');    
 
