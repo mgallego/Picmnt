@@ -108,8 +108,8 @@
 	      <ul class="tabs" style="align: right">
 		<li><a href="show_img.html">Aleatorio</a></li>
 		<li><a href="#">Últimas</a></li>
-		<li><a href="mis_img.html">Mi perfil</a></li>
-		<li class="active"><a href="subir_img.html">Subir Imagen</a></li>
+		<li class="active"><a href="#">Mi Perfil</a></li>
+		<li><a href="subir_img.html">Subir Imagen</a></li>
 		<li><a href="admin.html">Admin</a></li>
 	      </ul>
 
@@ -117,60 +117,48 @@
 
 	  </section>
 
+	  <!--  Info
+		=============================================== -->
 
-
-	    <!-- Formulario
-		 ============================================ -->
-	    <section id="uploadForm">
-
-	      <div class="container">
-		<center>
-		<h1>Seleccione el método de subida</h1>
-		</center>
-		<div class="row">
-		  <div class="span8 column">
-		    <form action="editar.html">
-		      <fieldset>
-			<legend>Importar imagen</legend>
-			<div class="clearfix">
-			  <label for="url">Seleccione una Url</label>
-			  <div class="input">
-			    <input class="xlarge" id="url" name="url" size="30" type="text" />
-			  </div>
-			  <div class="clearfix">
-			    <div class="actions">
-			      <button type="submit" class="btn primary">Enviar</button>
-			    </div>
-			  </div>
-			</div>
-		      </fieldset>
-		    </form>
-		  </div>
-
-		  <div class="span8 column">
-		    <form action="editar.html">
-		      <fieldset>
-			<legend>Subir imagen</legend>
-			<div class="clearfix">
-			  <label for="fileInput">Seleccione un archivo</label>
-			  <div class="input">
-			    <input class="input-file" id="fileInput" name="fileInput" type="file" />
-			  </div>
-			  <div class="clearfix">
-			    <div class="actions">
-			      <button type="submit" class="btn primary">Enviar</button>
-			    </div>
-			  </div>
-			</div>
-		      </fieldset>
-		    </form>
-		  </div>
-
-		</div>
+	  <div class="row">
+	    <div class="span3 column" style="bakcground:#eee">
+	      <img src="img/moises.jpg"/>
+	    </div>
+	    <div class="span12 column">
+	      <div class="alert-message info">
+		<p>Puede cargar estos datos en cualquier momento en el menú superior derecho</p>
 	      </div>
-	    </section>
+  
+	      <div><h1>mgallego</h1></div>
+	      <div><h2>Nombre: </h2></div>
+	      <div><h3>Bio:</h3></div>
+	      <div>
+
+	      </div>
+	      <br/>
+	      <div>Miembro desde: Sept-2011</div>
+ 	      
+
+	    </div>
+	    
+	  </div>
 
 
+
+	  <!-- Imagenes
+	       ================================================= -->
+
+	  <center> <!--pasar a CSS-->
+
+	    <div class="alert-message block-message info" style="text-align:left">
+	      <h2>Aún no ha cargado ninguna imagen, puede comenzar pulsando en "Subir Imagen" o "Explorar" las imágenes ya subidas de otros
+		usuarios</h2>
+	      <div class="alert-actions"> 
+		<a class="btn small" href="subir_img.html">Subir Imagen</a><a class="btn small" href="show_img.html">Explorar</a> 
+              </div> 
+	    </div>
+	    
+	  </center>
 	</div>
 
       </div>

@@ -78,7 +78,7 @@
 	      <li class="dropdown">
  		  <a href="#" class="dropdown-toggle">Moises Gallego</a>
 		  <ul class="dropdown-menu">
-		  <li><a href="modi_user.html">Preferencias</a></li>
+		  <li><a href="#">Preferences</a></li>
 		  <li class="divider"></li>
 		  <li><a href="index.html">Logout</a></li>
 		</ul>
@@ -108,8 +108,8 @@
 	      <ul class="tabs" style="align: right">
 		<li><a href="show_img.html">Aleatorio</a></li>
 		<li><a href="#">Últimas</a></li>
-		<li><a href="mis_img.html">Mi perfil</a></li>
-		<li class="active"><a href="subir_img.html">Subir Imagen</a></li>
+		<li class="active"><a href="#">Mi Perfil</a></li>
+		<li><a href="subir_img.html">Subir Imagen</a></li>
 		<li><a href="admin.html">Admin</a></li>
 	      </ul>
 
@@ -117,58 +117,82 @@
 
 	  </section>
 
+	  <!--  Info
+		=============================================== -->
+
+	  <div class="row">
+
+	    <div class="span3 column" style="bakcground:#eee">
+	      <img src="img/moises.jpg"/>
+	    </div>
+
+	    <!--  Formulario
+		  =========================================== -->
 
 
-	    <!-- Formulario
-		 ============================================ -->
-	    <section id="uploadForm">
+	    <div class="span12 column">		
+	
+	  <div class="alert-message error">
+	    Así se mostrarían los errores en el alta (o eso pretendo)
+	  </div>
 
-	      <div class="container">
-		<center>
-		<h1>Seleccione el método de subida</h1>
-		</center>
-		<div class="row">
-		  <div class="span8 column">
-		    <form action="editar.html">
-		      <fieldset>
-			<legend>Importar imagen</legend>
-			<div class="clearfix">
-			  <label for="url">Seleccione una Url</label>
-			  <div class="input">
-			    <input class="xlarge" id="url" name="url" size="30" type="text" />
-			  </div>
-			  <div class="clearfix">
-			    <div class="actions">
-			      <button type="submit" class="btn primary">Enviar</button>
-			    </div>
-			  </div>
-			</div>
-		      </fieldset>
-		    </form>
-		  </div>
+	  <form action="mis_img.html">
+	    <fieldset>
+	      <legend>mgallego</legend>
 
-		  <div class="span8 column">
-		    <form action="editar.html">
-		      <fieldset>
-			<legend>Subir imagen</legend>
-			<div class="clearfix">
-			  <label for="fileInput">Seleccione un archivo</label>
-			  <div class="input">
-			    <input class="input-file" id="fileInput" name="fileInput" type="file" />
-			  </div>
-			  <div class="clearfix">
-			    <div class="actions">
-			      <button type="submit" class="btn primary">Enviar</button>
-			    </div>
-			  </div>
-			</div>
-		      </fieldset>
-		    </form>
-		  </div>
 
+	      <div class="clearfix">
+		<label for="email">Correo Electronico</label>
+		<div class="input">
+		  <input class="xlarge" id="email" name="email" size="30" type="text"/>
 		</div>
 	      </div>
-	    </section>
+
+	      <div class="clearfix">
+		<label for="bio">Bio</label>
+		<div class="input">
+		  <textarea class="xxlarge" id="bio" name="bio" style="width:400px;height:200px"  type="text"></textarea>
+		</div>
+	      </div>
+
+	      <div class="clearfix">
+		<label for="password">Password</label>
+		<div class="input">
+		  <input class="xlarge" id="password" name="password" size="30" type="password"/>
+		</div>
+	      </div>
+
+
+	      <div class="clearfix">
+		<label for="repassword">Password</label>
+		<div class="input">
+		  <input class="xlarge" id="repassword" name="repassword" size="30" type="password"/>
+		</div>
+	      </div>
+
+	      <div class="clearfix">
+		<label for="fileInput">Cambiar Avatar</label>
+		<div class="input">
+		  <input class="input-file" id="fileInput" name="fileInput" type="file" />
+		</div>
+	      </div>
+
+
+	      
+	      <div class="clearfix" style="text-align:right">
+		<input type="submit" class="btn primary" value="Enviar"/>
+		
+	      </div>
+
+
+
+	    </fieldset>
+	  </form>
+
+
+	    </div>
+	    
+	  </div>
 
 
 	</div>
