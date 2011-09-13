@@ -14,7 +14,7 @@
    height="297mm"
    id="svg2"
    version="1.1"
-   inkscape:version="0.48.0 r9654"
+   inkscape:version="0.48.1 r9760"
    sodipodi:docname="Picmnt-desings.svg">
   <defs
      id="defs4">
@@ -137,9 +137,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.0149341"
-     inkscape:cx="288.75489"
-     inkscape:cy="783.70725"
+     inkscape:zoom="5.6990943"
+     inkscape:cx="306.48591"
+     inkscape:cy="784.60759"
      inkscape:document-units="px"
      inkscape:current-layer="layer2"
      showgrid="false"
@@ -158,7 +158,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -218,8 +218,8 @@
     <text
        xml:space="preserve"
        style="font-size:68.52466583px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:end;line-height:125.99999905%;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000051;fill-opacity:1;stroke:none;font-family:AR PL UMing CN;-inkscape-font-specification:AR PL UMing CN Bold"
-       x="353.43317"
-       y="205.9478"
+       x="254.34181"
+       y="193.08855"
        id="text3770"
        sodipodi:linespacing="126%"
        transform="scale(0.74033926,1.3507321)"
@@ -228,8 +228,8 @@
        inkscape:export-ydpi="183.89459"><tspan
          sodipodi:role="line"
          id="tspan3772"
-         x="353.43317"
-         y="205.9478">P</tspan></text>
+         x="254.34181"
+         y="193.08855">P</tspan></text>
     <g
        id="g3785"
        style="font-size:48px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:end;line-height:125.99999904999999956%;letter-spacing:-3.71000004000000017px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:0.26033059;stroke:none;font-family:AR PL UMing CN;-inkscape-font-specification:AR PL UMing CN Light"
@@ -279,7 +279,7 @@
     </g>
     <g
        id="g5462"
-       transform="matrix(0.46020404,-0.34316955,0.34316955,0.46020404,257.86865,317.15779)"
+       transform="matrix(0.46020404,-0.34316955,0.34316955,0.46020404,133.79511,450.66092)"
        style="stroke:#7a7a7a;stroke-opacity:0.19512197"
        inkscape:export-filename="/home/moises/Desarrollo/PSN/PSN/web/bundles/picmntbundle/images/Picmnt-logo.png"
        inkscape:export-xdpi="183.89459"
@@ -375,5 +375,10 @@
              y="31.552778">Beta</tspan></text>
       </g>
     </g>
+    <path
+       inkscape:connector-curvature="0"
+       d="m 237.89352,217.87666 13.57465,0 c 2.54316,7e-5 4.62394,1.11409 6.24235,3.34215 1.7835,2.45663 2.67526,5.3703 2.67529,8.74094 -3e-5,4.57048 -1.00738,8.11259 -3.02209,10.62629 -2.24595,2.79945 -5.73043,4.19911 -10.45347,4.19908 l -3.22026,0 0,19.02447 c 0,3.71348 1.07341,5.57021 3.22026,5.57021 l 0,1.45686 -9.01673,0 0,-1.45686 c 2.14684,0 3.22026,-1.85673 3.22026,-5.57021 l 0,-38.90586 c 0,-3.71342 -1.07342,-5.57016 -3.22026,-5.57021 l 0,-1.45686 m 5.79647,5.99872 0,18.93874 3.22026,0 c 3.40191,2e-5 6.02766,-1.05686 7.87726,-3.17072 2.01471,-2.28521 3.02207,-5.51306 3.02209,-9.68365 -2e-5,-3.02784 -0.77618,-5.42734 -2.3285,-7.19845 -1.71749,-1.94238 -3.94689,-2.9136 -6.68823,-2.91368 -1.98171,8e-5 -3.33587,0.28572 -4.06249,0.85698 -0.6936,0.5714 -1.04039,1.6283 -1.04039,3.17078"
+       style="font-size:68.52466583000000355px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:end;line-height:125.99999904999999956%;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000080;fill-opacity:1;stroke:none;font-family:AR PL UMing CN;-inkscape-font-specification:AR PL UMing CN Bold"
+       id="path4371-7" />
   </g>
 </svg>

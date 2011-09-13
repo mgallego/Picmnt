@@ -1,0 +1,24 @@
+html{
+    background:LightGrey;
+}
+
+#page{
+    background:white;
+
+}
+
+#content { 
+    Background:white;
+    padding-top:150px;
+
+}
+
+footer{
+    background:LightGrey;
+    margin-top:200px;
+    padding-top:50;
+}
+
+footer #social{
+    margin-top:-18px;
+}
