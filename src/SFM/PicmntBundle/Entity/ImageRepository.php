@@ -53,7 +53,7 @@ class ImageRepository extends EntityRepository
         
         $qb->add('select', 'p')
             ->add('from', 'SFMPicmntBundle:Image p')
-            ->add('where', 'p.idImage < :idImage')   
+            ->add('where', 'p.idImage > :idImage')   
             ->add('orderBy', $orderBy)
             ->setParameter('idImage', $idImage)
             ->setMaxResults(1);
@@ -72,10 +72,10 @@ class ImageRepository extends EntityRepository
         
         $qb->add('select', 'p')
             ->add('from', 'SFMPicmntBundle:Image p')
-            ->add('where', 'p.idImage > :idImage')   
+            ->add('where', 'p.idImage < :idImage')   
             ->add('orderBy', $orderBy)
             ->setParameter('idImage', $idImage)
-            ->setMaxResults(1 );
+            ->setMaxResults(1);
         
         $query = $qb->getQuery();  
 
@@ -90,9 +90,9 @@ class ImageRepository extends EntityRepository
         $qb = $this->_em->createQueryBuilder();
         
         $qb->add('select', 'p')
-	  ->add('from', 'SFMPicmntBundle:Image p');
-	  //->add('orderBy', $orderBy);
-	  //->setMaxResults(1);
+	  ->add('from', 'SFMPicmntBundle:Image p')
+	  ->add('orderBy', $orderBy)
+	  ->setMaxResults(1);
         
         $query = $qb->getQuery();  
 

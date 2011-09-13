@@ -50,7 +50,7 @@ class ImageController extends Controller
    
     if ($request->getMethod() == 'POST'){
       $form->bindRequest($request);
-      
+       
 
       if ($form->isValid()) {
 
@@ -204,8 +204,8 @@ class ImageController extends Controller
  
 
  /**
-   * @Route("/img/show3/{selection}", name="img_show")
-   * @Template()
+   * @Route("/img/show3/{selection}", name="img_show3")
+   * //@Template()
    */
   public function getImage3Action($selection){
 
@@ -269,7 +269,7 @@ class ImageController extends Controller
 
 
   /**
-   * @Route("/img/show/last/{idImage}", defaults={"idImage"="0"}, name="img_show_last")
+   * @Route("/img/show/last/{idImage}", defaults={"idImage"="0"}, name="img_show")
    */
   public function getLastAction($idImage = 0){
     
@@ -282,7 +282,14 @@ class ImageController extends Controller
       
     }
     
-      return new Response('<html><head></head><body>'.$image->getIdImage().'<br/>Picmnt  <input type="hidden" value="idImage" id="idImage"/><a href="/app_dev.php/img/show/last">enlace</a></body></html>');	
+      return new Response('<html><head></head><body>'.$image->getIdImage().'<br/>Picmnt  <input type="hidden" value="idImage" id="idImage"/><a href="/app_dev.php/img/show/last">enlace</a>
+<br>
+<a href="/app_dev.php/img/show/last/previous/'.$image->getIdImage().'">Previous</a> 
+<a href="/app_dev.php/img/show/last/next/'.$image->getIdImage().'">Next</a> 
+</br>
+
+
+</body></html>');	
     
   }
 
@@ -293,7 +300,7 @@ class ImageController extends Controller
 
     $em = $this->get('doctrine')->getEntityManager();
     
-    if ( ! $images = $em->getRepository('SFMPicmntBundle:Image')->findNext($idImage, 'p.idImage DESC')){
+    if ( ! $images = $em->getRepository('SFMPicmntBundle:Image')->findNext($idImage, 'p.idImage')){
 
       $images = $em->getRepository('SFMPicmntBundle:Image')->findFirst('p.idImage DESC');    
 
@@ -301,7 +308,15 @@ class ImageController extends Controller
 
     $image = $images[0];
 
-      return new Response('<html><head></head><body>'.$image->getIdImage().'<br/>Picmnt  <input type="hidden" value="idImage" id="idImage"/><a href="/app_dev.php/img/show/last">enlace</a></body></html>');	
+    return new Response('<html><head></head><body>'.$image->getIdImage().'<br/>Picmnt  <input type="hidden" value="idImage" id="idImage"/><a href="/app_dev.php/img/show/last">enlace</a>
+<br>
+<a href="/app_dev.php/img/show/last/previous/'.$image->getIdImage().'">Previous</a> 
+<a href="/app_dev.php/img/show/last/next/'.$image->getIdImage().'">Next</a> 
+</br>
+
+
+</body></html>');	
+
         
   }
 
@@ -312,15 +327,24 @@ class ImageController extends Controller
 
     $em = $this->get('doctrine')->getEntityManager();
     
-    if ( ! $images = $em->getRepository('SFMPicmntBundle:Image')->findPrevious($idImage, 'p.idImage')){
+
+     if ( ! $images = $em->getRepository('SFMPicmntBundle:Image')->findPrevious($idImage, 'p.idImage DESC')){
 
       $images = $em->getRepository('SFMPicmntBundle:Image')->findFirst('p.idImage DESC');    
 
     }
 
     $image = $images[0];
+ 
+    return new Response('<html><head></head><body>'.$image->getIdImage().'<br/>Picmnt  <input type="hidden" value="idImage" id="idImage"/><a href="/app_dev.php/img/show/last">enlace</a>
+<br>
+<a href="/app_dev.php/img/show/last/previous/'.$image->getIdImage().'">Previous</a> 
+<a href="/app_dev.php/img/show/last/next/'.$image->getIdImage().'">Next</a> 
+</br>
 
-      return new Response('<html><head></head><body>'.$image->getIdImage().'<br/>Picmnt  <input type="hidden" value="idImage" id="idImage"/><a href="/app_dev.php/img/show/last">enlace</a></body></html>');	
+
+</body></html>');	
+
         
   }
 
