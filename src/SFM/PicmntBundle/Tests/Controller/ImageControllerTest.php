@@ -64,27 +64,20 @@ class ImageControllerTest extends WebTestCase
     $this->assertTrue($crawler->filter('html:contains("Picmnt")')->count() > 0, "the URL contains the Picmnt word");
 
     $crawler = $client->request('GET', '/img/show/last/999');
-    $this->assertTrue($crawler->filter('html:contains("1")')->count() > 0, "Finding an error image");
+    $this->assertTrue($crawler->filter('html:contains("title_10")')->count() > 0, "Finding an error image");
 
-    $crawler = $client->request('GET', '/img/show/last/1');
-    $this->assertTrue($crawler->filter('html:contains("1")')->count() > 0, "Finding an Image");
+    
+    $crawler = $client->request('GET','/img/show/last/3');
+    $this->assertTrue($crawler->filter('html:contains("title_3")')->count() > 0, "Finding an Image");
+    
 
-    for ($i = 1; $i < 10; $i++){
+    $link = $crawler->selectLink('Previous')->link();
+    $crawler = $client->click($link);
+    $this->assertTrue($crawler->filter('html:contains("title_2")')->count() > 0, "Previous Image");
 
-      $j = $i +1;
-      $crawler = $client->request('GET', '/img/show/last/next/'.$i.'');
-      $this->assertTrue($crawler->filter('html:contains("'.$j.'")')->count() > 0, "Finding the next image for ".$j);
-
-    }
-
-
-    for ($i = 10; $i > 1; $i--){
-
-      $j = $i - 1;
-      $crawler = $client->request('GET', '/img/show/last/previous/'.$i.'');
-      $this->assertTrue($crawler->filter('html:contains("'.$j.'")')->count() > 0, "Finding the next image for ".$j);
-
-    }
+    $link = $crawler->selectLink('Next')->link();
+    $crawler = $client->click($link);
+    $this->assertTrue($crawler->filter('html:contains("title_3")')->count() > 0, "Next Image");
 
 
     //    echo $crawler->text();

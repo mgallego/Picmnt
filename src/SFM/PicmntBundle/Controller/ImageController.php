@@ -270,6 +270,7 @@ class ImageController extends Controller
 
   /**
    * @Route("/img/show/last/{idImage}", defaults={"idImage"="0"}, name="img_show")
+   * @Template()
    */
   public function getLastAction($idImage = 0){
     
@@ -281,22 +282,16 @@ class ImageController extends Controller
       $image = $images[0];
       
     }
-    
-      return new Response('<html><head></head><body>'.$image->getIdImage().'<br/>Picmnt  <input type="hidden" value="idImage" id="idImage"/><a href="/app_dev.php/img/show/last">enlace</a>
-<br>
-<a href="/app_dev.php/img/show/last/previous/'.$image->getIdImage().'">Previous</a> 
-<a href="/app_dev.php/img/show/last/next/'.$image->getIdImage().'">Next</a> 
-</br>
+
+    $paginator = Array("imgNext"=>$this->getLastNext($image->getIdImage()), 
+		 "imgPrevious"=>$this->getLastPrevious($image->getIdImage()) );
+
+    return Array("image"=>$image, "idImage"=>$image->getIdImage(), "paginator"=>$paginator);
 
 
-</body></html>');	
-    
   }
 
-  /**
-   * @Route("/img/show/last/next/{idImage}", defaults={"idImage"="0"}, name="img_show_last_next")
-   */
-  public function getLastNextAction($idImage = 0){
+  private function getLastNext($idImage = 0){
 
     $em = $this->get('doctrine')->getEntityManager();
     
@@ -307,23 +302,13 @@ class ImageController extends Controller
     }
 
     $image = $images[0];
-
-    return new Response('<html><head></head><body>'.$image->getIdImage().'<br/>Picmnt  <input type="hidden" value="idImage" id="idImage"/><a href="/app_dev.php/img/show/last">enlace</a>
-<br>
-<a href="/app_dev.php/img/show/last/previous/'.$image->getIdImage().'">Previous</a> 
-<a href="/app_dev.php/img/show/last/next/'.$image->getIdImage().'">Next</a> 
-</br>
-
-
-</body></html>');	
-
+   
+    return $image->getIdImage();
+  
         
   }
 
-  /**
-   * @Route("/img/show/last/previous/{idImage}", defaults={"idImage"="0"}, name="img_show_last_previous")
-   */
-  public function getLastPreviousAction($idImage = 0){
+  private function getLastPrevious($idImage = 0){
 
     $em = $this->get('doctrine')->getEntityManager();
     
@@ -335,17 +320,9 @@ class ImageController extends Controller
     }
 
     $image = $images[0];
+
+    return $image->getIdImage();
  
-    return new Response('<html><head></head><body>'.$image->getIdImage().'<br/>Picmnt  <input type="hidden" value="idImage" id="idImage"/><a href="/app_dev.php/img/show/last">enlace</a>
-<br>
-<a href="/app_dev.php/img/show/last/previous/'.$image->getIdImage().'">Previous</a> 
-<a href="/app_dev.php/img/show/last/next/'.$image->getIdImage().'">Next</a> 
-</br>
-
-
-</body></html>');	
-
-        
   }
 
 

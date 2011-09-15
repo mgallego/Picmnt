@@ -30,7 +30,7 @@ class LoadData implements FixtureInterface, ContainerAwareInterface
     $images = array(
       1 => array(
 	'idImage'    => '1',
-	'url'         => 'url_1',
+	'url'         => 'testImage1.img',
 	'title'       => 'title_1',
 	'description' => 'description_1',
 	'category'    => '1',
@@ -38,7 +38,7 @@ class LoadData implements FixtureInterface, ContainerAwareInterface
 	'votes'       => '0'),
       2 => array(
 	'idImage'    => '2',
-	'url'         => 'url_2',
+	'url'         => 'testImage2.jpg',
 	'title'       => 'title_2',
 	'description' => 'description_2',
 	'category'    => '1',
@@ -46,7 +46,7 @@ class LoadData implements FixtureInterface, ContainerAwareInterface
 	'votes'       => '0'),
       3 => array(
 	'idImage'    => '3',
-	'url'         => 'url_3',
+	'url'         => 'testImage3.jpg',
 	'title'       => 'title_3',
 	'description' => 'description_3',
 	'category'    => '1',
@@ -54,7 +54,7 @@ class LoadData implements FixtureInterface, ContainerAwareInterface
 	'votes'       => '0'),
       4 => array(
 	'idImage'    => '4',
-	'url'         => 'url_4',
+	'url'         => 'testImage4.jpg',
 	'title'       => 'title_4',
 	'description' => 'description_4',
 	'category'    => '1',
@@ -62,7 +62,7 @@ class LoadData implements FixtureInterface, ContainerAwareInterface
 	'votes'       => '0'),
       5 => array(
 	'idImage'    => '5',
-	'url'         => 'url_5',
+	'url'         => 'testImage5.jpg',
 	'title'       => 'title_5',
 	'description' => 'description_5',
 	'category'    => '1',
@@ -70,7 +70,7 @@ class LoadData implements FixtureInterface, ContainerAwareInterface
 	'votes'       => '0'),
       6 => array(
 	'idImage'    => '6',
-	'url'         => 'url_6',
+	'url'         => 'testImage6.jpg',
 	'title'       => 'title_6',
 	'description' => 'description_6',
 	'category'    => '1',
@@ -78,7 +78,7 @@ class LoadData implements FixtureInterface, ContainerAwareInterface
 	'votes'       => '0'),
       7 => array(
 	'idImage'    => '7',
-	'url'         => 'url_7',
+	'url'         => 'testImage7.jpg',
 	'title'       => 'title_7',
 	'description' => 'description_7',
 	'category'    => '1',
@@ -86,7 +86,7 @@ class LoadData implements FixtureInterface, ContainerAwareInterface
 	'votes'       => '0'),
       8 => array(
 	'idImage'    => '8',
-	'url'         => 'url_8',
+	'url'         => 'testImage8.jpg',
 	'title'       => 'title_8',
 	'description' => 'description_8',
 	'category'    => '1',
@@ -94,7 +94,7 @@ class LoadData implements FixtureInterface, ContainerAwareInterface
 	'votes'       => '0'),
       9 => array(
 	'idImage'    => '9',
-	'url'         => 'url_9',
+	'url'         => 'testImage9.jpg',
 	'title'       => 'title_9',
 	'description' => 'description_9',
 	'category'    => '1',
@@ -102,7 +102,7 @@ class LoadData implements FixtureInterface, ContainerAwareInterface
 	'votes'       => '0'),
       10 => array(
 	'idImage'    => '10',
-	'url'         => 'url_10',
+	'url'         => 'testImage10.jpg',
 	'title'       => 'title_10',
 	'description' => 'description_10',
 	'category'    => '1',
