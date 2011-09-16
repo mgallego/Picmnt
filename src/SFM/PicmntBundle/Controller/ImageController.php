@@ -283,13 +283,17 @@ class ImageController extends Controller
       
     }
 
+    $paginator = Array("imgNext"=>$this->getNext('last',$image->getIdImage()) ,
+		 "imgPrevious"=>$this->getPrevious('last', $idImage->getIdImage()));
+    /*
     $paginator = Array("imgNext"=>$this->getLastNext($image->getIdImage()), 
 		 "imgPrevious"=>$this->getLastPrevious($image->getIdImage()) );
-
+    */
     return Array("image"=>$image, "idImage"=>$image->getIdImage(), "paginator"=>$paginator);
 
 
   }
+
 
   private function getLastNext($idImage = 0){
 
