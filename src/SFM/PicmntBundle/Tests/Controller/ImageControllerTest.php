@@ -84,5 +84,4 @@ class ImageControllerTest extends WebTestCase
  
   }
 
-
 }
