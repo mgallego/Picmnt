@@ -150,8 +150,6 @@ class ImageController extends Controller
 	//add('FieldName', 'type')
 	->getForm();
 
-
-
       //retrieving the request
       $request = $this->get('request');
       
@@ -283,48 +281,57 @@ class ImageController extends Controller
       
     }
 
-    $paginator = Array("imgNext"=>$this->getLastNext($image->getIdImage()), 
-		 "imgPrevious"=>$this->getLastPrevious($image->getIdImage()) );
+    $paginator = Array("imgNext"=>$this->getNext('last', $image->getIdImage()), 
+		 "imgPrevious"=>$this->getPrevious('last', $image->getIdImage()) );
 
     return Array("image"=>$image, "idImage"=>$image->getIdImage(), "paginator"=>$paginator);
 
 
   }
 
-  private function getLastNext($idImage = 0){
 
-    $em = $this->get('doctrine')->getEntityManager();
+  private function getNext($orderOption, $idImage){
+
+    if ($orderOption == 'last'){
+
+      $em = $this->get('doctrine')->getEntityManager();
     
-    if ( ! $images = $em->getRepository('SFMPicmntBundle:Image')->findNext($idImage, 'p.idImage')){
+      if ( ! $images = $em->getRepository('SFMPicmntBundle:Image')->findNext($idImage, 'p.idImage')){
 
-      $images = $em->getRepository('SFMPicmntBundle:Image')->findFirst('p.idImage DESC');    
+	$images = $em->getRepository('SFMPicmntBundle:Image')->findFirst('p.idImage DESC');    
 
-    }
-
-    $image = $images[0];
-   
-    return $image->getIdImage();
-  
-        
-  }
-
-  private function getLastPrevious($idImage = 0){
-
-    $em = $this->get('doctrine')->getEntityManager();
-    
-
-     if ( ! $images = $em->getRepository('SFMPicmntBundle:Image')->findPrevious($idImage, 'p.idImage DESC')){
-
-      $images = $em->getRepository('SFMPicmntBundle:Image')->findFirst('p.idImage DESC');    
+      }
 
     }
 
     $image = $images[0];
 
     return $image->getIdImage();
- 
+
   }
 
+
+
+  private function getPrevious($orderOption, $idImage){
+
+    $em = $this->get('doctrine')->getEntityManager();
+
+    if ( $orderOption == 'last' ){
+      
+      if ( ! $images = $em->getRepository('SFMPicmntBundle:Image')->findPrevious($idImage, 'p.idImage DESC')){
+
+	$images = $em->getRepository('SFMPicmntBundle:Image')->findFirst('p.idImage DESC');    
+
+      }
+
+     
+    }
+
+    $image = $images[0];
+
+    return $image->getIdImage();
+
+  }
 
 
     
