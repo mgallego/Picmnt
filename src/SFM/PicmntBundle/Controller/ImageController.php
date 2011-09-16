@@ -29,90 +29,61 @@ class ImageController extends Controller
   public function uploadAction()
   {
     
-    //retrieving the user information 
     $user = $this->container->get('security.context')->getToken()->getUser();
 
     $image = new Image();
     
-     //this object is use for the validators
-     $imageUp = new ImageUp();
+    $imageUp = new ImageUp();
             
-    //calling the form
     $form = $this->get('form.factory')
       ->createBuilder('form', $imageUp)
       ->add('dataFile', 'file')
-      //add('FieldName', 'type')
       ->getForm();
     
-    //retrieving the request
-    $request = $this->get('request');
- 
-   
-    if ($request->getMethod() == 'POST'){
-      $form->bindRequest($request);
+
+    if ($this->get('request')->getMethod() == 'POST'){
+
+      $form->bindRequest( $this->get('request') );
        
 
       if ($form->isValid()) {
 
-	$files=$request->files->get($form->getName());
+	$uploadedFile = $form['dataFile']->getData();
 
-	$uploadedFile=$files["dataFile"]["file"]; //"dataFile" is the name on the field
-
-	//once you have the uploadedFile object there is some sweet functions you can run
-	$uploadedFile->getPath();//returns current (temporary) path
-	$uploadedFile->getOriginalName();
-	$uploadedFile->getMimeType();
-
-	
-	//rerieving the file extension
 	if ($uploadedFile->getMimeType() == 'image/png' ){
 	  $extension = '.png';
 	}
 	else{
 	  $extension = '.jpg';
 	}
-	  
+		
 
-	//creating a new name for the file
 	$newFileName = $user->getId().'_'.date("ymdHis").'_'.rand(1,9999).$extension;
 	
-	//and most important is move(),
 	$uploadedFile->move(
 	  $_SERVER['DOCUMENT_ROOT']."/uploads",
 	  $newFileName );
 
 	$imageUtil = new ImageUtil();
 
-	//resize the image if is necesary
 	$imageUtil->resizeImage('uploads/'.$newFileName, 800);
 
-	//save the url of the image (name) into the database
 	$image->setUrl($newFileName);
 	$image->setVotes(0);
 
-	//$user->addImages($image);
-
 	$image->setUser($user);
 
-	//persist in the database
 	$em = $this->get('doctrine')->getEntityManager();     
    	
 	$em->persist($image);
 	$em->flush();
-
-	//show the edit image page
-	return $this->redirect($this->generateUrl('img_edit', array("id_image" => $user->getImage->getIdImage())));
 	
-      }
-      else {
-
-	//return the same form view
-	return array('form' => $form->createView(),);
+	return $this->redirect($this->generateUrl('img_edit', array("id_image" => $image->getIdImage())));
 
       }
+     
     }
         
-    //create the first form
     return array('form' => $form->createView(),);
     
   }
