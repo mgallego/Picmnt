@@ -167,12 +167,14 @@ class ImageController extends Controller
           
     $image = $images[0];
 
+    return $image;
+
     return array('image'=> 'uploads/'.$image->getUrl(),'title'=>$image->getTitle(),'description'=>$image->getDescription(), 'id_image'=>$image->getIdImage()  );
 
   }
  
 
- /**
+  /**
    * @Route("/img/show3/{selection}", name="img_show3")
    * //@Template()
    */
@@ -236,6 +238,39 @@ class ImageController extends Controller
   }
 
 
+  /**
+   * @Route("/img/show/{option}/{idImage}", defaults={"idImage"="0"}, name="img_show")
+   * @Template()
+   */
+  public function getLastAction($option, $idImage = 0){
+    
+    $em = $this->get('doctrine')->getEntityManager();
+    $paginator = Array();
+
+    if (!$image = $em->find('SFMPicmntBundle:Image',$idImage)){
+      if ( $option == 'last' ) {
+
+	$images = $em->getRepository('SFMPicmntBundle:Image')->findFirst('p.idImage DESC');
+	$image = $images[0];
+
+	$paginator = $this->getPaginator($option, $image->getIdImage());
+
+      }
+      else if ( $option = 'random' ){
+
+	$image = getRandomImage();
+
+      }
+      
+    }
+	
+    return Array("image"=>$image, "paginator"=>$paginator);
+
+  }
+
+
+
+
 
   /**
    * @Route("/img/show/last/{idImage}", defaults={"idImage"="0"}, name="img_show")
@@ -252,13 +287,21 @@ class ImageController extends Controller
       
     }
 
-    $paginator = Array("imgNext"=>$this->getNext('last', $image->getIdImage()), 
-		 "imgPrevious"=>$this->getPrevious('last', $image->getIdImage()) );
+    $paginator = $this->getPaginator('last',$image->getIdImage());
 
     return Array("image"=>$image, "idImage"=>$image->getIdImage(), "paginator"=>$paginator);
 
 
   }
+
+
+  private function getPaginator($option, $idImage){
+    
+    return Array("imgNext"=>$this->getNext($option, $image->getIdImage()), 
+		 "imgPrevious"=>$this->getPrevious($option, $image->getIdImage()) );
+
+  }
+
 
 
   private function getNext($orderOption, $idImage){
@@ -333,7 +376,7 @@ class ImageController extends Controller
 
   }
 
- /**
+  /**
    * @Route("/img/vote/{idImage}", name="img_vote")
    */
   public function voteAction($idImage){
