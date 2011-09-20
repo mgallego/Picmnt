@@ -8,15 +8,23 @@
 <img src="/uploads{{ asset(image.url) }}" id="image-to-modify"/>
 
 <br />
+{% for page in paginator %}
+<br />
+{% if loop.index == '1' %}
 
-<a href="{{ path('img_show', {'option': 'last' }, { 'idImage':  paginator.imgPrevious }) }}">Previous</a>
-<a href="{{ path('img_show', {'option': 'last' }, { 'idImage':  paginator.imgNext }) }}">Next</a>
+<a href="{{ path('img_show', {'option': 'last',  'idImage': page }) }}">Next</a>
 
+{% else %}
 
+<a href="{{ path('img_show', {'option': 'last', 'idImage':  page }) }}">Previous</a>
 
+{% endif %}
 
-<br/>
-<a href="#">Test</a>
+{% endfor %}
+
+{#<a href="{{ path('img_show', {'option': 'last' },{ 'idImage':  paginator.imgPrevious }) }}">Previous</a>#}
+{#<a href="{{ path('img_show', {'option': 'last' }, { 'idImage':  paginator.imgNext }) }}">Next</a>#}
+
 
 {% endblock %}
 

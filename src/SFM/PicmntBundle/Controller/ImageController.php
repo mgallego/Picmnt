@@ -233,8 +233,9 @@ class ImageController extends Controller
   }
 
 
+
   /**
-   * @Route("/img/show/{option}/{idImage}", defaults={"idImage"="0"}, name="img_show")
+   * @Route("/img/{option}/{idImage}", defaults={"idImage"="0"}, name="img_show")
    * @Template()
    */
   public function showImageAction($option, $idImage = 0){
@@ -242,64 +243,37 @@ class ImageController extends Controller
     $em = $this->get('doctrine')->getEntityManager();
     $paginator = Array();
 
-    if (!$image = $em->find('SFMPicmntBundle:Image',$idImage)){
-      if ( $option == 'last' ) {
+    if ( $option == 'last' ) {
+
+      if (!$image = $em->find('SFMPicmntBundle:Image',$idImage)){
 
 	$images = $em->getRepository('SFMPicmntBundle:Image')->findFirst('p.idImage DESC');
 	$image = $images[0];
-
-	$paginator = $this->getPaginator($option, $image->getIdImage());
+	  
 
       }
-      else if ( $option = 'random' ){
+
+      $paginator = $this->getPaginator($option, $image->getIdImage());
 
 
-
-	$image = $this->getRandomImage();
-
-	$paginator = Array('imgNext'=>'', 'imgPrevious'=>''); 
-      }
-      
     }
-	
+    else if ( $option = 'random' ){
+
+      $image = $this->getRandomImage();
+
+    }
+      
     return Array("image"=>$image, "paginator"=>$paginator);
-
-  }
-
-
-
-
-
-  /**
-   * @Route("/img/show/last/{idImage}", defaults={"idImage"="0"}, name="img_show4")
-   * @Template()
-   */
-  public function getLastAction($idImage = 0){
-    
-    $em = $this->get('doctrine')->getEntityManager();
-    
-    if (!$image = $em->find('SFMPicmntBundle:Image',$idImage)){
-	
-      $images = $em->getRepository('SFMPicmntBundle:Image')->findFirst('p.idImage DESC');
-      $image = $images[0];
-      
-    }
-
-    $paginator = $this->getPaginator('last',$image->getIdImage());
-
-    return Array("image"=>$image, "idImage"=>$image->getIdImage(), "paginator"=>$paginator);
-
 
   }
 
 
   private function getPaginator($option, $idImage){
     
-    return Array("imgNext"=>$this->getNext($option, $idImage), 
-      "imgPrevious"=>$this->getPrevious($option, $idImage) );
+    return Array('imgNext'=>$this->getNext($option, $idImage), 
+      'imgPrevious'=>$this->getPrevious($option, $idImage) );
 
   }
-
 
 
   private function getNext($orderOption, $idImage){
@@ -322,8 +296,6 @@ class ImageController extends Controller
 
   }
 
-
-
   private function getPrevious($orderOption, $idImage){
 
     $em = $this->get('doctrine')->getEntityManager();
@@ -335,7 +307,6 @@ class ImageController extends Controller
 	$images = $em->getRepository('SFMPicmntBundle:Image')->findFirst('p.idImage DESC');    
 
       }
-
      
     }
 
@@ -344,7 +315,6 @@ class ImageController extends Controller
     return $image->getIdImage();
 
   }
-
 
     
   public function hasVoted($idImage){
