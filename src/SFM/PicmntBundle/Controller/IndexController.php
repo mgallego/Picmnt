@@ -44,7 +44,7 @@ class IndexController extends Controller
      */
     public function indexSecureAction()
     {
-      return $this->redirect($this->generateUrl('img_random'));
+      return $this->redirect($this->generateUrl('img_show', Array("option"=>"random")));
 
     }
 

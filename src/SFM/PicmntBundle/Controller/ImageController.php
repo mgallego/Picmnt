@@ -154,11 +154,7 @@ class ImageController extends Controller
   }
 
 
-  /**
-   * @Route("/img/random", name="img_random")
-   * @Template()
-   */
-  public function getRandomImageAction()
+  private function getRandomImage()
   {
 
     $em = $this->get('doctrine')->getEntityManager();
@@ -169,8 +165,7 @@ class ImageController extends Controller
 
     return $image;
 
-    return array('image'=> 'uploads/'.$image->getUrl(),'title'=>$image->getTitle(),'description'=>$image->getDescription(), 'id_image'=>$image->getIdImage()  );
-
+    
   }
  
 
@@ -242,7 +237,7 @@ class ImageController extends Controller
    * @Route("/img/show/{option}/{idImage}", defaults={"idImage"="0"}, name="img_show")
    * @Template()
    */
-  public function getLastAction($option, $idImage = 0){
+  public function showImageAction($option, $idImage = 0){
     
     $em = $this->get('doctrine')->getEntityManager();
     $paginator = Array();
@@ -258,8 +253,11 @@ class ImageController extends Controller
       }
       else if ( $option = 'random' ){
 
-	$image = getRandomImage();
 
+
+	$image = $this->getRandomImage();
+
+	$paginator = Array('imgNext'=>'', 'imgPrevious'=>''); 
       }
       
     }
@@ -273,7 +271,7 @@ class ImageController extends Controller
 
 
   /**
-   * @Route("/img/show/last/{idImage}", defaults={"idImage"="0"}, name="img_show")
+   * @Route("/img/show/last/{idImage}", defaults={"idImage"="0"}, name="img_show4")
    * @Template()
    */
   public function getLastAction($idImage = 0){
@@ -297,8 +295,8 @@ class ImageController extends Controller
 
   private function getPaginator($option, $idImage){
     
-    return Array("imgNext"=>$this->getNext($option, $image->getIdImage()), 
-		 "imgPrevious"=>$this->getPrevious($option, $image->getIdImage()) );
+    return Array("imgNext"=>$this->getNext($option, $idImage), 
+      "imgPrevious"=>$this->getPrevious($option, $idImage) );
 
   }
 

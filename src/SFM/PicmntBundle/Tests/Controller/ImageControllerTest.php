@@ -27,15 +27,17 @@ class ImageControllerTest extends WebTestCase
   public function testGetRandomImage(){
 
     $client = $this->createClient();
-    $crawler = $client->request('GET', '/img/random');
+    $crawler = $client->request('GET', '/img/show/random');
     $this->assertEquals(302, $client->getResponse()->getStatusCode(), "Status 200");
 
 
     $secureAccess = new SecureAccess();
     $client = $secureAccess->getClient();
-    $crawler = $client->request('GET', '/img/random');
+    $crawler = $client->request('GET', '/img/show/random');
     $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Status 200");
     $this->assertTrue($crawler->filter('html:contains("Picmnt")')->count() > 0, "the URL contains the Picmnt word");
+
+    
 
   }
 

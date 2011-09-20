@@ -1,0 +1,23 @@
+{% extends "SFMPicmntBundle::layout.html.twig" %}
+
+{% block content %}
+
+
+{{ image.title }}
+
+<img src="/uploads{{ asset(image.url) }}" id="image-to-modify"/>
+
+<br />
+
+<a href="{{ path('img_show', {'option': 'last' }, { 'idImage':  paginator.imgPrevious }) }}">Previous</a>
+<a href="{{ path('img_show', {'option': 'last' }, { 'idImage':  paginator.imgNext }) }}">Next</a>
+
+
+
+
+<br/>
+<a href="#">Test</a>
+
+{% endblock %}
+
+
