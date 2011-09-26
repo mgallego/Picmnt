@@ -21,7 +21,6 @@ class CommentController extends Controller
    */
   public function commentAction($idImage)
   {
-    //Get the image
 
     $image = new Image();
 
@@ -36,10 +35,8 @@ class CommentController extends Controller
       ->add('comment', 'text')
       ->getForm();
 
-    //get the request
     $request = $this->get('request');
       
-   
     if ($request->getMethod() == 'POST'){
 
       $form->bindRequest($request);
@@ -56,9 +53,9 @@ class CommentController extends Controller
 
 	
 	//	return $this->redirect($this->generateUrl('img_show').'/'.);
-		print_r($request);
+	print_r($request);
 
-	return new Response('<html><head></head><body>hola2</body></html>');	
+	return new Response('<html><head></head><body>Comments</body></html>');	
 	
 	}
 

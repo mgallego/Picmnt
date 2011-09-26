@@ -31,15 +31,14 @@ class UserController extends Controller
 
     $user = $this->container->get('security.context')->getToken()->getUser();
 
-    //compare the actual user and the property of the image
-    if ($user->getId() != $userId) { //diferent user
+    if ($user->getId() != $userId) { 
       	  return $this->redirect($this->generateUrl('img_random'));
     }
    else { 
 
      $userInfo = $em->find('SFMPicmntBundle:UserInfo',$userId);
 
-     $avatarOld = $userInfo->getAvatar(); //obtain the old avatar
+     $avatarOld = $userInfo->getAvatar(); 
 
      $userInfo->setAvatar(null);
 
@@ -50,16 +49,13 @@ class UserController extends Controller
        ->add('avatar', 'file', array('required'=>false))
        ->getForm();
 
-      //retrieving the request
       $request = $this->get('request');
-      
    
       if ($request->getMethod() == 'POST'){
 	$form->bindRequest($request);
       
 	if ($form->isValid()) {
 
-	  //avatar
 	  $files=$request->files->get($form->getName());
 
 	  if ($files["avatar"]["file"] == null) {
@@ -69,44 +65,26 @@ class UserController extends Controller
 	  }
 	  else{
 	  
-	    $uploadedFile=$files["avatar"]["file"]; //"dataFile" is the name on the field
+	    $uploadedFile=$files["avatar"]["file"]; 
 
-	    //once you have the uploadedFile object there is some sweet functions you can run
-	    $uploadedFile->getPath();//returns current (temporary) path
+	    $uploadedFile->getPath();
 	    $uploadedFile->getOriginalName();
 	    $uploadedFile->getMimeType();
 	    
-	    
-	    //rerieving the file extension
-	    /*
-	    if ($uploadedFile->getMimeType() == 'image/png' ){
-	      $extension = '.png';
-	    }
-	    else{
-	      $extension = '.jpg';
-	    }
-	    */
 	    $extension = '.jpg';
-	    //creating a new name for the file
+
 	    $newFileName = 'avatar'.$userId.$extension;
-	    
-	    //and most important is move(),
+	 
 	    $uploadedFile->move(
 	      $_SERVER['DOCUMENT_ROOT']."/uploads/avatarbig",
 	      $newFileName );
-	    
 
 	    $imageUtil = new ImageUtil();
 	    
-	    //resize the image if is necesary
 	    $imageUtil->resizeImage('uploads/avatarbig/'.$newFileName, 200);
-	  
 	    $imageUtil->createAvatarSmall('uploads/avatarbig/'.$newFileName, 'uploads/avatarsmall/'.$newFileName, 32);
-
-	    //save the url of the image (name) into the database
+	 
 	    $userInfo->setAvatar($newFileName);
-	    
-	    
 	  }
 
 	  $em->persist($userInfo);

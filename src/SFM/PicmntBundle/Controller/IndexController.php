@@ -7,7 +7,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
-//menubundle
 use Knplabs\Bundle\MenuBundle\MenuItem;
 
 
@@ -15,7 +14,7 @@ use Knplabs\Bundle\MenuBundle\MenuItem;
 class IndexController extends Controller
 {
 
-  //Home page, only show the page
+
     /**
     * @Route("/", name="home")
     * @Template()
@@ -37,7 +36,7 @@ class IndexController extends Controller
        
     }
 
-    //Secure home
+
     /**
      * @Route("/p", name="secure_home")
      * @Template()
@@ -49,7 +48,6 @@ class IndexController extends Controller
     }
 
 
-    //Language Selector
     /**
      * @Route("/lang/{_locale}", name="lang")
      */

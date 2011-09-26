@@ -95,33 +95,27 @@ class ImageController extends Controller
    */
   public function editImageAction($id_image){
 
-    //retrieving the image info
     $image = new Image();
 
     $em = $this->get('doctrine')->getEntityManager();     
     
     $image = $em->find('SFMPicmntBundle:Image',$id_image);
 
-    //retrieving the user information 
     $user = $this->container->get('security.context')->getToken()->getUser();
 
-    //compare the actual user and the property of the image
     if ($user->getId() != $image->getUser()->getId()) { //diferent user
-      //show an error twig
+      //show an error twig TODO
     }
     else{
 
-      //calling the form
       $form = $this->get('form.factory')
 	->createBuilder('form', $image)
 	->add('title', 'text')
 	->add('description','textarea')
 	->add('category','text')
 	->add('tags','text')
-	//add('FieldName', 'type')
 	->getForm();
 
-      //retrieving the request
       $request = $this->get('request');
       
    
@@ -140,7 +134,6 @@ class ImageController extends Controller
 	
 	  return $this->redirect($this->generateUrl('img_random'));
 
-
 	}
 	else
 	  {
@@ -148,7 +141,7 @@ class ImageController extends Controller
 	    return array("image_url" => 'uploads/'.$image->getUrl(), 'form' => $form->createView(), 'id_image'=>$id_image);
 	  }
       }
-      //show the image un the edit view
+
       return array("image_url" => 'uploads/'.$image->getUrl(), 'form' => $form->createView(), 'id_image'=>$id_image);
     }
   }
@@ -164,16 +157,17 @@ class ImageController extends Controller
     $image = $images[0];
 
     return $image;
-
     
   }
  
 
+
+  //delete this function when finish the image show action 
   /**
-   * @Route("/img/show3/{selection}", name="img_show3")
+   * @Route("/img/showTemp/{selection}", name="img_showTemp")
    * //@Template()
    */
-  public function getImage3Action($selection){
+  public function getImageTempAction($selection){
 
     $userVote = new UserVote();
 
@@ -186,12 +180,8 @@ class ImageController extends Controller
       $dql = "SELECT a FROM SFMPicmntBundle:Image a order by a.idImage desc";
     }
 
-
     $query = $em->createQuery($dql);
 
-
-    //preparing the sql statement
- 
     $adapter = $this->get('knplabs_paginator.adapter');
     $adapter->setQuery($query);
     $adapter->setDistinct(true);
@@ -226,7 +216,6 @@ class ImageController extends Controller
     
     print($imageNext[0]->getIdImage(). ' actual '. $image->getIdImage());
     
-    //    print_r($this->redirect($this->generateUrl('comment'.'/184')));
 
     return array("paginator"=>$paginator, "parameters"=>$parameters, 
       "comments"=>$image->getImageComments(), "formComment"=>$formComment->createView());
@@ -249,12 +238,10 @@ class ImageController extends Controller
 
 	$images = $em->getRepository('SFMPicmntBundle:Image')->findFirst('p.idImage DESC');
 	$image = $images[0];
-	  
 
       }
 
       $paginator = $this->getPaginator($option, $image->getIdImage());
-
 
     }
     else if ( $option = 'random' ){
@@ -319,14 +306,12 @@ class ImageController extends Controller
     
   public function hasVoted($idImage){
     
-    //load the current users data
     $user = $this->container->get('security.context')->getToken()->getUser();
 
     $repository = $this->get('doctrine')
       ->getEntityManager()
       ->getRepository('SFMPicmntBundle:UserVote');
 
-    //query the votes of the user for this image
     $query = $repository->createQueryBuilder('uv')
       ->where('uv.userId = :userId AND uv.idImage = :idImage')
       ->setParameters(array('userId'=>$user->getId(), 'idImage'=>$idImage))
@@ -335,7 +320,7 @@ class ImageController extends Controller
     $userVote = $query->getResult();
     
     
-    if (!$userVote) { //if the image has not voted
+    if (!$userVote) { 
       return 0;
     }
     else{
