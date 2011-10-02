@@ -63,7 +63,8 @@ fos_user:
     firewall_name: main
     user_class: SFM\PicmntBundle\Entity\User
     template:
-         theme: SFMPicmntBundle::layout.html.twig
+      engine: twig
+      theme:  FOSUserBundle::form.html.twig	         
     encoder:
          algorithm:          sha512
          encode_as_base64:   false

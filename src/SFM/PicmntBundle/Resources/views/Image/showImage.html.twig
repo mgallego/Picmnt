@@ -1,31 +1,207 @@
-{% extends "SFMPicmntBundle::layout.html.twig" %}
+{% extends "SFMPicmntBundle::layout_private.html.twig" %}
 
 {% block content %}
 
 
-{{ image.title }}
-
-<img src="/uploads{{ asset(image.url) }}" id="image-to-modify"/>
-
-<br />
-{% for page in paginator %}
-<br />
-{% if loop.index == '1' %}
-
-<a href="{{ path('img_show', {'option': 'last',  'idImage': page }) }}">Next</a>
-
-{% else %}
-
-<a href="{{ path('img_show', {'option': 'last', 'idImage':  page }) }}">Previous</a>
-
-{% endif %}
-
-{% endfor %}
-
-{#<a href="{{ path('img_show', {'option': 'last' },{ 'idImage':  paginator.imgPrevious }) }}">Previous</a>#}
-{#<a href="{{ path('img_show', {'option': 'last' }, { 'idImage':  paginator.imgNext }) }}">Next</a>#}
+<section id="content" style="padding-top: 50px">
+  <div class="container-fluid">
+    
+    <div style="background:#FFF">
 
 
+      {% block interno %}
+      <section id="pestanas">
+
+	<div id="row">
+	  {{ knp_menu_render('tabs', {'currentClass': 'active'}) }}
+	</div>
+
+      </section>
+
+      {% endblock %}
+
+      <center>
+	<section id="show_image">
+	  <div id="imageTitle">
+	    <h1>
+	      <a href="show_img2.html">Anterior | </a>
+	      <a href="editar.html">{{ image.title }}</a>
+	      <a href="show_img2.html"> | Siguiente </a>
+	    </h1>
+
+	  </div>
+
+	  <br />
+	  {% for page in paginator %}
+	  <br />
+	  {% if loop.index == '1' %}
+
+	  <a href="{{ path('img_show', {'option': 'last',  'idImage': page }) }}">Next</a>
+
+	  {% else %}
+
+	  <a href="{{ path('img_show', {'option': 'last', 'idImage':  page }) }}">Previous</a>
+
+	  {% endif %}
+
+	  {% endfor %}
+
+
+
+
+	  <div class="row">
+
+
+
+	    <div class="span14 columns" id="imageImage">
+	      <img src="/uploads{{ asset(image.url) }}" id="image-to-modify"/>
+	    </div>
+	    
+	    <div class="span6 columns">
+
+	      <!-- Controles
+		   ===========================
+		-->
+	      
+	      <div class="modify-control"  style="width:300px">
+		
+		<div id="render-in-progress" style="display:none"> 
+		  <p>Rendering...</p> 
+		  <img src="http://camanjs.com/imgs/ajax-loader.gif" id="preset-rendering" /> 
+		</div> 
+		
+		<div id="accordion"> 
+		  <h3><a href="#"> Brightness 
+		      <input type="text" id="bAmount" style="border:0" class="slider-data" style="background-color:transparent"/> / 
+		      Contrast
+		      <input type="text" id="cAmount" style="border:0" class="slider-data" style="background-color:transparent"/> </a></h3> 
+		  <div> 
+		    
+		    <div id="sBrightness"></div> 
+		    
+		    <br/> 
+		    
+		    <div id="sContrast"></div> 
+		    
+		  </div> 
+		  <h3><a href="#">Exposure <input type="text" id="aExposure" style="border:0" class="slider-data" style="background-color:transparent"/></a></h3> 
+		  <div> 
+		    
+		    <div id="sExposure"></div> 
+		    
+		  </div> 
+		  
+		  <h3><a href="#">Saturation<input type="text" id="aSaturation" style="border:0" class="slider-data" style="background-color:transparent"/></a></h3> 
+		  <div> 
+		    
+		    <div id="sSaturation"></div> 
+		    
+		  </div> 
+		</div> 
+
+	      </div> 
+
+	      <!-- Nuevo comentario
+		   ========================================== -->
+
+	      <div id="newComment" style="padding-top:15px">
+		
+		<form action="" class="form-stacked">
+		  <fieldset style="text-align:left">
+		    <legend>Comenta!!!</legend>
+		    <div class="clearfix">
+		      <div class="input"> 
+			<textarea class="xxlarge" id="textarea" name="textarea" style="width:300px;height:150px"></textarea> 
+			<span class="help-block"> 
+			  Block of help text to describe the field above if need be.
+			</span> 
+		      </div> 
+		    </div><!-- /clearfix --> 
+		    <div class="actions"> 
+		      <input type="submit" class="btn primary" value="Save Changes">&nbsp;<button type="reset" class="btn">Cancel</button> 
+		    </div> 
+		  </fieldset>
+		</form>
+		
+	      </div>
+
+	    </div>
+
+	  </div>
+
+	  <!-- Info
+	       ===================================================== -->
+	  <div class="row">
+
+	    <div class="span8 column" id="imageInfo" style="text-align:left">
+
+	      <img src="img/moises.jpg" width="30px"/>
+
+	      Autor:<a href="mis_img.html"> Moisés Gallego</a>
+
+	      10/01/2011
+
+	    </div>
+	    
+	  </div>
+
+	  <div class="row">
+	    <div class="span14 columns" id="imageDescription" style="text-align:left">
+	      <strong>
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tempus sapien a purus convallis eu fringilla odio tincidunt. Nam lectus erat, viverra sit amet tempor sit amet, luctus eget ante. Quisque neque nisl, sodales id hendrerit et, mattis at lacus. Etiam ligula enim, egestas non fermentum id, interdum id augue. 
+	      </strong>
+	    </div>
+	  </div>
+	</section>
+
+
+	<!--  Comentarios
+	      ==================================================================== -->
+
+	<section id="comments" style="width:900px; text-align:left; ">
+	  <h2>Comentarios</h2>
+	  <div class="comment" style="padding-top:10px">
+	    <table class="zebra-striped">
+	      <tr>
+		<td>
+		  <img src="img/oscar.jpg"/>
+		</td>
+		<td>
+		  vitae sapien a turpis laoreet scelerisque. Vivamus ut est nec neque sodales ultrices sit amet sed velit. Maecenas eu metus diam, nec dignissim massa. In sit amet mi turpis. Pellentesque ornare laoreet condimentum. Pellentesque nec ipsum non sem varius malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed iaculis massa sed odio lacinia posuere. Sed ut eros non urna pellentesque aliquet. Pellentesque consectetur vulputate ipsum non tristique. Sed ac odio massa. Nu
+		  <div class="row" style="padding-top: 10px;">
+		    <div class="span11 column"><p></p></div>
+		    <div class="span2 column" style="text-align: left" >
+		      <a href="#">Ver Propuesta</a>
+		    </div>
+		  </div>
+		</td>
+	      </tr>
+	      <tr>
+		<td>
+		  <img src="img/moises.jpg"/>
+		</td>
+		<td>
+		  us turpis, sed imperdiet dui mollis quis. Duis a sem sit amet nisl mattis interdum. Sed a massa sit amet sapien luctus pulvinar fringilla in justo. Sed vulputate quam augue. Quisque tempor arcu sollicitudin massa porttitor a venenatis felis faucibus.
+		  <div class="row" style="padding-top: 10px;">
+		    <div class="span11 column"><p></p></div>
+		    <div class="span2 column" style="text-align: left" >
+		      <a href="#">Ver Propuesta</a>
+		    </div>
+		  </div>
+
+		</td>
+	      </tr>
+	    </table>
+	  </div>
+
+	  
+	</section>
+
+      </center>
+
+    </div>
+  </div>
+</section>
 {% endblock %}
 
 

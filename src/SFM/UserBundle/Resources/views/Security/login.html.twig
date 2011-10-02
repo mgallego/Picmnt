@@ -1,4 +1,4 @@
-{% extends "SFMPicmntBundle::layout.html.twig" %}
+{% extends "FOSUserBundle::layout.html.twig" %}
 
 {% block title %} | Login{% endblock %}
 
@@ -18,35 +18,35 @@
 
       <form action="{{ path("fos_user_security_check") }}" method="post">
 	<fieldset>
-	  <legend>Login</legend>
+	    <legend>Login</legend>
 
-	  <div class="clearfix">
-	    <label for="username">{{ 'Username:' | trans }}</label>
-	    <div class="input">
-	      <input class="xlarge" id="username" name="_username" value="{{ last_username }}"size="30" type="text" />
-	    </div>
-	  </div>
+	      <div class="clearfix">
+		    <label for="username">{{ 'Username:' | trans }}</label>
+		        <div class="input">
+			        <input class="xlarge" id="username" name="_username" value="{{ last_username }}"size="30" type="text" />
+				    </div>
+			  </div>
 
-	  <div class="clearfix">
-	    <label for="password">{{ 'Password:' | trans }}</label>
-	    <div class="input">
-	      <input class="xlarge" id="password" name="_password" size="30" type="password" />
-	    </div>
-	  </div> 
+	        <div class="clearfix">
+		      <label for="password">{{ 'Password:' | trans }}</label>
+		          <div class="input">
+			          <input class="xlarge" id="password" name="_password" size="30" type="password" />
+				      </div>
+			    </div> 
 
-	  <div class="clearfix">
-	    <div class="input">
-	      <input type="checkbox" id="remember_me" name="_remember_me" value="on" /> {{ 'Remember Me' | trans }}
-	    </div>
-	  </div>
+		  <div class="clearfix">
+		        <div class="input">
+			        <input type="checkbox" id="remember_me" name="_remember_me" value="on" /> {{ 'Remember Me' | trans }}
+				    </div>
+			  </div>
 
-	  <div style="text-align:center">
-	    <a href="#">¿Ha olvidado su contraseña?</a>
-	  </div>
+		    <div style="text-align:center">
+		          <a href="#">¿Ha olvidado su contraseña?</a>
+			    </div>
 
-	  <div class="clearfix" style="text-align:right">
-	    <input type="submit" name="login" class="btn primary" />
-	  </div>
+		      <div class="clearfix" style="text-align:right">
+			    <input type="submit" name="login" class="btn primary" />
+			      </div>
 
       </form>
       </fieldset>

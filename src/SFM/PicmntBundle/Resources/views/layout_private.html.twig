@@ -1,0 +1,40 @@
+{% extends "SFMPicmntBundle::base.html.twig" %}
+
+{% block header %}
+<section id="topbar">
+  <!-- Topbar
+       ================================================== -->
+  <div class="topbar" data-dropdown="dropdown">
+
+    <div class="topbar-inner">
+
+      <div class="container">
+
+        <h3><a href="#">Picmnt</a></h3>
+
+	<ul class="nav">
+	  <li><a href="#">Todas</a></li>
+	  <li><a href="#">Retratos</a></li>
+	  <li><a href="#">Bodegones</a></li>
+	  <li><a href="#">Deportes</a></li>
+	  <li><a href="#">Animales</a></li>
+	  <li><a href="#">Arquitectura</a></li>
+	</ul>
+
+	<ul class="nav secondary-nav">
+	  <li class="dropdown">
+ 	    <a href="#" class="dropdown-toggle">{{ app.user.getUsername() }}</a>
+	    <ul class="dropdown-menu">
+	      <li><a href="{{ path('home') }}">Preferences</a></li>
+	      <li class="divider"></li>
+	      <li><a href="{{ path('fos_user_security_logout') }}">{{ 'Logout' | trans }}</a></li>
+	    </ul>
+	  </li>
+	</ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+

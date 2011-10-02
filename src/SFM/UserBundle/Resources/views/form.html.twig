@@ -4,3 +4,12 @@
     <label for="{{ id }}">{{ id|trans([], 'FOSUserBundle') }}</label>
 {% endspaceless %}
 {% endblock field_label %}
+
+{% block field_widget %}
+    {% set type = type|default('text') %}
+    <div class="clearfix">
+      <div class="input">
+	<input type="{{ type }}" {{ block('widget_attributes') }} value="{{ value }}" class="xlarge"/>
+      </div>
+    </div>
+{% endblock field_widget %}

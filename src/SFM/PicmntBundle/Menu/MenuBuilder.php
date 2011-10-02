@@ -31,4 +31,21 @@ class MenuBuilder
 
     return $menu;
   }
+
+  public function createMenuTabs(Request $request)
+  {
+    $menu = $this->factory->createItem('root');
+    $menu->setCurrentUri($request->getRequestUri());
+    $menu->setAttribute('class', 'tabs'); 
+    $menu->setAttribute('style','align: right');
+
+    $menu->addChild('Random', array('route' => 'img_show', 'routeParameters' => array('option'=>'random')));
+    $menu->addChild('Last', array('route' => 'img_show', 'routeParameters' => array('option'=>'last')));
+    $menu->addChild('My Profile', array('route' => 'home'));
+    $menu->addChild('Upload Images', array('route' => 'img_upload'));
+    $menu->addChild('Admin', array('route' => 'home'));
+
+    return $menu;
+  }
+
 }

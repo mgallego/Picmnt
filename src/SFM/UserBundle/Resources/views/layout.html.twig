@@ -1,29 +1,20 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-    </head>
-    <body>
-        <div>
-            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
-                <a href="{{ path('fos_user_security_logout') }}">
-                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-                </a>
-            {% else %}
-                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
-            {% endif %}
-        </div>
+{% extends "SFMPicmntBundle::base.html.twig" %}
 
-        {% for key, flash in app.session.getFlashes() %}
-        <div class="{{ flash }}">
-            {{ key|trans({}, 'FOSUserBundle') }}
-        </div>
-        {% endfor %}
+{% block header %}
+<header>
+  <div class="container">
+    <div class="row">
+      <div class="span11 column">
+	<a href="{{ path('home') }}" title="Picmnt"><img src="{{ asset('bundles/sfmpicmnt/images/Picmnt-logo.png') }}" /></a>
+	
+      </div>
+      
+      <div class="span5 column">
+	{{ knp_menu_render('login', {'currentClass': 'active'}) }}
+      </div>
 
-        <div>
-            {% block content %}
-            {% endblock content %}
-        </div>
-    </body>
-</html>
+    </div>
+  </div>
+</header>
+{% endblock %}
+
