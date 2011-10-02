@@ -1,28 +1,70 @@
 {% extends "SFMPicmntBundle::layout.html.twig" %}
 
+{% block title %} | Login{% endblock %}
+
+
+
 {% block content %}
-{% if error %}
-    <div>{{ error }}</div>
-{% endif %}
-<div class="login">
 
-<form action="{{ path("fos_user_security_check") }}" method="post">
-<fieldset>
-<legend>Login</legend>
-    <label for="username">{{ 'Username:' | trans }}</label>
-    <input type="text" id="username" name="_username" value="{{ last_username }}" />
-    <br>
-    <label for="password">{{ 'Password:' | trans }}</label>
-    <input type="password" id="password" name="_password" />
-    <br>
-    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-    <label for="remember_me">{{ 'Remember Me' | trans }}</label>
-    <br>
-    <input type="submit" name="login" />
+<section id="content" class="container">
+  <div class="row">
+    <div class="span8 column">
+
+      {% if error %}
+      <div class="alert-message error">
+	{{ error }}
+      </div>
+      {% endif %}
+
+      <form action="{{ path("fos_user_security_check") }}" method="post">
+	<fieldset>
+	  <legend>Login</legend>
+
+	  <div class="clearfix">
+	    <label for="username">{{ 'Username:' | trans }}</label>
+	    <div class="input">
+	      <input class="xlarge" id="username" name="_username" value="{{ last_username }}"size="30" type="text" />
+	    </div>
+	  </div>
+
+	  <div class="clearfix">
+	    <label for="password">{{ 'Password:' | trans }}</label>
+	    <div class="input">
+	      <input class="xlarge" id="password" name="_password" size="30" type="password" />
+	    </div>
+	  </div> 
+
+	  <div class="clearfix">
+	    <div class="input">
+	      <input type="checkbox" id="remember_me" name="_remember_me" value="on" /> {{ 'Remember Me' | trans }}
+	    </div>
+	  </div>
+
+	  <div style="text-align:center">
+	    <a href="#">¿Ha olvidado su contraseña?</a>
+	  </div>
+
+	  <div class="clearfix" style="text-align:right">
+	    <input type="submit" name="login" class="btn primary" />
+	  </div>
+
+      </form>
+      </fieldset>
 
 
-</form>
-  </fieldset>
+    </div>
 
+    <div class="span8 column">
+
+
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor nisi ut justo semper blandit. Vivamus lectus purus, pulvinar sit amet lobortis in, euismod ultricies felis. Nulla facilisi. Nulla eu sapien quis nulla molestie euismod eget quis sapien. Pellentesque at lorem vitae libero feugiat laoreet eu eget dui. Vivamus hendrerit adipiscing aliquam. Proin quis purus leo, at egestas leo. Aliquam vitae urna felis. Vestibulum ut purus diam. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+
+      Nam ullamcorper risus ac odio malesuada molestie. Cras cursus lacinia odio. Nam sed mi orci, sit amet iaculis risus. Etiam sodales lacus sed lorem egestas sed adipiscing odio tempus. Vivamus ipsum enim, vehicula vel ultricies vel, pharetra a libero. Curabitur suscipit ipsum ut lectus porta a tristique nibh hendrerit. Maecenas ultricies mollis consequat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec malesuada eros elementum nisi mattis fringilla. Nulla facilisi. Phasellus est dolor, tristique mattis mattis vitae, faucibus sed justo. Phasellus purus nunc, fermentum at consequat non, bibendum eu nisl.
+
+
+    </div>
+  </div>
 </div>
+</section>      
+
 {% endblock content %}

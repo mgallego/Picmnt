@@ -1,5 +1,5 @@
 imports:
-    - { resource: parameters.ini }
+    - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: "@SFMPicmntBundle/Resources/config/menu.xml" }
 
@@ -71,3 +71,5 @@ fos_user:
 
 knp_menu:
     twig: true
+    templating: false
+    default_renderer: twig

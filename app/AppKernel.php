@@ -21,7 +21,6 @@ class AppKernel extends Kernel
             new SFM\PicmntBundle\SFMPicmntBundle(),      
 	    new FOS\UserBundle\FOSUserBundle(),
 	    new SFM\UserBundle\SFMUserBundle(),
-	    //new Knplabs\Bundle\MenuBundle\KnplabsMenuBundle(),
 	    new Knp\Bundle\MenuBundle\KnpMenuBundle(),
 	    new Liip\FunctionalTestBundle\LiipFunctionalTestBundle(),
 

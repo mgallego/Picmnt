@@ -1,60 +1,21 @@
 {% extends "SFMPicmntBundle::base.html.twig" %}
 
-{% block body %}
-    <header>
-      <div class="container_12 clearfix">
-	<div class="grid_12">
-	  <h1>
-	    <a href="{{ path('home') }}" title="Picmnt">Picmnt</a>
-	  </h1>
-	  <nav>
-	    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-	    <ul>
-	      <li>
-		<a href="{{ path('usr_edit', {'userId': app.user.getId()}) }}">
-		  <img src="/uploads/avatarsmall/avatar{{ app.user.getId }}.jpg">{{  'Hello %username%' | trans({ '%username%': app.user.getUsername() }) }}
-		</a>
-	      </li>
-	      <li>|</li>
-      	      <li><a href="{{ path('fos_user_security_logout') }}">{{ 'Logout' | trans }}</a></li>
-	    </ul> 	   
-	    {% else %}
-	    <ul>
-	      <li><a href="{{ path('fos_user_security_login') }}" title="login">{{ 'Login' | trans }}</a></li>
-	      <li>|</li>
-      	      <li><a href="{{ path('fos_user_registration_register') }}" title="sigin">{{  'Sign in' | trans }}</a></li>
-	    </ul> 	   
-	    {% endif %}
-
-	  </nav>
-	 </div>
-
-	<div id="menu">
-	  {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-
-	  {{ knp_menu('main') }}
-
-	  {% endif %}
-	</div>
-      	
+{% block header %}
+<header>
+  <div class="container">
+    <div class="row">
+      <div class="span11 column">
+	<a href="{{ path('home') }}" title="Picmnt"><img src="{{ asset('bundles/sfmpicmnt/images/Picmnt-logo.png') }}" /></a>
+	
       </div>
-     </header>
-    <!-- <div id="separator"></div>  -->
-     <section id="content">
-       {% block content %}
-       {% endblock %}     
-     </section>
-
-    <footer>
-
-      <ul>
-	<li>Blog</li>
-	<li>About</li>
-	<li>Terms</li>
-      </ul>
-
-      <div id="copyright">
-	Copyright © 2011 Picmnt
+      
+      <div class="span5 column">
+	{{ knp_menu_render('login', {'currentClass': 'active'}) }}
       </div>
-    </footer>
- {% endblock %}
+
+    </div>
+  </div>
+
+</header>
+{% endblock %}
+

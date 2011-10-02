@@ -6,11 +6,17 @@
 
     <parameters>
         <parameter key="menu.main.class">SFM\PicmntBundle\Menu\MainMenu</parameter>
+	<parameter key="menu.login.class">SFM\PicmntBundle\Menu\LoginMenu</parameter>
     </parameters>
 
     <services>
         <service id="menu.main" class="%menu.main.class%" scope="request">
             <tag name="knp_menu.menu" alias="main" />
+            <argument type="service" id="request" />
+            <argument type="service" id="router" />
+        </service>
+        <service id="menu.login" class="%menu.login.class%" scope="request">
+            <tag name="knp_menu.menu" alias="login" />
             <argument type="service" id="request" />
             <argument type="service" id="router" />
         </service>
