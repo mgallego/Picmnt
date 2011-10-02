@@ -1,0 +1,15 @@
+parameters:
+  database_driver: pdo_mysql
+  database_host: localhost
+  database_name: Picmnt_Dev
+  database_user: root
+  database_password: P4ssW0rd
+  
+  mailer_transport: smtp
+  mailer_host: localhost
+  mailer_user: null
+  mailer_password: null
+  
+  locale: en
+  
+  secret: ThisTokenIsNotSoSecretChangeIt

@@ -44,6 +44,7 @@ class IndexController extends Controller
     public function indexSecureAction()
     {
       return $this->redirect($this->generateUrl('img_show', Array("option"=>"random")));
+      //return $this->redirect($this->generateUrl('home'));
 
     }
 
@@ -53,7 +54,7 @@ class IndexController extends Controller
      */
     public function langAction()
     {
-	return $this->redirect($this->generateUrl('secure_home'));
+	return $this->redirect($this->generateUrl('home'));
     }
 
 

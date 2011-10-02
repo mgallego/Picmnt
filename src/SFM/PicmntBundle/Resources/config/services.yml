@@ -1,0 +1,13 @@
+services:
+  sfm_picmnt.menu_builder:
+    class: SFM\PicmntBundle\Menu\MenuBuilder
+    arguments: ["@knp_menu.factory"]
+
+  sfm_picmnt.menu.login:
+    class: Knp\Menu\MenuItem # the service definition requires setting the class
+    factory_service: sfm_picmnt.menu_builder
+    factory_method: createMenuLogin
+    arguments: ["@request"]
+    scope: request # needed as we have the request as a dependency here
+    tags:
+      - { name: knp_menu.menu, alias: login } # The alias is what is used to retrieve the menu
