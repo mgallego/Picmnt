@@ -1,6 +1,6 @@
 {% extends "SFMPicmntBundle::layout_private.html.twig" %}
 
-{% form_theme form 'FOSUserBundle::form.html.twig' %}
+{% form_theme form 'SFMPicmntBundle::form.html.twig' %}
 
 {% block content %}
 
@@ -36,37 +36,42 @@
 
 	  <div class="span6 columns">
 	    
-	    <form action="{{ path('img_edit', { 'id_image': id_image }) }}" method="post" {{ form_enctype(form) }}>
+	    <form action="{{ path('img_edit', { 'id_image': id_image }) }}" method="post" {{ form_enctype(form) }} class="form-stacked">
+
+	      <fieldset style="text-align:left">
+		<legend>{{ 'Edit' | trans }}</legend>
+
+		<div>
+		  {{ form_errors(form.title) }}
+		  {{ form_label(form.title, 'Title' | trans) }}
+		  {{ form_widget(form.title) }}
+		</div>
+
+		<div>
+		  {{ form_errors(form.description) }}
+		  {{ form_label(form.description, 'Description' | trans) }}
+		  {{ form_widget(form.description) }}
+		</div>
+
+		<div>
+		  {{ form_errors(form.category) }}
+		  {{ form_label(form.category, 'Category' | trans) }}
+		  {{ form_widget(form.category) }}
+		</div>
+		
+		<div>
+		  {{ form_errors(form.tags) }}
+		  {{ form_label(form.tags, 'Tags' | trans) }}
+		  {{ form_widget(form.tags) }}
+		</div>
+		
+		{{ form_rest(form) }}
 
 
-	      <div>
-		{{ form_errors(form.title) }}
-		{{ form_label(form.title, 'Title' | trans) }}
-		{{ form_widget(form.title) }}
-	      </div>
-
-	      <div>
-		{{ form_errors(form.description) }}
-		{{ form_label(form.description, 'Description' | trans) }}
-		{{ form_widget(form.description) }}
-	      </div>
-
-	      <div>
-		{{ form_errors(form.category) }}
-		{{ form_label(form.category, 'Category' | trans) }}
-		{{ form_widget(form.category) }}
-	      </div>
-	      
-	      <div>
-		{{ form_errors(form.tags) }}
-		{{ form_label(form.tags, 'Tags' | trans) }}
-		{{ form_widget(form.tags) }}
-	      </div>
-	      
-	      {{ form_rest(form) }}
-
-	      <input type="submit" />
-
+		<div class="actions"> 
+		  <input type="submit" class="btn primary" value="Save Changes">&nbsp;<button type="reset" class="btn">Cancel</button> 
+		</div> 
+	      </fieldset>
 	    </form>
 	  </div>
 

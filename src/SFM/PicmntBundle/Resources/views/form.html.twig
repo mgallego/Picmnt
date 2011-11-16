@@ -1,0 +1,28 @@
+
+{% block field_label %}
+{% spaceless %}
+{#    <label for="{{ id }}">{{ id|trans([], 'FOSUserBundle') }}</label>#}
+<label for="{{ id }}">{{ label }}</label>
+{% endspaceless %}
+{% endblock field_label %}
+
+{% block field_widget %}
+    {% set type = type|default('text') %}
+    <div class="clearfix">
+      <div class="input">
+	<input type="{{ type }}" {{ block('widget_attributes') }} value="{{ value }}" class="xlarge"/>
+      </div>
+    </div>
+{% endblock field_widget %}
+
+
+{% block textarea_widget %}
+{% spaceless %}
+    <div class="clearfix">
+      <div class="input">
+	<textarea {{ block('widget_attributes') }} value="{{ value }}" class="xxlarge" id="descripcion" name="descripcion" style="width:300px;height:150px"></textarea> 
+      </div>
+    </div>
+
+{% endspaceless %}
+{% endblock textarea_widget %}
