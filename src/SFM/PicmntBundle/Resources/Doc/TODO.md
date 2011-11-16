@@ -1,0 +1,5 @@
+-Pantalla de edición de imágenes
+  -Adaptar diseño al bootstrap
+  -Extraer formulario
+  -Cabeceras
+  -Fallan los CSS

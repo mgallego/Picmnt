@@ -1,41 +1,80 @@
-{% extends "SFMPicmntBundle::layout.html.twig" %}
+{% extends "SFMPicmntBundle::layout_private.html.twig" %}
+
+{% form_theme form 'FOSUserBundle::form.html.twig' %}
 
 {% block content %}
 
-<img src="{{ asset(image_url) }}"/> 
+<section id="content" style="padding-top: 50px">
+  <div class="container-fluid">
 
-<form action="{{ path('img_edit', { 'id_image': id_image }) }}" method="post" {{ form_enctype(form) }}>
+    <div style="background:#FFF">
 
 
-  <div>
-    {{ form_errors(form.title) }}
-    {{ form_label(form.title, 'Title' | trans) }}
-    {{ form_widget(form.title) }}
+      {% block interno %}
+      <section id="pestanas">
+
+	<div id="row">
+	  {{ knp_menu_render('tabs', {'currentClass': 'active'}) }}
+	</div>
+
+      </section>
+
+      {% endblock %}
+      
+
+      <center>
+
+	<h1>Image Title</h1>
+
+	<div class="row">
+	  
+	  <div class="span14 columns" id="imageImage">
+
+	    <img src="{{ asset(image_url) }}"/> 
+
+	  </div>
+
+	  <div class="span6 columns">
+	    
+	    <form action="{{ path('img_edit', { 'id_image': id_image }) }}" method="post" {{ form_enctype(form) }}>
+
+
+	      <div>
+		{{ form_errors(form.title) }}
+		{{ form_label(form.title, 'Title' | trans) }}
+		{{ form_widget(form.title) }}
+	      </div>
+
+	      <div>
+		{{ form_errors(form.description) }}
+		{{ form_label(form.description, 'Description' | trans) }}
+		{{ form_widget(form.description) }}
+	      </div>
+
+	      <div>
+		{{ form_errors(form.category) }}
+		{{ form_label(form.category, 'Category' | trans) }}
+		{{ form_widget(form.category) }}
+	      </div>
+	      
+	      <div>
+		{{ form_errors(form.tags) }}
+		{{ form_label(form.tags, 'Tags' | trans) }}
+		{{ form_widget(form.tags) }}
+	      </div>
+	      
+	      {{ form_rest(form) }}
+
+	      <input type="submit" />
+
+	    </form>
+	  </div>
+
+	</div>
+      </center>
+
+    </div>
   </div>
-
-  <div>
-    {{ form_errors(form.description) }}
-    {{ form_label(form.description, 'Description' | trans) }}
-    {{ form_widget(form.description) }}
-  </div>
-
-  <div>
-    {{ form_errors(form.category) }}
-    {{ form_label(form.category, 'Category' | trans) }}
-    {{ form_widget(form.category) }}
-  </div>
-  
-  <div>
-    {{ form_errors(form.tags) }}
-    {{ form_label(form.tags, 'Tags' | trans) }}
-    {{ form_widget(form.tags) }}
-  </div>
-    
-  {{ form_rest(form) }}
-
-  <input type="submit" />
-
-</form>
+</section>
 
 {% endblock %}
-
