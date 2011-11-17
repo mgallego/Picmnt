@@ -36,7 +36,7 @@
 
 	  <div class="span6 columns">
 	    
-	    <form action="{{ path('img_edit', { 'id_image': id_image }) }}" method="post" {{ form_enctype(form) }} class="form-stacked">
+	      <form action="{{ path('img_edit', { 'id_image': image.idImage }) }}" method="post" {{ form_enctype(form) }} class="form-stacked">
 
 	      <fieldset style="text-align:left">
 		<legend>{{ 'Edit' | trans }}</legend>

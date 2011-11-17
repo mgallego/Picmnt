@@ -138,11 +138,11 @@ class ImageController extends Controller
 	else
 	  {
 
-	    return array("image_url" => 'uploads/'.$image->getUrl(), 'form' => $form->createView(), 'id_image'=>$id_image);
+	    return array("image_url" => 'uploads/'.$image->getUrl(), 'form' => $form->createView(), 'image'=>$image);
 	  }
       }
 
-      return array("image_url" => 'uploads/'.$image->getUrl(), 'form' => $form->createView(), 'id_image'=>$id_image);
+      return array("image_url" => 'uploads/'.$image->getUrl(), 'form' => $form->createView(), 'image'=>$image);
     }
   }
 
