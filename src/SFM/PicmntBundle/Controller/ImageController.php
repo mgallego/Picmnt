@@ -132,7 +132,7 @@ class ImageController extends Controller
 	  $em->persist($image);
 	  $em->flush();
 	
-	  return $this->redirect($this->generateUrl('img_random'));
+	  return $this->redirect($this->generateUrl('img_show', array("option"=>"random", "idImage"=>$image->getIdImage()) ));
 
 	}
 	else
