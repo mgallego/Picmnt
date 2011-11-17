@@ -1,24 +1,52 @@
-{% extends "SFMPicmntBundle::layout.html.twig" %}
+{% extends "SFMPicmntBundle::layout_private.html.twig" %}
+
+{% form_theme form 'SFMPicmntBundle::form.html.twig' %}
 
 {% block content %}
 
-{{ 'Please select an image' | trans }}
+<section id="content" style="padding-top: 50px">
+  <div class="container-fluid">
 
-<form id="upload_form" action="{{ path('img_upload') }}" method="post" {{ form_enctype(form) }} >
+    <div style="background:#FFF">
 
-  {{ form_errors(form) }}
 
-  <div>
-    {{  form_label(form.dataFile , 'Url' | trans ) }}
-    {{ form_widget(form.dataFile) }}
+      {% block interno %}
+      <section id="pestanas">
+
+	<div id="row">
+	  {{ knp_menu_render('tabs', {'currentClass': 'active'}) }}
+	</div>
+
+      </section>
+
+      {% endblock %}
+      
+
+      <center>
+
+	<div class="row">
+	{{ 'Please select an image' | trans }}
+
+	<form id="upload_form" action="{{ path('img_upload') }}" method="post" {{ form_enctype(form) }} >
+
+	  {{ form_errors(form) }}
+
+	  <div>
+	    {{  form_label(form.dataFile , 'Url' | trans ) }}
+	    {{ form_widget(form.dataFile) }}
+	  </div>
+
+	  {# necesary for the correct use of the form, without this the form is not valid #}
+	  {{ form_rest(form) }}
+
+	  <input type="submit" id="upload" />
+
+	</form>
+	</div>
+      </center>
+    </div>
   </div>
+</section>
 
-  {# necesary for the correct use of the form, without this the form is not valid #}
-  {{ form_rest(form) }}
-
-  <input type="submit" id="upload" />
-
-</form>
-  
 {% endblock %}
 
