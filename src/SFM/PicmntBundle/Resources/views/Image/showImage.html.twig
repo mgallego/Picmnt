@@ -25,7 +25,7 @@
 	  <div id="imageTitle">
 	    <h1>
 	      <a href="show_img2.html">Anterior | </a>
-	      <a href="editar.html">{{ image.title }}</a>
+	      <a href="{{ path('img_edit', {'id_image': image.idImage}) }} ">{{ image.title }}</a>
 	      <a href="show_img2.html"> | Siguiente </a>
 	    </h1>
 
