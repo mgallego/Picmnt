@@ -94,11 +94,21 @@ class Image
     private $imageComments;
 
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Category", inversedBy="image")
+     * @ORM\JoinTable(name="Image_Category",
+     *      joinColumns={@ORM\JoinColumn(name="id_image", referencedColumnName="id_image")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="category_id", referencedColumnName="id")}	     
+     * )
+     */
+    private $categories;
+    
 
 
     public function __consruct()
     {
       $this->userVotes = new \Doctrine\Common\Collections\ArrayCollection();
+      $this->categoies = new \Doctrine\Common\Collections\ArrayCollection();
       $this->imageComments = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -267,6 +277,20 @@ class Image
       $this->userVotes[] = $userVotes;
     }
 
+    
+     /**
+     * Add categories
+     *
+     * @param SFM\PicmntBundle\Entity\Category $categories
+     */
+    public function addCategories(\SFM\Picmntbundle\Entity\Catgory $categories)
+    {
+
+      $this->categories[] = $categories;
+    }
+
+    
+
 
     public function hasUserVotes(\SFM\PicmntBundle\Entity\User $user)
     {
@@ -288,6 +312,17 @@ class Image
     {
       return $this->userVotes;
     }
+
+    /**
+     * Get categories
+     *
+     * @return Doctrine\Commmon\Collections\Collencion $categories
+     */
+    public function getCategories()
+    {
+      return $this->categories;
+    }
+
 
 
     public function sumVotes(){
