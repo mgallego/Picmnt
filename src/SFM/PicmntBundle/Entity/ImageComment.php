@@ -28,7 +28,7 @@ class ImageComment
   /**
    *@ var string $comment
    *
-   * @ORM\Column(name="comment", type="string", length=255, nullable="false")
+   * @ORM\Column(name="comment", type="string", length=255, nullable=false)
    *
    * @Assert\MaxLength(255)
    */

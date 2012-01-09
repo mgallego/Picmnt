@@ -68,7 +68,7 @@ class Image
     /**
      * @var integer $votes
      *
-     * @ORM\Column(name="votes", type="integer", nullable="false")
+     * @ORM\Column(name="votes", type="integer", nullable=true)
      */
     private $votes;
 
