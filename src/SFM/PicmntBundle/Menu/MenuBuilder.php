@@ -44,7 +44,9 @@ class MenuBuilder
     $menu->addChild('My Profile', array('route' => 'home'));
     $menu->addChild('Upload Images', array('route' => 'img_upload'));
     $menu->addChild('Admin', array('route' => 'home'));
+    
 
+    $menu->addChild('prueba', array('route' => 'home'));
     return $menu;
   }
 
