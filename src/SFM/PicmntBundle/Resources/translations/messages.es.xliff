@@ -154,6 +154,58 @@
 	      <source>Preferences</source>
 	      <target>Preferencias</target>
 	    </trans-unit>
+	    <trans-unit id="39">
+	      <source>Previous</source>
+	      <target>Anterior</target>
+	    </trans-unit>
+	    <trans-unit id="40">
+	      <source>Next</source>
+	      <target>Siguiente</target>
+	    </trans-unit>
+	    <trans-unit id="41">
+	      <source>Rendering</source>
+	      <target>Renderizando</target>
+	    </trans-unit>
+	    <trans-unit id="42">
+	      <source>Brightness</source>
+	      <target>Brillo</target>
+	    </trans-unit>
+	    <trans-unit id="43">
+	      <source>Exposure</source>
+	      <target>Exposición</target>
+	    </trans-unit>
+	    <trans-unit id="44">
+	      <source>Saturation</source>
+	      <target>Sauración</target>
+	    </trans-unit>
+	    <trans-unit id="45">
+	      <source>Contrast</source>
+	      <target>Contraste</target>
+	    </trans-unit>
+	    <trans-unit id="46">
+	      <source>Comment</source>
+	      <target>Comenta</target>
+	    </trans-unit>
+	    <trans-unit id="47">
+	      <source>Save Changes</source>
+	      <target>Guardar Cambios</target>
+	    </trans-unit>
+	    <trans-unit id="48">
+	      <source>Cancel</source>
+	      <target>Cancelar</target>
+	    </trans-unit>
+	    <trans-unit id="49">
+	      <source>Author</source>
+	      <target>Autor</target>
+	    </trans-unit>
+	    <trans-unit id="50">
+	      <source>Comments</source>
+	      <target>Comentarios</target>
+	    </trans-unit>
+	    <trans-unit id="51">
+	      <source>See Proposal</source>
+	      <target>Ver Propuesta</target>
+	    </trans-unit>
         </body>
     </file>
 </xliff>

@@ -24,9 +24,9 @@
 	<section id="show_image">
 	  <div id="imageTitle">
 	    <h1>
-	      <a href="show_img2.html">Anterior | </a>
+	      <a href="show_img2.html">{{ 'Previous' | trans }} | </a>
 	      <a href="{{ path('img_edit', {'id_image': image.idImage}) }} ">{{ image.title }}</a>
-	      <a href="show_img2.html"> | Siguiente </a>
+	      <a href="show_img2.html"> | {{ 'Next' | trans }} </a>
 	    </h1>
 
 	  </div>
@@ -66,14 +66,14 @@
 	      <div class="modify-control"  style="width:300px">
 		
 		<div id="render-in-progress" style="display:none"> 
-		  <p>Rendering...</p> 
+		  <p>{{ 'Rendering' | trans }}... </p> 
 		  <img src="http://camanjs.com/imgs/ajax-loader.gif" id="preset-rendering" /> 
 		</div> 
 		
 		<div id="accordion"> 
-		  <h3><a href="#"> Brightness 
+		  <h3><a href="#"> {{ 'Brightness' | trans }}
 		      <input type="text" id="bAmount" style="border:0" class="slider-data" style="background-color:transparent"/> / 
-		      Contrast
+		      {{ 'Contrast' | trans }}
 		      <input type="text" id="cAmount" style="border:0" class="slider-data" style="background-color:transparent"/> </a></h3> 
 		  <div> 
 		    
@@ -84,14 +84,16 @@
 		    <div id="sContrast"></div> 
 		    
 		  </div> 
-		  <h3><a href="#">Exposure <input type="text" id="aExposure" style="border:0" class="slider-data" style="background-color:transparent"/></a></h3> 
+		  <h3><a href="#">{{ 'Exposure' | trans }}
+		      <input type="text" id="aExposure" style="border:0" class="slider-data" style="background-color:transparent"/></a></h3> 
 		  <div> 
 		    
 		    <div id="sExposure"></div> 
 		    
 		  </div> 
 		  
-		  <h3><a href="#">Saturation<input type="text" id="aSaturation" style="border:0" class="slider-data" style="background-color:transparent"/></a></h3> 
+		  <h3><a href="#">{{ 'Saturation' | trans }}
+		      <input type="text" id="aSaturation" style="border:0" class="slider-data" style="background-color:transparent"/></a></h3> 
 		  <div> 
 		    
 		    <div id="sSaturation"></div> 
@@ -108,17 +110,16 @@
 		
 		<form action="" class="form-stacked">
 		  <fieldset style="text-align:left">
-		    <legend>Comenta!!!</legend>
+		    <legend>{{ 'Comment' | trans }}!!!</legend>
 		    <div class="clearfix">
 		      <div class="input"> 
 			<textarea class="xxlarge" id="textarea" name="textarea" style="width:300px;height:150px"></textarea> 
 			<span class="help-block"> 
-			  Block of help text to describe the field above if need be.
 			</span> 
 		      </div> 
 		    </div><!-- /clearfix --> 
 		    <div class="actions"> 
-		      <input type="submit" class="btn primary" value="Save Changes">&nbsp;<button type="reset" class="btn">Cancel</button> 
+		      <input type="submit" class="btn primary" value="{{ 'Save Changes' | trans }}">&nbsp;<button type="reset" class="btn">{{ 'Cancel' | trans }}</button> 
 		    </div> 
 		  </fieldset>
 		</form>
@@ -137,7 +138,7 @@
 
 	      <img src="img/moises.jpg" width="30px"/>
 
-	      Autor:<a href="mis_img.html"> Moisés Gallego</a>
+	      {{ 'Author' | trans }}:<a href="mis_img.html"> Moisés Gallego</a>
 
 	      10/01/2011
 
@@ -159,7 +160,7 @@
 	      ==================================================================== -->
 
 	<section id="comments" style="width:900px; text-align:left; ">
-	  <h2>Comentarios</h2>
+	  <h2>{{ 'Comments' | trans }}</h2>
 	  <div class="comment" style="padding-top:10px">
 	    <table class="zebra-striped">
 	      <tr>
@@ -171,7 +172,7 @@
 		  <div class="row" style="padding-top: 10px;">
 		    <div class="span11 column"><p></p></div>
 		    <div class="span2 column" style="text-align: left" >
-		      <a href="#">Ver Propuesta</a>
+		      <a href="#">{{ 'See Proposal' | trans }}</a>
 		    </div>
 		  </div>
 		</td>
