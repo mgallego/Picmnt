@@ -23,35 +23,31 @@
       <center>
 	<section id="show_image">
 	  <div id="imageTitle">
+
+	    {% set Next = '' %}
+	    {% set Previous = '' %}
+
+	    {% for page in paginator %}
+	      {% if loop.index == '1' %}
+	        {% set Next =  path('img_show', {'option': 'last',  'idImage': page })  %}
+	      {% else %}
+	        {% set Previous =  path('img_show', {'option': 'last', 'idImage':  page })  %}
+	      {% endif %}
+	    {% endfor %}
+
 	    <h1>
-	      <a href="show_img2.html">{{ 'Previous' | trans }} | </a>
+	      {% if Previous %}
+	        <a href="{{ Previous }}">{{ 'Previous' | trans }} | </a>
+	      {% endif %}
 	      <a href="{{ path('img_edit', {'id_image': image.idImage}) }} ">{{ image.title }}</a>
-	      <a href="show_img2.html"> | {{ 'Next' | trans }} </a>
+	      {% if Next %}
+	        <a href="{{ Next }}"> | {{ 'Next' | trans }} </a>
+	      {% endif %}
 	    </h1>
-
 	  </div>
-
 	  <br />
-	  {% for page in paginator %}
-	  <br />
-	  {% if loop.index == '1' %}
-
-	  <a href="{{ path('img_show', {'option': 'last',  'idImage': page }) }}">Next</a>
-
-	  {% else %}
-
-	  <a href="{{ path('img_show', {'option': 'last', 'idImage':  page }) }}">Previous</a>
-
-	  {% endif %}
-
-	  {% endfor %}
-
-
-
 
 	  <div class="row">
-
-
 
 	    <div class="span14 columns" id="imageImage">
 	      <img src="/uploads{{ asset(image.url) }}" id="image-to-modify"/>
