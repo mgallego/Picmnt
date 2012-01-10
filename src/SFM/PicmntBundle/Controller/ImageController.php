@@ -155,7 +155,7 @@ class ImageController extends Controller
     $images = $em->getRepository('SFMPicmntBundle:Image')->getRandom();
 
     if (!$images){
-	$e = $this->get('translator')->trans('Thera are no pictures in the database');
+	$e = $this->get('translator')->trans('There are no pictures in the database');
 	throw $this->createNotFoundException($e);
     }
 	    

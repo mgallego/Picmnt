@@ -9,8 +9,8 @@
     <div class="topbar-inner">
 
       <div class="container">
-
         <h3><a href="#">Picmnt</a></h3>
+<<<<<<< HEAD
 	
 	{% if categories %}
 	{% for category in categories %}
@@ -19,13 +19,11 @@
 	insert categories in the database
 	{% endfor %}
 	{% endif %}
+=======
+>>>>>>> 780a1eb9b70ea5e8b9adb21035210eef1a4d4318
 	<ul class="nav">
-	  <li><a href="#">Todas</a></li>
-	  <li><a href="#">Retratos</a></li>
-	  <li><a href="#">Bodegones</a></li>
-	  <li><a href="#">Deportes</a></li>
-	  <li><a href="#">Animales</a></li>
-	  <li><a href="#">Arquitectura</a></li>
+    	  
+	  {{ knp_menu_render('SFMPicmntBundle:Builder:menuCategories', {'class': 'nav'}) }} 
 	</ul>
 
 	<ul class="nav secondary-nav">

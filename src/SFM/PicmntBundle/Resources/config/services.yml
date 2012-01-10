@@ -16,7 +16,7 @@ services:
     class: Knp\Menu\MenuItem # the service definition requires setting the class
     factory_service: sfm_picmnt.menu_builder
     factory_method: createMenuTabs
-    arguments: ["@request"]
+    arguments: ["@request", "@translator"]
     scope: request # needed as we have the request as a dependency here
     tags:
       - { name: knp_menu.menu, alias: tabs } # The alias is what is used to retrieve the menu

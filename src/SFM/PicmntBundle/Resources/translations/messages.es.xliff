@@ -86,6 +86,50 @@
 	      <source>Voted</source>
 	      <target>Votada</target>
 	    </trans-unit>
+	    <trans-unit id="22">
+	      <source>All</source>
+	      <target>Todas</target>
+	    </trans-unit>
+	    <trans-unit id="23">
+	      <source>Portraits</source>
+	      <target>Retratos</target>
+	    </trans-unit>
+	    <trans-unit id="24">
+	      <source>Animals</source>
+	      <target>Animales</target>
+	    </trans-unit>
+	    <trans-unit id="25">
+	      <source>Sports</source>
+	      <target>Deportes</target>
+	    </trans-unit>
+	    <trans-unit id="26">
+	      <source>Buildings</source>
+	      <target>Arquitectura</target>
+	    </trans-unit>
+	    <trans-unit id="27">
+	      <source>Landscapes</source>
+	      <target>Paisajes</target>
+	    </trans-unit>
+	    <trans-unit id="28">
+	      <source>Random</source>
+	      <target>Aleatoria</target>
+	    </trans-unit>
+	    <trans-unit id="29">
+	      <source>Last</source>
+	      <target>Ultima</target>
+	    </trans-unit>
+	    <trans-unit id="30">
+	      <source>My Profile</source>
+	      <target>Mi Perfil</target>
+	    </trans-unit>
+	    <trans-unit id="31">
+	      <source>Upload Image</source>
+	      <target>Subir Imagen</target>
+	    </trans-unit>
+	    <trans-unit id="32">
+	      <source>Admin</source>
+	      <target>Administracion</target>
+	    </trans-unit>
         </body>
     </file>
 </xliff>
