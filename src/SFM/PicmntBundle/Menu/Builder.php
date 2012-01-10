@@ -10,15 +10,6 @@ class Builder extends ContainerAware
 
   private $factory;
 
-  /**
-   * @param FactoryInterface $factory
-   
-  public function __construct(FactoryInterface $factory)
-  {
-    $this->factory = $factory;
-  }
-  */
-
   public function menuPrincipal(FactoryInterface $factory)
   {
     $menu = $factory->createItem('root');

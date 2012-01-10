@@ -110,6 +110,26 @@
 	      <source>Landscapes</source>
 	      <target>Paisajes</target>
 	    </trans-unit>
+	    <trans-unit id="28">
+	      <source>Random</source>
+	      <target>Aleatoria</target>
+	    </trans-unit>
+	    <trans-unit id="29">
+	      <source>Last</source>
+	      <target>Ultima</target>
+	    </trans-unit>
+	    <trans-unit id="30">
+	      <source>My Profile</source>
+	      <target>Mi Perfil</target>
+	    </trans-unit>
+	    <trans-unit id="31">
+	      <source>Upload Image</source>
+	      <target>Subir Imagen</target>
+	    </trans-unit>
+	    <trans-unit id="32">
+	      <source>Admin</source>
+	      <target>Administracion</target>
+	    </trans-unit>
         </body>
     </file>
 </xliff>
