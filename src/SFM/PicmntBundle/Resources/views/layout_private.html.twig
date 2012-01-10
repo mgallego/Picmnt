@@ -11,7 +11,14 @@
       <div class="container">
 
         <h3><a href="#">Picmnt</a></h3>
-
+	
+	{% if categories %}
+	{% for category in categories %}
+	saaaa
+	{% else %}
+	insert categories in the database
+	{% endfor %}
+	{% endif %}
 	<ul class="nav">
 	  <li><a href="#">Todas</a></li>
 	  <li><a href="#">Retratos</a></li>
