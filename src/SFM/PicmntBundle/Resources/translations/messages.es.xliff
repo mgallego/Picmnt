@@ -130,6 +130,26 @@
 	      <source>Admin</source>
 	      <target>Administracion</target>
 	    </trans-unit>
+	    <trans-unit id="33">
+	      <source>Join</source>
+	      <target>Crear Cuenta</target>
+	    </trans-unit>
+	    <trans-unit id="34">
+	      <source>Login</source>
+	      <target>Acceder</target>
+	    </trans-unit>
+	    <trans-unit id="35">
+	      <source>Username:</source>
+	      <target>Usuario:</target>
+	    </trans-unit>
+	    <trans-unit id="36">
+	      <source>Password:</source>
+	      <target>Contraseña:</target>
+	    </trans-unit>
+	    <trans-unit id="37">
+	      <source>Remember the password</source>
+	      <target>Recordar contraseña</target>
+	    </trans-unit>
         </body>
     </file>
 </xliff>

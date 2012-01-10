@@ -15,7 +15,7 @@ class Builder extends ContainerAware
     $menu = $factory->createItem('root');
     $menu->setCurrentUri($this->container->get('request')->getRequestUri());
 
-    $menu->addChild('Sign Up', array('route' => 'fos_user_registration_register'));
+    $menu->addChild('Join', array('route' => 'fos_user_registration_register'));
     $menu->addChild('Login', array('route' => 'fos_user_security_login'));
     
     $prueba = $this->container->get('request');

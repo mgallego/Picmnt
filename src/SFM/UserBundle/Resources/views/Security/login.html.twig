@@ -18,7 +18,7 @@
 
       <form action="{{ path("fos_user_security_check") }}" method="post">
 	<fieldset>
-	    <legend>Login</legend>
+	    <legend>{{ 'Login' | trans }}</legend>
 
 	      <div class="clearfix">
 		    <label for="username">{{ 'Username:' | trans }}</label>
@@ -41,7 +41,7 @@
 			  </div>
 
 		    <div style="text-align:center">
-		          <a href="#">¿Ha olvidado su contraseña?</a>
+		          <a href="#">{{ 'Remember the password' | trans }}</a>
 			    </div>
 
 		      <div class="clearfix" style="text-align:right">

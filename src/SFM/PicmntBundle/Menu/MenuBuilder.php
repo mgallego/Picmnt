@@ -20,15 +20,15 @@ class MenuBuilder extends ContainerAware
   }
 
 
-  public function createMenuLogin(Request $request)
+  public function createMenuLogin(Request $request, Translator $translator)
   {
     $menu = $this->factory->createItem('root');
     $menu->setCurrentUri($request->getRequestUri());
     $menu->setAttribute('class', 'pills'); 
 
 
-    $menu->addChild('Sign Up', array('route' => 'fos_user_registration_register'));
-    $menu->addChild('Login', array('route' => 'fos_user_security_login'));
+    $menu->addChild($translator->trans('Join'), array('route' => 'fos_user_registration_register'));
+    $menu->addChild($translator->trans('Login'), array('route' => 'fos_user_security_login'));
 
 
     return $menu;
@@ -47,7 +47,6 @@ class MenuBuilder extends ContainerAware
     $menu->addChild($translator->trans('Upload Image'), array('route' => 'img_upload'));
     $menu->addChild($translator->trans('Admin'), array('route' => 'home'));
 
-    $e = $translator->trans('prueba');
     return $menu;
   }
 
