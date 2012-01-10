@@ -150,6 +150,10 @@
 	      <source>Remember the password</source>
 	      <target>Recordar contraseña</target>
 	    </trans-unit>
+	    <trans-unit id="38">
+	      <source>Preferences</source>
+	      <target>Preferencias</target>
+	    </trans-unit>
         </body>
     </file>
 </xliff>
