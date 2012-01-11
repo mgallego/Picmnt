@@ -101,10 +101,12 @@ class ImageController extends Controller
     
     $image = $em->find('SFMPicmntBundle:Image',$id_image);
 
+
     $user = $this->container->get('security.context')->getToken()->getUser();
 
+
     if ($user->getId() != $image->getUser()->getId()) { //diferent user
-      //show an error twig TODO
+      return $this->redirect($this->generateUrl('img_show', array("option"=>"random", "idImage"=>$id_image) ));
     }
     else{
 
@@ -118,8 +120,8 @@ class ImageController extends Controller
 
       $request = $this->get('request');
       
-   
       if ($request->getMethod() == 'POST'){
+
 	$form->bindRequest($request);
       
 
