@@ -40,9 +40,11 @@ usr_edit:
     pattern: /usr/edit/{userId}
     defaults: { _controller: SFMPicmntBundle:User:edit }
 
-sfm_user:
-    resource: "@SFMPicmntBundle/Controller/UserController.php"
-    type:     annotation
+##############################  COMMENTS CONTROLLER  ##########################
+
+comment:
+    pattern: /comment/{idImage}
+    defaults: { _controller: SFMPicmntBundle:Comment:comment }
 
 sfm_comment:
     resource: "@SFMPicmntBundle/Controller/CommentController.php"

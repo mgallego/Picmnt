@@ -16,9 +16,6 @@ use Symfony\Component\HttpFoundation\Response;
 class CommentController extends Controller
 {
 
-  /**
-   * @Route("/comment/{idImage}", name="comment")
-   */
   public function commentAction($idImage)
   {
 
