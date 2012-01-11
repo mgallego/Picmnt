@@ -103,87 +103,18 @@ class ImageController extends Controller
 
 
 
-    private function getRandomImage()
-    {
-
+    private function getRandomImage(){
 	$em = $this->get('doctrine')->getEntityManager();
-        	
-	$images = $em->getRepository('SFMPicmntBundle:Image')->getRandom();
+	$image = $em->getRepository('SFMPicmntBundle:Image')->getRandom();
 
-	if (!$images){
+	if (!$image){
 	    $e = $this->get('translator')->trans('There are no pictures in the database');
 	    throw $this->createNotFoundException($e);
 	}
-	    
           
-	$image = $images[0];
-
-	return $image;
-    
+	return $image[0];
     }
  
-
-
-    //delete this function when finish the image show action 
-    /**
-     * @Route("/img/showTemp/{selection}", name="img_showTemp")
-     * //@Template()
-     */
-    public function getImageTempAction($selection){
-
-	$userVote = new UserVote();
-
-	$em = $this->get('doctrine')->getEntityManager();
-    
-	//$em = $this->get('doctrine.orm.entity_manager');
-    
-
-	if ($selection == 'last') {
-	    $dql = "SELECT a FROM SFMPicmntBundle:Image a order by a.idImage desc";
-	}
-
-	$query = $em->createQuery($dql);
-
-	$adapter = $this->get('knplabs_paginator.adapter');
-	$adapter->setQuery($query);
-	$adapter->setDistinct(true);
-    
-
-	$paginator = new \Zend\Paginator\Paginator($adapter);
-	$paginator->setCurrentPageNumber($this->get('request')->query->get('page', 1));
-	$paginator->setItemCountPerPage(1);
-	$paginator->setPageRange(1);
-
-	$items = $paginator->getCurrentItems();
-
-	$image = new Image();
-
-	//return the current object of the paginator
-	$image = $items[0];
-    
-	//parameters for the Javascript votef button in the layout
-	$parameters = Array("idImage"=>$image->getIdImage(), "voted"=>$this->hasVoted($image->getIdImage())
-		      , "page"=>$paginator->getCurrentPageNumber(), "selection"=>$selection);
-
-	$imageComment = new ImageComment();
-
-	//comments form
-	$formComment = $this->get('form.factory')
-	    ->createBuilder('form', $imageComment)
-	    ->add('comment', 'text')
-	    ->getForm();
-
-	//test
-	$imageNext = $em->getRepository('SFMPicmntBundle:Image')->findNext($image->getIdImage(),'p.idImage DESC');
-    
-	print($imageNext[0]->getIdImage(). ' actual '. $image->getIdImage());
-    
-
-	return array("paginator"=>$paginator, "parameters"=>$parameters, 
-	    "comments"=>$image->getImageComments(), "formComment"=>$formComment->createView());
-    }
-
-
 
     /**
      * @Route("/img/{option}/{idImage}", defaults={"idImage"="0"}, name="img_show")
