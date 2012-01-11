@@ -29,6 +29,10 @@ _img_show:
     pattern: /img/{option}/{idImage}
     defaults: { _controller: SFMPicmntBundle:Image:show, option: 'random', idImage: 0 }
 
+img_vote:
+    pattern: /img/vote/{idImage}
+    defaults: { _controller: SFMPicmntBundle:Image:vote }
+
 sfm_image:
     resource: "@SFMPicmntBundle/Controller/ImageController.php"
     type:     annotation

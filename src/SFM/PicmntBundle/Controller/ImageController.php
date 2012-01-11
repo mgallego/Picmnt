@@ -3,24 +3,17 @@
 namespace SFM\PicmntBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
+
 use SFM\PicmntBundle\Repositories\ImageUp;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Doctrine\ORM\Query\ResultSetMapping;
+
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 use SFM\PicmntBundle\Entity\Image;
 use SFM\PicmntBundle\Entity\User;
-use SFM\PicmntBundle\Entity\UserVote;
-use SFM\PicmntBundle\Entity\ImageComment;
-use FOS\UserBundle\Entity\UserManager;
 
 use SFM\PicmntBundle\Util\ImageUtil;
 use SFM\PicmntBundle\Form\ImageType;
 use SFM\PicmntBundle\Form\ImageUpType;
-use Symfony\Component\HttpFoundation\Response;
-
 
 class ImageController extends Controller
 {
@@ -167,6 +160,7 @@ class ImageController extends Controller
 
     }
 
+
     private function getPrevious($orderOption, $idImage){
 
 	$em = $this->get('doctrine')->getEntityManager();
@@ -213,9 +207,7 @@ class ImageController extends Controller
 
     }
 
-    /**
-     * @Route("/img/vote/{idImage}", name="img_vote")
-     */
+
     public function voteAction($idImage){
 
 	if ($this->hasVoted($idImage) == 0){
