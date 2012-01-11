@@ -21,6 +21,14 @@ img_edit:
     pattern: /img/edit/{id_image}
     defaults: { _controller: SFMPicmntBundle:Image:edit }
 
+img_show:
+    pattern: /img/{option}
+    defaults: { _controller: SFMPicmntBundle:Image:show, option: 'random' }
+
+_img_show:
+    pattern: /img/{option}/{idImage}
+    defaults: { _controller: SFMPicmntBundle:Image:show, option: 'random', idImage: 0 }
+
 sfm_image:
     resource: "@SFMPicmntBundle/Controller/ImageController.php"
     type:     annotation

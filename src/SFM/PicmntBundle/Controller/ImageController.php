@@ -116,36 +116,27 @@ class ImageController extends Controller
     }
  
 
-    /**
-     * @Route("/img/{option}/{idImage}", defaults={"idImage"="0"}, name="img_show")
-     * @Template()
-     */
-    public function showImageAction($option, $idImage = 0){
-    
+
+
+    public function showAction($option, $idImage = 0){
 	$em = $this->get('doctrine')->getEntityManager();
 	$paginator = Array();
 
 	if ( $option == 'last' ) {
 
 	    if (!$image = $em->find('SFMPicmntBundle:Image',$idImage)){
-
 		$images = $em->getRepository('SFMPicmntBundle:Image')->findFirst('p.idImage DESC');
 		$image = $images[0];
-
 	    }
-
 	    $paginator = $this->getPaginator($option, $image->getIdImage());
-
 	}
 	else if ( $option = 'random' ){
-
 	    $image = $this->getRandomImage();
-
 	}
-      
-	return Array("image"=>$image, "paginator"=>$paginator);
-
+	return $this->render('SFMPicmntBundle:Image:showImage.html.twig', array("image"=>$image, "paginator"=>$paginator));
     }
+
+
 
 
     private function getPaginator($option, $idImage){

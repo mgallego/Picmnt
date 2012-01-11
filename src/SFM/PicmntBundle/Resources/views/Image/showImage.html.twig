@@ -30,11 +30,11 @@
 	    {% for page in paginator %}
 	      {% if loop.index == '1' %}
 	        {% if image.idImage != page %}
-	          {% set Next =  path('img_show', {'option': 'last',  'idImage': page })  %}
+	          {% set Next =  path('_img_show', {'option': 'last',  'idImage': page })  %}
 	        {% endif %}
 	      {% else %}
 	        {% if image.idImage > page %}
-	          {% set Previous =  path('img_show', {'option': 'last', 'idImage':  page })  %}
+	          {% set Previous =  path('_img_show', {'option': 'last', 'idImage':  page })  %}
 	        {% endif %}
 	      {% endif %}
 	    {% endfor %}
