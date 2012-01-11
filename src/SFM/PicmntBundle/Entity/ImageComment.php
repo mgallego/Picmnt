@@ -46,6 +46,35 @@ class ImageComment
    * @ORM\JoinColumn(name="id_image", referencedColumnName="id_image")
    */
   protected $image;
+  
+  /**
+   * @var integer $brightness
+   *
+   * @ORM\Column(name="brightness", type="integer", nullable=true)
+   */
+  protected $brightness;
+
+   /**
+   * @var integer $contrast
+   *
+   * @ORM\Column(name="contrast", type="integer", nullable=true)
+   */
+  protected $contrast;
+
+   /**
+   * @var integer $exposition
+   *
+   * @ORM\Column(name="exposition", type="integer", nullable=true)
+   */
+  protected $exposition;
+
+   /**
+   * @var integer $saturation
+   *
+   * @ORM\Column(name="saturation", type="integer", nullable=true)
+   */
+  protected $saturation;
+
 
   /**
    * get idComment
@@ -128,7 +157,44 @@ class ImageComment
       return $this->image;
   }
 
+  public function setBrightness($brightness)
+  {
+    $this->brightness = $brightness;
+  }
 
+  public function getBrightness()
+  {
+    return $this->brightness;
+  }
+
+  public function setContrast($contrast)
+  {
+    $this->contrast = $contrast;
+  }
+
+  public function getContrast()
+  {
+    return $this->contrast;
+  }
+
+  public function setExposition($exposition)
+  {
+    $this->exposition = $exposition;
+  }
+
+  public function getExposition()
+  {
+    return $this->exposition;
+  }
+  public function setSaturation($saturation)
+  {
+    $this->saturation = $saturation;
+  }
+
+  public function getSaturation()
+  {
+    return $this->saturation;
+  }
 
 
 }
