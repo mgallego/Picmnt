@@ -18,76 +18,51 @@ use FOS\UserBundle\Entity\UserManager;
 
 use SFM\PicmntBundle\Util\ImageUtil;
 use SFM\PicmntBundle\Form\ImageType;
+use SFM\PicmntBundle\Form\ImageUpType;
 use Symfony\Component\HttpFoundation\Response;
 
 
 class ImageController extends Controller
 {
   
-  /**
-   * @Route("/img/upload", name="img_upload")
-   * @Template()
-   */
   public function uploadAction()
   {
     
     $user = $this->container->get('security.context')->getToken()->getUser();
-
     $image = new Image();
-    
     $imageUp = new ImageUp();
             
-    $form = $this->get('form.factory')
-      ->createBuilder('form', $imageUp)
-      ->add('dataFile', 'file')
-      ->getForm();
-    
+    $form = $this->createForm(new ImageUpType(), $imageUp);
 
     if ($this->get('request')->getMethod() == 'POST'){
 
       $form->bindRequest( $this->get('request') );
-       
 
       if ($form->isValid()) {
 
 	$uploadedFile = $form['dataFile']->getData();
-
-	if ($uploadedFile->getMimeType() == 'image/png' ){
-	  $extension = '.png';
-	}
-	else{
-	  $extension = '.jpg';
-	}
-		
-
+	$imageUtil = new ImageUtil();
+	$extension = $imageUtil->getExtension($uploadedFile->getMimeType());
 	$newFileName = $user->getId().'_'.date("ymdHis").'_'.rand(1,9999).$extension;
 	
 	$uploadedFile->move(
 	  $_SERVER['DOCUMENT_ROOT']."/uploads",
 	  $newFileName );
 
-	$imageUtil = new ImageUtil();
-
 	$imageUtil->resizeImage('uploads/'.$newFileName, 800);
 
 	$image->setUrl($newFileName);
 	$image->setVotes(0);
-
 	$image->setUser($user);
 
 	$em = $this->get('doctrine')->getEntityManager();     
-   	
 	$em->persist($image);
 	$em->flush();
-	
-	return $this->redirect($this->generateUrl('img_edit', array("id_image" => $image->getIdImage())));
 
+	return $this->redirect($this->generateUrl('img_edit', array("id_image" => $image->getIdImage())));
       }
-     
     }
-        
-    return array('form' => $form->createView(),);
-    
+    return $this->render('SFMPicmntBundle:Image:upload.html.twig', array('form' => $form->createView()));
   }
 
 

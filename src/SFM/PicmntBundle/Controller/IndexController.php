@@ -1,5 +1,4 @@
 <?php
-
 namespace SFM\PicmntBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;

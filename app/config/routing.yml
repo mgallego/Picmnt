@@ -1,7 +1,4 @@
-#sfm_index:
-#    resource: "@SFMPicmntBundle/Controller/IndexController.php"
-#    type:     annotation
-
+############################ INDEX CONTROLLER   ###############################
 home:
     pattern: /
     defaults: { _controller: SFMPicmntBundle:Index:index }
@@ -13,6 +10,12 @@ secure_home:
 lang:
     pattern: /lang/{_locale}
     defaults: { _controller: SFMPicmntBundle:Index:lang }
+
+########################### IMAGE CONTROLLER   #################################
+
+img_upload:
+    pattern: /img/upload
+    defaults: { _controller: SFMPicmntBundle:Image:upload }
 
 sfm_image:
     resource: "@SFMPicmntBundle/Controller/ImageController.php"
@@ -27,9 +30,7 @@ sfm_comment:
     type:     annotation
   
 
-#fos_user_security:
-#    resource: "@SFMUserBundle/Resources/config/routing/security.xml"
-
+################################ FOS USERBUNDLE #################################
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 
