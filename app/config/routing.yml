@@ -33,9 +33,12 @@ img_vote:
     pattern: /img/vote/{idImage}
     defaults: { _controller: SFMPicmntBundle:Image:vote }
 
-sfm_image:
-    resource: "@SFMPicmntBundle/Controller/ImageController.php"
-    type:     annotation
+
+##############################  USER CONTROLLER  ##############################
+
+usr_edit:
+    pattern: /usr/edit/{userId}
+    defaults: { _controller: SFMPicmntBundle:User:edit }
 
 sfm_user:
     resource: "@SFMPicmntBundle/Controller/UserController.php"

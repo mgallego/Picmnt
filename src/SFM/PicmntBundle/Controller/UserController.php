@@ -18,12 +18,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 class UserController extends Controller
 {
 
-  /**
-   * @Route("/usr/edit/{userId}", name="usr_edit")
-   * @Template()
-   * @Cache(maxage=1)
-   */
-  public function editUserAction($userId){
+  public function editAction($userId){
     
     $userInfo = new UserInfo();
 
@@ -37,6 +32,11 @@ class UserController extends Controller
    else { 
 
      $userInfo = $em->find('SFMPicmntBundle:UserInfo',$userId);
+
+     if (!$userInfo){
+	 $userInfo = new UserInfo();
+	 $userInfo->setUserId($user->getId());
+     }
 
      $avatarOld = $userInfo->getAvatar(); 
 
@@ -90,11 +90,9 @@ class UserController extends Controller
 	  $em->persist($userInfo);
 	  $em->flush();
 	 
-	  return array('form' => $form->createView(), 'userId' => $userId, 'avatar'=>$userInfo->getAvatar());
 	}
       }
-      return array('form' => $form->createView(), 'userId' => $userId, 'avatar'=>$avatarOld);
-
+      return $this->render('SFMPicmntBundle:User:editUser.html.twig', array('form' => $form->createView(), 'userId' => $userId, 'avatar'=>$userInfo->getAvatar()));
     }
      
   }
