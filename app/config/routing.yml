@@ -1,7 +1,19 @@
-sfm_index:
-    resource: "@SFMPicmntBundle/Controller/IndexController.php"
-    type:     annotation
+#sfm_index:
+#    resource: "@SFMPicmntBundle/Controller/IndexController.php"
+#    type:     annotation
+
+home:
+    pattern: /
+    defaults: { _controller: SFMPicmntBundle:Index:index }
   
+secure_home: 
+    pattern: /p
+    defaults: { _controller: SFMPicmntBundle:Index:indexSecure }
+
+lang:
+    pattern: /lang/{_locale}
+    defaults: { _controller: SFMPicmntBundle:Index:lang }
+
 sfm_image:
     resource: "@SFMPicmntBundle/Controller/ImageController.php"
     type:     annotation
