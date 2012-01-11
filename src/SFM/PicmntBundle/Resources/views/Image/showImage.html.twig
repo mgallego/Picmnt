@@ -42,10 +42,14 @@
 	    <h1>
 	      {% if Previous %}
 	        <a href="{{ Previous }}">{{ 'Previous' | trans }} | </a>
+	      {% else %}
+                {{ 'Previous' | trans }} |
 	      {% endif %}
 	      <a href="{{ path('img_edit', {'id_image': image.idImage}) }} ">{{ image.title }}</a>
 	      {% if Next %}
 	        <a href="{{ Next }}"> | {{ 'Next' | trans }} </a>
+	      {% else %}
+                | {{ 'Next' | trans }} 
 	      {% endif %} 
 	    </h1>
 	  </div>
