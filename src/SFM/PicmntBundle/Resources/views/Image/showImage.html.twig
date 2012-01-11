@@ -105,7 +105,7 @@
 
 	      <!-- Nuevo comentario
 		   ========================================== -->
-
+	      {% if is_granted("IS_AUTHENTICATED_REMEMBERED") or is_granted("IS_AUTHENTICATED_FULLY") %}
 	      <div id="newComment" style="padding-top:15px">
 		
 		<form action="" class="form-stacked">
@@ -125,7 +125,7 @@
 		</form>
 		
 	      </div>
-
+	      {% endif %}
 	    </div>
 
 	  </div>
