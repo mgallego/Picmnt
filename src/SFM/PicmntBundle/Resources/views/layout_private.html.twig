@@ -9,13 +9,13 @@
     <div class="topbar-inner">
 
       <div class="container">
-        <h3><a href="#">Picmnt</a></h3>
+        <h3><a href="{{ path('home') }}">Picmnt</a></h3>
 
 	<ul class="nav">
     	  
 	  {{ knp_menu_render('SFMPicmntBundle:Builder:menuCategories', {'class': 'nav'}) }} 
 	</ul>
-
+	{% if is_granted("IS_AUTHENTICATED_REMEMBERED") or is_granted("IS_AUTHENTICATED_FULLY") %}
 	<ul class="nav secondary-nav">
 	  <li class="dropdown">
  	    <a href="#" class="dropdown-toggle">{{ app.user.getUsername() }}</a>
@@ -26,6 +26,12 @@
 	    </ul>
 	  </li>
 	</ul>
+	{% else %}
+	<ul class="nav secondary-nav">
+	  <li><a href="{{ path('fos_user_registration_register') }}">{{ 'Join' | trans }}</a></li>
+	  <li><a href="{{ path('fos_user_security_login') }}">{{ 'Login' | trans }}</a></li>
+	</ul>
+	{% endif %}
       </div>
     </div>
   </div>
