@@ -17,7 +17,9 @@ use SFM\PicmntBundle\Entity\ImageComment;
 use FOS\UserBundle\Entity\UserManager;
 
 use SFM\PicmntBundle\Util\ImageUtil;
+use SFM\PicmntBundle\Form\ImageType;
 use Symfony\Component\HttpFoundation\Response;
+
 
 class ImageController extends Controller
 {
@@ -110,13 +112,7 @@ class ImageController extends Controller
     }
     else{
 
-      $form = $this->get('form.factory')
-	->createBuilder('form', $image)
-	->add('title', 'text')
-	->add('description','textarea')
-	->add('category','text')
-	->add('tags','text')
-	->getForm();
+      $form = $this->createForm(new ImageType(), $image);
 
       $request = $this->get('request');
       
