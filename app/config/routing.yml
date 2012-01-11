@@ -17,6 +17,10 @@ img_upload:
     pattern: /img/upload
     defaults: { _controller: SFMPicmntBundle:Image:upload }
 
+img_edit:
+    pattern: /img/edit/{id_image}
+    defaults: { _controller: SFMPicmntBundle:Image:edit }
+
 sfm_image:
     resource: "@SFMPicmntBundle/Controller/ImageController.php"
     type:     annotation
