@@ -48,19 +48,8 @@ class CommentController extends Controller
 	$em->persist($imageComment);
 	$em->flush();
 
-	
-	//	return $this->redirect($this->generateUrl('img_show').'/'.);
-	//print_r($request);
-
-	return new Response('<html><head></head><body>Comments POST</body></html>');	
-	
-	//}
-
     }
-	return new Response('<html><head></head><body>Comments GET</body></html>');	 
- 
-
-
+    return $this->redirect($this->generateUrl('_img_show', array("option" => 'show', "idImage" => $image->getIdImage())));
   }
 
 }

@@ -9,6 +9,7 @@ use FOS\UserBundle\Entity\User as BaseUser;
  * PSN\MainBundle\Entity\User
  * @ORM\Entity
  * @ORM\Table(name="User")
+ * @ORM\Entity(repositoryClass="SFM\PicmntBundle\Entity\UserRepository")
  */
 class User extends BaseUser
 {

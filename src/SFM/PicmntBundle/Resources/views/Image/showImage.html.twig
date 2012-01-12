@@ -155,7 +155,7 @@
 
 	    <div class="span8 column" id="imageInfo" style="text-align:left">
 
-	      <img src="img/moises.jpg" width="30px"/>
+	      <img src="{{ avatar(image.user.id) }}" width="30px"/>
 
 	      {{ 'Author' | trans }}:<a href="mis_img.html"> Moisés Gallego</a>
 
@@ -177,7 +177,6 @@
 
 	<!--  Comentarios
 	      ==================================================================== -->
-
 	<section id="comments" style="width:900px; text-align:left; ">
 	  <h2>{{ 'Comments' | trans }}</h2>
 	  <div class="comment" style="padding-top:10px">
@@ -185,7 +184,7 @@
 	      {% for comment in image.imageComments %}
 	      <tr>
 		<td>
-		  <img src="img/oscar.jpg"/>
+		  <img src="{{ avatar(comment.user.id) }}"/>
 		  {{ comment.user.username }}
 		</td>
 		<td>
