@@ -5,6 +5,7 @@ use Knp\Menu\FactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;
+use Symfony\Component\Security\Core\SecurityContext;
 
 class MenuBuilder extends ContainerAware
 {
@@ -34,7 +35,7 @@ class MenuBuilder extends ContainerAware
     return $menu;
   }
 
-  public function createMenuTabs(Request $request, Translator $translator)
+  public function createMenuTabs(Request $request, Translator $translator, SecurityContext $context)
   {
     $menu = $this->factory->createItem('root');
     $menu->setCurrentUri($request->getRequestUri());
@@ -43,10 +44,13 @@ class MenuBuilder extends ContainerAware
 
     $menu->addChild($translator->trans('Random'), array('route' => 'img_show', 'routeParameters' => array('option'=>'random')));
     $menu->addChild($translator->trans('Last'), array('route' => 'img_show', 'routeParameters' => array('option'=>'last')));
+    
+    if ($context->isGranted('ROLE_USER')){
+
     $menu->addChild($translator->trans('My Profile'), array('route' => 'home'));
     $menu->addChild($translator->trans('Upload Image'), array('route' => 'img_upload'));
     $menu->addChild($translator->trans('Admin'), array('route' => 'home'));
-
+    }
     return $menu;
   }
 
