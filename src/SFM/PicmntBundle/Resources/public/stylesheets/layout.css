@@ -183,6 +183,33 @@ footer #copyright{
     -moz-box-shadow: 5px 5px 10px #333;
 }
 
+/* Register
+_-------------------------------------------------------------------------------------------------*/
+
+#register {
+    padding-top: 50px;
+    text-align: center;
+}
+
+#post_register{
+    text-align: center;
+    font-size: 25px;
+}
+
+#post_register h2{
+    color: purple;
+    font-size: 50px;
+}
+
+#post_register .span5{
+    padding: 50px 0 50px 0;
+}
+
+#post_register .span5:hover{
+    background-color: #f3f1f1;
+    font-size: 28px;
+}
+
 /* General
 _-------------------------------------------------------------------------------------------------*/
 

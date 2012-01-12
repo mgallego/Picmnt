@@ -28,7 +28,7 @@
       function applyFilter(){
       
       var vBrightness = $( "#sBrightness" ).slider( "value" );
-      var vContrast = $( "#sContrast" ).slider( "value" );
+      var vContrast = $( "#sContrast" ).slider( "value" );g
       var vSaturation = $( "#sSaturation" ).slider( "value" );
       var vExposure = $( "#sExposure" ).slider( "value" );
 
@@ -45,11 +45,12 @@
       };
     </script>
     {% endblock %}
-
+    
   </head>
   <body>
     {% block header %}header here{% endblock %}
     {% block menu %}{% endblock %}
+    {% block fos_user_content %}{% endblock fos_user_content %}
     {% block content %}content here{% endblock %}
     {% include 'SFMPicmntBundle::footer.html.twig' %}
   </body>

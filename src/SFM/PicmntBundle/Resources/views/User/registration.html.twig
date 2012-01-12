@@ -1,0 +1,16 @@
+<section id="post_register" class="container">
+  <h2>{{ 'AND NOW?' | trans }}</h2>
+  <p>
+    <div class="row">
+      <div class="span5 column">
+	<a href="{{ path('usr_edit', {'userId': app.user.id }) }}">{{ 'Complete your profile' | trans }}</a>
+      </div>
+      <div class="span5 column">
+	<a href="{{ path('img_upload') }}">{{ 'Upload an image' | trans }}</a>
+      </div>
+      <div class="span5 column">
+	<a href="{{ path('img_show', {'option': 'random'}) }}">{{ 'Explore' | trans }}</a>
+      </div>
+    </div>
+  </p>
+</section>

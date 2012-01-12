@@ -206,6 +206,18 @@
 	      <source>See Proposal</source>
 	      <target>Ver Propuesta</target>
 	    </trans-unit>
+	    <trans-unit id="52">
+	      <source>AND NOW?</source>
+	      <target>¿Y AHORA?</target>
+	    </trans-unit>
+	    <trans-unit id="53">
+	      <source>Complete your profile</source>
+	      <target>Completa tu perfil</target>
+	    </trans-unit>
+	    <trans-unit id="54">
+	      <source>Explore</source>
+	      <target>Explorar</target>
+	    </trans-unit>
         </body>
     </file>
 </xliff>
