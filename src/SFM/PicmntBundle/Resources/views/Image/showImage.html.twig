@@ -127,12 +127,12 @@
 	      {% if is_granted("IS_AUTHENTICATED_REMEMBERED") or is_granted("IS_AUTHENTICATED_FULLY") %}
 	      <div id="newComment" style="padding-top:15px">
 		
-		<form action="" class="form-stacked">
+		<form action="{{ path('comment', { 'idImage': image.idImage}) }}" class="form-stacked" method="post">
 		  <fieldset style="text-align:left">
 		    <legend>{{ 'Comment' | trans }}!!!</legend>
 		    <div class="clearfix">
 		      <div class="input"> 
-			<textarea class="xxlarge" id="textarea" name="textarea" style="width:300px;height:150px"></textarea> 
+			<textarea class="xxlarge" id="textarea" name="comment" style="width:300px;height:150px"></textarea> 
 			<span class="help-block"> 
 			</span> 
 		      </div> 

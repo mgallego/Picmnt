@@ -19,6 +19,7 @@ class CommentController extends Controller
   public function commentAction($idImage)
   {
 
+    $logger = $this->get('logger');
     $image = new Image();
 
     $imageComment = new ImageComment();
@@ -33,15 +34,14 @@ class CommentController extends Controller
       ->getForm();
 
     $request = $this->get('request');
-      
+    
     if ($request->getMethod() == 'POST'){
 
       $form->bindRequest($request);
-     
-      if ($form->isValid()) {
 
-	print($imageComment->getComment());
+      //if ($form->isValid()) {
 
+	$imageComment->setComment($request->get('comment'));
 	$imageComment->setImage($image);
 	$imageComment->setUser($this->container->get('security.context')->getToken()->getUser());
 
@@ -50,14 +50,15 @@ class CommentController extends Controller
 
 	
 	//	return $this->redirect($this->generateUrl('img_show').'/'.);
-	print_r($request);
+	//print_r($request);
 
-	return new Response('<html><head></head><body>Comments</body></html>');	
+	return new Response('<html><head></head><body>Comments POST</body></html>');	
 	
-	}
+	//}
 
     }
-        return new Response(print('hola'));	
+	return new Response('<html><head></head><body>Comments GET</body></html>');	 
+ 
 
 
   }
