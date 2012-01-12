@@ -1,16 +1,25 @@
-{% extends "SFMPicmntBundle::layout.html.twig" %}
+{% extends "SFMPicmntBundle::layout_private.html.twig" %}
 
 {% block content %}
 
-<img src="/uploads/avatarbig{{ asset(avatar) }}"/>
+<section id="user_edit" class="container">
+  <div class="row">
+    <div class="span4 column">
+      {% if not avatar %}
+      <img src="{{ asset('bundles/sfmpicmnt/images/user-default.png') }}" />
+      {% else %}
+      <img src="/uploads/avatarbig/{{ avatar }}" />
+      {% endif %} 
+    </div>
+    <div class="span12 column">
+      <form action="{{ path('usr_edit', { 'userId': userId }) }}" method="post" {{ form_enctype(form) }}>
+	{{ form_widget(form) }}
 
-<form action="{{ path('usr_edit', { 'userId': userId }) }}" method="post" {{ form_enctype(form) }}>
+	<input type="submit" />
 
-{{ form_widget(form) }}
-
-    <input type="submit" />
-
-</form>
-
+      </form>
+    </div>
+  </div>
+</section>
 {% endblock %}
 

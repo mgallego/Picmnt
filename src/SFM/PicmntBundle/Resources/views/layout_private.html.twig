@@ -20,7 +20,7 @@
 	  <li class="dropdown">
  	    <a href="#" class="dropdown-toggle">{{ app.user.getUsername() }}</a>
 	    <ul class="dropdown-menu">
-	      <li><a href="{{ path('home') }}">{{ 'Preferences' | trans }}</a></li>
+	      <li><a href="{{ path('usr_edit', {'userId': app.user.id}) }}">{{ 'Preferences' | trans }}</a></li>
 	      <li class="divider"></li>
 	      <li><a href="{{ path('fos_user_security_logout') }}">{{ 'Logout' | trans }}</a></li>
 	    </ul>
