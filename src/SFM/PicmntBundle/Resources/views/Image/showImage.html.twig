@@ -40,17 +40,21 @@
 	    {% endfor %}
 
 	    <h1>
-	      {% if Previous %}
-	        <a href="{{ Previous }}">{{ 'Previous' | trans }}</a> |
-	      {% else %}
-                {{ 'Previous' | trans }} |
+	      {% if app.request.get('option') != 'random' %}
+	        {% if Previous %}
+	          <a href="{{ Previous }}">{{ 'Previous' | trans }}</a> |
+	        {% else %}
+                  {{ 'Previous' | trans }} |
+	        {% endif %}
 	      {% endif %}
 	      <a href="{{ path('img_edit', {'id_image': image.idImage}) }} ">{{ image.title }}</a>
-	      {% if Next %}
-	        | <a href="{{ Next }}">{{ 'Next' | trans }} </a>
-	      {% else %}
-                | {{ 'Next' | trans }} 
-	      {% endif %} 
+	      {% if app.request.get('option') != 'random' %}
+	        {% if Next %}
+	          | <a href="{{ Next }}">{{ 'Next' | trans }} </a>
+	        {% else %}
+                  | {{ 'Next' | trans }} 
+	        {% endif %} 
+	      {% endif %}
 	    </h1>
 	  </div>
 	  <br />
