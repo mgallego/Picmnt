@@ -58,17 +58,17 @@ class UserController extends Controller
 
 	  $files=$request->files->get($form->getName());
 
-	  if ($files["avatar"]["file"] == null) {
+	  if ($files["avatar"] == null) {
 	    
 	    $userInfo->setAvatar($avatarOld);
 
 	  }
 	  else{
 	  
-	    $uploadedFile=$files["avatar"]["file"]; 
+	    $uploadedFile=$files["avatar"]; 
 
 	    $uploadedFile->getPath();
-	    $uploadedFile->getOriginalName();
+	    $uploadedFile->getClientOriginalName();
 	    $uploadedFile->getMimeType();
 	    
 	    $extension = '.jpg';
