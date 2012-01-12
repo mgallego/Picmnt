@@ -40,15 +40,24 @@
 	    {% endfor %}
 
 	    <h1>
-	      {% if app.request.get('option') != 'random' %}
+	      {% if app.request.get('option') == 'last' %}
 	        {% if Previous %}
 	          <a href="{{ Previous }}">{{ 'Previous' | trans }}</a> |
 	        {% else %}
                   {{ 'Previous' | trans }} |
 	        {% endif %}
 	      {% endif %}
-	      <a href="{{ path('img_edit', {'id_image': image.idImage}) }} ">{{ image.title }}</a>
-	      {% if app.request.get('option') != 'random' %}
+		 
+	      {% if is_granted("IS_AUTHENTICATED_REMEMBERED") or is_granted("IS
+_AUTHENTICATED_FULLY") %}
+              <a href="{{ path('img_edit', {'id_image': image.idImage}) }} ">{{ image.title }}</a>
+		  
+              {% else %}
+	      <a href="{{ path('_img_show', {'option': 'show', 'idImage': image.idImage}) }} ">{{ image.title }}</a>
+	      {% endif %}
+
+
+	      {% if app.request.get('option') == 'last' %}
 	        {% if Next %}
 	          | <a href="{{ Next }}">{{ 'Next' | trans }} </a>
 	        {% else %}

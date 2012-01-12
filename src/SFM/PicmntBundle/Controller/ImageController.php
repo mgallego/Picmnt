@@ -123,9 +123,13 @@ class ImageController extends Controller
 	    }
 	    $paginator = $this->getPaginator($option, $image->getIdImage());
 	}
-	else if ( $option = 'random' ){
+	else if ( $option == 'random' ){
 	    $image = $this->getRandomImage();
 	}
+	else if ( $option == 'show' ){
+	  $image = $em->find('SFMPicmntBundle:Image',$idImage);
+	}
+
 	return $this->render('SFMPicmntBundle:Image:showImage.html.twig', array("image"=>$image, "paginator"=>$paginator));
     }
 
