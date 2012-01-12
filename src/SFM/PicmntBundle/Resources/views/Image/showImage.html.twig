@@ -168,7 +168,7 @@
 	  <div class="row">
 	    <div class="span14 columns" id="imageDescription" style="text-align:left">
 	      <strong>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tempus sapien a purus convallis eu fringilla odio tincidunt. Nam lectus erat, viverra sit amet tempor sit amet, luctus eget ante. Quisque neque nisl, sodales id hendrerit et, mattis at lacus. Etiam ligula enim, egestas non fermentum id, interdum id augue. 
+		{{ image.description }}
 	      </strong>
 	    </div>
 	  </div>
@@ -182,12 +182,14 @@
 	  <h2>{{ 'Comments' | trans }}</h2>
 	  <div class="comment" style="padding-top:10px">
 	    <table class="zebra-striped">
+	      {% for comment in image.imageComments %}
 	      <tr>
 		<td>
 		  <img src="img/oscar.jpg"/>
+		  {{ comment.user.username }}
 		</td>
 		<td>
-		  vitae sapien a turpis laoreet scelerisque. Vivamus ut est nec neque sodales ultrices sit amet sed velit. Maecenas eu metus diam, nec dignissim massa. In sit amet mi turpis. Pellentesque ornare laoreet condimentum. Pellentesque nec ipsum non sem varius malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed iaculis massa sed odio lacinia posuere. Sed ut eros non urna pellentesque aliquet. Pellentesque consectetur vulputate ipsum non tristique. Sed ac odio massa. Nu
+	      {{ comment.comment }}
 		  <div class="row" style="padding-top: 10px;">
 		    <div class="span11 column"><p></p></div>
 		    <div class="span2 column" style="text-align: left" >
@@ -196,27 +198,12 @@
 		  </div>
 		</td>
 	      </tr>
-	      <tr>
-		<td>
-		  <img src="img/moises.jpg"/>
-		</td>
-		<td>
-		  us turpis, sed imperdiet dui mollis quis. Duis a sem sit amet nisl mattis interdum. Sed a massa sit amet sapien luctus pulvinar fringilla in justo. Sed vulputate quam augue. Quisque tempor arcu sollicitudin massa porttitor a venenatis felis faucibus.
-		  <div class="row" style="padding-top: 10px;">
-		    <div class="span11 column"><p></p></div>
-		    <div class="span2 column" style="text-align: left" >
-		      <a href="#">Ver Propuesta</a>
-		    </div>
-		  </div>
-
-		</td>
-	      </tr>
+	      {% else %}
+	      <h3>Aun no hay comentarios para esta imagen. Se el primero en comentar</h3>
+	      {% endfor %}
 	    </table>
 	  </div>
-
-	  
 	</section>
-
       </center>
 
     </div>
