@@ -20,31 +20,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>  
     <script src="{{ asset('bundles/sfmpicmnt/fancybox/jquery.fancybox-1.3.4.pack.js')}}"></script>
     <script src="{{ asset('bundles/sfmpicmnt/js/picmnt.js') }}"> </script>
-    <script src="{{ asset('bundles/sfmpicmnt/CamanJS/caman.full.min.js') }}"> </script>
     <script src="{{ asset('bundles/sfmpicmnt/jqueryUI/js/jquery-ui-1.8.13.custom.min.js') }}"></script>
     <script src="http://twitter.github.com/bootstrap/1.3.0/bootstrap-dropdown.js"></script>
 
-    <script type="text/javascript">
-      function applyFilter(){
-      
-      var vBrightness = $( "#sBrightness" ).slider( "value" );
-      var vContrast = $( "#sContrast" ).slider( "value" );
-      var vSaturation = $( "#sSaturation" ).slider( "value" );
-      var vExposure = $( "#sExposure" ).slider( "value" );
+    {% endblock javascript %}
 
-      //Caman.remoteProxy = "{{ asset('bundles/sfmpicmnt/CamanJS/proxies/caman_proxy.php') }}";
-
-      Caman("#image-to-modify", function () {
-      $( "#render-in-progress" ).show();
-      this.revert(function(){
-      this.brightness(vBrightness).contrast(vContrast).saturation(vSaturation).exposure(vExposure).render();
-      $( "#render-in-progress" ).hide();
-      });
-      
-      });
-      };
-    </script>
-    {% endblock %}
+    {% block scripts %}
+    {% endblock scripts %}
     
   </head>
   <body>

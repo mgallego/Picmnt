@@ -1,5 +1,38 @@
 {% extends "SFMPicmntBundle::layout_private.html.twig" %}
 
+{% block javascript %}
+  {{ parent() }}
+    <script src="{{ asset('bundles/sfmpicmnt/CamanJS/caman.full.min.js') }}"> </script>
+{% endblock javascript %}
+
+{% block scripts %}
+  {{ parent() }}
+
+    <script type="text/javascript">
+      function applyFilter(){
+      
+      var vBrightness = $( "#sBrightness" ).slider( "value" );
+      var vContrast = $( "#sContrast" ).slider( "value" );
+      var vSaturation = $( "#sSaturation" ).slider( "value" );
+      var vExposure = $( "#sExposure" ).slider( "value" );
+
+      //Caman.remoteProxy = "{{ asset('bundles/sfmpicmnt/CamanJS/proxies/caman_proxy.php') }}";
+
+      Caman("#image-to-modify", function () {
+      $( "#render-in-progress" ).show();
+      this.revert(function(){
+      this.brightness(vBrightness).contrast(vContrast).saturation(vSaturation).exposure(vExposure).render();
+      $( "#render-in-progress" ).hide();
+      });
+      
+      });
+      };
+    </script>
+
+
+{% endblock scripts %}
+
+
 {% block content %}
 
 

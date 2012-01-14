@@ -1,24 +1,100 @@
 {% extends "SFMPicmntBundle::layout.html.twig" %}
 
+{% block javascript %}
+
+  {{ parent() }}
+
+<script src="{{ asset('bundles/sfmpicmnt/js/jquery_cyrcle_plugin.js') }}"> </script>
+
+{% endblock javascript %}
+
+
+{% block scripts %}
+  {{ parent() }}
+
+<script type='text/javascript'> 
+ //<![CDATA[ 
+jQuery(function(){ 
+var $featured_area = jQuery('#featured-area'); 
+var $featured_item = jQuery('#featured-area div#slider-control div.featitem'); 
+var $slider_control = jQuery('#featured-area div#slider-control'); 
+var $image_container = jQuery('div#s1 > div'); 
+var ordernum; 
+var pause_scroll = false; 
+
+$featured_item.find('img').fadeTo("fast", 0.7); 
+$slider_control.find("div.featitem.active img").fadeTo("fast", 1); 
+$image_container.hover( 
+function () { 
+jQuery(this).find("img").fadeTo("fast", 0.7); 
+}, 
+function () { 
+jQuery(this).find("img").fadeTo("fast", 1); 
+} 
+); 
+
+function gonext(this_element){ 
+$slider_control.find("div.featitem.active img").fadeTo("fast", 0.7); 
+$slider_control.find("div.featitem.active").removeClass('active'); 
+this_element.addClass('active'); 
+$slider_control.find("div.featitem.active img").fadeTo("fast", 1); 
+ordernum = this_element.find("span.order").html(); 
+jQuery('#s1').cycle(ordernum - 1); 
+} 
+
+$featured_item.click(function() { 
+clearInterval(interval); 
+gonext(jQuery(this)); 
+return false; 
+}); 
+
+var auto_number; 
+var interval; 
+
+$featured_item.bind('autonext', function autonext(){ 
+if (!(pause_scroll)) gonext(jQuery(this)); 
+return false; 
+}); 
+interval = setInterval(function () { 
+auto_number = $slider_control.find("div.featitem.active span.order").html(); 
+if (auto_number == $featured_item.length) auto_number = 0; 
+$featured_item.eq(auto_number).trigger('autonext'); 
+}, 5000); 
+
+}); 
+//]]> 
+</script>
+
+<script type='text/javascript'> 
+jQuery(function(){ 
+jQuery(&#39;#s1&#39;).cycle({ 
+timeout: 0, 
+speed: 1000, 
+fx: &#39;fade&#39; 
+}); 
+
+}); 
+</script>
+
+{% endblock scripts %}
+
+
 {% block content %}
 
 <section id="content" class="container">
   <div class="row">
-    <div id="index-slide">
+    <div id="index-slide" class="box-width-shadow">
 
-
-aaaa
     </div>
     
-    <div class="span8 column">
+    <div class="span8 column box-width-shadow" id="index-options">
 
+      
       <a href="{{ path('img_show', {'option': 'random'}) }}"><h2>{{ 'Try' | trans }}</h2></a>
 
-aaaa
     </div>
-    <div class="span8 column">
-
-      Vivamus euismod, lacus non condimentum dignissim, sem est ornare sem, sollicitudin malesuada nisi nisl a turpis. Maecenas feugiat lorem eget sem iaculis semper. Vestibulum ante ipsum pr
+    <div class="span8 column box-width-shadow" id="explain-video">
+      <iframe width="420" height="315" src="http://www.youtube.com/embed/UpMh9H7-odw?rel=0" frameborder="0" allowfullscreen></iframe>
     </div>
   </div>
 </section>
