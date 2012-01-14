@@ -193,21 +193,29 @@ _-------------------------------------------------------------------------------
 
 #post_register{
     text-align: center;
-    font-size: 25px;
+    font-size: 2em;
 }
 
 #post_register h2{
     color: purple;
-    font-size: 50px;
+    font-size: 2em;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
 }
 
 #post_register .span5{
+    background-color: #f3f1f1;
+    border-radius: 1em;
+    box-shadow: 5px 0px 10px rgba(0,0,0,0.5);
+    margin-bottom: 150px;
+    margin-top: 60px;
     padding: 50px 0 50px 0;
+    
 }
 
 #post_register .span5:hover{
-    background-color: #f3f1f1;
-    font-size: 28px;
+    font-size: 1.05em;
+    margin-bottom: 150px;
+    margin-top: 60px;
 }
 
 #user_edit{
@@ -219,6 +227,7 @@ _-------------------------------------------------------------------------------
     width: 150px;
     border: 3px black solid;
 }
+
 /* General
 _-------------------------------------------------------------------------------------------------*/
 
