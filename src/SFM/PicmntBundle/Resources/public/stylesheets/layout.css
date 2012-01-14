@@ -4,6 +4,11 @@ body {
 	background: #FFF;
 }
 
+.index-slide{
+    background: lightgray;
+    height: 100px;
+}
+
 /* Header
 ----------------------------------------------------------------------------------------------------*/
 
