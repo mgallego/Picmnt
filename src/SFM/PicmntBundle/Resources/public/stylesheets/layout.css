@@ -1,7 +1,7 @@
 @import url("components.css");
 
 body {
-	background: #FFF;
+    background: #FFF;
 }
 
 #index-slide{
@@ -27,6 +27,23 @@ body {
     border-radius: 20px;
     box-shadow: 0px 7px 10px rgba(0,0,0,0.5);
 }
+
+#index-most{
+    margin-top: 2em;
+    text-align: center;
+}
+
+#index-options p{
+    font-size: 1.5em;
+    text-align: center;
+    padding: 1em 0 1em 0;
+}
+
+#index-options strong{
+    color: green;
+}
+
+
 
 /* Header
 ----------------------------------------------------------------------------------------------------*/

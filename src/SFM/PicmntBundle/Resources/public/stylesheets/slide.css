@@ -6,6 +6,8 @@
 }
 
 #sliderContent, #slider1Content, #slider2Content {
+    border-radius: 20px;
+    box-shadow: 0px 7px 10px rgba(0,0,0,0.5);
     width: 100%;
     position: absolute;
 	top: 0;
@@ -19,7 +21,6 @@
 .sliderImage span {
     position: absolute;
 	font: 10px/15px Arial, Helvetica, sans-serif;
-	margin: 0 0 0 13px;
     padding: 10px 13px;
     width: 380px;
     background-color: #000;
