@@ -178,9 +178,11 @@ footer #copyright{
 
 #imageImage img, canvas{
     border: 10px solid white;
+    border-radius: 8px;
     box-shadow: 5px 5px 10px #333;
     -webkit-box-shadow: 5px 5px 10px #333;
     -moz-box-shadow: 5px 5px 10px #333;
+    
 }
 
 /* Register
