@@ -136,6 +136,7 @@ footer {
 	background: #f3f1f1;
 	color: #000;
 	padding: 15px;
+	margin: 50px 0 0 0;
 }
 
 
@@ -156,11 +157,17 @@ footer li {
 #	float: center;
 }
 
+
 footer #copyright{
     text-align: center;
     font-size: x-small;
     color: #8F8F8F;
 }
+
+footer #social{
+    margin-top:-30px;
+}
+
 
 /* Content
 --------------------------------------------------------------------------------------------------*/
