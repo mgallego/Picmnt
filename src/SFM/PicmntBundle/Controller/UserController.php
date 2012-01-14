@@ -27,7 +27,7 @@ class UserController extends Controller
 	$user = $this->container->get('security.context')->getToken()->getUser();
 
 	if ($user->getId() != $userId) { 
-	    return $this->redirect($this->generateUrl('img_random'));
+	  return $this->redirect($this->generateUrl('img_show', array("option"=>"random")));
 	}
 	else { 
 
