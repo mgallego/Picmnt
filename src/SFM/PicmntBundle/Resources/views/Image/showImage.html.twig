@@ -177,7 +177,16 @@
 		</form>
 		
 	      </div>
+	      {% else %}
+
+	      <div class="round-box-with-shadow" id="show-image-register">
+		<p>¿A que esperas para <a href="{{ path('fos_user_registration_register') }}">registrarte</a>?, es totalmente <strong>gratis</strong></p>
+		<p>o si ya tienes cuenta de usuario <a href="{{ path('fos_user_security_login') }}">accede ya</a>.</p>
+	      </div>
+
+
 	      {% endif %}
+
 	    </div>
 
 	  </div>
