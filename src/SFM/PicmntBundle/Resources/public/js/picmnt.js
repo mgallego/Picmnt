@@ -31,25 +31,7 @@ $(document).ready(function() {
 	return false;
 	
     });
-/*
-    function applyFilter(){
-	
-	var vBrightness = $( "#sBrightness" ).slider( "value" );
-	var vContrast = $( "#sContrast" ).slider( "value" );
-	var vSaturation = $( "#sSaturation" ).slider( "value" );
 
-	Caman.remoteProxy = "../CamanJS/proxies/caman_proxy.php";
-
-	Caman("#image-id", function () {
-	    $( "#render-in-progress" ).show();
-	    this.revert(function(){
-		this.brightness(vBrightness).contrast(vContrast).saturation(vSaturation).render();
-		$( "#render-in-progress" ).hide();
-	    });
-	    
-	});
-    };
-*/
     function showValue(){
 
 	$( "#bAmount" ).val( $( "#sBrightness").slider( "value"));
@@ -81,6 +63,9 @@ $(document).ready(function() {
 	    active:false
 	});
     });
+
+
+    
 
     
 });

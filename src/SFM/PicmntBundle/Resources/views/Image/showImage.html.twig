@@ -29,6 +29,34 @@
       };
     </script>
 
+    <script type="text/javascript">
+      function applyProposal(brightness, contrast, exposure, saturation){
+
+
+          $( "#bAmount" ).val(brightness);
+          $( "#cAmount" ).val(contrast);
+          $( "#aExposure" ).val(exposure);
+          $( "#aSaturation" ).val(saturation);
+
+      $( "#sBrightness , #sContrast, #sSaturation, #sExposure" ).slider({
+      change: null
+      });
+
+          $( "#sBrightness" ).slider( "value", brightness );
+          $( "#sContrast" ).slider( "value", contrast );
+          $( "#sExposure" ).slider( "value", exposure );
+          $( "#sSaturation" ).slider( "value", saturation );
+
+            $( "#sBrightness , #sContrast, #sSaturation, #sExposure" ).slider({
+      change: applyFilter
+      });
+
+
+      applyFilter();
+
+      };
+    </script>
+
 
 {% endblock scripts %}
 
@@ -207,6 +235,7 @@
 
 	      10/01/2011
 
+	      <a href="javascript:applyProposal(0,0,0,0)">See Original</a>
 	    </div>
 	    
 	  </div>
@@ -238,7 +267,8 @@
 		  <div class="row" style="padding-top: 10px;">
 		    <div class="span11 column"><p></p></div>
 		    <div class="span2 column" style="text-align: left" >
-		      <a href="#">{{ 'See Proposal' | trans }}</a>
+		      {# <a href="javascript:applyProposal(10,10,10,10)">{{ 'See Proposal' | trans }}</a> #}
+		      <a href="javascript:applyProposal({{ comment.brightness }},{{ comment.contrast }}, {{ comment.exposure }},{{ comment.saturation}})">{{ 'See Proposal' | trans }}</a>
 		    </div>
 		  </div>
 		</td>
