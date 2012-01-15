@@ -64,9 +64,9 @@ class ImageComment
    /**
    * @var integer $exposition
    *
-   * @ORM\Column(name="exposition", type="integer", nullable=true)
+   * @ORM\Column(name="exposure", type="integer", nullable=true)
    */
-  protected $exposition;
+  protected $exposure;
 
    /**
    * @var integer $saturation
@@ -177,14 +177,14 @@ class ImageComment
     return $this->contrast;
   }
 
-  public function setExposition($exposition)
+  public function setExposure($exposure)
   {
-    $this->exposition = $exposition;
+    $this->exposure = $exposure;
   }
 
-  public function getExposition()
+  public function getExposure()
   {
-    return $this->exposition;
+    return $this->exposure;
   }
   public function setSaturation($saturation)
   {

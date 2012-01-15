@@ -114,6 +114,10 @@
 	      <!-- Controles
 		   ===========================
 		-->
+
+	      {% if is_granted("IS_AUTHENTICATED_REMEMBERED") or is_granted("IS_AUTHENTICATED_FULLY") %}
+	      <form action="{{ path('comment', { 'idImage': image.idImage}) }}" class="form-stacked" method="post">
+	      {% endif %}
 	      
 	      <div class="modify-control"  style="width:300px">
 		
@@ -124,9 +128,9 @@
 		
 		<div id="accordion"> 
 		  <h3><a href="#"> {{ 'Brightness' | trans }}
-		      <input type="text" id="bAmount" style="border:0" class="slider-data" style="background-color:transparent"/> / 
+		      <input type="text" id="bAmount" name="brightness" style="border:0" class="slider-data" style="background-color:transparent"/> / 
 		      {{ 'Contrast' | trans }}
-		      <input type="text" id="cAmount" style="border:0" class="slider-data" style="background-color:transparent"/> </a></h3> 
+		      <input type="text" id="cAmount" name="contrast" style="border:0" class="slider-data" style="background-color:transparent"/> </a></h3> 
 		  <div> 
 		    
 		    <div id="sBrightness"></div> 
@@ -137,7 +141,7 @@
 		    
 		  </div> 
 		  <h3><a href="#">{{ 'Exposure' | trans }}
-		      <input type="text" id="aExposure" style="border:0" class="slider-data" style="background-color:transparent"/></a></h3> 
+		      <input type="text" id="aExposure" name="exposure" style="border:0" class="slider-data" style="background-color:transparent"/></a></h3> 
 		  <div> 
 		    
 		    <div id="sExposure"></div> 
@@ -145,7 +149,7 @@
 		  </div> 
 		  
 		  <h3><a href="#">{{ 'Saturation' | trans }}
-		      <input type="text" id="aSaturation" style="border:0" class="slider-data" style="background-color:transparent"/></a></h3> 
+		      <input type="text" id="aSaturation" name="saturation" style="border:0" class="slider-data" style="background-color:transparent"/></a></h3> 
 		  <div> 
 		    
 		    <div id="sSaturation"></div> 
@@ -160,7 +164,7 @@
 	      {% if is_granted("IS_AUTHENTICATED_REMEMBERED") or is_granted("IS_AUTHENTICATED_FULLY") %}
 	      <div id="newComment" style="padding-top:15px">
 		
-		<form action="{{ path('comment', { 'idImage': image.idImage}) }}" class="form-stacked" method="post">
+		{# <form action="{{ path('comment', { 'idImage': image.idImage}) }}" class="form-stacked" method="post"> #}
 		  <fieldset style="text-align:left">
 		    <legend>{{ 'Comment' | trans }}!!!</legend>
 		    <div class="clearfix">

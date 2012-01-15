@@ -44,6 +44,10 @@ class CommentController extends Controller
 	$imageComment->setComment($request->get('comment'));
 	$imageComment->setImage($image);
 	$imageComment->setUser($this->container->get('security.context')->getToken()->getUser());
+	$imageComment->setBrightness($request->get('brightness'));
+	$imageComment->setContrast($request->get('contrast'));
+	$imageComment->setExposure($request->get('exposure'));
+	$imageComment->setSaturation($request->get('saturation'));
 
 	$em->persist($imageComment);
 	$em->flush();
