@@ -15,13 +15,12 @@ class ImageType extends AbstractType
   public function buildForm(FormBuilder $builder, array $options)
   {
     $builder
-      ->add('title')
-      ->add('description')
+	->add('title', 'text', array('required'=>'true'))
+	->add('description', 'textarea')
 	->add('category', 'entity', 
 	    array(
 		'class'=>'SFMPicmntBundle:Category',
-		))
-      ->add('tags');
+		));
   }
 
   public function getName()
