@@ -49,12 +49,6 @@ class Image
      */
     private $description;
 
-    /**
-     * @var integer $category
-     *
-     * @ORM\Column(name="category", type="integer", nullable=true)
-     */
-    private $category;
 
     /**
      * @var string $tags
@@ -95,20 +89,16 @@ class Image
 
 
     /**
-     * @ORM\ManyToMany(targetEntity="Category", inversedBy="image")
-     * @ORM\JoinTable(name="Image_Category",
-     *      joinColumns={@ORM\JoinColumn(name="id_image", referencedColumnName="id_image")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="category_id", referencedColumnName="id")}	     
-     * )
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="images", cascade={"remove"})
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
-    private $categories;
+    private $category;
     
 
 
     public function __consruct()
     {
       $this->userVotes = new \Doctrine\Common\Collections\ArrayCollection();
-      $this->categoies = new \Doctrine\Common\Collections\ArrayCollection();
       $this->imageComments = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -194,16 +184,16 @@ class Image
     /**
      * Set category
      *
-     * @param integer $category
+     * @param SFM\PicmntBundle\Entity\Category $category
      */
-    public function setCategory($category){
+    public function setCategory(\SFM\PicmntBundle\Entity\Category $category){
       $this->category = $category;
     }
 
     /**
      * Get category
      *
-     * @return integer $category
+     * @return SFM\PicmntBundle\Entity\Category $category $category
      */
     public function getCategory(){
       return $this->category;
@@ -277,21 +267,6 @@ class Image
       $this->userVotes[] = $userVotes;
     }
 
-    
-     /**
-     * Add categories
-     *
-     * @param SFM\PicmntBundle\Entity\Category $categories
-     */
-    public function addCategories(\SFM\Picmntbundle\Entity\Catgory $categories)
-    {
-
-      $this->categories[] = $categories;
-    }
-
-    
-
-
     public function hasUserVotes(\SFM\PicmntBundle\Entity\User $user)
     {
       foreach ($this->userVotes as $value)
@@ -312,17 +287,6 @@ class Image
     {
       return $this->userVotes;
     }
-
-    /**
-     * Get categories
-     *
-     * @return Doctrine\Commmon\Collections\Collencion $categories
-     */
-    public function getCategories()
-    {
-      return $this->categories;
-    }
-
 
 
     public function sumVotes(){

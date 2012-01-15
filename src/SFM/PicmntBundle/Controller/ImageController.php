@@ -68,7 +68,7 @@ class ImageController extends Controller
 
 	$user = $this->container->get('security.context')->getToken()->getUser();
 
-	if ($user->getId() != $image->getUser()->getId()) { //diferent user
+	if ($user->getId() != $image->getUser()->getId()) { 
 	    return $this->redirect($this->generateUrl('_img_show', array("option"=>"show", "idImage"=>$id_image) ));
 	}
 	else{

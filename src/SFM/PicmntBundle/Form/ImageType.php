@@ -4,6 +4,10 @@ namespace SFM\PicmntBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
+use SFM\PicmntBundle\Entity\Category;
+
+use Doctrine\ORM\EntityRepository;
+
 
 class ImageType extends AbstractType
 {
@@ -13,7 +17,10 @@ class ImageType extends AbstractType
     $builder
       ->add('title')
       ->add('description')
-      ->add('category')
+	->add('category', 'entity', 
+	    array(
+		'class'=>'SFMPicmntBundle:Category',
+		))
       ->add('tags');
   }
 

@@ -35,6 +35,11 @@ class Category
      */
     private $status;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Image", mappedBy="category")
+     */
+    private $images;
+
 
     /**
      * Get id
@@ -88,5 +93,29 @@ class Category
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * Add images
+     *
+     * @param SFM\PicmntBundle\Entity\Image $images
+     */
+    public function addImages(\SFM\PicmntBundle\Entity\Image $images)
+    {
+        $this->images[] = $images;
+    }
+
+    /**
+     * Get images
+     *
+     * @return Doctrine\Common\Collections\Collection $images
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
+
+    public function __tostring(){
+	return $this->getName();
     }
 }
