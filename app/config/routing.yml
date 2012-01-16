@@ -21,13 +21,19 @@ img_edit:
     pattern: /img/edit/{id_image}
     defaults: { _controller: SFMPicmntBundle:Image:edit }
 
-img_show:
-    pattern: /{category}/{option}
-    defaults: { _controller: SFMPicmntBundle:Image:show, category: 0, option: 'random' }
+#img_show:
+#    pattern: /{category}/{option}
+#    defaults: { _controller: SFMPicmntBundle:Image:show }
+#    requirements:
+#        category: 0|1|2|3|4
+        
 
-_img_show:
+img_show:
     pattern: /{category}/{option}/{idImage}
-    defaults: { _controller: SFMPicmntBundle:Image:show, category: 0, option: 'random', idImage: 0 }
+    defaults: { _controller: SFMPicmntBundle:Image:show,  idImage: 0 }
+    requirements:
+        category: 0|1|2|3|4
+        option: random|last|show
 
 img_vote:
     pattern: /img/vote/{idImage}

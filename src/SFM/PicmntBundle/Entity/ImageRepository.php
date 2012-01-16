@@ -44,14 +44,16 @@ class ImageRepository extends EntityRepository
     }
     
 
-    public function findNext($idImage, $orderBy)
+    public function findNext($idImage, $orderBy, $idCategory = 0)
     {
-        
+	$category = $this->getCategoryCondition($idCategory);
+
         $qb = $this->_em->createQueryBuilder();
         
         $qb->add('select', 'p')
             ->add('from', 'SFMPicmntBundle:Image p')
-            ->add('where', 'p.idImage > :idImage')   
+	    ->join('p.category','c')
+            ->add('where', 'p.idImage > :idImage'.$category)   
             ->add('orderBy', $orderBy)
             ->setParameter('idImage', $idImage)
             ->setMaxResults(1);
@@ -64,14 +66,17 @@ class ImageRepository extends EntityRepository
     }
     
 
-    public function findPrevious($idImage, $orderBy)
+    public function findPrevious($idImage, $orderBy, $idCategory = 0 )
     {
         
+	$category = $this->getCategoryCondition($idCategory);
+
         $qb = $this->_em->createQueryBuilder();
         
         $qb->add('select', 'p')
             ->add('from', 'SFMPicmntBundle:Image p')
-            ->add('where', 'p.idImage < :idImage')   
+	    ->join('p.category','c')
+            ->add('where', 'p.idImage < :idImage'.$category)   
             ->add('orderBy', $orderBy)
             ->setParameter('idImage', $idImage)
             ->setMaxResults(1);
@@ -83,16 +88,20 @@ class ImageRepository extends EntityRepository
     }
 
     
-    public function findFirst($orderBy)
+    public function findFirst($orderBy, $idCategory = 0)
     {
         
+	$category = $this->getCategoryCondition($idCategory);
+
         $qb = $this->_em->createQueryBuilder();
         
         $qb->add('select', 'p')
 	    ->add('from', 'SFMPicmntBundle:Image p')
+	    ->join('p.category','c')
+	    ->add('where','1 = 1'.$category)
 	    ->add('orderBy', $orderBy)
 	    ->setMaxResults(1);
-        
+
         $query = $qb->getQuery();  
 
         return $query->getResult();

@@ -69,7 +69,7 @@ class ImageController extends Controller
 	$user = $this->container->get('security.context')->getToken()->getUser();
 
 	if ($user->getId() != $image->getUser()->getId()) { 
-	    return $this->redirect($this->generateUrl('_img_show', array("option"=>"show", "idImage"=>$id_image) ));
+	    return $this->redirect($this->generateUrl('img_show', array("option"=>"show", "idImage"=>$id_image, "category"=>0) ));
 	}
 	else{
 	    $form = $this->createForm(new ImageType(), $image);
@@ -83,7 +83,7 @@ class ImageController extends Controller
 		    $em->persist($image);
 		    $em->flush();
 	
-		    return $this->redirect($this->generateUrl('_img_show', array("option"=>"random", "idImage"=>$image->getIdImage()) ));
+		    return $this->redirect($this->generateUrl('img_show', array("option"=>"random", "idImage"=>$image->getIdImage(), 'category'=>0) ));
 		}
 		else{
 		    return $this->render('SFMPicmntBundle:Image:editImage.html.twig', array("image_url" => 'uploads/'.$image->getUrl(), 'form' => $form->createView(), 'image'=>$image));
@@ -96,9 +96,9 @@ class ImageController extends Controller
 
 
 
-    private function getRandomImage(){
+    private function getRandomImage($category){
 	$em = $this->get('doctrine')->getEntityManager();
-	$image = $em->getRepository('SFMPicmntBundle:Image')->getRandom();
+	$image = $em->getRepository('SFMPicmntBundle:Image')->getRandom($category);
 
 	if (!$image){
 	    $e = $this->get('translator')->trans('There are no pictures in the database');
@@ -110,20 +110,21 @@ class ImageController extends Controller
  
 
     public function showAction($option, $idImage = 0, $category = 0){
+	
 	$em = $this->get('doctrine')->getEntityManager();
 	$paginator = Array();
 
 	if ( $option == 'last' ) {
 
 	    if (!$image = $em->find('SFMPicmntBundle:Image',$idImage)){
-		$images = $em->getRepository('SFMPicmntBundle:Image')->findFirst('p.idImage DESC');
+		$images = $em->getRepository('SFMPicmntBundle:Image')->findFirst('p.idImage DESC', $category);
 		$image = $images[0];
 	    }
 
-	    $paginator = $this->getPaginator($option, $image->getIdImage());
+	    $paginator = $this->getPaginator($option, $image->getIdImage(), $category);
 	}
 	else if ( $option == 'random' ){
-	    $image = $this->getRandomImage();
+	    $image = $this->getRandomImage($category);
 	}
 	else if ( $option == 'show' ){
 	  $image = $em->find('SFMPicmntBundle:Image',$idImage);
@@ -135,23 +136,23 @@ class ImageController extends Controller
 
 
 
-    private function getPaginator($option, $idImage){
+    private function getPaginator($option, $idImage, $category = 0){
     
-	return Array('imgNext'=>$this->getNext($option, $idImage), 
-	    'imgPrevious'=>$this->getPrevious($option, $idImage) );
+	return Array('imgNext'=>$this->getNext($option, $idImage, $category), 
+	    'imgPrevious'=>$this->getPrevious($option, $idImage, $category) );
 
     }
 
 
-    private function getNext($orderOption, $idImage){
+    private function getNext($orderOption, $idImage, $category){
 
 	if ($orderOption == 'last'){
 
 	    $em = $this->get('doctrine')->getEntityManager();
     
-	    if ( ! $images = $em->getRepository('SFMPicmntBundle:Image')->findNext($idImage, 'p.idImage')){
+	    if ( ! $images = $em->getRepository('SFMPicmntBundle:Image')->findNext($idImage, 'p.idImage', $category)){
 
-		$images = $em->getRepository('SFMPicmntBundle:Image')->findFirst('p.idImage DESC');    
+		$images = $em->getRepository('SFMPicmntBundle:Image')->findFirst('p.idImage DESC', $category);    
 
 	    }
 
@@ -164,15 +165,15 @@ class ImageController extends Controller
     }
 
 
-    private function getPrevious($orderOption, $idImage){
+    private function getPrevious($orderOption, $idImage, $category){
 
 	$em = $this->get('doctrine')->getEntityManager();
 
 	if ( $orderOption == 'last' ){
       
-	    if ( ! $images = $em->getRepository('SFMPicmntBundle:Image')->findPrevious($idImage, 'p.idImage DESC')){
+	    if ( ! $images = $em->getRepository('SFMPicmntBundle:Image')->findPrevious($idImage, 'p.idImage DESC', $category)){
 
-		$images = $em->getRepository('SFMPicmntBundle:Image')->findFirst('p.idImage DESC');    
+		$images = $em->getRepository('SFMPicmntBundle:Image')->findFirst('p.idImage DESC', $category);    
 
 	    }
      

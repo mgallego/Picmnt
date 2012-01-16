@@ -44,6 +44,10 @@ class MenuBuilder extends ContainerAware
 
     $category = $request->get('category');
     
+    if (!$category){
+	$category = 0;
+    }
+
     $menu->addChild($translator->trans('Random'), array('route' => 'img_show', 'routeParameters' => array('option'=>'random', 'category'=>$category)));
     $menu->addChild($translator->trans('Last'), array('route' => 'img_show', 'routeParameters' => array('option'=>'last', 'category'=>$category)));
     
