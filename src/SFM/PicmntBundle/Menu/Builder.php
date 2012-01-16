@@ -33,13 +33,16 @@ class Builder extends ContainerAware
     $em = $this->container->get('doctrine')->getEntityManager();
 
     $categories = $em->getRepository('SFMPicmntBundle:Category')->findAll();
-    
-    
-    $menu->addChild($this->container->get('translator')->trans('All'), array('route' => 'fos_user_registration_register'));
+
+    $request = $this->container->get('request');
+    $option = $request->get('option');
+    $idImage = $request->get('idImage');
+
+    $menu->addChild($this->container->get('translator')->trans('All'), array('route' => '_img_show', 'routeParameters'=> array('option'=>$option, 'idImage'=>$idImage, 'category'=>0)));
 
     foreach ($categories as $category)
     {
-      $menu->addChild($this->container->get('translator')->trans($category->getName()), array('route' => 'fos_user_registration_register'));
+	$menu->addChild($this->container->get('translator')->trans($category->getName()), array('route' => '_img_show', 'routeParameters'=> array('option'=>$option, 'idImage'=>$idImage, 'category'=>$category->getId())));
     }
 
     return $menu;

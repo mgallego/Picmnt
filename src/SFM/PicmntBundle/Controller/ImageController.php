@@ -109,9 +109,7 @@ class ImageController extends Controller
     }
  
 
-
-
-    public function showAction($option, $idImage = 0){
+    public function showAction($option, $idImage = 0, $category = 0){
 	$em = $this->get('doctrine')->getEntityManager();
 	$paginator = Array();
 
@@ -121,6 +119,7 @@ class ImageController extends Controller
 		$images = $em->getRepository('SFMPicmntBundle:Image')->findFirst('p.idImage DESC');
 		$image = $images[0];
 	    }
+
 	    $paginator = $this->getPaginator($option, $image->getIdImage());
 	}
 	else if ( $option == 'random' ){
