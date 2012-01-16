@@ -42,8 +42,10 @@ class MenuBuilder extends ContainerAware
     $menu->setAttribute('class', 'tabs'); 
     $menu->setAttribute('style','align: right');
 
-    $menu->addChild($translator->trans('Random'), array('route' => 'img_show', 'routeParameters' => array('option'=>'random')));
-    $menu->addChild($translator->trans('Last'), array('route' => 'img_show', 'routeParameters' => array('option'=>'last')));
+    $category = $request->get('category');
+    
+    $menu->addChild($translator->trans('Random'), array('route' => 'img_show', 'routeParameters' => array('option'=>'random', 'category'=>$category)));
+    $menu->addChild($translator->trans('Last'), array('route' => 'img_show', 'routeParameters' => array('option'=>'last', 'category'=>$category)));
     
     if ($context->isGranted('ROLE_USER')){
 
