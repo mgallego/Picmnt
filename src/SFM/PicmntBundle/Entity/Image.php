@@ -94,6 +94,16 @@ class Image
      */
     private $category;
     
+   
+    /**
+     * @var string $slug
+     *
+     * @ORM\Column(name="slug", type="string", length=255, nullable=true)
+     *
+     * @Assert\MaxLength(255)
+     */
+    private $slug;
+
 
 
     public function __consruct()
@@ -313,6 +323,25 @@ class Image
     {
       return $this->imageComments;
     }   
+
+    
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     */
+    public function setSlug($slug){
+      $this->slug = $slug;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string $slug
+     */
+    public function getSlug(){
+      return $this->slug;
+    }
 
    
 
