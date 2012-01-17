@@ -93,7 +93,7 @@ class Image
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
     private $category;
-    
+
    
     /**
      * @var string $slug
@@ -104,6 +104,13 @@ class Image
      */
     private $slug;
 
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     *
+     * @Assert\DateTime
+     */
+    protected $pubDate;
 
 
     public function __consruct()
@@ -342,7 +349,25 @@ class Image
     public function getSlug(){
       return $this->slug;
     }
+    
 
-   
+    /**
+     * Set pubDate
+     *
+     * @param datetime $pubDate
+     */
+    public function setPubDate($pubDate){
+      $this->pubDate = $pubDate;
+    }
+
+    /**
+     * Get pubDate
+     *
+     * @return datetime $pubDate
+     */
+    public function getPubDate(){
+      return $this->pubDate;
+    }
+    
 
 }

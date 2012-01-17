@@ -226,7 +226,7 @@
 
 	      {{ 'Author' | trans }}:<a href="{{ path('usr_profile', {'userName': image.user.username }) }}">{{ image.user.username }}</a>
 
-	      10/01/2011
+ 	      {{ image.pubDate | date() }}
 
 	      <a href="#imageTitle" onclick="javascript:applyProposal(0,0,0,0)">See Original</a>
 	    </div>

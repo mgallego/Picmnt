@@ -47,6 +47,7 @@ class ImageController extends Controller
 		$image->setUrl($newFileName);
 		$image->setVotes(0);
 		$image->setUser($user);
+		$image->setPubDate(new \DateTime('today'));
 
 		$em = $this->get('doctrine')->getEntityManager();     
 		$em->persist($image);
