@@ -54,9 +54,8 @@ class MenuBuilder extends ContainerAware
     
     if ($context->isGranted('ROLE_USER')){
 
-    $menu->addChild($translator->trans('My Profile'), array('route' => 'home'));
+      $menu->addChild($translator->trans('My Profile'), array('route' => 'usr_profile', 'routeParameters'=>array('userName'=>$context->getToken()->getUser()->getUsername())));
     $menu->addChild($translator->trans('Upload Image'), array('route' => 'img_upload'));
-    $menu->addChild($translator->trans('Admin'), array('route' => 'home'));
     }
     return $menu;
   }

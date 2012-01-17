@@ -43,6 +43,11 @@ usr_edit:
     pattern: /usr/edit/{userId}
     defaults: { _controller: SFMPicmntBundle:User:edit }
 
+usr_profile:
+    pattern: /profile/{userName}
+    defaults: { _controller: SFMPicmntBundle:User:profile }
+
+
 ##############################  COMMENTS CONTROLLER  ##########################
 
 comment:

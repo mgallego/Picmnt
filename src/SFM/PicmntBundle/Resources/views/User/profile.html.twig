@@ -1,0 +1,25 @@
+{% extends "SFMPicmntBundle::layout_private.html.twig" %}
+
+{% block content %}
+<section id="profile" class="container">
+  <div class="row">
+
+    <table>
+      {% for image in images %}
+      <tr>
+	<td>{{ image.url }}</td>
+	<td>{{ image.title }}</td>
+	<td>{{ image.category }}</td>
+	{% if app.user %}
+	  {% if app.user.username == app.request.get('userName') %}
+	<td><a href="{{ path('img_edit', {'id_image': image.idImage}) }}">Editar</a></td>
+	  {% endif %}
+	{% endif %}
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</section>
+
+{% endblock %}
+
