@@ -1,5 +1,9 @@
 {% extends "SFMPicmntBundle::layout_private.html.twig" %}
 
+{% block title %}
+| {{ image.title }}
+{% endblock title %}
+
 {% block javascript %}
   {{ parent() }}
     <script src="{{ asset('bundles/sfmpicmnt/CamanJS/caman.full.min.js') }}"> </script>
