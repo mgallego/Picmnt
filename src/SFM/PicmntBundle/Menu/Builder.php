@@ -38,6 +38,10 @@ class Builder extends ContainerAware
     $option = $request->get('option');
     $idImage = $request->get('idImage');
 
+    if (!$option){
+      $option  = 'random';
+    }
+
     $menu->addChild($this->container->get('translator')->trans('All'), array('route' => 'img_show', 'routeParameters'=> array('option'=>$option, 'idImage'=>$idImage, 'category'=>'all')));
 
     foreach ($categories as $category)
