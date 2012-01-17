@@ -224,7 +224,7 @@
 
 	      <img src="{{ avatar(image.user.id) }}" width="30px"/>
 
-	      {{ 'Author' | trans }}:<a href="mis_img.html"> Moisés Gallego</a>
+	      {{ 'Author' | trans }}:<a href="{{ path('usr_profile', {'userName': image.user.username }) }}">{{ image.user.username }}</a>
 
 	      10/01/2011
 
