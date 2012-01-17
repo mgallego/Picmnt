@@ -94,7 +94,7 @@ class ImageController extends Controller
     }
 
 
-
+    
 
     private function getRandomImage($category){
 	$em = $this->get('doctrine')->getEntityManager();
@@ -231,6 +231,18 @@ class ImageController extends Controller
       
 	}    
 
+    }
+
+    public function viewAction($user, $slug){
+	$em = $this->get('doctrine')->getEntityManager();
+	$image = $em->getRepository('SFMPicmntBundle:Image')->getByUserSlug($user, $slug);
+
+	if (!$image){
+	  $e = $this->get('translator')->trans('Picture Not Found');
+	    throw $this->createNotFoundException($e);
+	}
+          
+	return $this->render('SFMPicmntBundle:Image:viewImage.html.twig', array("image"=>$image[0]));
     }
 
 }

@@ -28,6 +28,10 @@ img_show:
         category: all|portraits|landscapes|animals|sports|buildings|others
         option: random|last|show
 
+img_view:
+    pattern: /view/{user}/{slug}
+    defaults: { _controller: SFMPicmntBundle:Image:view }
+
 img_vote:
     pattern: /img/vote/{idImage}
     defaults: { _controller: SFMPicmntBundle:Image:vote }

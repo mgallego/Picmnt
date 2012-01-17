@@ -1,0 +1,248 @@
+{% extends "SFMPicmntBundle::layout_private.html.twig" %}
+
+{% block javascript %}
+  {{ parent() }}
+    <script src="{{ asset('bundles/sfmpicmnt/CamanJS/caman.full.min.js') }}"> </script>
+{% endblock javascript %}
+
+{% block scripts %}
+  {{ parent() }}
+
+    <script type="text/javascript">
+      function applyFilter(){
+      
+      var vBrightness = $( "#sBrightness" ).slider( "value" );
+      var vContrast = $( "#sContrast" ).slider( "value" );
+      var vSaturation = $( "#sSaturation" ).slider( "value" );
+      var vExposure = $( "#sExposure" ).slider( "value" );
+
+      //Caman.remoteProxy = "{{ asset('bundles/sfmpicmnt/CamanJS/proxies/caman_proxy.php') }}";
+
+      Caman("#image-to-modify", function () {
+      $( "#render-in-progress" ).show();
+      this.revert(function(){
+      this.brightness(vBrightness).contrast(vContrast).saturation(vSaturation).exposure(vExposure).render();
+      $( "#render-in-progress" ).hide();
+      });
+      
+      });
+      };
+    </script>
+
+    <script type="text/javascript">
+      function applyProposal(brightness, contrast, exposure, saturation){
+
+
+          $( "#bAmount" ).val(brightness);
+          $( "#cAmount" ).val(contrast);
+          $( "#aExposure" ).val(exposure);
+          $( "#aSaturation" ).val(saturation);
+
+      $( "#sBrightness , #sContrast, #sSaturation, #sExposure" ).slider({
+      change: null
+      });
+
+          $( "#sBrightness" ).slider( "value", brightness );
+          $( "#sContrast" ).slider( "value", contrast );
+          $( "#sExposure" ).slider( "value", exposure );
+          $( "#sSaturation" ).slider( "value", saturation );
+
+            $( "#sBrightness , #sContrast, #sSaturation, #sExposure" ).slider({
+      change: applyFilter
+      });
+
+
+      applyFilter();
+
+      };
+    </script>
+
+
+{% endblock scripts %}
+
+
+{% block content %}
+
+
+<section id="content" style="padding-top: 50px">
+  <div class="container-fluid">
+    
+    <div style="background:#FFF">
+
+
+      {% block interno %}
+      <section id="pestanas">
+
+	<div id="row">
+	  {{ knp_menu_render('tabs', {'currentClass': 'active'}) }}
+	</div>
+
+      </section>
+
+      {% endblock %}
+
+      <center>
+	<section id="show_image">
+	  <div id="imageTitle">
+	    <h1>
+	    {{ image.title }}
+	    </h1>
+	  </div>
+	  <br />
+
+	  <div class="row">
+
+	    <div class="span14 columns" id="imageImage">
+	      <img src="/uploads{{ asset(image.url) }}" id="image-to-modify"/>
+	    </div>
+	    
+	    <div class="span6 columns">
+
+	      <!-- Controles
+		   ===========================
+		-->
+
+	      {% if is_granted("IS_AUTHENTICATED_REMEMBERED") or is_granted("IS_AUTHENTICATED_FULLY") %}
+	      <form action="{{ path('comment', { 'idImage': image.idImage}) }}" class="form-stacked" method="post">
+	      {% endif %}
+	      
+	      <div class="modify-control"  style="width:300px">
+		
+		<div id="render-in-progress" style="display:none"> 
+		  <p>{{ 'Rendering' | trans }}... </p> 
+		  <img src="http://camanjs.com/imgs/ajax-loader.gif" id="preset-rendering" /> 
+		</div> 
+		
+		<div id="accordion"> 
+		  <h3><a href="#"> {{ 'Brightness' | trans }}
+		      <input type="text" id="bAmount" name="brightness" style="border:0" class="slider-data" style="background-color:transparent"/> / 
+		      {{ 'Contrast' | trans }}
+		      <input type="text" id="cAmount" name="contrast" style="border:0" class="slider-data" style="background-color:transparent"/> </a></h3> 
+		  <div> 
+		    
+		    <div id="sBrightness"></div> 
+		    
+		    <br/> 
+		    
+		    <div id="sContrast"></div> 
+		    
+		  </div> 
+		  <h3><a href="#">{{ 'Exposure' | trans }}
+		      <input type="text" id="aExposure" name="exposure" style="border:0" class="slider-data" style="background-color:transparent"/></a></h3> 
+		  <div> 
+		    
+		    <div id="sExposure"></div> 
+		    
+		  </div> 
+		  
+		  <h3><a href="#">{{ 'Saturation' | trans }}
+		      <input type="text" id="aSaturation" name="saturation" style="border:0" class="slider-data" style="background-color:transparent"/></a></h3> 
+		  <div> 
+		    
+		    <div id="sSaturation"></div> 
+		    
+		  </div> 
+		</div> 
+
+	      </div> 
+
+	      <!-- Nuevo comentario
+		   ========================================== -->
+	      {% if is_granted("IS_AUTHENTICATED_REMEMBERED") or is_granted("IS_AUTHENTICATED_FULLY") %}
+	      <div id="newComment" style="padding-top:15px">
+		
+		{# <form action="{{ path('comment', { 'idImage': image.idImage}) }}" class="form-stacked" method="post"> #}
+		  <fieldset style="text-align:left">
+		    <legend>{{ 'Comment' | trans }}!!!</legend>
+		    <div class="clearfix">
+		      <div class="input"> 
+			<textarea class="xxlarge" id="textarea" name="comment" style="width:300px;height:150px"></textarea> 
+			<span class="help-block"> 
+			</span> 
+		      </div> 
+		    </div><!-- /clearfix --> 
+		    <div class="actions"> 
+		      <input type="submit" class="btn primary" value="{{ 'Save Changes' | trans }}">&nbsp;<button type="reset" class="btn">{{ 'Cancel' | trans }}</button> 
+		    </div> 
+		  </fieldset>
+		</form>
+		
+	      </div>
+	      {% else %}
+
+	      <div class="round-box-with-shadow" id="show-image-register">
+		<p>¿A que esperas para <a href="{{ path('fos_user_registration_register') }}">registrarte</a>?, es totalmente <strong>gratis</strong></p>
+		<p>o si ya tienes cuenta de usuario <a href="{{ path('fos_user_security_login') }}">accede ya</a>.</p>
+	      </div>
+
+
+	      {% endif %}
+
+	    </div>
+
+	  </div>
+
+	  <!-- Info
+	       ===================================================== -->
+	  <div class="row">
+
+	    <div class="span8 column" id="imageInfo" style="text-align:left">
+
+	      <img src="{{ avatar(image.user.id) }}" width="30px"/>
+
+	      {{ 'Author' | trans }}:<a href="mis_img.html"> Moisés Gallego</a>
+
+	      10/01/2011
+
+	      <a href="#imageTitle" onclick="javascript:applyProposal(0,0,0,0)">See Original</a>
+	    </div>
+	    
+	  </div>
+
+	  <div class="row">
+	    <div class="span14 columns" id="imageDescription" style="text-align:left">
+	      <strong>
+		{{ image.description }}
+	      </strong>
+	    </div>
+	  </div>
+	</section>
+
+
+	<!--  Comentarios
+	      ==================================================================== -->
+	<section id="comments" style="width:900px; text-align:left; ">
+	  <h2>{{ 'Comments' | trans }}</h2>
+	  <div class="comment" style="padding-top:10px">
+	    <table class="zebra-striped">
+	      {% for comment in image.imageComments %}
+	      <tr>
+		<td>
+		  <img src="{{ avatar(comment.user.id) }}"/>
+		  {{ comment.user.username }}
+		</td>
+		<td>
+	      {{ comment.comment }}
+		  <div class="row" style="padding-top: 10px;">
+		    <div class="span11 column"><p></p></div>
+		    <div class="span2 column" style="text-align: left" >
+		      {# <a href="javascript:applyProposal(10,10,10,10)">{{ 'See Proposal' | trans }}</a> #}
+		      <a href="#imageTitle" onclick="javascript:applyProposal({{ comment.brightness }},{{ comment.contrast }}, {{ comment.exposure }},{{ comment.saturation}})">{{ 'See Proposal' | trans }}</a>
+		    </div>
+		  </div>
+		</td>
+	      </tr>
+	      {% else %}
+	      <h3>Aun no hay comentarios para esta imagen. Se el primero en comentar</h3>
+	      {% endfor %}
+	    </table>
+	  </div>
+	</section>
+      </center>
+
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+

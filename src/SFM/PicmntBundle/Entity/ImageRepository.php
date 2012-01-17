@@ -42,7 +42,23 @@ class ImageRepository extends EntityRepository
 	return $query->getResult();
 
     }
-    
+
+    public function getByUserSlug($user, $slug){
+	$query = $this->getEntityManager()->createQuery('SELECT p 
+                                                     FROM SFMPicmntBundle:Image p
+                                                     JOIN p.user u
+                                                     WHERE p.slug = :slug
+                                                     AND u.username = :username
+	                                             AND p.title IS NOT NULL');
+
+	$query->setParameter('slug', $slug);
+	$query->setParameter('username', $user);
+	$query->setMaxResults(1);
+
+	return $query->getResult();
+
+    }
+
 
     public function findNext($idImage, $orderBy, $category = 'All')
     {
