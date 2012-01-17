@@ -25,7 +25,7 @@ img_show:
     pattern: /{category}/{option}/{idImage}
     defaults: { _controller: SFMPicmntBundle:Image:show,  idImage: 0 }
     requirements:
-        category: All|Portraits|Landscapes|Animals|Sports|Buildings|Other
+        category: All|portraits|landscapes|animals|sports|buildings|others
         option: random|last|show
 
 img_vote:

@@ -42,7 +42,7 @@ class Builder extends ContainerAware
 
     foreach ($categories as $category)
     {
-      $menu->addChild($this->container->get('translator')->trans($category->getName()), array('route' => 'img_show', 'routeParameters'=> array('option'=>$option, 'idImage'=>$idImage, 'category'=>$category->getName())));
+      $menu->addChild($this->container->get('translator')->trans(ucwords($category->getName())), array('route' => 'img_show', 'routeParameters'=> array('option'=>$option, 'idImage'=>$idImage, 'category'=>$category->getName())));
     }
 
     return $menu;
