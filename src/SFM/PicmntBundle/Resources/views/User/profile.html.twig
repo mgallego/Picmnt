@@ -10,6 +10,7 @@
 	<td>{{ image.url }}</td>
 	<td>{{ image.title }}</td>
 	<td>{{ image.category }}</td>
+	<td><a href="{{ path('img_view', {'user': app.request.get('userName'), 'slug': image.slug}) }}">View</a></td>
 	{% if app.user %}
 	  {% if app.user.username == app.request.get('userName') %}
 	<td><a href="{{ path('img_edit', {'id_image': image.idImage}) }}">Editar</a></td>

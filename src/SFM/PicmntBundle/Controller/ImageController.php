@@ -70,6 +70,7 @@ class ImageController extends Controller
 	$image = $em->find('SFMPicmntBundle:Image',$id_image);
 
 	$user = $this->container->get('security.context')->getToken()->getUser();
+	$oldTitle = $image->getTitle();
 
 	if ($user->getId() != $image->getUser()->getId()) { 
 	    return $this->redirect($this->generateUrl('img_show', array("option"=>"show", "idImage"=>$id_image, "category"=>'all') ));
@@ -82,7 +83,10 @@ class ImageController extends Controller
 		$form->bindRequest($request);
 
 		if ($form->isValid()) {
-		    $image->setSlug($this->container->get('picmnt.utils')->getSlug($image->getTitle(), $image->getIdImage(), $user->getId()));
+
+		    if ($oldTitle != $image->getTitle()){
+			$image->setSlug($this->container->get('picmnt.utils')->getSlug($image->getTitle(), $image->getIdImage(), $user->getId()));
+		    }
 		    $em->persist($image);
 		    $em->flush();
 	
