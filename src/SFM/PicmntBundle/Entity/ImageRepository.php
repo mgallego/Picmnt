@@ -10,7 +10,7 @@ class ImageRepository extends EntityRepository
 
     private function getCategoryCondition($category){
 
-	if ($category != 'All'){
+	if ($category != 'all'){
 	    return ' AND c.name = \''.$category.'\'';
 	}
 	return '';

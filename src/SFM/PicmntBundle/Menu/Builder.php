@@ -38,7 +38,7 @@ class Builder extends ContainerAware
     $option = $request->get('option');
     $idImage = $request->get('idImage');
 
-    $menu->addChild($this->container->get('translator')->trans('All'), array('route' => 'img_show', 'routeParameters'=> array('option'=>$option, 'idImage'=>$idImage, 'category'=>'All')));
+    $menu->addChild($this->container->get('translator')->trans('All'), array('route' => 'img_show', 'routeParameters'=> array('option'=>$option, 'idImage'=>$idImage, 'category'=>'all')));
 
     foreach ($categories as $category)
     {
