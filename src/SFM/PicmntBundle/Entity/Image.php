@@ -13,8 +13,7 @@ use  SFM\PicmntBundle\Util\Util;
  * @ORM\Entity
  * @ORM\Entity(repositoryClass="SFM\PicmntBundle\Entity\ImageRepository")
  */
-class Image
-{
+class Image {
 
     /**
      * @var integer $idImage
@@ -114,7 +113,7 @@ class Image
     protected $pubDate;
 
 
-    public function __consruct()
+    public function __construct()
     {
       $this->userVotes = new \Doctrine\Common\Collections\ArrayCollection();
       $this->imageComments = new \Doctrine\Common\Collections\ArrayCollection();
@@ -170,7 +169,6 @@ class Image
      */
     public function setTitle($title){
       $this->title = $title;
-      $this->slug = Util::getSlug($title);
     }
 
     /**
