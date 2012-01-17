@@ -83,7 +83,7 @@ class ImageController extends Controller
 		    $em->persist($image);
 		    $em->flush();
 	
-		    return $this->redirect($this->generateUrl('img_show', array("option"=>"random", "idImage"=>$image->getIdImage(), 'category'=>'all') ));
+		    return $this->redirect($this->generateUrl('img_view', array("user"=>$image->getUser()->getUsername(), "slug"=>$image->getSlug()) ));
 		}
 		else{
 		    return $this->render('SFMPicmntBundle:Image:editImage.html.twig', array("image_url" => 'uploads/'.$image->getUrl(), 'form' => $form->createView(), 'image'=>$image));
