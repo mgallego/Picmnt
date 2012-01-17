@@ -43,9 +43,9 @@ class MenuBuilder extends ContainerAware
     $menu->setAttribute('style','align: right');
 
     $category = $request->get('category');
-    
+
     if (!$category){
-	$category = 0;
+	$category = 'All';
     }
 
     $menu->addChild($translator->trans('Random'), array('route' => 'img_show', 'routeParameters' => array('option'=>'random', 'category'=>$category)));

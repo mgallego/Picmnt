@@ -69,7 +69,7 @@ class ImageController extends Controller
 	$user = $this->container->get('security.context')->getToken()->getUser();
 
 	if ($user->getId() != $image->getUser()->getId()) { 
-	    return $this->redirect($this->generateUrl('img_show', array("option"=>"show", "idImage"=>$id_image, "category"=>0) ));
+	    return $this->redirect($this->generateUrl('img_show', array("option"=>"show", "idImage"=>$id_image, "category"=>'All') ));
 	}
 	else{
 	    $form = $this->createForm(new ImageType(), $image);
@@ -83,7 +83,7 @@ class ImageController extends Controller
 		    $em->persist($image);
 		    $em->flush();
 	
-		    return $this->redirect($this->generateUrl('img_show', array("option"=>"random", "idImage"=>$image->getIdImage(), 'category'=>0) ));
+		    return $this->redirect($this->generateUrl('img_show', array("option"=>"random", "idImage"=>$image->getIdImage(), 'category'=>'All') ));
 		}
 		else{
 		    return $this->render('SFMPicmntBundle:Image:editImage.html.twig', array("image_url" => 'uploads/'.$image->getUrl(), 'form' => $form->createView(), 'image'=>$image));
@@ -109,7 +109,7 @@ class ImageController extends Controller
     }
  
 
-    public function showAction($option, $idImage = 0, $category = 0){
+    public function showAction($option, $idImage = 0, $category = 'All'){
 	
 	$em = $this->get('doctrine')->getEntityManager();
 	$paginator = Array();
@@ -136,7 +136,7 @@ class ImageController extends Controller
 
 
 
-    private function getPaginator($option, $idImage, $category = 0){
+    private function getPaginator($option, $idImage, $category = 'All'){
     
 	return Array('imgNext'=>$this->getNext($option, $idImage, $category), 
 	    'imgPrevious'=>$this->getPrevious($option, $idImage, $category) );

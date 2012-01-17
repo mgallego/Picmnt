@@ -8,20 +8,20 @@ class ImageRepository extends EntityRepository
 {
 
 
-    private function getCategoryCondition($idCategory){
+    private function getCategoryCondition($category){
 
-	if ($idCategory != 0){
-	    return ' AND c.id = '.$idCategory;
+	if ($category != 'All'){
+	    return ' AND c.name = \''.$category.'\'';
 	}
 	return '';
 
     }
 	
 
-    public function getRandom($idCategory = 0)
+    public function getRandom($category = 'All')
     {
 
-	$category = $this->getCategoryCondition($idCategory);
+	$category = $this->getCategoryCondition($category);
 
 	$idImageRange = $this->getEntityManager()
 	    ->createQuery('SELECT min(p.idImage) minIdImage, max(p.idImage) maxIdImage 
@@ -44,9 +44,9 @@ class ImageRepository extends EntityRepository
     }
     
 
-    public function findNext($idImage, $orderBy, $idCategory = 0)
+    public function findNext($idImage, $orderBy, $category = 'All')
     {
-	$category = $this->getCategoryCondition($idCategory);
+	$category = $this->getCategoryCondition($category);
 
         $qb = $this->_em->createQueryBuilder();
         
@@ -66,10 +66,10 @@ class ImageRepository extends EntityRepository
     }
     
 
-    public function findPrevious($idImage, $orderBy, $idCategory = 0 )
+    public function findPrevious($idImage, $orderBy, $category = 'All' )
     {
         
-	$category = $this->getCategoryCondition($idCategory);
+	$category = $this->getCategoryCondition($category);
 
         $qb = $this->_em->createQueryBuilder();
         
@@ -88,10 +88,10 @@ class ImageRepository extends EntityRepository
     }
 
     
-    public function findFirst($orderBy, $idCategory = 0)
+    public function findFirst($orderBy, $category = 'All')
     {
         
-	$category = $this->getCategoryCondition($idCategory);
+	$category = $this->getCategoryCondition($category);
 
         $qb = $this->_em->createQueryBuilder();
         
