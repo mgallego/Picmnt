@@ -49,7 +49,7 @@ class MenuBuilder extends ContainerAware
 	$category = 'All';
     }
     
-    $menu->addChild($translator->trans('Random'), array('route' => 'img_show', 'routeParameters' => array('option'=>'random', 'category'=>$category, 'idImage'=>$idImage)));
+    $menu->addChild($translator->trans('Random'), array('route' => 'img_show', 'routeParameters' => array('option'=>'random', 'category'=>$category)));
     $menu->addChild($translator->trans('Last'), array('route' => 'img_show', 'routeParameters' => array('option'=>'last', 'category'=>$category, 'idImage'=>$idImage)));
     
     if ($context->isGranted('ROLE_USER')){
