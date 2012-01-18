@@ -63,8 +63,17 @@ fos_user:
     firewall_name: main
     user_class: SFM\PicmntBundle\Entity\User
     template:
-      engine: twig
-      theme:  FOSUserBundle::form.html.twig	         
+        engine: twig
+        theme:  FOSUserBundle::form.html.twig	         
+    registration:
+        confirmation:
+            enabled: true
+            from_email:
+                address: no-reply@picmnt.com
+                sender_name: Picmnt
+    service: 
+        mailer: fos_user.mailer.twig_swift
+        
 
 knp_menu:
     twig: true
