@@ -68,12 +68,14 @@ fos_user:
     registration:
         confirmation:
             enabled: true
+            from_email: 
+                address: admin@picmnt.com
+                sender_name: Picmnt Register
+    resetting:
+        email:
             from_email:
-                address: no-reply@picmnt.com
-                sender_name: Picmnt
-    service: 
-        mailer: fos_user.mailer.twig_swift
-        
+                address:        admin@picmnt.com
+                sender_name:    Picmnt Resetting
 
 knp_menu:
     twig: true

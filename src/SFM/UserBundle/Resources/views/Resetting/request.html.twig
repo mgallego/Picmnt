@@ -1,5 +1,15 @@
+{#
 {% extends "FOSUserBundle::layout.html.twig" %}
 
 {% block fos_user_content %}
 {% include "FOSUserBundle:Resetting:request_content.html.twig" %}
 {% endblock fos_user_content %}
+#}
+{% extends "SFMPicmntBundle::layout.html.twig" %}
+
+{% block content %}
+
+{% include "FOSUserBundle:Resetting:request_content.html.twig" %}
+
+{% endblock content %}
+
