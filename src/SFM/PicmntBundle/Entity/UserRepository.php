@@ -3,12 +3,12 @@
 namespace SFM\PicmntBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
-use SFM\PicmntBundle\Entity\UserInfo;
+use SFM\PicmntBundle\Entity\User;
 
 class UserRepository extends EntityRepository
 {
     
-    public function findAvatar($userId){
+    public function findAvatarInfo($userId){
 	$em = $this->getEntityManager();
 	$query = $em->createQuery('
                   SELECT ui.avatar 

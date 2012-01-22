@@ -4,6 +4,12 @@
 <section id="profile" class="container">
   <div class="row">
 
+    <div class="span4 column">
+      <img src="{{ avatarByUsername(app.request.get('userName')) }}" class="avatar-large"/>
+    </div>
+
+  </div>
+  <div class="row">
     <table>
       {% for image in images %}
       <tr>
@@ -17,6 +23,8 @@
 	  {% endif %}
 	{% endif %}
       </tr>
+      {% else %}
+      <strong>¿A que esperas para subir una imagen?</strong>
       {% endfor %}
     </table>
   </div>

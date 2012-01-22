@@ -42,6 +42,14 @@ class User extends BaseUser
   private $imageComments;
 
 
+  /**
+   * @var string $avatar
+   *
+   * @ORM\Column(name="avatar", type="string", length=255, nullable=true)
+   */
+  private $avatar;
+
+
   ////////////////////////////////////////////
   ///////////  METHODS  //////////////////////
   ////////////////////////////////////////////
@@ -155,6 +163,23 @@ class User extends BaseUser
       return $this->imageComments;
     }
 
+    /**
+     * Set avatar
+     *
+     * @param string $avatar
+     */
+    public function setAvatar($avatar){
+      $this->avatar = $avatar;
+    }
+
+    /**
+     * Get avatar
+     *
+     * @return string $avatar
+     */
+    public function getAvatar(){
+      return $this->avatar;
+    }
 
    
 }

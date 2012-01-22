@@ -23,17 +23,29 @@ class PicmntExtension extends \Twig_Extension
 
     public function getFunctions(){
 	return array(
-	    'avatar' => new \Twig_Function_Method($this, 'avatar')
+	    'avatar' => new \Twig_Function_Method($this, 'avatar'),
+	    'avatarByUsername' => new \Twig_Function_Method($this, 'avatarByUsername')
 	    );
     }
 
     public function avatar($userId){
-	$avatar = $this->em->getRepository('SFMPicmntBundle:User')->findAvatar($userId);
-	if (!$avatar){
-	    return '/bundles/sfmpicmnt/images/user-default.png';
+	$user = $this->em->getRepository('SFMPicmntBundle:User')->findById($userId);
+
+	if (!$user[0]->getAvatar()){
+	    return '/bundles/sfmpicmnt/images/user.svg';
 	}
-	return '/uploads/avatarsmall/'.$avatar[0]["avatar"];
+	return '/uploads/avatarsmall/'.$user[0]->getAvatar();
     }
+
+    public function avatarByUsername($username){
+	$user = $this->em->getRepository('SFMPicmntBundle:User')->findByUsername($username);
+
+	if (!$user[0]->getAvatar()){
+	    return '/bundles/sfmpicmnt/images/user.svg';
+	}
+	return '/uploads/avatarsmall/'.$user[0]->getAvatar();
+    }
+
 
     public function getName(){
 	return 'picmnt';

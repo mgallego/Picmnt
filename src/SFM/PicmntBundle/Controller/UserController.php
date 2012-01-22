@@ -100,6 +100,12 @@ class UserController extends Controller
     public function  profileAction($userName){
       $em = $this->get('doctrine')->getEntityManager();
       $user =   $em->getRepository('SFMPicmntBundle:User')->findByUsername($userName);
+
+      if (!$user){
+	  $e = $this->get('translator')->trans('The User Not Exists');
+	  throw $this->createNotFoundException($e);
+      }
+
       $images = $em->getRepository('SFMPicmntBundle:Image')->findByUser($user);
 
       if ($images){
@@ -107,7 +113,7 @@ class UserController extends Controller
 
       }
       else{
-	print 'no hay usuarios';
+	  return $this->render('SFMPicmntBundle:User:profile.html.twig', array('images' => $images));
       }
     }
 
