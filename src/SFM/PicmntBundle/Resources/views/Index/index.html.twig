@@ -77,7 +77,10 @@
   <div class="row">
     <div class="span8 column text-shadow" id="index-most-comments">
       <h2>Mas comentadas</h2>
-	{% include 'SFMPicmntBundle:Index:slideComment.html.twig' %}
+      {% for image in mostComments %}
+      {{ image.idImage }}
+      {% endfor %}
+{#	{% include 'SFMPicmntBundle:Index:slideComment.html.twig' %} #}
     </div>
     <div class="span8 column text-shadow" id="index-last-added">
       <h2>Ultimas Añadidas</h2>

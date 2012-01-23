@@ -73,15 +73,41 @@ class ImageRepository extends EntityRepository
 
 
     public function getMostComment($maxResults){
-	$query = $this->getEntityManager()->createQuery('SELECT count(c) as cCount, p.idImage  
-                                                     FROM SFMPicmntBundle:ImageComment c
-                                                     JOIN c.image p
-	                                             WHERE p.title IS NOT NULL
-                                                     GROUP BY p.idImage
-                                                     ORDER BY cCount DESC');
-
+/*	$query = $this->getEntityManager()->createQuery('SELECT i FROM SFMPicmntBundle:Image i 
+                                                        WHERE i.idImage in (SELECT a.idImage
+                                                                              FROM 
+                                                                                  (SELECT p.idImage as idImage, count(c) as cCount
+                                                                                     FROM SFMPicmntBundle:ImageComment c
+                                                                                     JOIN c.image p
+	                                                                            WHERE p.title IS NOT NULL
+                                                                                    GROUP BY p.idImage
+                                                                                    ORDER BY cCount) a 
+                                                                             )');
 	$query->setMaxResults($maxResults);
+*/
 
+        $qb = $this->_em->createQueryBuilder();
+        /*
+        $qb->add('select', 'p.idImage, count(c) as cCount')
+            ->add('from', 'SFMPicmntBundle:ImageComment c')
+	    ->join('c.image','p')
+            ->add('where', 'p.title is not null') 
+	    ->addGroupby('p.idImage')
+            ->addOrderBy('cCount', 'DESC')
+            ->setMaxResults(10);
+	*/	
+
+        $qb->add('select', 'c, count(c) as cCount')
+            ->add('from', 'SFMPicmntBundle:ImageComment c')
+	    ->join('c.image','p')
+            ->add('where', 'p.title is not null') 
+	    ->addGroupby('p.idImage')
+            ->addOrderBy('cCount', 'DESC')
+            ->setMaxResults(10);
+
+
+	$query = $qb->getQuery();  
+	
 	return $query->getResult();
 
     }

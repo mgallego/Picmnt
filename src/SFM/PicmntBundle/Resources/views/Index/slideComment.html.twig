@@ -1,0 +1,16 @@
+<div id="slider2" class="box-with-shadow"> 
+  <ul id="slider2Content" >
+    {% for image in mostComments %}
+{#    <li class="slider2Image">
+      <a href="{{ path('img_view', {'user': image.user.username, 'slug': image.slug}) }} ">
+	<img src="/uploads{{ asset(image.url)}}" class="box-with-shadow" />
+      </a>
+      <span class="bottom"><strong>{{ image.title }}</strong><br />Por: {{ image.user.username }}</span>
+    </li>#}
+    {% else %}
+    There are not images in the database
+    {% endfor %}
+
+    <div class="clear slider2Image"></div>
+  </ul>
+</div>
