@@ -29,21 +29,21 @@ class PicmntExtension extends \Twig_Extension
     }
 
     public function avatar($userId){
-	$user = $this->em->getRepository('SFMPicmntBundle:User')->findById($userId);
+	$user = $this->em->getRepository('SFMPicmntBundle:User')->findOneById($userId);
 
-	if (!$user[0]->getAvatar()){
+	if (!$user->getAvatar()){
 	    return '/bundles/sfmpicmnt/images/user.svg';
 	}
-	return '/uploads/avatarsmall/'.$user[0]->getAvatar();
+	return '/uploads/avatarsmall/'.$user->getAvatar();
     }
 
-    public function avatarByUsername($username){
-	$user = $this->em->getRepository('SFMPicmntBundle:User')->findByUsername($username);
+    public function avatarByUsername($username, $size = 'small'){
+	$user = $this->em->getRepository('SFMPicmntBundle:User')->findOneByUsername($username);
 
-	if (!$user[0]->getAvatar()){
+	if (!$user->getAvatar()){
 	    return '/bundles/sfmpicmnt/images/user.svg';
 	}
-	return '/uploads/avatarsmall/'.$user[0]->getAvatar();
+	return '/uploads/avatar'.$size.'/'.$user->getAvatar();
     }
 
 

@@ -97,23 +97,77 @@ class UserController extends Controller
      
     }
 
+
+
+
     public function  profileAction($userName){
       $em = $this->get('doctrine')->getEntityManager();
-      $user =   $em->getRepository('SFMPicmntBundle:User')->findByUsername($userName);
+      $user =   $em->getRepository('SFMPicmntBundle:User')->findOneByUsername($userName);
 
       if (!$user){
 	  $e = $this->get('translator')->trans('The User Not Exists');
 	  throw $this->createNotFoundException($e);
       }
 
+      $avatarOld = $user->getAvatar();
+
       $images = $em->getRepository('SFMPicmntBundle:Image')->findByUser($user);
 
+
+      $form = $this->get('form.factory')
+	->createBuilder('form', $user)
+	->add('avatar', 'file', array('required'=>false))
+	->getForm();
+
+      $request = $this->get('request');
+   
+      if ($request->getMethod() == 'POST'){
+	$form->bindRequest($request);
+      
+	if ($form->isValid()) {
+
+	  $files=$request->files->get($form->getName());
+
+	  if ($files["avatar"] == null) {
+	    
+	    $user->setAvatar($avatarOld);
+
+	  }
+	  else{
+	  
+	    $uploadedFile=$files["avatar"]; 
+
+	    $uploadedFile->getPath();
+	    $uploadedFile->getClientOriginalName();
+	    $uploadedFile->getMimeType();
+	    
+	    $extension = '.jpg';
+
+	    $newFileName = 'avatar'.$user->getId().$extension;
+	 
+	    $uploadedFile->move(
+	      $_SERVER['DOCUMENT_ROOT']."/uploads/avatarbig",
+	      $newFileName );
+
+	    $imageUtil = new ImageUtil();
+	    
+	    $imageUtil->resizeImage('uploads/avatarbig/'.$newFileName, 300);
+	    $imageUtil->createAvatarSmall('uploads/avatarbig/'.$newFileName, 'uploads/avatarsmall/'.$newFileName, 50);
+	 
+	    $user->setAvatar($newFileName);
+	  }
+
+	  $em->persist($user);
+	  $em->flush();
+	}
+      }
+
       if ($images){
-	return $this->render('SFMPicmntBundle:User:profile.html.twig', array('images' => $images));
+	return $this->render('SFMPicmntBundle:User:profile.html.twig', array('images' => $images, 'form' => $form->createView()));
 
       }
       else{
-	  return $this->render('SFMPicmntBundle:User:profile.html.twig', array('images' => $images));
+	return $this->render('SFMPicmntBundle:User:profile.html.twig', array('images' => $images, 'form' => $form->createView()));
       }
     }
 
