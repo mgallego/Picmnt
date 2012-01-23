@@ -17,8 +17,10 @@ class IndexController extends Controller
 	  $em = $this->get('doctrine')->getEntityManager();
 
 	  $lastImages = $em->getRepository('SFMPicmntBundle:Image')->getLastImages(10);
+
+	  $mostCommentImages = $em->getRepository('SFMPicmntBundle:Image')->getMostComment(10);
 	  
-	  return $this->render('SFMPicmntBundle:Index:index.html.twig', array('lastImages'=>$lastImages));
+	  return $this->render('SFMPicmntBundle:Index:index.html.twig', array('lastImages'=>$lastImages, 'mostComments'=>$mostCommentImages));
       }
     }
 

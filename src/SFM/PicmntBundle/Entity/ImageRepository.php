@@ -72,6 +72,21 @@ class ImageRepository extends EntityRepository
     }
 
 
+    public function getMostComment($maxResults){
+	$query = $this->getEntityManager()->createQuery('SELECT count(c) as cCount, p.idImage  
+                                                     FROM SFMPicmntBundle:ImageComment c
+                                                     JOIN c.image p
+	                                             WHERE p.title IS NOT NULL
+                                                     GROUP BY p.idImage
+                                                     ORDER BY cCount DESC');
+
+	$query->setMaxResults($maxResults);
+
+	return $query->getResult();
+
+    }
+
+
 
     public function findNext($idImage, $orderBy, $category = 'All')
     {
