@@ -2,6 +2,7 @@
 namespace SFM\PicmntBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use SFM\PicmntBundle\Entity\Image;
 
 class IndexController extends Controller
 {
@@ -12,7 +13,12 @@ class IndexController extends Controller
 	return $this->redirect($this->generateUrl('secure_home'));
       }
       else{
-	return $this->render('SFMPicmntBundle:Index:index.html.twig');
+	  
+	  $em = $this->get('doctrine')->getEntityManager();
+
+	  $lastImages = $em->getRepository('SFMPicmntBundle:Image')->getLastImages(10);
+	  
+	  return $this->render('SFMPicmntBundle:Index:index.html.twig', array('lastImages'=>$lastImages));
       }
     }
 

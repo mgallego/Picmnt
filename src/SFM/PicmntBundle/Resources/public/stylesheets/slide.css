@@ -1,23 +1,41 @@
-#slider, #slider1, #slider2 {
+#slider{
     width: 100%; /* important to be same as image width */
     height: 100%; /* important to be same as image height */
     position: relative; /* important */
 	overflow: hidden; /* important */
 }
 
-#sliderContent, #slider1Content, #slider2Content {
-    border-radius: 20px;
+#slider1 {
+    width: 100%; /* important to be same as image width */
+    height: 100%; /* important to be same as image height */
+    position: relative; /* important */
+	overflow: hidden; /* important */
+}
+
+#sliderContent{
     box-shadow: 0px 7px 10px rgba(0,0,0,0.5);
     width: 100%;
     position: absolute;
 	top: 0;
 	margin-left: 0;
 }
-.sliderImage, .slider1Image, .slider2Image {
+
+
+#slider1Content{
+    box-shadow: 0px 7px 10px rgba(0,0,0,0.5);
+    width: 450px;
+    position: absolute;
+	top: 0;
+	margin-left: 0;
+}
+
+.sliderImage, .slider1Image {
     float: left;
     position: relative;
-	display: none;
+    display: none;
 }
+
+
 .sliderImage span {
     position: absolute;
 	font: 10px/15px Arial, Helvetica, sans-serif;
@@ -32,11 +50,16 @@
     display: none;
 }
 
-.slider1Image span, .slider2Image span {
+.slider1Image img{
+    width: 450px;
+    height: 100%;
+}
+
+.slider1Image span {
     position: absolute;
 	font: 10px/15px Arial, Helvetica, sans-serif;
     padding: 10px 13px;
-    width: 694px;
+    width: 300px;
     background-color: #000;
     filter: alpha(opacity=70);
     -moz-opacity: 0.7;
@@ -48,7 +71,7 @@
 .clear {
 	clear: both;
 }
-.sliderImage span strong, .slider1Image span strong, .slider2Image span strong {
+.sliderImage span strong, .slider1Image {
     font-size: 14px;
 }
 .top {

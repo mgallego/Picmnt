@@ -20,6 +20,11 @@
   $('#slider').s3Slider({
   timeOut: 3000
   });
+
+  $('#slider1').s3Slider({
+  timeOut: 5000
+  });
+
   });
 </script>
 {% endblock scripts %}
@@ -29,7 +34,7 @@
 <section id="content" class="container">
   <div class="row">
     <div id="index-slide" >
-      {% include 'SFMPicmntBundle:Index:slide.html.twig' %}
+     {% include 'SFMPicmntBundle:Index:slide.html.twig' %} 
     </div>
   </div>
   <div class="row">
@@ -67,10 +72,14 @@
 <section id="index-most" class="container">
   <div class="row">
     <div class="span8 column text-shadow" id="index-most-comments">
-      <h2>Mas Vistas</h2>
+      <h2>Mas comentadas</h2>
+
     </div>
     <div class="span8 column text-shadow" id="index-last-added">
-      <h2>Mas Votadas</h2>
+      <h2>Ultimas Añadidas</h2>
+      <div id="index-slide-last">
+	{% include 'SFMPicmntBundle:Index:slideLast.html.twig' %}
+      </div>
     </div>
   </div>
 </section>

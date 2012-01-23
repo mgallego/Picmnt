@@ -58,6 +58,19 @@ class ImageRepository extends EntityRepository
 	return $query->getResult();
 
     }
+    
+    public function getLastImages($maxResults){
+	$query = $this->getEntityManager()->createQuery('SELECT p 
+                                                     FROM SFMPicmntBundle:Image p
+	                                             WHERE p.title IS NOT NULL
+                                                     ORDER BY p.idImage DESC');
+
+	$query->setMaxResults($maxResults);
+
+	return $query->getResult();
+
+    }
+
 
 
     public function findNext($idImage, $orderBy, $category = 'All')
