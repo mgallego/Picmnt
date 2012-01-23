@@ -12,8 +12,6 @@
 
 {% endblock javascript %}
 
-
-
 {% block scripts %}
 {{ parent() }}
 
@@ -33,27 +31,46 @@
     <div id="index-slide" >
       {% include 'SFMPicmntBundle:Index:slide.html.twig' %}
     </div>
+  </div>
+  <div class="row">
+
+    <div class="span8 column" id="info-index">
+      <h2 class="text-shadow">
+	¿Que es Picmnt?
+      </h2>
+      <br/>
+      <p>
+	¿Alguna vez te han dicho <strong>"bonita foto, pero le sobra un poco de saturación"</strong> o <strong>"mejoraría con un pelín de contraste"</strong>?
+      </p>
+      <p>
+	¿Cuanto es "un poco de saturación"? ¿Cuanto es un pelín de contraste?
+      </p>
+      <p>
+	Ya es hora de demostrar lo que quieres decir con imágenes. Picmnt es una nueva forma de comentar fotografías.
+      </p>
+      <p>
+	<strong>Sube una fotografía, comentala, edtita y muestra como piensas que mejoraría.</strong>
+      </p>
+      </p>
+    </div>
+
+
     <div class="span8 column round-box-with-shadow" id="index-options">
       <p>¿A que esperas para <a href="{{ path('fos_user_registration_register') }}">registrarte</a>?, es totalmente <strong>gratis</strong></p>
       <p>¿No estás convencido aún?, <a href="{{ path('img_show', {'category': 'all', 'option': 'random'}) }}">explora</a> sin preocupaciones o si ya tienes cuenta de usuario <a href="{{ path('fos_user_security_login') }}">accede ya</a>.</p>
     </div>
-    <div class="span8 column">
-      <iframe width="420" height="315" src="http://www.youtube.com/embed/UpMh9H7-odw?rel=0" frameborder="0" allowfullscreen class="box-with-shadow"></iframe>
-    </div>
+
   </div>
 
 </section>
 
 <section id="index-most" class="container">
   <div class="row">
-    <div class="span-one-third round-box-with-shadow" id="index-most-views">
+    <div class="span8 column text-shadow" id="index-most-comments">
       <h2>Mas Vistas</h2>
     </div>
-    <div class="span-one-third round-box-with-shadow" id="index-most-voted">
+    <div class="span8 column text-shadow" id="index-last-added">
       <h2>Mas Votadas</h2>
-    </div>
-    <div class="span-one-third round-box-with-shadow" id="index-most-comments">
-      <h2>Mas Comentadas</h2>
     </div>
   </div>
 </section>

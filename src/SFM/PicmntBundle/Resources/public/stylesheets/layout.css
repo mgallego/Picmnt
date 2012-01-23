@@ -311,3 +311,14 @@ _-------------------------------------------------------------------------------
 .avatar-large{
     width: 300px;
 }
+
+#info-index{
+
+    font-size: 16px;
+    text-align: center;
+
+}
+
+.text-shadow{
+        text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+}
