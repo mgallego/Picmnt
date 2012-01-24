@@ -294,6 +294,18 @@
 	      <source>By</source>
 	      <target>Por</target>
 	    </trans-unit>
+	    <trans-unit id="74">
+	      <source>About Us</source>
+	      <target>Sobre Nosotros</target>
+	    </trans-unit>
+	    <trans-unit id="75">
+	      <source>Terms of use</source>
+	      <target>Terminos de uso</target>
+	    </trans-unit>
+	    <trans-unit id="76">
+	      <source>Privacy</source>
+	      <target>Privacidad</target>
+	    </trans-unit>
         </body>
     </file>
 </xliff>
