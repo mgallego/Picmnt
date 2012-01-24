@@ -97,7 +97,7 @@ class ImageRepository extends EntityRepository
             ->setMaxResults(10);
 	*/	
 
-        $qb->add('select', 'c, count(c) as cCount')
+        $qb->add('select', 'c as comment, count(c) as cCount')
             ->add('from', 'SFMPicmntBundle:ImageComment c')
 	    ->join('c.image','p')
             ->add('where', 'p.title is not null') 

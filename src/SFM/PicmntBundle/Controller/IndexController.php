@@ -20,13 +20,9 @@ class IndexController extends Controller
 
 	  $mostCommentImages = $em->getRepository('SFMPicmntBundle:Image')->getMostComment(10);
 
-	  print (\Doctrine\Common\Util\Debug::dump($mostCommentImages));
-	  $a1 = array("dato"=>'1');
+	  //	  print (\Doctrine\Common\Util\Debug::dump($mostCommentImages));
 
-	  $a1[0] = array("dato"=>'1');
-	  print_r($a1);
-
-	  return $this->render('SFMPicmntBundle:Index:index.html.twig', array('lastImages'=>$lastImages, 'mostComments'=>$mostCommentImages[0][0]->getImage()));
+	  return $this->render('SFMPicmntBundle:Index:index.html.twig', array('lastImages'=>$lastImages, 'mostComments'=>$mostCommentImages));
       }
     }
 
