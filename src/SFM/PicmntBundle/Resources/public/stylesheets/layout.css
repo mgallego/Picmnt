@@ -336,7 +336,7 @@ _-------------------------------------------------------------------------------
     text-align: center;
 }
 
-#about h1{
+#about h1, #terms h1{
     text-align: center;
     margin-bottom: 2em;
 }
