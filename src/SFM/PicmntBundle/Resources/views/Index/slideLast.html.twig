@@ -5,7 +5,7 @@
       <a href="{{ path('img_view', {'user': image.user.username, 'slug': image.slug}) }} ">
 	<img src="/uploads{{ asset(image.url)}}" class="box-with-shadow" />
       </a>
-      <span class="bottom"><strong>{{ image.title }}</strong><br />Por: {{ image.user.username }}</span>
+      <span class="bottom"><strong>{{ image.title }}</strong><br />{{ 'By' | trans }}: {{ image.user.username }}</span>
     </li>
     {% else %}
     There are not images in the database

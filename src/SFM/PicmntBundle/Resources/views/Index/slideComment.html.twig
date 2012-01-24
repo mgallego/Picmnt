@@ -5,7 +5,7 @@
       <a href="{{ path('img_view', {'user': imageComment.comment.image.user.username, 'slug': imageComment.comment.image.slug}) }} ">
 	<img src="/uploads{{ asset(imageComment.comment.image.url)}}" class="box-with-shadow" />
       </a>
-      <span class="bottom"><strong>{{ imageComment.comment.image.title }}</strong><br />Por: {{ imageComment.comment.image.user.username }}</span>
+      <span class="bottom"><strong>{{ imageComment.comment.image.title }}</strong><br />{{ 'By' | trans }}: {{ imageComment.comment.image.user.username }}</span>
     </li>
     {% else %}
     There are not images in the database

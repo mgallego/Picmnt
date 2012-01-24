@@ -218,6 +218,82 @@
 	      <source>Explore</source>
 	      <target>Explorar</target>
 	    </trans-unit>
+	    <trans-unit id="55">
+	      <source>What is Picmnt</source>
+	      <target>Que es Picmnt</target>
+	    </trans-unit>
+	    <trans-unit id="56">
+	      <source>Have you ever been told</source>
+	      <target>Alguna vez te han dicho</target>
+	    </trans-unit>
+	    <trans-unit id="57">
+	      <source>pretty picture, but I have a little extra saturation</source>
+	      <target>bonita foto, pero le sobra un poco de saturacion</target>
+	    </trans-unit>
+	    <trans-unit id="58">
+	      <source>or</source>
+	      <target>o</target>
+	    </trans-unit>
+	    <trans-unit id="59">
+	      <source>improve with a bit of contrast</source>
+	      <target>mejoraria con un poco de contraste</target>
+	    </trans-unit>
+	    <trans-unit id="60">
+	      <source>How much is "a bit of saturation"? How much is a bit of contrast?</source>
+	      <target>Cuanto es "un poco de saturacion? Cuanto es un poco de contraste?</target>
+	    </trans-unit>
+	    <trans-unit id="61">
+	      <source>It's time to show what you mean with images. Picmnt is a new way to comment photos.</source>
+	      <target>Ya es hora de demostrar lo que quieres decir con imagenes. Picmnt es una nueva forma de comentar fotografias. </target>
+	    </trans-unit>
+	    <trans-unit id="62">
+	      <source>Upload a photo, comment, edit and shows how you think it better.</source>
+	      <target>Sube una fotografia, comentala, edita y muestra como piensas que mejoraria.</target>
+	    </trans-unit>
+	    <trans-unit id="63">
+	      <source>What are you waiting for</source>
+	      <target>A que esperas para</target>
+	    </trans-unit>
+	    <trans-unit id="64">
+	      <source>sign up</source>
+	      <target>registrarte</target>
+	    </trans-unit>
+	    <trans-unit id="65">
+	      <source>is absolutely</source>
+	      <target>es totalmente</target>
+	    </trans-unit>
+	    <trans-unit id="66">
+	      <source>free</source>
+	      <target>gratis</target>
+	    </trans-unit>
+	    <trans-unit id="67">
+	      <source>Are you not convinced yet</source>
+	      <target>Aun no estas convencido</target>
+	    </trans-unit>
+	    <trans-unit id="68">
+	      <source>explore</source>
+	      <target>explora</target>
+	    </trans-unit>
+	    <trans-unit id="69">
+	      <source>without worries, or if you have an account</source>
+	      <target>sin preocupaciones, o si ya tienes cuenta</target>
+	    </trans-unit>
+	    <trans-unit id="70">
+	      <source>login now</source>
+	      <target>accede ya</target>
+	    </trans-unit>
+	    <trans-unit id="71">
+	      <source>Most commented</source>
+	      <target>Mas comentadas</target>
+	    </trans-unit>
+	    <trans-unit id="72">
+	      <source>Last added</source>
+	      <target>Ultimas Añadidas</target>
+	    </trans-unit>
+	    <trans-unit id="73">
+	      <source>By</source>
+	      <target>Por</target>
+	    </trans-unit>
         </body>
     </file>
 </xliff>

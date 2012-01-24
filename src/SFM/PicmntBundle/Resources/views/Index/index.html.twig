@@ -45,28 +45,28 @@
 
     <div class="span8 column" id="info-index">
       <h2 class="text-shadow">
-	¿Que es Picmnt?
+	{{ 'What is Picmnt' | trans }}?
       </h2>
       <br/>
       <p>
-	¿Alguna vez te han dicho <strong>"bonita foto, pero le sobra un poco de saturación"</strong> o <strong>"mejoraría con un pelín de contraste"</strong>?
+	{{ 'Have you ever been told' | trans }}?<strong> "{{ 'pretty picture, but I have a little extra saturation' | trans }}"</strong> {{ 'or' | trans }} <strong>"{{'improve with a bit of contrast' | trans }}"</strong>?
       </p>
       <p>
-	¿Cuanto es "un poco de saturación"? ¿Cuanto es un pelín de contraste?
+	{{ 'How much is "a bit of saturation"? How much is a bit of contrast?' | trans }}
       </p>
       <p>
-	Ya es hora de demostrar lo que quieres decir con imágenes. Picmnt es una nueva forma de comentar fotografías.
+	{{ "It's time to show what you mean with images. Picmnt is a new way to comment photos." | trans }}
       </p>
       <p>
-	<strong>Sube una fotografía, comentala, edtita y muestra como piensas que mejoraría.</strong>
+	<strong>{{ 'Upload a photo, comment, edit and shows how you think it better.' | trans }}</strong>
       </p>
       </p>
     </div>
 
 
     <div class="span8 column round-box-with-shadow" id="index-options">
-      <p>¿A que esperas para <a href="{{ path('fos_user_registration_register') }}">registrarte</a>?, es totalmente <strong>gratis</strong></p>
-      <p>¿No estás convencido aún?, <a href="{{ path('img_show', {'category': 'all', 'option': 'random'}) }}">explora</a> sin preocupaciones o si ya tienes cuenta de usuario <a href="{{ path('fos_user_security_login') }}">accede ya</a>.</p>
+      <p>{{ 'What are you waiting for' | trans }}  <a href="{{ path('fos_user_registration_register') }}">{{ 'sign up' | trans }}</a>?, {{ 'is absolutely' | trans }} <strong>{{ 'free' | trans }}</strong></p>
+      <p>{{ 'Are you not convinced yet' | trans }}? <a href="{{ path('img_show', {'category': 'all', 'option': 'random'}) }}">{{ 'explore' | trans }}</a> {{ 'without worries, or if you have an account' | trans }} <a href="{{ path('fos_user_security_login') }}">{{ 'login now' | trans }}</a>.</p>
     </div>
 
   </div>
@@ -76,13 +76,13 @@
 <section id="index-most" class="container">
   <div class="row">
     <div class="span8 column text-shadow" id="index-most-comments">
-      <h2>Mas comentadas</h2>
+      <h2>{{ 'Most commented' | trans }}</h2>
       <div id="index-slide-comment">
 	{% include 'SFMPicmntBundle:Index:slideComment.html.twig' %} 
       </div>
     </div>
     <div class="span8 column text-shadow" id="index-last-added">
-      <h2>Ultimas Añadidas</h2>
+      <h2>{{ 'Last added' | trans }}</h2>
       <div id="index-slide-last">
 	{% include 'SFMPicmntBundle:Index:slideLast.html.twig' %}
       </div>
