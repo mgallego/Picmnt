@@ -306,6 +306,14 @@
 	      <source>Privacy</source>
 	      <target>Privacidad</target>
 	    </trans-unit>
+	    <trans-unit id="77">
+	      <source>At the moment I am the team, I am</source>
+	      <target>Por ahora estoy yo solo al cargo de todo, soy</target>
+	    </trans-unit>
+	    <trans-unit id="78">
+	      <source>Developer</source>
+	      <target>Programador</target>
+	    </trans-unit>
         </body>
     </file>
 </xliff>
