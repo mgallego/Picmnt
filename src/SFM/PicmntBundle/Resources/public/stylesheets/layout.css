@@ -151,18 +151,19 @@ footer {
 footer ul{
     width: 100%;
     list-style-type: none;
-    margin: 0 auto;
+    margin: 0 0 2em 0 auto;
     padding: 0;
     text-align: center;
-
 
 }
 
 footer li {
    	paddig: 12px;
 	margin: 12px;
-	display: inline;
+	display: block;
 #	float: center;
+	text-align: left;
+	
 }
 
 
