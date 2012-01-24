@@ -35,5 +35,10 @@ class IndexController extends Controller
     {
 	return $this->redirect($this->generateUrl('home'));
     }
+    
+    public function staticAction($page)
+    {
+      return $this->render('SFMPicmntBundle:Static:'.$page.'.html.twig');
+    }
 
 }
