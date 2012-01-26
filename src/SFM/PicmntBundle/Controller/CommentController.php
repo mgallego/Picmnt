@@ -53,7 +53,7 @@ class CommentController extends Controller
 	$em->flush();
 
     }
-    return $this->redirect($this->generateUrl('img_show', array("option" => 'show', "idImage" => $image->getIdImage(), "category"=>0)));
+    return $this->redirect($this->generateUrl('img_view', array("user"=>$image->getUser()->getUsername(), "slug"=>$image->getSlug()) ));
   }
 
 }
