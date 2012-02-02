@@ -26,13 +26,13 @@
     <table>
       {% for image in images %}
       <tr>
-	<td>{{ image.url }}</td>
+	<td><a href="{{ path('img_view', {'user': app.request.get('userName'), 'slug': image.slug}) }}"><img src="/uploads/{{ image.url }}" class="img-thumbnail"/></a></td>
 	<td>{{ image.title }}</td>
 	<td>{{ image.category }}</td>
-	<td><a href="{{ path('img_view', {'user': app.request.get('userName'), 'slug': image.slug}) }}">View</a></td>
+	<td><a href="{{ path('img_view', {'user': app.request.get('userName'), 'slug': image.slug}) }}">{{ 'View' | trans }}</a></td>
 	{% if app.user %}
 	  {% if app.user.username == app.request.get('userName') %}
-	<td><a href="{{ path('img_edit', {'id_image': image.idImage}) }}">Editar</a></td>
+	<td><a href="{{ path('img_edit', {'id_image': image.idImage}) }}">{{ 'Edit' | trans }}</a></td>
 	  {% endif %}
 	{% endif %}
       </tr>
