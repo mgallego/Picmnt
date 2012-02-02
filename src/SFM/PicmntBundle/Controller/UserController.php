@@ -111,7 +111,7 @@ class UserController extends Controller
 
       $avatarOld = $user->getAvatar();
 
-      $images = $em->getRepository('SFMPicmntBundle:Image')->findByUser($user);
+      $images = $em->getRepository('SFMPicmntBundle:Image')->findBy(array("user"=>$user,"status"=>"1"));
 
 
       $form = $this->get('form.factory')
