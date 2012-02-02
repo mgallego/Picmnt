@@ -113,6 +113,14 @@ class Image {
     protected $pubDate;
 
 
+    /**
+     * @ORM\Column(type="integer", nullable=false)
+     *
+     */
+    protected $status;
+
+
+
     public function __construct()
     {
       $this->userVotes = new \Doctrine\Common\Collections\ArrayCollection();
@@ -367,6 +375,25 @@ class Image {
      */
     public function getPubDate(){
       return $this->pubDate;
+    }
+    
+    /**
+     * Set status
+     *
+     * @param integer $status
+     */
+    public function setStatus($status){
+	//0 -- removed ; 1 -- normal
+      $this->status = $status;
+    }
+
+    /**
+     * Get status
+     *
+     * @return integer status
+     */
+    public function getStatus(){
+      return $this->status;
     }
     
 

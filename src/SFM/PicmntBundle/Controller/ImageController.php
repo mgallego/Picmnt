@@ -50,6 +50,7 @@ class ImageController extends Controller
 		$image->setTitle($newFileName);
 		$image->setSlug($this->container->get('picmnt.utils')->getSlug($newFileName, 0, $user->getId()));
 		$image->setPubDate(new \DateTime('today'));
+		$image->setStatus(1);
 
 		$em = $this->get('doctrine')->getEntityManager();     
 		$em->persist($image);
@@ -101,6 +102,21 @@ class ImageController extends Controller
     }
 
 
+    public function deleteAction($idImage){
+	$em = $this->get('doctrine')->getEntityManager();     
+	$image = $em->find('SFMPicmntBundle:Image', $idImage);
+	$user = $this->container->get('security.context')->getToken()->getUser();
+
+	if ($user->getId() != $image->getUser()->getId()) { 
+	    return $this->redirect($this->generateUrl('img_show', array("option"=>"show", "idImage"=>$idImage, "category"=>'all') ));
+	}
+	else{
+	    $image->setStatus(0);
+	    $em->persist($image);
+	    $em->flush();
+	    return $this->redirect($this->generateUrl('img_show', array("option"=>"random","category"=>'all') ));
+	}
+    }
     
 
     private function getRandomImage($category){

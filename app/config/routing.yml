@@ -25,6 +25,11 @@ img_edit:
     pattern: /img/edit/{id_image}
     defaults: { _controller: SFMPicmntBundle:Image:edit }
 
+img_delete:
+    pattern: /img/delete/{idImage}
+    defaults: { _controller: SFMPicmntBundle:Image:delete }
+    
+
 img_show:
     pattern: /{category}/{option}/{idImage}
     defaults: { _controller: SFMPicmntBundle:Image:show,  idImage: 0 }
