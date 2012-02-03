@@ -2,18 +2,24 @@
 
 {% block content %}
 <section id="profile" class="container">
-  <article id="avatar">
+  <article id="profile-avatar">
     <div class="row">
       <div class="span4 column">
-	<img src="{{ avatarByUsername(app.request.get('userName'),'big') }}" class="avatar-large"/>
+	<img src="{{ avatarByUsername(app.request.get('userName'),'big') }}" class="avatar-large box-with-shadow"/>
       </div>
 
       {% if app.user %}
       {% if app.user.username == app.request.get('userName') %}
-      <div class="spam8 column">
+      <div class="spam3 offset8">
 	<form action="{{ path('usr_profile', { 'userName': app.request.get('userName') }) }}" method="post" {{ form_enctype(form) }}>
+	  <fieldset>
+	    <legend>{{ 'Change Avatar' | trans }}</legend>
 	  {{ form_widget(form) }}
-	  <input type="submit" />
+	  <br>
+	  <div class="clearfix btn-right">
+	    <input type="submit" class="btn primary"  />
+	  </div>
+	  </fieldset>
 	</form>
       </div>
 

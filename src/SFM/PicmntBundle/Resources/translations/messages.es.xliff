@@ -322,7 +322,14 @@
 	      <source>There is no comment for this image. Be the first to comment</source>
 	      <target>Aun no hay comentarios para esta imagen. Se el primero en comentar</target>
 	    </trans-unit>
-
+	    <trans-unit id="81">
+	      <source>Change Password</source>
+	      <target>Cambiar Contraseña</target>
+	    </trans-unit>
+	    <trans-unit id="82">
+	      <source>Change Avatar</source>
+	      <target>Cambiar Avatar</target>
+	    </trans-unit>
         </body>
     </file>
 </xliff>

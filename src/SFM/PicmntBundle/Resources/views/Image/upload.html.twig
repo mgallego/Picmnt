@@ -4,48 +4,35 @@
 
 {% block content %}
 
-<section id="content" style="padding-top: 50px">
-  <div class="container-fluid">
+<section id="content" style="padding-top: 50px" class="container-fluid">
+  {% block interno %}
+  <section id="pestanas">
+    <div id="row">
+      {{ knp_menu_render('tabs', {'currentClass': 'active'}) }}
+    </div>
+  </section>
+  {% endblock %}
+  
+  <div class="row">
 
-    <div style="background:#FFF">
-
-
-      {% block interno %}
-      <section id="pestanas">
-
-	<div id="row">
-	  {{ knp_menu_render('tabs', {'currentClass': 'active'}) }}
-	</div>
-
-      </section>
-
-      {% endblock %}
-      
-
-      <center>
-
-	<div class="row">
-	{{ 'Please select an image' | trans }}
-
-	<form id="upload_form" action="{{ path('img_upload') }}" method="post" {{ form_enctype(form) }} >
-
+    <article class="span8 offset5">
+      <form id="upload_form" action="{{ path('img_upload') }}" method="post" {{ form_enctype(form) }} >
+	<fieldset>
+	  <legend>{{ 'Please select an image' | trans }}</legend>
 	  {{ form_errors(form) }}
-
 	  <div>
 	    {{  form_label(form.dataFile , 'Url' | trans ) }}
 	    {{ form_widget(form.dataFile) }}
 	  </div>
-
-	  {# necesary for the correct use of the form, without this the form is not valid #}
 	  {{ form_rest(form) }}
-
-	  <input type="submit" id="upload" />
-
-	</form>
-	</div>
-      </center>
-    </div>
+	  <div class="clearfix" style="text-align:right">
+	    <input type="submit" id="upload" class="btn primary"/>
+	  </div>
+	</fieldset>
+      </form>
+    </article>
   </div>
+
 </section>
 
 {% endblock %}

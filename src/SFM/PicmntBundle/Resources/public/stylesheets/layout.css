@@ -365,3 +365,15 @@ _-------------------------------------------------------------------------------
 #remember-password{
     text-align: center;
 }
+
+#form-change-password{
+    padding: 5em 0;
+}
+
+#profile-avatar{
+    padding: 3em 0;
+}
+
+.btn-right{
+    text-align: right;
+}
