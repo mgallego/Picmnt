@@ -344,3 +344,19 @@ _-------------------------------------------------------------------------------
     text-align: center;
     margin-bottom: 2em;
 }
+
+.simple_paginator li{
+    display: inline;
+    padding: 0 2em ;
+}
+
+.simple_paginator .left, .simple_paginator .left_disabled{
+    padding-right: 8em;
+}
+
+.simple_paginator .right, .simple_paginator .right_disabled{
+    padding-left: 8em;
+}
+
+
+

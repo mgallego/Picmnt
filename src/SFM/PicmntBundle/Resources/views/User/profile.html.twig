@@ -2,57 +2,74 @@
 
 {% block content %}
 <section id="profile" class="container">
-  <div class="row">
+  <article id="avatar">
+    <div class="row">
+      <div class="span4 column">
+	<img src="{{ avatarByUsername(app.request.get('userName'),'big') }}" class="avatar-large"/>
+      </div>
 
-    <div class="span4 column">
-      <img src="{{ avatarByUsername(app.request.get('userName'),'big') }}" class="avatar-large"/>
+      {% if app.user %}
+      {% if app.user.username == app.request.get('userName') %}
+      <div class="spam8 column">
+	<form action="{{ path('usr_profile', { 'userName': app.request.get('userName') }) }}" method="post" {{ form_enctype(form) }}>
+	  {{ form_widget(form) }}
+	  <input type="submit" />
+	</form>
+      </div>
+
+      {% endif %}
+      {% endif %}
     </div>
+  </article>
 
-    {% if app.user %}
-    {% if app.user.username == app.request.get('userName') %}
-    <div class="spam8 column">
-      <form action="{{ path('usr_profile', { 'userName': app.request.get('userName') }) }}" method="post" {{ form_enctype(form) }}>
-	{{ form_widget(form) }}
-	<input type="submit" />
-      </form>
+  <article id="profile-images">
+    <div class="row">
+      <table class="zebra-striped">
+	<thead>
+          <tr>
+            <th>{{ 'Preview' | trans }}</th>
+            <th>{{ 'Title' | trans }}</th>
+            <th>{{ 'Category' | trans }}</th>
+            <th>{{ 'Action' | trans }}</th>
+	    
+	    {% if app.user and (app.user.username == app.request.get('userName')) %}
+                 <th></th>
+	    {% endif %}
+          </tr>
+	</thead>
+	<tbody>
+	  {% for image in images %}
+	  <tr>
+	    <td><a href="{{ path('img_view', {'user': app.request.get('userName'), 'slug': image.slug}) }}"><img src="/uploads/{{ image.url }}" class="img-thumbnail"/></a></td>
+	    <td>{{ image.title }}</td>
+	    <td>{{ image.category }}</td>
+	    <td><a href="{{ path('img_view', {'user': app.request.get('userName'), 'slug': image.slug}) }}">{{ 'View' | trans }}</a></td>
+	    {% if app.user %}
+	    {% if app.user.username == app.request.get('userName') %}
+	    <td><a href="{{ path('img_edit', {'id_image': image.idImage}) }}">{{ 'Edit' | trans }}</a></td>
+	    {% endif %}
+	    {% endif %}
+	  </tr>
+
+	  {% else %}
+	  <strong>{{ 'This user has not upload any picture' | trans }}</strong>
+	  {% endfor %}
+	</tbody>
+      </table>
     </div>
+  </article>
 
-    {% endif %}
-    {% endif %}
+  <article id="profile-paginator">
+    <div class="row">
+      {{ simple_paginator_render('usr_profile', null, { 
+      'routeParams': {'userName': app.request.get('userName')},
+      'containerClass': 'profile-paginator',
+      
+      }
+      ) }}
+    </div>
+  </article>
 
-
-  </div>
-  <div class="row">
-    <table class="zebra-striped">
-      <thead>
-        <tr>
-          <th>{{ 'Preview' | trans }}</th>
-          <th>{{ 'Title' | trans }}</th>
-          <th>{{ 'Category' | trans }}</th>
-          <th>{{ 'Action' | trans }}</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-	{% for image in images %}
-	<tr>
-	  <td><a href="{{ path('img_view', {'user': app.request.get('userName'), 'slug': image.slug}) }}"><img src="/uploads/{{ image.url }}" class="img-thumbnail"/></a></td>
-	  <td>{{ image.title }}</td>
-	  <td>{{ image.category }}</td>
-	  <td><a href="{{ path('img_view', {'user': app.request.get('userName'), 'slug': image.slug}) }}">{{ 'View' | trans }}</a></td>
-	  {% if app.user %}
-	  {% if app.user.username == app.request.get('userName') %}
-	  <td><a href="{{ path('img_edit', {'id_image': image.idImage}) }}">{{ 'Edit' | trans }}</a></td>
-	  {% endif %}
-	  {% endif %}
-	</tr>
-
-	{% else %}
-	<strong>{{ 'This user has not upload any picture' | trans }}</strong>
-	{% endfor %}
-      </tbody>
-    </table>
-  </div>
 </section>
 
 {% endblock %}

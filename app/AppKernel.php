@@ -22,6 +22,7 @@ class AppKernel extends Kernel
 	    new SFM\UserBundle\SFMUserBundle(),
 	    new Knp\Bundle\MenuBundle\KnpMenuBundle(),
 	    new Liip\FunctionalTestBundle\LiipFunctionalTestBundle(),
+	    new Ideup\SimplePaginatorBundle\IdeupSimplePaginatorBundle(),
 
         );
 

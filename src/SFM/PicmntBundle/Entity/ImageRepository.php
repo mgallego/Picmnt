@@ -60,6 +60,29 @@ class ImageRepository extends EntityRepository
 	return $query->getResult();
 
     }
+
+
+    public function getByUser($user){
+
+	return $this->getByUserDQL($user)->getResult();
+
+    }
+
+
+    public function getByUserDQL($user){
+	$query = $this->getEntityManager()->createQuery('SELECT p 
+                                                     FROM SFMPicmntBundle:Image p
+                                                     JOIN p.user u
+                                                     WHERE u.username = :username
+	                                             AND p.title IS NOT NULL
+                                                     AND p.status = 1');
+
+	$query->setParameter('username', $user);
+
+	return $query;
+
+    }
+
     
     public function getLastImages($maxResults){
 	$query = $this->getEntityManager()->createQuery('SELECT p 
@@ -76,6 +99,10 @@ class ImageRepository extends EntityRepository
 
 
     public function getMostComment($maxResults){
+	return $this->getMostCommentDQL($maxResults)->getResult();
+    }
+
+    public function getMostCommentDQL($maxResults){
 
         $qb = $this->_em->createQueryBuilder();
 
@@ -90,7 +117,8 @@ class ImageRepository extends EntityRepository
 
 	$query = $qb->getQuery();  
 	
-	return $query->getResult();
+	return $query;
+	//return $query->getResult();
 
     }
 

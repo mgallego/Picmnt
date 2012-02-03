@@ -87,3 +87,10 @@
 [LiipFuncionalTestBundle]
      git=https://github.com/liip/LiipFunctionalTestBundle.git
      target=/bundles/Liip/FunctionalTestBundle
+
+[IdeupSimplePaginatorBundle]
+     git=https://github.com/javiacei/IdeupSimplePaginatorBundle
+     target=/bundles/Ideup/SimplePaginatorBundle
+
+[doctrine-extensions]
+    git=https://github.com/beberlei/DoctrineExtensions.git

@@ -40,7 +40,6 @@ class UserController extends Controller
 
 	    $avatarOld = $userInfo->getAvatar(); 
 
-//	    $userInfo->setAvatar(null);
 
 	    $form = $this->get('form.factory')
 		->createBuilder('form', $userInfo)
@@ -111,7 +110,12 @@ class UserController extends Controller
 
       $avatarOld = $user->getAvatar();
 
-      $images = $em->getRepository('SFMPicmntBundle:Image')->findBy(array("user"=>$user,"status"=>"1"));
+      $paginator = $this->get('ideup.simple_paginator');
+  
+      $paginator->setItemsPerPage(10);
+
+      $images = $paginator->paginate($em->getRepository('SFMPicmntBundle:Image')->getByUserDQL($userName))->getResult();
+
 
 
       $form = $this->get('form.factory')
