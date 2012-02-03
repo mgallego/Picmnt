@@ -205,8 +205,8 @@
 	      {% else %}
 
 	      <div class="round-box-with-shadow" id="show-image-register">
-		<p>¿A que esperas para <a href="{{ path('fos_user_registration_register') }}">registrarte</a>?, es totalmente <strong>gratis</strong></p>
-		<p>o si ya tienes cuenta de usuario <a href="{{ path('fos_user_security_login') }}">accede ya</a>.</p>
+		<p>{{ 'What are you waiting for' | trans }}  <a href="{{ path('fos_user_registration_register') }}">{{ 'sign up' | trans }}</a>?, {{ 'is absolutely' | trans }} <strong>{{ 'free' | trans }}</strong></p>
+		<p>{{ 'or if you have an account' | trans }} <a href="{{ path('fos_user_security_login') }}">{{ 'login now' | trans }}</a>.</p>
 	      </div>
 
 
@@ -267,7 +267,7 @@
 		</td>
 	      </tr>
 	      {% else %}
-	      <h3>Aun no hay comentarios para esta imagen. Se el primero en comentar</h3>
+	      <h3>{{ 'There is no comment for this image. Be the first to comment' | trans }}</h3>
 	      {% endfor %}
 	    </table>
 	  </div>

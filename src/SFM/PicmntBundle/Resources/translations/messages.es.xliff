@@ -314,6 +314,15 @@
 	      <source>Developer</source>
 	      <target>Programador</target>
 	    </trans-unit>
+	    <trans-unit id="79">
+	      <source>or if you have an account</source>
+	      <target>o si ya tienes cuenta</target>
+	    </trans-unit>
+	    <trans-unit id="80">
+	      <source>There is no comment for this image. Be the first to comment</source>
+	      <target>Aun no hay comentarios para esta imagen. Se el primero en comentar</target>
+	    </trans-unit>
+
         </body>
     </file>
 </xliff>
