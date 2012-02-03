@@ -1,43 +1,39 @@
-<footer style="height:90px; padding-top: 30px">
+<footer>
   <div class="container">
+    <div class="row">
 
-    <div class="container">
-      <div class="row">
-
-	<div class="span-one-third">
-	  <ul>
-	    <li><a href="{{ path('static_page', {'page': 'about'}) }}">{{ 'About Us' | trans }}</a></li>
-	    <li><a href="#">FAQs</a></li>
-	  </ul>
-	</div>
-
-	<div class="span-one-third">
-	  <ul>
-	    <li><a href="{{ path('static_page', {'page': 'terms'}) }}">{{ 'Terms of use' | trans }}</a></li>
-{#	    <li><a href="#">{{ 'Privacy' | trans }}</a></li> #}
-	  </ul>
-	</div>
-
-
-	<div class="span-one-third">
-	  <ul>
-	    <li><a href="https://twitter.com/picmnt">Twitter</a></li>
-	    <li><a href="http://www.facebook.com/pages/Picmnt/155336231201638">Facebook</a></li>
-	  </ul>
-	</div>
-
+      <div class="span-one-third">
+	<ul>
+	  <li><a href="{{ path('static_page', {'page': 'about'}) }}">{{ 'About Us' | trans }}</a></li>
+	  {#	    <li><a href="#">FAQs</a></li> #}
+	</ul>
       </div>
-      <div class="row">
-	<div class="span4 column offset6">
-	  <center>
-	    © Moisés Gallego 2011
-	  </center>
-	</div>
+
+      <div class="span-one-third">
+	<ul>
+	  <li><a href="{{ path('static_page', {'page': 'terms'}) }}">{{ 'Terms of use' | trans }}</a></li>
+	  {#	    <li><a href="#">{{ 'Privacy' | trans }}</a></li> #}
+	</ul>
+      </div>
+
+      <div class="span-one-third">
+	<ul>
+	  <li><a href="https://twitter.com/picmnt">Twitter</a></li>
+	  <li><a href="http://www.facebook.com/pages/Picmnt/155336231201638">Facebook</a></li>
+	</ul>
       </div>
     </div>
 
+    <div class="span4 column offset6 copyright">
+	© Moisés Gallego 2011
+    </div>
 
+    {% block addons %}
 
+    {% include "SFMPicmntBundle:Addons:analytics.html.twig" %}
+    {% include "SFMPicmntBundle:Addons:uservoice.html.twig" %}
 
+    {% endblock addons %}
 
+  </div>
 </footer>

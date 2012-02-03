@@ -153,6 +153,8 @@ footer {
 	color: #000;
 	padding: 15px;
 	margin: 50px 0 0 0;
+	height:90px; 
+	padding-top: 30px;
 }
 
 
@@ -376,4 +378,8 @@ _-------------------------------------------------------------------------------
 
 .btn-right{
     text-align: right;
+}
+
+.copyright{
+    text-align: center;
 }
