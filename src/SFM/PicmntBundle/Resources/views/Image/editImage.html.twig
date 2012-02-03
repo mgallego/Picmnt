@@ -67,8 +67,9 @@
 		</div> 
 	      </fieldset>
 	    </form>
+	    <br/>
 	    <div id="remove-image">
-	      <a href="{{ path('img_delete', { 'idImage': image.idImage }) }}" class="btn">{{ 'Remove Image' | trans }}</a>
+	      <a href="{{ path('img_delete', { 'idImage': image.idImage }) }}" class="btn danger">{{ 'Remove Image' | trans }}</a>
 	    </div>
 
 	  </div>
