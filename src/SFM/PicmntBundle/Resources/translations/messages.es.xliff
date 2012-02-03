@@ -330,6 +330,14 @@
 	      <source>Change Avatar</source>
 	      <target>Cambiar Avatar</target>
 	    </trans-unit>
+	    <trans-unit id="83">
+	      <source>This user has not upload any picture</source>
+	      <target>Este usuario no ha subido ninguna imagen</target>
+	    </trans-unit>
+	    <trans-unit id="84">
+	      <source>See Original</source>
+	      <target>Ver Original</target>
+	    </trans-unit>
         </body>
     </file>
 </xliff>
