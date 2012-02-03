@@ -2,10 +2,14 @@
 
 <section id="content" class="container fos">
 
-
   <div class="row">
 
+    <article class="span8 column" id="info-index">
+      {% include "SFMPicmntBundle:Index:info.html.twig" %}
+    </article>
 
+
+    <article id="registration" class="span8 column">
     <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
       <fieldset>
 	<legend>{{ 'Join' | trans }}</legend>
@@ -16,6 +20,10 @@
       </fieldset>
 
     </form>
+
+    </article>
+
+
 
   </div>
 </section>

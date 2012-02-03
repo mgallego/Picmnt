@@ -1,17 +1,31 @@
 <section id="content" class="container fos">
   <div class="row">
-    
-    <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
-      <div>
-        {% if invalid_username is defined %}
-        <p>{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}, 'FOSUserBundle') }}</p>
-        {% endif %}
-        <label for="username">{{ 'resetting.request.username'|trans({}, 'FOSUserBundle') }}</label>
-        <input type="text" id="username" name="username" />
-      </div>
-      <div>
-        <input type="submit" value="{{ 'resetting.request.submit'|trans({}, 'FOSUserBundle') }}" />
-      </div>
-    </form>
+
+    <article class="span8 column" id="info-index">
+      {% include "SFMPicmntBundle:Index:info.html.twig" %}
+    </article>
+
+
+    <article class="span8 column">
+      <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
+	<fieldset>
+	  <legend>{{ 'Remember the password' | trans }}</legend>
+	  <div class="clearfix">
+            {% if invalid_username is defined %}
+            <p>{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}, 'FOSUserBundle') }}</p>
+            {% endif %}
+	    
+            <label for="username">{{ 'resetting.request.username'|trans({}, 'FOSUserBundle') }}</label>
+            <input type="text" id="username" name="username" />
+	  </div>
+	  <div class="clearfix" style="text-align:center">
+	    <input type="submit" value="{{ 'resetting.request.submit'|trans({}, 'FOSUserBundle') }}" class="btn primary"/>
+	  </div>
+	</fieldset>
+      </form>
+    </article>
+
   </div>
+
+
 </section>

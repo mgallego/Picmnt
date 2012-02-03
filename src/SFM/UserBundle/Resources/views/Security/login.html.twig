@@ -8,51 +8,55 @@
 
 <section id="content" class="container fos">
   <div class="row">
-    {% if error %}
-    <div class="alert-message error">
-      {{ error }}
-    </div>
-    {% endif %}
+    
+    <article class="span8 column" id="info-index">
+      {% include "SFMPicmntBundle:Index:info.html.twig" %}
+    </article>
 
-    <form action="{{ path("fos_user_security_check") }}" method="post">
-      <fieldset>
-	<legend>{{ 'Login' | trans }}</legend>
+    <article id="login-form" class="span8 column">
+      {% if error %}
+      <div class="alert-message error">
+	{{ error }}
+      </div>
+      {% endif %}
 
-	<div class="clearfix">
-	  <label for="username">{{ 'Username:' | trans }}</label>
-	  <div class="input">
-	    <input class="xlarge" id="username" name="_username" value="{{ last_username }}"size="30" type="text" />
+      <form action="{{ path("fos_user_security_check") }}" method="post">
+	<fieldset>
+	  <legend>{{ 'Login' | trans }}</legend>
+
+	  <div class="clearfix">
+	    <label for="username">{{ 'Username:' | trans }}</label>
+	    <div class="input">
+	      <input class="xlarge" id="username" name="_username" value="{{ last_username }}"size="30" type="text" />
+	    </div>
 	  </div>
-	</div>
 
-	<div class="clearfix">
-	  <label for="password">{{ 'Password:' | trans }}</label>
-	  <div class="input">
-	    <input class="xlarge" id="password" name="_password" size="30" type="password" />
+	  <div class="clearfix">
+	    <label for="password">{{ 'Password:' | trans }}</label>
+	    <div class="input">
+	      <input class="xlarge" id="password" name="_password" size="30" type="password" />
+	    </div>
+	  </div> 
+
+	  <div class="clearfix">
+	    <div class="input">
+	      <input type="checkbox" id="remember_me" name="_remember_me" value="on" /> {{ 'Remember Me' | trans }}
+	    </div>
 	  </div>
-	</div> 
 
-	<div class="clearfix">
-	  <div class="input">
-	    <input type="checkbox" id="remember_me" name="_remember_me" value="on" /> {{ 'Remember Me' | trans }}
+	  <p id="remember-password">
+	    <a href="{{ path('fos_user_resetting_request') }}" >{{ 'Remember the password' | trans }}</a>
+	  </p>
+
+	  <div class="clearfix" style="text-align:right">
+	    <input type="submit" name="login" class="btn primary" />
 	  </div>
-	</div>
 
-	<div>
-	  <a href="{{ path('fos_user_resetting_request') }}">{{ 'Remember the password' | trans }}</a>
-	</div>
-
-	<div class="clearfix" style="text-align:right">
-	  <input type="submit" name="login" class="btn primary" />
-	</div>
-
-    </form>
-    </fieldset>
-
-
+      </form>
+      </fieldset>
+    </article>
 
   </div>
-</div>
 </section>      
 
 {% endblock content %}
