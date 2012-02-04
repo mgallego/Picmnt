@@ -342,6 +342,10 @@
 	      <source>The size of the image must be a maximum of 300Kb. Approximately 1024px on its longest side.</source>
 	      <target>El tamaño de la imagen debe ser de un máximo de 300Kb. Aproximadamente de 1024px por su lado mayor.</target>
 	    </trans-unit>
+	    <trans-unit id="86">
+	      <source>Publication date</source>
+	      <target>Fecha de publicación</target>
+	    </trans-unit>
         </body>
     </file>
 </xliff>

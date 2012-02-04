@@ -126,9 +126,10 @@
 
 	  <div class="row">
 
-	    <div class="span14 columns" id="imageImage">
+	    <article class="span14 columns" id="imageImage">
 	      <img src="/uploads{{ asset(image.url) }}" id="image-to-modify"/>
-	    </div>
+	      {% include "SFMPicmntBundle:Image:imageinfo.html.twig" %}
+	    </article>
 	    
 	    <div class="span6 columns">
 
@@ -216,62 +217,13 @@
 
 	  </div>
 
-	  <!-- Info
-	       ===================================================== -->
-	  <div class="row">
-
-	    <div class="span8 column" id="imageInfo" style="text-align:left">
-
-	      <img src="{{ avatar(image.user.id) }}" class="avatar-small" />
-
-	      {{ 'Author' | trans }}:<a href="{{ path('usr_profile', {'userName': image.user.username }) }}">{{ image.user.username }}</a>
-
- 	      {{ image.pubDate | date() }}
-
-	      <a href="#imageTitle" onclick="javascript:applyProposal(0,0,0,0)">See Original</a>
-	    </div>
-	    
-	  </div>
-
-	  <div class="row">
-	    <div class="span14 columns" id="imageDescription" style="text-align:left">
-	      <strong>
-		{{ image.description }}
-	      </strong>
-	    </div>
-	  </div>
 	</section>
 
 
-	<!--  Comentarios
+	<!--  Comments
 	      ==================================================================== -->
-	<section id="comments" style="width:900px; text-align:left; ">
-	  <h2>{{ 'Comments' | trans }}</h2>
-	  <div class="comment" style="padding-top:10px">
-	    <table class="zebra-striped">
-	      {% for comment in image.imageComments %}
-	      <tr>
-		<td>
-		  <img src="{{ avatar(comment.user.id) }}" class="avatar-small"/>
-		  {{ comment.user.username }}
-		</td>
-		<td>
-	      {{ comment.comment }}
-		  <div class="row" style="padding-top: 10px;">
-		    <div class="span11 column"><p></p></div>
-		    <div class="span2 column" style="text-align: left" >
-		      {# <a href="javascript:applyProposal(10,10,10,10)">{{ 'See Proposal' | trans }}</a> #}
-		      <a href="#imageTitle" onclick="javascript:applyProposal({{ comment.brightness }},{{ comment.contrast }}, {{ comment.exposure }},{{ comment.saturation}})">{{ 'See Proposal' | trans }}</a>
-		    </div>
-		  </div>
-		</td>
-	      </tr>
-	      {% else %}
-	      <h3>{{ 'There is no comment for this image. Be the first to comment' | trans }}</h3>
-	      {% endfor %}
-	    </table>
-	  </div>
-	</section>
+	{% include "SFMPicmntBundle:Image:comments.html.twig" %}
+
       </center>
 
     </div>

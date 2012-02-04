@@ -1,0 +1,18 @@
+<div class="row">
+  <article class="span8 column" id="imageInfo" style="text-align:left">
+    <p>
+      <img src="{{ avatar(image.user.id) }}" class="avatar-small"/>
+      {{ 'Author' | trans }}: <a href="{{ path('usr_profile', {'userName': image.user.username }) }}">{{ image.user.username }}</a>
+      <a href="#imageTitle" onclick="javascript:applyProposal(0,0,0,0)" id="see-original" class="btn info">See Original</a>
+    </p>
+    {{ 'Publication date' | trans}}: {{ image.pubDate | date() }}
+  </article>
+</div>
+
+<div class="row">
+  <article class="span14 columns" id="image-description" style="text-align:left">
+    <strong>
+      {{ image.description }}
+    </strong>
+  </article>
+</div>

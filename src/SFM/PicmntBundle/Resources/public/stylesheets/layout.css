@@ -254,7 +254,7 @@ footer #social{
 
 }
 
-#imageImage img, canvas{
+#imageImage #image-to-modify, canvas{
     border: 10px solid white;
     border-radius: 8px;
     box-shadow: 5px 5px 10px #333;
@@ -331,6 +331,8 @@ _-------------------------------------------------------------------------------
 
 .avatar-small{
     width: 50px;
+    border: 0;
+    border-radius: 0;
 }
 
 .avatar-large{
@@ -407,5 +409,19 @@ legend{
 #upload-restrictions p{
     font-size: 1.5em;
     text-align: center;
+    text-shadow:0 1px 1px rgba(0, 0, 0, 0.25);
+}
+
+#see-original{
+    margin: 0 1em;
+}
+
+#image-description{
+    background: lightgray;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+}
+
+.text-with-shadow{
     text-shadow:0 1px 1px rgba(0, 0, 0, 0.25);
 }
