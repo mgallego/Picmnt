@@ -3,7 +3,7 @@
     <p>
       <img src="{{ avatar(image.user.id) }}" class="avatar-small"/>
       {{ 'Author' | trans }}: <a href="{{ path('usr_profile', {'userName': image.user.username }) }}">{{ image.user.username }}</a>
-      <a href="#imageTitle" onclick="javascript:applyProposal(0,0,0,0)" id="see-original" class="btn info">See Original</a>
+      <a href="#image-title" onclick="javascript:applyProposal(0,0,0,0)" id="see-original" class="btn info">See Original</a>
     </p>
     {{ 'Publication date' | trans}}: {{ image.pubDate | date() }}
   </article>

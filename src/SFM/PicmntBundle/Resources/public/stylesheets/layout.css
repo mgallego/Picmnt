@@ -425,3 +425,7 @@ legend{
 .text-with-shadow{
     text-shadow:0 1px 1px rgba(0, 0, 0, 0.25);
 }
+
+#image-title h1 , #image-title h3{
+    display: inline;
+}

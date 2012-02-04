@@ -103,89 +103,10 @@
 	     {% include "SFMPicmntBundle:Image:imageinfo.html.twig" %}
 	    </article>
 
-	    <div class="span6 columns">
-
-	      <!-- Controles
-		   ===========================
-		-->
-
-	      {% if is_granted("IS_AUTHENTICATED_REMEMBERED") or is_granted("IS_AUTHENTICATED_FULLY") %}
-	      <form action="{{ path('comment', { 'idImage': image.idImage}) }}" class="form-stacked" method="post">
-	      {% endif %}
-	      
-	      <div class="modify-control"  style="width:300px">
-		
-		<div id="render-in-progress" style="display:none"> 
-		  <p>{{ 'Rendering' | trans }}... </p> 
-		  <img src="http://camanjs.com/imgs/ajax-loader.gif" id="preset-rendering" /> 
-		</div> 
-		
-		<div id="accordion"> 
-		  <h3><a href="#"> {{ 'Brightness' | trans }}
-		      <input type="text" id="bAmount" name="brightness" style="border:0" class="slider-data" style="background-color:transparent"/> / 
-		      {{ 'Contrast' | trans }}
-		      <input type="text" id="cAmount" name="contrast" style="border:0" class="slider-data" style="background-color:transparent"/> </a></h3> 
-		  <div> 
-		    
-		    <div id="sBrightness"></div> 
-		    
-		    <br/> 
-		    
-		    <div id="sContrast"></div> 
-		    
-		  </div> 
-		  <h3><a href="#">{{ 'Exposure' | trans }}
-		      <input type="text" id="aExposure" name="exposure" style="border:0" class="slider-data" style="background-color:transparent"/></a></h3> 
-		  <div> 
-		    
-		    <div id="sExposure"></div> 
-		    
-		  </div> 
-		  
-		  <h3><a href="#">{{ 'Saturation' | trans }}
-		      <input type="text" id="aSaturation" name="saturation" style="border:0" class="slider-data" style="background-color:transparent"/></a></h3> 
-		  <div> 
-		    
-		    <div id="sSaturation"></div> 
-		    
-		  </div> 
-		</div> 
-
-	      </div> 
-
-	      <!-- Nuevo comentario
-		   ========================================== -->
-	      {% if is_granted("IS_AUTHENTICATED_REMEMBERED") or is_granted("IS_AUTHENTICATED_FULLY") %}
-	      <div id="newComment" style="padding-top:15px">
-		
-		{# <form action="{{ path('comment', { 'idImage': image.idImage}) }}" class="form-stacked" method="post"> #}
-		  <fieldset style="text-align:left">
-		    <legend>{{ 'Comment' | trans }}!!!</legend>
-		    <div class="clearfix">
-		      <div class="input"> 
-			<textarea class="xxlarge" id="textarea" name="comment" style="width:300px;height:150px"></textarea> 
-			<span class="help-block"> 
-			</span> 
-		      </div> 
-		    </div><!-- /clearfix --> 
-		    <div class="actions"> 
-		      <input type="submit" class="btn primary" value="{{ 'Save Changes' | trans }}">&nbsp;<button type="reset" class="btn">{{ 'Cancel' | trans }}</button> 
-		    </div> 
-		  </fieldset>
-		</form>
-		
-	      </div>
-	      {% else %}
-
-	      <div class="round-box-with-shadow" id="show-image-register">
-		<p>¿A que esperas para <a href="{{ path('fos_user_registration_register') }}">registrarte</a>?, es totalmente <strong>gratis</strong></p>
-		<p>o si ya tienes cuenta de usuario <a href="{{ path('fos_user_security_login') }}">accede ya</a>.</p>
-	      </div>
-
-
-	      {% endif %}
-
-	    </div>
+	    <!-- Controls
+		 ===========================
+	      -->
+	    {% include "SFMPicmntBundle:Image:controls.html.twig" %}
 
 	  </div>
 
