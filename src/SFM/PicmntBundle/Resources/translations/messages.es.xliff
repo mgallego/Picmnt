@@ -339,8 +339,8 @@
 	      <target>Ver Original</target>
 	    </trans-unit>
 	    <trans-unit id="85">
-	      <source>The size of the image must be a maximum of 300Kb. Approximately 1024px on its longest side.</source>
-	      <target>El tamaño de la imagen debe ser de un máximo de 300Kb. Aproximadamente de 1024px por su lado mayor.</target>
+	      <source>The size of the image must be a maximum of 500Kb. Approximately 1024px on its longest side.</source>
+	      <target>El tamaño de la imagen debe ser de un máximo de 500Kb. Aproximadamente de 1024px por su lado mayor.</target>
 	    </trans-unit>
 	    <trans-unit id="86">
 	      <source>Publication date</source>
