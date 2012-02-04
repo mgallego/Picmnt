@@ -21,7 +21,14 @@
 	  <legend>{{ 'Please select an image' | trans }}</legend>
 	  {{ form_errors(form) }}
 	  <div>
-	    {{  form_label(form.dataFile , 'Url' | trans ) }}
+	    {% if form_errors(form.dataFile) %}
+	    <div class="alert-message error">
+	      <div id="upload-error">
+		{{ form_errors(form.dataFile) }}
+	      </div>
+	    </div>
+	    {% endif %}
+	    {{ form_label(form.dataFile , 'Url' | trans ) }}
 	    {{ form_widget(form.dataFile) }}
 	  </div>
 	  {{ form_rest(form) }}
@@ -31,8 +38,14 @@
 	</fieldset>
       </form>
     </article>
-  </div>
 
+    <artcile id="upload-restrictions" class="span8 offset5">
+      <p>
+	{{ 'The size of the image must be a maximum of 300Kb. Approximately 1024px on its longest side.' | trans }}
+      </p>
+    </artcile>
+
+  </div>
 </section>
 
 {% endblock %}
