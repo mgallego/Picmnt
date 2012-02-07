@@ -264,8 +264,28 @@ class ImageController extends Controller
 	  $e = $this->get('translator')->trans('Picture Not Found');
 	    throw $this->createNotFoundException($e);
 	}
-          
+	
+	$user = $this->container->get('security.context')->getToken()->getUser();
+
+	if ($user->getId() == $image[0]->getUser()->getId()){
+	  $this->deleteNotifications($image);
+	
+	}
+
 	return $this->render('SFMPicmntBundle:Image:viewImage.html.twig', array("image"=>$image[0]));
     }
+
+    private function deleteNotifications($image){
+      $em = $this->get('doctrine')->getEntityManager();
+      $comments = $em->getRepository('SFMPicmntBundle:ImageComment')->findByImage($image);
+      
+      foreach ($comments as $comment){
+	$comment->setNotified(1);
+	$em->persist($comment);
+      }
+      $em->flush();
+
+    }
+
 
 }
