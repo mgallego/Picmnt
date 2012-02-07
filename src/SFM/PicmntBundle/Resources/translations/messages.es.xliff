@@ -370,7 +370,10 @@
 	      <source>others</source>
 	      <target>Otros</target>
 	    </trans-unit>
-
+	    <trans-unit id="93">
+	      <source>Remove Image</source>
+	      <target>Eliminar Imagen</target>
+	    </trans-unit>
         </body>
     </file>
 </xliff>
