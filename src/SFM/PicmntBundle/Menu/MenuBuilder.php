@@ -10,6 +10,7 @@ use Symfony\Component\Security\Core\SecurityContext;
 class MenuBuilder extends ContainerAware
 {
 
+
   private $factory;
 
   /**
@@ -57,6 +58,8 @@ class MenuBuilder extends ContainerAware
 	$menu->addChild($translator->trans('My Profile'), array('route' => 'usr_profile', 'routeParameters'=>array('userName'=>$context->getToken()->getUser()->getUsername())));
 	$menu->addChild($translator->trans('Upload Image'), array('route' => 'img_upload'));
     }
+
+
     return $menu;
   }
 

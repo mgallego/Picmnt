@@ -1,0 +1,61 @@
+{% extends "SFMPicmntBundle::layout_private.html.twig" %}
+
+{% block content %}
+<section id="profile" class="container">
+
+  <article id="profile-images">
+    <div class="row">
+      <table class="zebra-striped">
+	<thead>
+          <tr>
+            <th>{{ 'Preview' | trans }}</th>
+            <th>{{ 'Title' | trans }}</th>
+            <th>{{ 'Category' | trans }}</th>
+            <th>{{ 'Action' | trans }}</th>
+	    
+	    {% if app.user and (app.user.username == app.request.get('userName')) %}
+                 <th></th>
+	    <th>{{ 'Pending Comments' | trans }}</th>
+	    {% endif %}
+          </tr>
+	</thead>
+	<tbody>
+
+	  {% for image in images %}
+	  <tr>
+	    <td><a href="{{ path('img_view', {'user': app.request.get('userName'), 'slug': image.image.slug}) }}"><img src="/uploads/{{ image.image.url }}" class="img-thumbnail"/></a></td>
+	    <td>{{ image.image.title }}</td>
+	    <td>{{ image.image.category | capitalize | trans }}</td>
+	    <td><a href="{{ path('img_view', {'user': app.request.get('userName'), 'slug': image.image.slug}) }}">{{ 'View' | trans }}</a></td>
+	    {% if app.user %}
+	    {% if app.user.username == app.request.get('userName') %}
+	    <td><a href="{{ path('img_edit', {'id_image': image.image.idImage}) }}">{{ 'Edit' | trans }}</a></td>
+	    <td><span class="comment-pending">{{ image.pending }}</span></td>
+	    {% endif %}
+	    {% endif %}
+
+	  </tr>
+
+	  {% else %}
+	  <strong>{{ 'This user has not upload any picture' | trans }}</strong>
+	  {% endfor %}
+	</tbody>
+      </table>
+    </div>
+  </article>
+
+  <article id="profile-paginator">
+    <div class="row">
+      {{ simple_paginator_render('usr_profile', null, { 
+      'routeParams': {'userName': app.request.get('userName')},
+      'containerClass': 'profile-paginator',
+      
+      }
+      ) }}
+    </div>
+  </article>
+
+</section>
+
+{% endblock %}
+

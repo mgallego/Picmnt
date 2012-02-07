@@ -16,6 +16,7 @@ class IndexController extends Controller
 //      $lang = substr($request->server->get('HTTP_ACCEPT_LANGUAGE'),0,2);
 
 //      $request->setLocale($lang);
+
       
 
       if ($this->get('security.context')->isGranted('ROLE_USER')){

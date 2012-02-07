@@ -14,9 +14,17 @@
 	<ul class="nav">
     	  
 	  {{ knp_menu_render('SFMPicmntBundle:Builder:menuCategories', {'class': 'nav'}) }} 
+	  
 	</ul>
+	
 	{% if is_granted("IS_AUTHENTICATED_REMEMBERED") or is_granted("IS_AUTHENTICATED_FULLY") %}
 	<ul class="nav secondary-nav">
+	  {% if  totalPendingComments(app.user.username) %}
+	  <li>
+	    <a href="{{ path('usr_pending', {'userName': app.user.username}) }}">{{ totalPendingComments(app.user.username) }} {{ 'Pending Comments' | trans }}</a>
+	  </li>
+	  {% endif %}
+
 	  <li class="dropdown">
  	    <a href="#" class="dropdown-toggle">{{ app.user.getUsername() }}</a>
 	    <ul class="dropdown-menu">

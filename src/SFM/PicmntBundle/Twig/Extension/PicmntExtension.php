@@ -23,8 +23,10 @@ class PicmntExtension extends \Twig_Extension
 
     public function getFunctions(){
 	return array(
-	    'avatar' => new \Twig_Function_Method($this, 'avatar'),
-	    'avatarByUsername' => new \Twig_Function_Method($this, 'avatarByUsername')
+	  'avatar' => new \Twig_Function_Method($this, 'avatar'),
+	  'avatarByUsername' => new \Twig_Function_Method($this, 'avatarByUsername'),
+	  'totalPendingComments'=> new \Twig_Function_Method($this, 'totalPendingComments'),
+	  'imagePendingComments'=> new \Twig_Function_Method($this, 'imagePendingComments')
 	    );
     }
 
@@ -44,6 +46,25 @@ class PicmntExtension extends \Twig_Extension
 	    return '/bundles/sfmpicmnt/images/user.svg';
 	}
 	return '/uploads/avatar'.$size.'/'.$user->getAvatar();
+    }
+
+    public function totalPendingComments($username){
+      $pending = $this->em->getRepository('SFMPicmntBundle:image')->getPendingComments($username);
+
+      if ($pending){
+	return $pending[0]["total"];
+      }
+      return null;
+    }
+
+
+    public function imagePendingComments($idImage){
+      $pending = $this->em->getRepository('SFMPicmntBundle:image')->getPendingCommentsByImage($idImage);
+
+      if ($pending){
+	return $pending[0]["total"];
+      }
+      return null;
     }
 
 

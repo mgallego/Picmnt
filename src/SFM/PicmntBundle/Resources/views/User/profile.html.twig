@@ -47,16 +47,15 @@
 	<tbody>
 
 	  {% for image in images %}
-	  {% if image.image %}
 	  <tr>
-	    <td><a href="{{ path('img_view', {'user': app.request.get('userName'), 'slug': image.image.slug}) }}"><img src="/uploads/{{ image.image.url }}" class="img-thumbnail"/></a></td>
-	    <td>{{ image.image.title }}</td>
-	    <td>{{ image.image.category | capitalize | trans }}</td>
-	    <td><a href="{{ path('img_view', {'user': app.request.get('userName'), 'slug': image.image.slug}) }}">{{ 'View' | trans }}</a></td>
+	    <td><a href="{{ path('img_view', {'user': app.request.get('userName'), 'slug': image.slug}) }}"><img src="/uploads/{{ image.url }}" class="img-thumbnail"/></a></td>
+	    <td>{{ image.title }}</td>
+	    <td>{{ image.category | capitalize | trans }}</td>
+	    <td><a href="{{ path('img_view', {'user': app.request.get('userName'), 'slug': image.slug}) }}">{{ 'View' | trans }}</a></td>
 	    {% if app.user %}
 	    {% if app.user.username == app.request.get('userName') %}
-	    <td><a href="{{ path('img_edit', {'id_image': image.image.idImage}) }}">{{ 'Edit' | trans }}</a></td>
-	    <td><span class="comment-pending">{{ image.notified }}</span></td>
+	    <td><a href="{{ path('img_edit', {'id_image': image.idImage}) }}">{{ 'Edit' | trans }}</a></td>
+	    <td><span class="comment-pending">{{ imagePendingComments(image.idImage) }}</span></td>
 	    {% endif %}
 	    {% endif %}
 
@@ -64,7 +63,6 @@
 
 	  {% else %}
 	  <strong>{{ 'This user has not upload any picture' | trans }}</strong>
-	  {% endif %}
 	  {% endfor %}
 	</tbody>
       </table>

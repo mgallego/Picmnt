@@ -175,4 +175,27 @@ class UserController extends Controller
       }
     }
 
+    public function  pendingAction($userName){
+      $em = $this->get('doctrine')->getEntityManager();
+
+      $em = $this->get('doctrine')->getEntityManager();     
+
+      $user = $this->container->get('security.context')->getToken()->getUser();
+
+      if ($user->getUsername() != $userName) { 
+	return $this->redirect($this->generateUrl('img_show', array("option"=>"random", "category"=>"all")));
+      }
+
+      $paginator = $this->get('ideup.simple_paginator');
+  
+      $paginator->setItemsPerPage(10);
+
+      $images = $paginator->paginate($em->getRepository('SFMPicmntBundle:User')->getPendingCommentsDQL($userName))->getResult();
+
+      return $this->render('SFMPicmntBundle:User:pending.html.twig', array('images' => $images));
+
+    }
+
+
+
 }

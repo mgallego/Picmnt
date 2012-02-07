@@ -70,16 +70,14 @@ class ImageRepository extends EntityRepository
 
 
     public function getByUserDQL($user){
-	$query = $this->getEntityManager()->createQuery('SELECT p as image, count(c.notified) as notified  
+	$query = $this->getEntityManager()->createQuery('SELECT p 
                                                      FROM SFMPicmntBundle:Image p
-                                                     JOIN p.user u join p.imageComments c
+                                                     JOIN p.user u
                                                      WHERE u.username = :username
 	                                             AND p.title IS NOT NULL
                                                      AND p.status = 1
-                                                     AND c.notified = 0
 						     AND p.slug is not null
-                                                     GROUP BY p.idImage
-                                                     ORDER BY notified DESC');
+');
 
 	//	select i.*, count(c.notified) from Image_Comment c, Image i  where notified  = 0 and i.id_image = c.id_image group by i.id_image;
 
@@ -193,5 +191,40 @@ class ImageRepository extends EntityRepository
         return $query->getResult();
 
     }
+
+    public function getPendingComments($user){
+	$query = $this->getEntityManager()->createQuery('SELECT count(c.notified)  as total
+                                                     FROM SFMPicmntBundle:ImageComment c
+                                                     JOIN c.user u JOIN c.image i
+                                                     WHERE i.slug IS NOT NULL
+                                                     AND u.username = :username
+                                                     AND i.status = 1
+                                                     AND c.notified = 0');
+
+	$query->setParameter('username', $user);
+	$query->setMaxResults(1);
+
+	return $query->getResult();
+
+    }
+
+    public function getPendingCommentsByImage($idImage){
+	$query = $this->getEntityManager()->createQuery('SELECT count(c.notified)  as total
+                                                     FROM SFMPicmntBundle:ImageComment c
+                                                     JOIN c.user u JOIN c.image i
+                                                     WHERE i.slug IS NOT NULL
+                                                     AND i.idImage = :idImage
+                                                     AND i.status = 1
+                                                     AND c.notified = 0');
+
+
+	$query->setParameter('idImage', $idImage);
+	$query->setMaxResults(1);
+
+	return $query->getResult();
+
+    }
+
+
     
 }

@@ -56,6 +56,10 @@ usr_profile:
     pattern: /profile/{userName}
     defaults: { _controller: SFMPicmntBundle:User:profile }
 
+usr_pending:
+    pattern: /pending/{userName}
+    defaults: { _controller: SFMPicmntBundle:User:pending }
+
 
 ##############################  COMMENTS CONTROLLER  ##########################
 
