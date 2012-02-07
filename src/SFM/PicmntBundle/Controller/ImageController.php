@@ -114,7 +114,7 @@ class ImageController extends Controller
 	    $image->setStatus(0);
 	    $em->persist($image);
 	    $em->flush();
-	    return $this->redirect($this->generateUrl('img_show', array("option"=>"random","category"=>'all') ));
+	    return $this->redirect($this->generateUrl('usr_profile', array("userName"=>$user->getUsername()) ));
 	}
     }
     
