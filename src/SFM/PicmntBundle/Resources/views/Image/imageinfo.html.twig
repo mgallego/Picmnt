@@ -6,7 +6,7 @@
       {% if app.user.id == image.user.id  %}
       <td><a href="{{ path('img_edit', {'id_image': image.idImage}) }}" id="edit-btn" class="btn success">{{ 'Edit' | trans }}</a></td>
       {% endif %}
-      <a href="#image-title" onclick="javascript:applyProposal(0,0,0,0)" id="see-original" class="btn info">See Original</a>
+      <a href="#image-title" onclick="javascript:applyProposal(0,0,0,0)"  id="see-original" class="btn info">See Original</a>
     </p>
     {{ 'Publication date' | trans}}: {{ image.pubDate | date() }}
   </article>
