@@ -5,8 +5,10 @@
       {% for comment in image.imageComments %}
       <tr>
 	<td>
+	  <a href="{{ path('usr_profile', {'userName': comment.user.username }) }}">
 	  <p><img src="{{ avatar(comment.user.id) }}" class="avatar-small"/></p>
 	  <p class="text-with-shadow">{{ comment.user.username }}</p>
+	  </a>
 	</td>
 	<td>
 	  {{ comment.comment }}

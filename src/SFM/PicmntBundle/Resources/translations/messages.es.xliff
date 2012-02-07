@@ -378,6 +378,10 @@
 	      <source>Remove</source>
 	      <target>Eliminar</target>
 	    </trans-unit>
+	    <trans-unit id="95">
+	      <source>Pending Comments</source>
+	      <target>Comentarios Pendientes</target>
+	    </trans-unit>
         </body>
     </file>
 </xliff>

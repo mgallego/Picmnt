@@ -70,12 +70,18 @@ class ImageRepository extends EntityRepository
 
 
     public function getByUserDQL($user){
-	$query = $this->getEntityManager()->createQuery('SELECT p 
+	$query = $this->getEntityManager()->createQuery('SELECT p as image, count(c.notified) as notified  
                                                      FROM SFMPicmntBundle:Image p
-                                                     JOIN p.user u
+                                                     JOIN p.user u join p.imageComments c
                                                      WHERE u.username = :username
 	                                             AND p.title IS NOT NULL
-                                                     AND p.status = 1');
+                                                     AND p.status = 1
+                                                     AND c.notified = 0
+						     AND p.slug is not null
+                                                     GROUP BY p.idImage
+                                                     ORDER BY notified DESC');
+
+	//	select i.*, count(c.notified) from Image_Comment c, Image i  where notified  = 0 and i.id_image = c.id_image group by i.id_image;
 
 	$query->setParameter('username', $user);
 

@@ -75,6 +75,11 @@ class ImageComment
    */
   protected $saturation;
 
+  /**
+   * @ORM\Column(type="integer", nullable=true)
+   */
+  protected $notified;
+  
 
   /**
    * get idComment
@@ -196,5 +201,13 @@ class ImageComment
     return $this->saturation;
   }
 
+  public function setNotified($notified){
+    $this->notified = $notified;
+  }
+
+  public function getNotified(){
+    return $this->notified;
+  }
+  
 
 }

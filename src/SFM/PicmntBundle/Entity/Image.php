@@ -119,8 +119,6 @@ class Image {
      */
     protected $status;
 
-
-
     public function __construct()
     {
       $this->userVotes = new \Doctrine\Common\Collections\ArrayCollection();

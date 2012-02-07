@@ -49,6 +49,14 @@ class CommentController extends Controller
 	$imageComment->setExposure($request->get('exposure'));
 	$imageComment->setSaturation($request->get('saturation'));
 
+	$user = $this->container->get('security.context')->getToken()->getUser();
+	if ($user->getId() == $image->getUser()->getId()) {
+	  $imageComment->setNotified(1);
+	}
+	else{
+	  $imageComment->setNotified(0);
+	}
+
 	$em->persist($imageComment);
 	$em->flush();
 
