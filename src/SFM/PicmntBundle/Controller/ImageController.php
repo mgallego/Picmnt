@@ -47,8 +47,8 @@ class ImageController extends Controller
 		$image->setUrl($newFileName);
 		$image->setVotes(0);
 		$image->setUser($user);
-		$image->setTitle($newFileName);
-		$image->setSlug($this->container->get('picmnt.utils')->getSlug($newFileName, 0, $user->getId()));
+		$image->setTitle(substr($uploadedFile->getClientOriginalName(),0,-4));
+		$image->setSlug($this->container->get('picmnt.utils')->getSlug($image->getTitle(), 0, $user->getId()));
 		$image->setPubDate(new \DateTime('today'));
 		$image->setStatus(1);
 
