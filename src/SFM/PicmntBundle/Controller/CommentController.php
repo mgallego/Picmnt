@@ -56,4 +56,28 @@ class CommentController extends Controller
     return $this->redirect($this->generateUrl('img_view', array("user"=>$image->getUser()->getUsername(), "slug"=>$image->getSlug()) ));
   }
 
+  public function deleteAction($idComment){
+    $em = $this->get('doctrine')->getEntityManager();     
+    $user = $this->container->get('security.context')->getToken()->getUser();
+    $comment = $em->find('SFMPicmntBundle:ImageComment', $idComment);
+    
+    if (!$comment){
+      $e = $this->get('translator')->trans('There are no comments in the database');
+      throw $this->createNotFoundException($e);
+    }
+
+    if ($user->getId() != $comment->getUser()->getId()) { 
+      return $this->redirect($this->generateUrl('img_show', array("option"=>"show", "idImage"=>$idImage, "category"=>'all') ));
+    }
+    else{
+      $image = $comment->getImage();
+      
+      $em->remove($comment);
+      $em->flush();
+      
+      return $this->redirect($this->generateUrl('img_view', array("user"=>$image->getUser()->getUsername(), "slug"=>$image->getSlug()) ));
+    }
+
+
+  }
 }

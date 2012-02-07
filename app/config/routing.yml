@@ -66,6 +66,10 @@ comment:
 sfm_comment:
     resource: "@SFMPicmntBundle/Controller/CommentController.php"
     type:     annotation
+
+comment_delete:
+    pattern: /comment/delete/{idComment}
+    defaults: { _controller: SFMPicmntBundle:Comment:delete }
   
 
 ################################ FOS USERBUNDLE #################################

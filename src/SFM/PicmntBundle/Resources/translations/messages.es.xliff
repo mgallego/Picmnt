@@ -374,6 +374,10 @@
 	      <source>Remove Image</source>
 	      <target>Eliminar Imagen</target>
 	    </trans-unit>
+	    <trans-unit id="94">
+	      <source>Remove</source>
+	      <target>Eliminar</target>
+	    </trans-unit>
         </body>
     </file>
 </xliff>

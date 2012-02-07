@@ -429,3 +429,9 @@ legend{
 #image-title h1 , #image-title h3{
     display: inline;
 }
+
+.comment-proposal{
+    text-align: right;
+    float: right;
+    margin:  0em 0.5em;
+}
