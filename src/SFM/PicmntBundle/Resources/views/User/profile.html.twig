@@ -48,7 +48,7 @@
 	  <tr>
 	    <td><a href="{{ path('img_view', {'user': app.request.get('userName'), 'slug': image.slug}) }}"><img src="/uploads/{{ image.url }}" class="img-thumbnail"/></a></td>
 	    <td>{{ image.title }}</td>
-	    <td>{{ image.category | trans }}</td>
+	    <td>{{ image.category | capitalize | trans }}</td>
 	    <td><a href="{{ path('img_view', {'user': app.request.get('userName'), 'slug': image.slug}) }}">{{ 'View' | trans }}</a></td>
 	    {% if app.user %}
 	    {% if app.user.username == app.request.get('userName') %}

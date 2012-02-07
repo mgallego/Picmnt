@@ -83,3 +83,4 @@ knp_menu:
     twig: true
     templating: false
     default_renderer: twig
+

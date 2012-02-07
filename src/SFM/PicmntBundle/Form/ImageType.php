@@ -17,10 +17,15 @@ class ImageType extends AbstractType
     $builder
 	->add('title', 'text', array('required'=>'true'))
 	->add('description', 'textarea')
-	->add('category', 'entity', 
+      ->add('category', 'entity', 
 	    array(
 		'class'=>'SFMPicmntBundle:Category',
-		));
+		'query_builder' => function(EntityRepository $er) {
+		  return $er->createQueryBuilder('c');
+		  
+		},
+		'property'=>'name',
+		  ));
   }
 
   public function getName()

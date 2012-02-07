@@ -23,7 +23,6 @@ class Category
 
     /**
      * @var string $name
-     *
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
@@ -39,6 +38,7 @@ class Category
      * @ORM\OneToMany(targetEntity="Image", mappedBy="category")
      */
     private $images;
+
 
 
     /**

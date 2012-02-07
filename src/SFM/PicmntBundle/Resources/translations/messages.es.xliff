@@ -346,6 +346,31 @@
 	      <source>Publication date</source>
 	      <target>Fecha de publicación</target>
 	    </trans-unit>
+	    <trans-unit id="87">
+	      <source>portraits</source>
+	      <target>Retratos</target>
+	    </trans-unit>
+	    <trans-unit id="88">
+	      <source>animals</source>
+	      <target>Animales</target>
+	    </trans-unit>
+	    <trans-unit id="89">
+	      <source>sports</source>
+	      <target>Deportes</target>
+	    </trans-unit>
+	    <trans-unit id="90">
+	      <source>buildings</source>
+	      <target>Arquitectura</target>
+	    </trans-unit>
+	    <trans-unit id="91">
+	      <source>landscapes</source>
+	      <target>Paisajes</target>
+	    </trans-unit>
+	    <trans-unit id="92">
+	      <source>others</source>
+	      <target>Otros</target>
+	    </trans-unit>
+
         </body>
     </file>
 </xliff>
