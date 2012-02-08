@@ -267,7 +267,7 @@ class ImageController extends Controller
 	
 	$user = $this->container->get('security.context')->getToken()->getUser();
 
-	if ($user and $user->getId() == $image[0]->getUser()->getId()){
+	if ($user->getId() == $image[0]->getUser()->getId()){
 	  $this->deleteNotifications($image);
 	
 	}
