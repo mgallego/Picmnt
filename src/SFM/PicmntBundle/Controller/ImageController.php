@@ -267,9 +267,10 @@ class ImageController extends Controller
 	
 	$user = $this->container->get('security.context')->getToken()->getUser();
 
-	if ($user->getId() == $image[0]->getUser()->getId()){
-	  $this->deleteNotifications($image);
-	
+	if ($user != 'anon.'){
+	  if ($user->getId() == $image[0]->getUser()->getId()){
+	    $this->deleteNotifications($image);
+	  }
 	}
 
 	return $this->render('SFMPicmntBundle:Image:viewImage.html.twig', array("image"=>$image[0]));
