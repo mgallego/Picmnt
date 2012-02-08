@@ -65,6 +65,7 @@ class ImageController extends Controller
 
 
 
+
     public function editAction($id_image){
 	$image = new Image();
 	$em = $this->get('doctrine')->getEntityManager();     
@@ -73,7 +74,9 @@ class ImageController extends Controller
 	$user = $this->container->get('security.context')->getToken()->getUser();
 	$oldSlug = $image->getSlug();
 
-	if ($user->getId() != $image->getUser()->getId()) { 
+	
+
+	if ($this->getCurrentUserId() != $image->getUser()->getId()) { 
 	    return $this->redirect($this->generateUrl('img_show', array("option"=>"show", "idImage"=>$id_image, "category"=>'all') ));
 	}
 	else{
@@ -107,7 +110,7 @@ class ImageController extends Controller
 	$image = $em->find('SFMPicmntBundle:Image', $idImage);
 	$user = $this->container->get('security.context')->getToken()->getUser();
 
-	if ($user->getId() != $image->getUser()->getId()) { 
+	if ($this->getCurrentUserId() != $image->getUser()->getId()) { 
 	    return $this->redirect($this->generateUrl('img_show', array("option"=>"show", "idImage"=>$idImage, "category"=>'all') ));
 	}
 	else{
@@ -267,10 +270,8 @@ class ImageController extends Controller
 	
 	$user = $this->container->get('security.context')->getToken()->getUser();
 
-	if ($user != 'anon.'){
-	  if ($user->getId() == $image[0]->getUser()->getId()){
-	    $this->deleteNotifications($image);
-	  }
+	if ($this->getCurrentUserId() == $image[0]->getUser()->getId()){
+	  $this->deleteNotifications($image);
 	}
 
 	return $this->render('SFMPicmntBundle:Image:viewImage.html.twig', array("image"=>$image[0]));
@@ -286,6 +287,15 @@ class ImageController extends Controller
       }
       $em->flush();
 
+    }
+
+    private function getCurrentUserId(){
+
+      $user =  $this->container->get('security.context')->getToken()->getUser();
+      if ($this->get('security.context')->isGranted('ROLE_USER')){
+	return $user->getId();}
+      
+      return 0;
     }
 
 
