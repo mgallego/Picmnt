@@ -94,3 +94,7 @@
 
 [doctrine-extensions]
     git=https://github.com/beberlei/DoctrineExtensions.git
+
+[OrincarGravatarBundle]
+    git=https://github.com/ornicar/GravatarBundle.git
+    target=/bundles/Ornicar/GravatarBundle

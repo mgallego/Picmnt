@@ -22,6 +22,7 @@ $loader->registerNamespaces(array(
     'Knp\Menu'   => __DIR__.'/../vendor/KnpMenu/src',
     'Liip' => __DIR__.'/../vendor/bundles',
     'Ideup'   => __DIR__.'/../vendor/bundles',
+    'Ornicar'   => __DIR__.'/../vendor/bundles',
 
 ));
 $loader->registerPrefixes(array(

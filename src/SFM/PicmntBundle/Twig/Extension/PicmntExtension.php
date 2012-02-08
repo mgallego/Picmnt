@@ -26,7 +26,10 @@ class PicmntExtension extends \Twig_Extension
 	  'avatar' => new \Twig_Function_Method($this, 'avatar'),
 	  'avatarByUsername' => new \Twig_Function_Method($this, 'avatarByUsername'),
 	  'totalPendingComments'=> new \Twig_Function_Method($this, 'totalPendingComments'),
-	  'imagePendingComments'=> new \Twig_Function_Method($this, 'imagePendingComments')
+	  'imagePendingComments'=> new \Twig_Function_Method($this, 'imagePendingComments'),
+	  'existsAvatar'=> new \Twig_Function_Method($this, 'existsAvatar'),
+	  'getEmail'=> new \Twig_Function_Method($this, 'getEmail')
+
 	    );
     }
 
@@ -37,6 +40,22 @@ class PicmntExtension extends \Twig_Extension
 	    return '/bundles/sfmpicmnt/images/user.svg';
 	}
 	return '/uploads/avatarsmall/'.$user->getAvatar();
+    }
+
+    public function existsAvatar($username){
+	$user = $this->em->getRepository('SFMPicmntBundle:User')->findOneByUsername($username);
+
+	if (!$user->getAvatar()){
+	  return False;
+	}
+	return True;
+    }
+
+    public function getEmail($username){
+      $user = $this->em->getRepository('SFMPicmntBundle:User')->findOneByUsername($username);
+
+      return $user->getEmail();
+
     }
 
     public function avatarByUsername($username, $size = 'small'){

@@ -1,17 +1,27 @@
 {% extends "SFMPicmntBundle::layout_private.html.twig" %}
 
+{% set username = app.request.get('userName') %}
+
 {% block content %}
 <section id="profile" class="container">
   <article id="profile-avatar">
     <div class="row">
       <div class="span4 column">
-	<img src="{{ avatarByUsername(app.request.get('userName'),'big') }}" class="avatar-large white-box-with-shadow"/>
+	{% if existsAvatar(username) %})
+	<img src="{{ avatarByUsername(username,'big') }}" class="avatar-large white-box-with-shadow"/>
+	{% else %}
+	    {% if gravatar_exists(getEmail(username)) %}
+	        <img src="{{ gravatar(getEmail(username), 300) }}" class="avatar-large white-box-with-shadow" />
+	    {% else %}
+	        <img src="{{ asset('/bundles/sfmpicmnt/images/user.svg') }}" class="avatar-large white-box-with-shadow"/>
+	    {% endif %}
+	{% endif %}
       </div>
 
       {% if app.user %}
-      {% if app.user.username == app.request.get('userName') %}
+      {% if app.user.username == username %}
       <div class="spam3 offset8">
-	<form action="{{ path('usr_profile', { 'userName': app.request.get('userName') }) }}" method="post" {{ form_enctype(form) }}>
+	<form action="{{ path('usr_profile', { 'userName': username }) }}" method="post" {{ form_enctype(form) }}>
 	  <fieldset>
 	    <legend>{{ 'Change Avatar' | trans }}</legend>
 	  {{ form_widget(form) }}
@@ -38,7 +48,7 @@
             <th>{{ 'Category' | trans }}</th>
             <th>{{ 'Action' | trans }}</th>
 	    
-	    {% if app.user and (app.user.username == app.request.get('userName')) %}
+	    {% if app.user and (app.user.username == username) %}
                  <th></th>
 	    <th>{{ 'Pending Comments' | trans }}</th>
 	    {% endif %}
@@ -48,12 +58,12 @@
 
 	  {% for image in images %}
 	  <tr>
-	    <td><a href="{{ path('img_view', {'user': app.request.get('userName'), 'slug': image.slug}) }}"><img src="/uploads/{{ image.url }}" class="img-thumbnail"/></a></td>
+	    <td><a href="{{ path('img_view', {'user': username, 'slug': image.slug}) }}"><img src="/uploads/{{ image.url }}" class="img-thumbnail"/></a></td>
 	    <td>{{ image.title }}</td>
 	    <td>{{ image.category | capitalize | trans }}</td>
-	    <td><a href="{{ path('img_view', {'user': app.request.get('userName'), 'slug': image.slug}) }}">{{ 'View' | trans }}</a></td>
+	    <td><a href="{{ path('img_view', {'user': username, 'slug': image.slug}) }}">{{ 'View' | trans }}</a></td>
 	    {% if app.user %}
-	    {% if app.user.username == app.request.get('userName') %}
+	    {% if app.user.username == username %}
 	    <td><a href="{{ path('img_edit', {'id_image': image.idImage}) }}">{{ 'Edit' | trans }}</a></td>
 	    <td><span class="comment-pending">{{ imagePendingComments(image.idImage) }}</span></td>
 	    {% endif %}
@@ -72,7 +82,7 @@
   <article id="profile-paginator">
     <div class="row">
       {{ simple_paginator_render('usr_profile', null, { 
-      'routeParams': {'userName': app.request.get('userName')},
+      'routeParams': {'userName': username},
       'containerClass': 'profile-paginator',
       
       }

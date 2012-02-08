@@ -1,7 +1,16 @@
+{% set username = image.user.username %}
 <div class="row">
   <article class="span8 column" id="imageInfo" style="text-align:left">
     <p>
-      <img src="{{ avatar(image.user.id) }}" class="avatar-small"/>
+      {% if existsAvatar(username) %})
+	<img src="{{ avatarByUsername(username,'big') }}" class="avatar-small" />
+	{% else %}
+	    {% if gravatar_exists(getEmail(username)) %}
+	        <img src="{{ gravatar(getEmail(username), 50) }}" class="avatar-small" />
+	    {% else %}
+	        <img src="{{ asset('/bundles/sfmpicmnt/images/user.svg') }}" class="avatar-small" />
+	    {% endif %}
+	{% endif %}
       {{ 'Author' | trans }}: <a href="{{ path('usr_profile', {'userName': image.user.username }) }}">{{ image.user.username }}</a>
       {% if app.user and  app.user.id == image.user.id  %}
       <td><a href="{{ path('img_edit', {'id_image': image.idImage}) }}" id="edit-btn" class="btn success">{{ 'Edit' | trans }}</a></td>

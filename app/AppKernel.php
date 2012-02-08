@@ -23,6 +23,7 @@ class AppKernel extends Kernel
 	    new Knp\Bundle\MenuBundle\KnpMenuBundle(),
 	    new Liip\FunctionalTestBundle\LiipFunctionalTestBundle(),
 	    new Ideup\SimplePaginatorBundle\IdeupSimplePaginatorBundle(),
+	    new Ornicar\GravatarBundle\OrnicarGravatarBundle(),
 
         );
 
