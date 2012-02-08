@@ -382,6 +382,10 @@
 	      <source>Pending Comments</source>
 	      <target>Comentarios Pendientes</target>
 	    </trans-unit>
+	    <trans-unit id="96">
+	      <source>Others</source>
+	      <target>Otros</target>
+	    </trans-unit>
         </body>
     </file>
 </xliff>
