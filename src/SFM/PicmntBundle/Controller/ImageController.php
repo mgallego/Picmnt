@@ -47,10 +47,10 @@ class ImageController extends Controller
 		$image->setUrl($newFileName);
 		$image->setVotes(0);
 		$image->setUser($user);
-		$image->setTitle($newFileName);
-		$image->setSlug($this->container->get('picmnt.utils')->getSlug($newFileName, 0, $user->getId()));
+		$image->setTitle(substr($uploadedFile->getClientOriginalName(),0,-4));
+		//$image->setSlug($this->container->get('picmnt.utils')->getSlug($newFileName, 0, $user->getId()));
 		$image->setPubDate(new \DateTime('today'));
-		$image->setStatus(1);
+		$image->setStatus(0);
 
 		$em = $this->get('doctrine')->getEntityManager();     
 		$em->persist($image);
@@ -71,7 +71,7 @@ class ImageController extends Controller
 	$image = $em->find('SFMPicmntBundle:Image',$id_image);
 
 	$user = $this->container->get('security.context')->getToken()->getUser();
-	$oldTitle = $image->getTitle();
+	$oldSlug = $image->getSlug();
 
 	if ($user->getId() != $image->getUser()->getId()) { 
 	    return $this->redirect($this->generateUrl('img_show', array("option"=>"show", "idImage"=>$id_image, "category"=>'all') ));
@@ -84,10 +84,10 @@ class ImageController extends Controller
 		$form->bindRequest($request);
 
 		if ($form->isValid()) {
-
-		    if ($oldTitle != $image->getTitle()){
-			$image->setSlug($this->container->get('picmnt.utils')->getSlug($image->getTitle(), $image->getIdImage(), $user->getId()));
-		    }
+		  if (!$oldSlug and $image->getTitle()){
+		    $image->setSlug($this->container->get('picmnt.utils')->getSlug($image->getTitle(), $image->getIdImage(), $user->getId()));
+		  }
+		  $image->setStatus(1);
 		    $em->persist($image);
 		    $em->flush();
 	
