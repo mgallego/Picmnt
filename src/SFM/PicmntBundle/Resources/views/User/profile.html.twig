@@ -3,6 +3,20 @@
 {% set username = app.request.get('userName') %}
 
 {% block content %}
+  <nav class="container-fluid" style="padding-top: 50px">
+
+      {% block interno %}
+      <section id="pestanas">
+
+	<div id="row">
+	  {{ knp_menu_render('tabs', {'currentClass': 'active'}) }}
+	</div>
+
+      </section>
+
+      {% endblock %}
+  </nav>
+
 <section id="profile" class="container">
   <article id="profile-avatar">
     <div class="row">
