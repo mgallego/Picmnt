@@ -91,7 +91,9 @@ class UserController extends Controller
 	 
 		}
 	    }
-	    return $this->render('SFMPicmntBundle:User:editUser.html.twig', array('form' => $form->createView(), 'userId' => $userId, 'avatar'=>$userInfo->getAvatar()));
+	    $response =  $this->render('SFMPicmntBundle:User:editUser.html.twig', array('form' => $form->createView(), 'userId' => $userId, 'avatar'=>$userInfo->getAvatar()));
+	    $response->setMaxAge(0);
+	    return $response;
 	}
      
     }

@@ -120,9 +120,8 @@ class ImageRepository extends EntityRepository
 
 
 	$query = $qb->getQuery();  
-	
+
 	return $query;
-	//return $query->getResult();
 
     }
 

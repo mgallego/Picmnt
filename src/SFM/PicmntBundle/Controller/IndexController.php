@@ -13,12 +13,6 @@ class IndexController extends Controller
       $locale = $this->get('session');
       $request = $this->get('request');
 
-//      $lang = substr($request->server->get('HTTP_ACCEPT_LANGUAGE'),0,2);
-
-//      $request->setLocale($lang);
-
-      
-
       if ($this->get('security.context')->isGranted('ROLE_USER')){
 	return $this->redirect($this->generateUrl('secure_home'));
       }
@@ -31,8 +25,10 @@ class IndexController extends Controller
 	  $mostCommentImages = $em->getRepository('SFMPicmntBundle:Image')->getMostComment(10);
 
 	  //	  print (\Doctrine\Common\Util\Debug::dump($mostCommentImages));
-
-	  return $this->render('SFMPicmntBundle:Index:index.html.twig', array('lastImages'=>$lastImages, 'mostComments'=>$mostCommentImages));
+	  
+	  $response = $this->render('SFMPicmntBundle:Index:index.html.twig', array('lastImages'=>$lastImages, 'mostComments'=>$mostCommentImages));
+	  $response->setPublic();
+	  return $response;
       }
     }
 
