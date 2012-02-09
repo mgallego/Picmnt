@@ -1,10 +1,11 @@
 <?php
+require __DIR__.'/../vendor/symfony/src/Symfony/Component/ClassLoader/ApcUniversalClassLoader.php';
 
-use Symfony\Component\ClassLoader\UniversalClassLoader;
+use Symfony\Component\ClassLoader\ApcUniversalClassLoader;
 use Doctrine\Common\Annotations\AnnotationRegistry;
 
 
-$loader = new UniversalClassLoader();
+$loader = new ApcUniversalClassLoader('picmnt_');
 $loader->registerNamespaces(array(
     'Symfony'          => array(__DIR__.'/../vendor/symfony/src', __DIR__.'/../vendor/bundles'),
     'Sensio'           => __DIR__.'/../vendor/bundles',
@@ -16,7 +17,7 @@ $loader->registerNamespaces(array(
     'Doctrine'         => __DIR__.'/../vendor/doctrine/lib',
     'Monolog'          => __DIR__.'/../vendor/monolog/src',
     'Assetic'          => __DIR__.'/../vendor/assetic/src',
-    'Metadata'         => __DIR__.'/../vendor/metadata/src',
+    //'Metadata'         => __DIR__.'/../vendor/metadata/src',
     'FOS'              => __DIR__.'/../vendor/bundles',
     'Knp\Bundle' => __DIR__.'/../vendor/bundles',
     'Knp\Menu'   => __DIR__.'/../vendor/KnpMenu/src',
