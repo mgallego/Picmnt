@@ -8,29 +8,24 @@
 
     <link href="/favicon.ico" rel="shortcut icon">
 
-    {% block stylesheet %}
-    {% stylesheets '@SFMPicmntBundle/Resources/public/stylesheets/bootstrap.min.css'
-                   '@SFMPicmntBundle/Resources/public/stylesheets/layout.css'
-                   '@SFMPicmntBundle/Resources/public/jqueryUI/css/custom-theme/jquery-ui-1.8.13.custom.css'
-                   filter='yui_css'
-                   output='css/style.css'%}
-   <link href="{{ asset_url }}" rel="stylesheet" type="text/css" />
-   {% endstylesheets %}
 
+    {% block stylesheet %}
+    <link rel="stylesheet" href="{{ asset('bundles/sfmpicmnt/stylesheets/bootstrap.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('bundles/sfmpicmnt/stylesheets/layout.css')}}">
+    <link rel="stylesheet" href="{{ asset('bundles/sfmpicmnt/fancybox/jquery.fancybox-1.3.4.css')}}">
+    <link rel="stylesheet" href="{{ asset('bundles/sfmpicmnt/jqueryUI/css/custom-theme/jquery-ui-1.8.13.custom.css') }}">
 
    {% endblock %}
 
     {% block javascript %}
     <script src="http://code.jquery.com/jquery-1.7.1.min.js" />
+    <script src="http://twitter.github.com/bootstrap/assets/js/application.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.js"></script>
+    <script src="{{ asset('bundles/sfmpicmnt/fancybox/jquery.fancybox-1.3.4.pack.js')}}"></script>
+    <script src="{{ asset('bundles/sfmpicmnt/js/picmnt.js') }}"> </script>
+    <script src="{{ asset('bundles/sfmpicmnt/jqueryUI/js/jquery-ui-1.8.13.custom.min.js') }}"></script>
+    <script src="http://twitter.github.com/bootstrap/1.3.0/bootstrap-dropdown.js"></script>
     
-    {% javascripts '@SFMPicmntBundle/Resources/public/js/bootstrap/*'
-                   '@SFMPicmntBundle/Resources/public/fancybox/jquery.fancybox-1.3.4.pack.js'
-                   '@SFMPicmntBundle/Resources/public/js/picmnt.js'
-                   '@SFMPicmntBundle/Resources/public/jqueryUI/js/jquery-ui-1.8.13.custom.min.js'
-                   filter='yui_js'
-                   output='js/scripts.js'%}
-    <script src="{{ asset_url }}" type="text/javascript"></script>
-    {% endjavascripts %}
 
     {% endblock javascript %}
 
