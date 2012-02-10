@@ -386,6 +386,42 @@
 	      <source>Others</source>
 	      <target>Otros</target>
 	    </trans-unit>
+	    <trans-unit id="97">
+	      <source>How about the picture? What do you like or dislike? Make comments about the pictures, criticism, teaches how to improve or simply express what you like or do not like about is image</source>
+	      <target>¿Que te parece la foto? ¿Que te gusta o no te gusta? Haz comentarios sobre las imágenes, critica, enseña como mejorar o simplemente expresa lo que te gusta o no te gusta de es imágen</target>
+	    </trans-unit>
+	    <trans-unit id="98">
+	      <source>Opinion</source>
+	      <target>Opina</target>
+	    </trans-unit>
+	    <trans-unit id="99">
+	      <source>Generate discussion, propose improvements, do not settle for "like" or "I do not like." Defend your ideas, defend your style</source>
+	      <target>Genera discusión, propón mejoras, no te conformes con "me gusta" o "no me gusta". Defiende tus ideas, defiende tu estilo</target>
+	    </trans-unit>
+	    <trans-unit id="100">
+	      <source>Teaches</source>
+	      <target>Enseña</target>
+	    </trans-unit>
+	    <trans-unit id="101">
+	      <source>Why conform to words? Shows what you think, feel free to edit a photo with the available controls and argue your changes. All you modify will be displayed in your comment</source>
+	      <target>¿Por que conformarse con palabras? Muestra lo que opinas, siente libre de modificar una foto con los controles disponibles y argumentar tus cambios. Todo lo que modifiques se mostrará en tu comentario</target>
+	    </trans-unit>
+	    <trans-unit id="102">
+	      <source>Comment, Opinion, Teaches</source>
+	      <target>Comenta, Opina, Enseña</target>
+	    </trans-unit>
+	    <trans-unit id="103">
+	      <source>Did you like this? Register</source>
+	      <target>¿Te ha gustado? Registrate</target>
+	    </trans-unit>
+	    <trans-unit id="104">
+	      <source>Have user? Sign in Now</source>
+	      <target>¿Tienes usuario? Entra Ya</target>
+	    </trans-unit>
+	    <trans-unit id="105">
+	      <source>Last Added</source>
+	      <target>Últimas Añadidas</target>
+	    </trans-unit>
         </body>
     </file>
 </xliff>

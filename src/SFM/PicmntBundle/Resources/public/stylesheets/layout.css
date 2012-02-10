@@ -76,7 +76,7 @@ body {
 ----------------------------------------------------------------------------------------------------*/
 
 header {
-	background: #FFF;
+    	background: white url(../images/background.gif);
 	padding: 15px 25px;
 	height: 148px;
 }
@@ -155,12 +155,13 @@ header li {
 ----------------------------------------------------------------------------------------------------*/
 
 footer {
-	background: #f3f1f1;
+    
+	background: white url(../images/background.gif);
 	color: #000;
-	padding: 15px;
-	margin: 50px 0 0 0;
-	height:90px; 
-	padding-top: 30px;
+	margin-top: 0px;
+	padding: 60px 0;
+	height:300px; 
+	/*padding-top: 30px;*/
 }
 
 
@@ -169,7 +170,7 @@ footer ul{
     list-style-type: none;
     margin: 0 0 2em 0 auto;
     padding: 0;
-    text-align: center;
+    text-align: left;
 
 }
 
@@ -389,6 +390,7 @@ _-------------------------------------------------------------------------------
 
 .copyright{
     text-align: center;
+    margin-top: 100px;
 }
 
 #upload-error ul li{
@@ -442,4 +444,90 @@ legend{
 
 th{
     text-align: center;
+}
+
+
+#index-center{
+    background: #2F4F4F;
+}
+
+#index-center-detail{
+    padding-top: 5em; 
+    font-family:Helvetica, sans, Arial;
+    color: white;
+}
+
+#index-center-detail .text-shadow{
+    color: white;
+}
+
+#index-content{
+    background: white url(http://thehappybit.com/wp-content/themes/thb/img/background.gif);
+    padding-top: 60px;
+}
+
+#index-description{
+    margin-top:2.5em; 
+    color:black;
+}
+
+#index-list li{
+    color: white;
+    font-size:2em;
+    padding: 1em 0;
+}
+#index-list a {
+    color: white;
+}
+
+#index-separator-top{
+    background: -webkit-linear-gradient(black,  #2F4F4F);
+    background: -moz-linear-gradient(black,  #2F4F4F);
+    background: -o-linear-gradient(black,  #2F4F4F); 
+    padding: 1em 0;
+}
+
+#index-separator-bot{
+    background: -webkit-linear-gradient(#2F4F4F, black);
+    background: -moz-linear-gradient(#2F4F4F, black);
+    background: -o-linear-gradient(#2F4F4F, black); 
+    padding: 1em 0;
+}
+
+#index-title{
+    text-align: center;
+}
+
+#index-title-subtext{
+    margin-top:0.25em;
+}
+
+#index-title-subtext p{
+    font-family: Sans,  serif;
+    color: #A9A9A9; 
+    font-size: 2em; 
+    text-align:center;
+}
+
+#most-comment{
+    text-align: center;
+}
+
+#the-p, #the-icmnt{
+    font-family: Sans,  serif;
+    text-shadow:2px 2px 10px rgba(0, 0, 0, 0.50);
+}
+
+#the-p{
+    font-size: 22em;
+    color: DarkBlue;
+}
+
+#the-icmnt{
+    font-size: 18em;
+    color: black;
+}
+
+.footer-head{
+    font-size:1.5em;
 }

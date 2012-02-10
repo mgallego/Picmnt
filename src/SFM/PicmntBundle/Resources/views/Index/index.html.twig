@@ -17,14 +17,6 @@
 
 <script type="text/javascript">
   $(document).ready(function() {
-  $('#slider').s3Slider({
-  timeOut: 3000
-  });
-
-  $('#slider1').s3Slider({
-  timeOut: 5000
-  });
-
   $('#slider2').s3Slider({
   timeOut: 5000
   });
@@ -35,62 +27,66 @@
 
 {% block content %}
 
-<section id="content" class="container">
+<section id="index-content">
 
-
-  <div class="row">
-    <div id="index-slide" >
-     {% include 'SFMPicmntBundle:Index:slide.html.twig' %} 
-    </div>
-  </div>
-  <div class="row">
-
-    <div class="span8 column" id="info-index">
-      <h2 class="text-shadow">
-	{{ 'What is Picmnt' | trans }}?
-      </h2>
+  <article id="index-title">
+    <span id="the-p">P</span>
+    <span id="the-icmnt">icmnt</span>
+    <div id="index-title-subtext">
       <br/>
-      <p>
-	{{ 'Have you ever been told' | trans }}?<strong> "{{ 'pretty picture, but I have a little extra saturation' | trans }}"</strong> {{ 'or' | trans }} <strong>"{{'improve with a bit of contrast' | trans }}"</strong>?
-      </p>
-      <p>
-	{{ 'How much is "a bit of saturation"? How much is a bit of contrast?' | trans }}
-      </p>
-      <p>
-	{{ "It's time to show what you mean with images. Picmnt is a new way to comment photos." | trans }}
-      </p>
-      <p>
-	<strong>{{ 'Upload a photo, comment, edit and shows how you think it better.' | trans }}</strong>
-      </p>
+      <p>{{ 'Comment, Opinion, Teaches' | trans }}</p>
     </div>
+  </article>
+  
+  <div id="index-description" class="container">
+    <div class="row">
+      <article class="span-one-third">
+	<strong>{{ 'Comment' | trans }}</strong>
+	<br />
+	<p>{{ 'How about the picture? What do you like or dislike? Make comments about the pictures, criticism, teaches how to improve or simply express what you like or do not like about is image' | trans }}
+	</p>
+      </article>
 
+      <article class="span-one-third">
+	<strong>{{ 'Opinion' | trans }}</strong>
+	<br />
+	<p>{{ 'Generate discussion, propose improvements, do not settle for "like" or "I do not like." Defend your ideas, defend your style' | trans }}</p>
+      </article>
 
-    <div class="span8 column round-box-with-shadow" id="index-options">
-      <div id="index-options-text">
-      <p>{{ 'What are you waiting for' | trans }}  <a href="{{ path('fos_user_registration_register') }}">{{ 'sign up' | trans }}</a>?, {{ 'is absolutely' | trans }} <strong>{{ 'free' | trans }}</strong></p>
-      <p>{{ 'Are you not convinced yet' | trans }}? <a href="{{ path('img_show', {'category': 'all', 'option': 'random'}) }}">{{ 'explore' | trans }}</a> {{ 'without worries, or if you have an account' | trans }} <a href="{{ path('fos_user_security_login') }}">{{ 'login now' | trans }}</a>.</p>
-    </div>
+      <article class="span-one-third">
+	<strong>{{ 'Teaches' | trans }}</strong>
+	<br />
+	<p>{{ 'Why conform to words? Shows what you think, feel free to edit a photo with the available controls and argue your changes. All you modify will be displayed in your comment' | trans }}</p>
+      </article>
     </div>
   </div>
 
 </section>
 
-<section id="index-most" class="container">
-  <div class="row">
-    <div class="span8 column text-shadow" id="index-most-comments">
-      <h2>{{ 'Most commented' | trans }}</h2>
-      <div id="index-slide-comment">
-	{% include 'SFMPicmntBundle:Index:slideComment.html.twig' %} 
-      </div>
-    </div>
-    <div class="span8 column text-shadow" id="index-last-added">
-      <h2>{{ 'Last added' | trans }}</h2>
-      <div id="index-slide-last">
-	{% include 'SFMPicmntBundle:Index:slideLast.html.twig' %}
-      </div>
-    </div>
-  </div>
-</section>
+<section id="index-center" >
+  <div id="index-separator-top"></div>
 
+  <div id="index-center-detail" class="container">
+    <section class="row">
+      <article class="span8 column">
+	{% include "SFMPicmntBundle:Index:info.html.twig" %}
+	<ol id="index-list">
+	  <li><a hrfe="{{ path('img_show', {'category': 'all', 'option': 'random'}) }}">{{ 'Explore' | trans }}</a></li>
+	  <li><a hrfe="{{ path('fos_user_registration_register') }}">{{ 'Did you like this? Register' | trans }}</a></li>
+	  <li><a hrfe="{{ path('fos_user_security_login') }}">{{ 'Have user? Sign in Now' | trans }}</a></li>
+	</ol>
+      </article>
+      <article id="most-comment" class="span8 column" >
+	<h2 class="text-shadow">{{ 'Most commented' | trans }}</h2>
+	<div id="index-slide-comment">
+	  {% include 'SFMPicmntBundle:Index:slideComment.html.twig' %} 
+	</div>
+      </article>
+    </section>
+  </div>
+
+
+  <div id="index-separator-bot"></div>
+</section>
 
 {% endblock %}

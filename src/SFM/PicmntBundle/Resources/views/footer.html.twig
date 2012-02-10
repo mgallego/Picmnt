@@ -1,15 +1,24 @@
 <footer>
   <div class="container">
     <div class="row">
-
       <div class="span-one-third">
+	<p class="text-with-shadow footer-head" >Sitio</p>
 	<ul>
-	  <li><a href="{{ path('static_page', {'page': 'about'}) }}">{{ 'About Us' | trans }}</a></li>
-	  {#	    <li><a href="#">FAQs</a></li> #}
+	  <li><a href="{{ path('home') }}"></a></li>
+	  <li><a href="{{ path('img_show', {'category': 'all', 'option': 'last'}) }}">{{ 'Last Added' | trans }}</a></li>
+	  <li><a href="{{ path('img_show', {'category': 'all', 'option': 'random'}) }}">{{ 'Random Image' | trans }}</a></li>
+	  <li><a href="{{ path('fos_user_registration_register') }}">{{ 'Join' | trans }}</a></li>
+	  <li><a href="{{ path('fos_user_security_login') }}">{{ 'Login' | trans }}</a></li>
 	</ul>
       </div>
 
       <div class="span-one-third">
+	<p class="text-with-shadow footer-head">Info</p>
+	<ul>
+	  <li><a href="{{ path('static_page', {'page': 'about'}) }}">{{ 'About Us' | trans }}</a></li>
+	  <li><a href="#">FAQs</a></li>
+	</ul>
+
 	<ul>
 	  <li><a href="{{ path('static_page', {'page': 'terms'}) }}">{{ 'Terms of use' | trans }}</a></li>
 	  {#	    <li><a href="#">{{ 'Privacy' | trans }}</a></li> #}
@@ -17,7 +26,9 @@
       </div>
 
       <div class="span-one-third">
+	<p class="text-with-shadow footer-head">Social</p>
 	<ul>
+
 	  <li><a href="https://twitter.com/picmnt">Twitter</a></li>
 	  <li><a href="http://www.facebook.com/pages/Picmnt/155336231201638">Facebook</a></li>
 	</ul>
