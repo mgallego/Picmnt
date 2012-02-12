@@ -514,7 +514,7 @@ th{
 }
 
 #the-p, #the-icmnt{
-    font-family: Sans,  serif;
+    font-family: Sans, "Nimbus Roman No9 L",  serif;
     text-shadow:2px 2px 10px rgba(0, 0, 0, 0.50);
 }
 
