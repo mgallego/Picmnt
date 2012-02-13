@@ -90,6 +90,7 @@ class ImageController extends Controller
 		  if (!$oldSlug and $image->getTitle()){
 		    $image->setSlug($this->container->get('picmnt.utils')->getSlug($image->getTitle(), $image->getIdImage(), $user->getId()));
 		  }
+
 		  $image->setStatus(1);
 		    $em->persist($image);
 		    $em->flush();

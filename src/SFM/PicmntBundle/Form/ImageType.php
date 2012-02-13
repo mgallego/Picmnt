@@ -25,7 +25,8 @@ class ImageType extends AbstractType
 		  
 		},
 		'property'=>'name',
-		  ));
+		  ))
+      ->add('notify_email', 'checkbox', array("required"=>false));
   }
 
   public function getName()

@@ -118,6 +118,16 @@ class Image {
      *
      */
     protected $status;
+    
+    /**
+     * @var boolean $notify_email
+     *
+     * @ORM\Column(type="boolean", name="notify_email", nullable=true)
+     *
+     */
+    protected $notify_email;
+
+    
 
     public function __construct()
     {
@@ -392,6 +402,28 @@ class Image {
      */
     public function getStatus(){
       return $this->status;
+    }
+    
+    
+    /**
+     * Set notify_email
+     *
+     * @param boolean $notifyEmail
+     */
+    public function setNotifyEMail($notifyEmail){
+      $this->notify_email = $notifyEmail;
+    }
+
+    /**
+     * Get notify_email
+     *
+     * @return boolean
+     */
+    public function getNotifyEmail(){
+      if ($this->notify_email == 0){
+	return false;
+      }
+      return true;
     }
     
 
