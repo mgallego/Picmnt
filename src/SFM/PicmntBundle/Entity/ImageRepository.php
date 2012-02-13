@@ -77,7 +77,8 @@ class ImageRepository extends EntityRepository
 	                                             AND p.title IS NOT NULL
                                                      AND p.status = 1
 						     AND p.slug is not null
-');
+						     ORDER BY p.idImage DESC
+                                                     ');
 
 	//	select i.*, count(c.notified) from Image_Comment c, Image i  where notified  = 0 and i.id_image = c.id_image group by i.id_image;
 
