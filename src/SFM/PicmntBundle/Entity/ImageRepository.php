@@ -189,7 +189,7 @@ class ImageRepository extends EntityRepository
     }
 
     public function getPendingComments($user){
-	$query = $this->getEntityManager()->createQuery('SELECT count(c.notified)  as total
+	$query = $this->getEntityManager()->createQuery('SELECT  count(c.notified) as total
                                                      FROM SFMPicmntBundle:ImageComment c
                                                      JOIN c.image i JOIN i.user u
                                                      WHERE i.slug IS NOT NULL
@@ -206,7 +206,7 @@ class ImageRepository extends EntityRepository
     }
 
     public function getPendingCommentsByImage($idImage){
-	$query = $this->getEntityManager()->createQuery('SELECT count(c.notified)  as total
+	$query = $this->getEntityManager()->createQuery('SELECT  count(c.notified)  as total
                                                      FROM SFMPicmntBundle:ImageComment c
                                                      JOIN c.user u JOIN c.image i
                                                      WHERE i.slug IS NOT NULL

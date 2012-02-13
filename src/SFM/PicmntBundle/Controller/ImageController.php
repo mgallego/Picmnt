@@ -90,7 +90,7 @@ class ImageController extends Controller
 		  }
 
 		  $image->setStatus(1);
-		  
+		  $image->getEmailNotify(1);
 		    $em->persist($image);
 		    $em->flush();
 	
