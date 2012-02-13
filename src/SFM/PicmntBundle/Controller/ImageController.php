@@ -51,7 +51,7 @@ class ImageController extends Controller
 		//$image->setSlug($this->container->get('picmnt.utils')->getSlug($newFileName, 0, $user->getId()));
 		$image->setPubDate(new \DateTime('today'));
 		$image->setStatus(0);
-
+		$image->setNotifyEmail(true);
 		$em = $this->get('doctrine')->getEntityManager();     
 		$em->persist($image);
 		$em->flush();

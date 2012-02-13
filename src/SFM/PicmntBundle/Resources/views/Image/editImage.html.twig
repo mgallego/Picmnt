@@ -58,6 +58,11 @@
 		  {{ form_label(form.category, 'Category' | trans) }}
 		  {{ form_widget(form.category) }}
 
+		  {{ form_errors(form.notify_email) }}
+		  {{ form_label(form.notify_email, 'Notify comments by email' | trans) }}
+		  {{ form_widget(form.notify_email) }}
+
+
 		{{ form_rest(form) }}
 
 
