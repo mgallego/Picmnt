@@ -113,11 +113,20 @@ class Image {
     protected $pubDate;
 
 
+    
     /**
      * @ORM\Column(type="integer", nullable=false)
      *
      */
     protected $status;
+
+
+    /**
+     * @ORM\Column(name="email_notify", type="integer", nullable=false)
+     *
+     */
+    protected $email_notify;
+
 
     public function __construct()
     {
@@ -393,6 +402,26 @@ class Image {
     public function getStatus(){
       return $this->status;
     }
-    
+ 
 
+   /**
+     * Set email_notify
+     *
+     * @param integer $email_notify
+     */
+    public function setEmailNotify($email_notify){
+      $this->email_notify = $email_notify;
+    }
+
+    /**
+     * Get email_notify
+     *
+     * @return integer email_notify
+     */
+    public function getEmailNotify(){
+      return $this->email_notify;
+    }
+ 
+
+ 
 }

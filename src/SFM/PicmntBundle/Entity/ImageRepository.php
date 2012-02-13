@@ -22,11 +22,10 @@ class ImageRepository extends EntityRepository
     {
 
 	$category = $this->getCategoryCondition($category);
-
 	$idImageRange = $this->getEntityManager()
-	    ->createQuery('SELECT min(p.idImage) minIdImage, max(p.idImage) maxIdImage 
+	  ->createQuery('SELECT min(p.idImage) as minIdImage, max(p.idImage) as maxIdImage 
                      FROM SFMPicmntBundle:Image p join p.category c WHERE p.title IS NOT NULL AND p.status = 1'.$category)
-	    ->getResult();
+	  ->getResult();
 
 	$randIdImage = rand($idImageRange[0]['minIdImage'], $idImageRange[0]['maxIdImage']);
 
@@ -90,7 +89,7 @@ class ImageRepository extends EntityRepository
 
     
     public function getLastImages($maxResults){
-	$query = $this->getEntityManager()->createQuery('SELECT p 
+	$query = $this->getEntityManager()->createQuery('SELECT p  
                                                      FROM SFMPicmntBundle:Image p
 	                                             WHERE p.title IS NOT NULL
                                                        AND p.status = 1
@@ -103,26 +102,23 @@ class ImageRepository extends EntityRepository
     }
 
 
-    public function getMostComment($maxResults){
+    /*    public function getMostComment($maxResults){
 	return $this->getMostCommentDQL($maxResults)->getResult();
     }
-
-    public function getMostCommentDQL($maxResults){
+    */
+    public function getMostComment($maxResults){
 
         $qb = $this->_em->createQueryBuilder();
 
-        $qb->add('select', 'c as comment, count(c) as cCount')
-            ->add('from', 'SFMPicmntBundle:ImageComment c')
-	    ->join('c.image','p')
-            ->add('where', 'p.title is not null AND p.status = 1') 
-	    ->addGroupby('p.idImage')
-            ->addOrderBy('cCount', 'DESC')
-            ->setMaxResults(10);
-
-
-	$query = $qb->getQuery();  
-
-	return $query;
+	$query = $this->getEntityManager()->createQuery('SELECT c AS comment, count(c) as cCount
+            from SFMPicmntBundle:ImageComment c
+	    join c.image p
+            where p.title is not null AND p.status = 1
+	    group by p.idImage
+            order by cCount desc');
+                                   
+	$query->setMaxResults($maxResults);
+	return $query->getResult();
 
     }
 

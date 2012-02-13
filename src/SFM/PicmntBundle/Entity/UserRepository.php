@@ -11,7 +11,7 @@ class UserRepository extends EntityRepository
     public function findAvatarInfo($userId){
 	$em = $this->getEntityManager();
 	$query = $em->createQuery('
-                  SELECT ui.avatar 
+                  SELECT ui.avatar as avatar
                    FROM SFMPicmntBundle:UserInfo ui
                   WHERE ui.userId = :id');
 
