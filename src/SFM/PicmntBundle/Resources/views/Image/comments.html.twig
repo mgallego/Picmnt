@@ -8,7 +8,7 @@
 	<td>
 	  <a href="{{ path('usr_profile', {'userName': comment.user.username }) }}">
 	    <p>
-	      {% if existsAvatar(username) %})
+	      {% if existsAvatar(username) %}
 	      <img src="{{ avatarByUsername(username,'big') }}" class="avatar-small" />
 	      {% else %}
 	      {% if gravatar_exists(getEmail(username)) %}

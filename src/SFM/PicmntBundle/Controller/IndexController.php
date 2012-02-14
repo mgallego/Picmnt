@@ -18,7 +18,7 @@ class IndexController extends Controller
 	return $this->redirect($this->generateUrl('secure_home'));
       }
       else{
-	  
+
 	  $em = $this->get('doctrine')->getEntityManager();
 
 	  $lastImages = $em->getRepository('SFMPicmntBundle:Image')->getLastImages(10);

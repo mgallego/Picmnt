@@ -60,6 +60,13 @@ usr_pending:
     pattern: /pending/{userName}
     defaults: { _controller: SFMPicmntBundle:User:pending }
 
+usr_redirect_view:
+    pattern: /usr/redirect/view/{user}/{slug}
+    defaults: { _controller: SFMPicmntBundle:Image:view }
+
+usr_redirect_edit:
+    pattern: /usr/redirect/edit/{id_image}
+    defaults: { _controller: SFMPicmntBundle:Image:edit }
 
 ##############################  COMMENTS CONTROLLER  ##########################
 

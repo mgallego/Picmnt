@@ -52,9 +52,11 @@ class CommentController extends Controller
 	$user = $this->container->get('security.context')->getToken()->getUser();
 	if ($user->getId() == $image->getUser()->getId()) {
 	  $imageComment->setNotified(1);
+	  $imageComment->setEmailNotified(1);
 	}
 	else{
 	  $imageComment->setNotified(0);
+	  $imageComment->setEmailNotified(0);
 	}
 
 	$em->persist($imageComment);

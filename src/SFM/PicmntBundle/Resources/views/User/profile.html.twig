@@ -21,7 +21,7 @@
   <article id="profile-avatar">
     <div class="row">
       <div class="span4 column">
-	{% if existsAvatar(username) %})
+	{% if existsAvatar(username) %}
 	<img src="{{ avatarByUsername(username,'big') }}" class="avatar-large white-box-with-shadow"/>
 	{% else %}
 	    {% if gravatar_exists(getEmail(username)) %}

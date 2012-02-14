@@ -2,7 +2,7 @@
 <div class="row">
   <article class="span8 column" id="imageInfo" style="text-align:left">
     <p>
-      {% if existsAvatar(username) %})
+      {% if existsAvatar(username) %}
 	<img src="{{ avatarByUsername(username,'big') }}" class="avatar-small" />
 	{% else %}
 	    {% if gravatar_exists(getEmail(username)) %}

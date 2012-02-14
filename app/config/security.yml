@@ -38,3 +38,4 @@ security:
         #- { path: ^/img, role: ROLE_USER }
         - { path: ^/img , role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/img/upload , role: ROLE_USER }
+        - { path: ^/usr/redirect/ , role: ROLE_USER }

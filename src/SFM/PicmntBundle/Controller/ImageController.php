@@ -284,6 +284,7 @@ class ImageController extends Controller
       
       foreach ($comments as $comment){
 	$comment->setNotified(1);
+	$comment->setEmailNotified(1);
 	$em->persist($comment);
       }
       $em->flush();

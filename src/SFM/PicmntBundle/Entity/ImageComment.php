@@ -79,6 +79,12 @@ class ImageComment
    * @ORM\Column(type="integer", nullable=true)
    */
   protected $notified;
+
+  /**
+   * @ORM\Column(type="integer", nullable=true)
+   *
+   */
+  protected $email_notified;
   
 
   /**
@@ -208,6 +214,20 @@ class ImageComment
   public function getNotified(){
     return $this->notified;
   }
-  
+ 
+  /**
+   * Set email_notified
+   *
+   * @param integer $emailNotified
+   */
+   public function setEmailNotified($emailNotified){
+    $this->email_notified = $emailNotified;
+  }
+
+ 
+   public function getEmailNotifed(){
+     return  $this->email_notified;
+   }
+
 
 }
