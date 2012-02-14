@@ -74,8 +74,6 @@ class ImageController extends Controller
 	$user = $this->container->get('security.context')->getToken()->getUser();
 	$oldSlug = $image->getSlug();
 
-	
-
 	if ($this->getCurrentUserId() != $image->getUser()->getId()) { 
 	    return $this->redirect($this->generateUrl('img_show', array("option"=>"show", "idImage"=>$id_image, "category"=>'all') ));
 	}
@@ -92,6 +90,7 @@ class ImageController extends Controller
 		  }
 
 		  $image->setStatus(1);
+		  $image->getEmailNotify(1);
 		    $em->persist($image);
 		    $em->flush();
 	
