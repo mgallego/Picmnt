@@ -148,7 +148,7 @@
 	    </trans-unit>
 	    <trans-unit id="37">
 	      <source>Remember the password</source>
-	      <target>¿Ha olvidado su contraseña?</target>
+	      <target>Recordar contraseña</target>
 	    </trans-unit>
 	    <trans-unit id="38">
 	      <source>Preferences</source>
@@ -421,14 +421,6 @@
 	    <trans-unit id="105">
 	      <source>Last Added</source>
 	      <target>Últimas Añadidas</target>
-	    </trans-unit>
-	    <trans-unit id="106">
-	      <source>Remember Me</source>
-	      <target>Recordarme</target>
-	    </trans-unit>
-	    <trans-unit id="107">
-	      <source>Notify comments by email</source>
-	      <target>Notificarme comentarios por email</target>
 	    </trans-unit>
         </body>
     </file>
