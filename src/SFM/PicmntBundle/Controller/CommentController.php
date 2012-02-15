@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Response;
 class CommentController extends Controller
 {
 
-  public function commentAction($idImage, $origin)
+  public function commentAction($idImage)
   {
     $logger = $this->get('logger');
     $image = new Image();
