@@ -531,3 +531,10 @@ th{
 .footer-head{
     font-size:1.5em;
 }
+
+#mailchimp, #mailchimp label, #mailchimp h2{
+    color: white;
+    text-align: center;
+}
+
+
