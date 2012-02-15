@@ -116,7 +116,7 @@
 	    </trans-unit>
 	    <trans-unit id="29">
 	      <source>Last</source>
-	      <target>Ultima</target>
+	      <target>Última</target>
 	    </trans-unit>
 	    <trans-unit id="30">
 	      <source>My Profile</source>
@@ -124,7 +124,7 @@
 	    </trans-unit>
 	    <trans-unit id="31">
 	      <source>Upload Image</source>
-	      <target>Subir Imagen</target>
+	      <target>Subir Imágen</target>
 	    </trans-unit>
 	    <trans-unit id="32">
 	      <source>Admin</source>
@@ -228,7 +228,7 @@
 	    </trans-unit>
 	    <trans-unit id="57">
 	      <source>pretty picture, but I have a little extra saturation</source>
-	      <target>bonita foto, pero le sobra un poco de saturacion</target>
+	      <target>bonita foto, pero le sobra un poco de saturación</target>
 	    </trans-unit>
 	    <trans-unit id="58">
 	      <source>or</source>
@@ -236,19 +236,19 @@
 	    </trans-unit>
 	    <trans-unit id="59">
 	      <source>improve with a bit of contrast</source>
-	      <target>mejoraria con un poco de contraste</target>
+	      <target>mejoraría con un poco de contraste</target>
 	    </trans-unit>
 	    <trans-unit id="60">
 	      <source>How much is "a bit of saturation"? How much is a bit of contrast?</source>
-	      <target>Cuanto es "un poco de saturacion? Cuanto es un poco de contraste?</target>
+	      <target>¿Cuanto es "un poco de saturación? ¿Cuanto es un poco de contraste?</target>
 	    </trans-unit>
 	    <trans-unit id="61">
 	      <source>It's time to show what you mean with images. Picmnt is a new way to comment photos.</source>
-	      <target>Ya es hora de demostrar lo que quieres decir con imagenes. Picmnt es una nueva forma de comentar fotografias. </target>
+	      <target>Ya es hora de demostrar lo que quieres decir con imágenes. Picmnt es una nueva forma de comentar fotografías. </target>
 	    </trans-unit>
 	    <trans-unit id="62">
 	      <source>Upload a photo, comment, edit and shows how you think it better.</source>
-	      <target>Sube una fotografia, comentala, edita y muestra como piensas que mejoraria.</target>
+	      <target>Sube una fotografía, coméntala, edita y muestra como piensas que mejoraría.</target>
 	    </trans-unit>
 	    <trans-unit id="63">
 	      <source>What are you waiting for</source>
@@ -388,7 +388,7 @@
 	    </trans-unit>
 	    <trans-unit id="97">
 	      <source>How about the picture? What do you like or dislike? Make comments about the pictures, criticism, teaches how to improve or simply express what you like or do not like about is image</source>
-	      <target>¿Que te parece la foto? ¿Que te gusta o no te gusta? Haz comentarios sobre las imágenes, critica, enseña como mejorar o simplemente expresa lo que te gusta o no te gusta de es imágen</target>
+	      <target>¿Que te parece la foto? ¿Que te gusta o no te gusta? Haz comentarios sobre las imágenes, critica, enseña como mejorar o simplemente expresa lo que te gusta o no te gusta de es imagen</target>
 	    </trans-unit>
 	    <trans-unit id="98">
 	      <source>Opinion</source>
