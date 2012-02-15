@@ -434,6 +434,14 @@
 	      <source>I agree with the terms and condition of use</source>
 	      <target>Estoy de acuerdo con los términos y condiciones de uso</target>
 	    </trans-unit>
+	    <trans-unit id="109">
+	      <source>Remember that the images you upload must be of your property.</source>
+	      <target>Recuerda que las imagenes que subas deben ser de tu propiedad.</target>
+	    </trans-unit>
+	    <trans-unit id="110">
+	      <source>It is forbidden to upload images of nude or erotic.</source>
+	      <target>Queda terminantemente prohibido subir imágenes eroticas o de desnudo.</target>
+	    </trans-unit>
         </body>
     </file>
 </xliff>
