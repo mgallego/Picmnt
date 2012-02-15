@@ -10,3 +10,6 @@ build/
 vendor/
 src/SFM/PicmntBundle/Resources/views/Addons/analytics.html.twig
 src/SFM/PicmntBundle/Resources/views/Addons/uservoice.html.twig
+app/config/deploy.rb
+.Capifony/
+Capfile
