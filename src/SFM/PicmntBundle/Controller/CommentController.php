@@ -16,9 +16,8 @@ use Symfony\Component\HttpFoundation\Response;
 class CommentController extends Controller
 {
 
-  public function commentAction($idImage)
+  public function commentAction($idImage, $origin)
   {
-
     $logger = $this->get('logger');
     $image = new Image();
 
@@ -63,7 +62,9 @@ class CommentController extends Controller
 	$em->flush();
 
     }
+    
     return $this->redirect($this->generateUrl('img_view', array("user"=>$image->getUser()->getUsername(), "slug"=>$image->getSlug()) ));
+    
   }
 
   public function deleteAction($idComment){
