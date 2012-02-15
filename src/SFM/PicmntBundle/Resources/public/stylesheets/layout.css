@@ -432,9 +432,9 @@ legend{
 }
 
 .comment-proposal{
-    text-align: right;
+    text-align: center;
     float: right;
-    margin:  0em 0.5em;
+    margin:  0.5em 0.5em;
 }
 
 .comment-pending{
