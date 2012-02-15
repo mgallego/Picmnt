@@ -101,7 +101,7 @@
 
 
 	    <article class="span14 columns" id="imageImage">
-	      <img src="/uploads{{ asset(image.url) }}" id="image-to-modify"/>
+	      <img src="{{ asset(upload_dir ~ image.url) }}" id="image-to-modify"/>
 	     {% include "SFMPicmntBundle:Image:imageinfo.html.twig" %}
 	    </article>
 
