@@ -430,6 +430,10 @@
 	      <source>Notify comments by email</source>
 	      <target>Notificarme comentarios por email</target>
 	    </trans-unit>
+	    <trans-unit id="108">
+	      <source>I agree with the terms and condition of use</source>
+	      <target>Estoy de acuerdo con los términos y condiciones de uso</target>
+	    </trans-unit>
         </body>
     </file>
 </xliff>
