@@ -8,7 +8,7 @@
       <tbody>
 	{% for image in images %}
 	<tr>
-	  <td class="img-bigthumbnail"><a href="{{ path('img_view', {'user': image.user.username, 'slug': image.slug}) }}"><img src="{{ upload_dir ~ image.url }}" class="img-bigthumbnail  box-with-shadow"/></a></td>
+	  <td class="img-bigthumbnail"><a href="{{ path('img_view', {'user': image.user.username, 'slug': image.slug}) }}"><img src="/uploads/thumbs/{{ image.url }}" class="img-bigthumbnail  box-with-shadow"/></a></td>
 	  <td class="thumb-detail"><h2><a href="{{ path('img_view', {'user': image.user.username, 'slug': image.slug}) }}">{{ image.title }}</a></h2>
 	    <p>
 	      {{ 'By' | trans }}: <a href="{{ path('usr_profile', {'userName': image.user.username }) }}">{{ image.user.username }}</a>

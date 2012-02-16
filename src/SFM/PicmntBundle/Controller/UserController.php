@@ -81,7 +81,7 @@ class UserController extends Controller
 			$imageUtil = new ImageUtil();
 	    
 			$imageUtil->resizeImage('uploads/avatarbig/'.$newFileName, 200);
-			$imageUtil->createAvatarSmall('uploads/avatarbig/'.$newFileName, 'uploads/avatarsmall/'.$newFileName, 32);
+			$imageUtil->createImageSmall('uploads/avatarbig/'.$newFileName, 'uploads/avatarsmall/'.$newFileName, 32);
 	 
 			$userInfo->setAvatar($newFileName);
 		    }

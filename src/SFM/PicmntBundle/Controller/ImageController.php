@@ -44,6 +44,7 @@ class ImageController extends Controller
 
 		$imageUtil->resizeImage('uploads/'.$newFileName, 800);
 
+
 		$image->setUrl($newFileName);
 		$image->setVotes(0);
 		$image->setUser($user);
@@ -56,6 +57,7 @@ class ImageController extends Controller
 		$em->persist($image);
 		$em->flush();
 
+		$imageUtil->createImageSmall('uploads/'.$newFileName,  'uploads/thumbs/'.$newFileName, 250);
 		return $this->redirect($this->generateUrl('img_edit', array("id_image" => $image->getIdImage())));
 	    }
 	}
@@ -90,9 +92,9 @@ class ImageController extends Controller
 		  }
 
 		  $image->setStatus(1);
-		  $image->getEmailNotify(1);
-		    $em->persist($image);
-		    $em->flush();
+		  $image->getNotifyEmail(1);
+		  $em->persist($image);
+		  $em->flush();
 	
 		    return $this->redirect($this->generateUrl('img_view', array("user"=>$image->getUser()->getUsername(), "slug"=>$image->getSlug()) ));
 		}
