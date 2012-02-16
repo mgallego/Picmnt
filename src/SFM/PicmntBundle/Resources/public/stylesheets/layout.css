@@ -478,6 +478,7 @@ th{
 }
 #index-list a {
     color: white;
+    text-decoration: underline;
 }
 
 #index-separator-top{
