@@ -35,7 +35,7 @@ class IndexController extends Controller
 
     public function indexSecureAction()
     {
-	return $this->redirect($this->generateUrl('img_show', Array("option"=>"random", "category"=>'all')));
+	return $this->redirect($this->generateUrl('img_show', Array("option"=>"recents", "category"=>'all')));
     }
 
     public function langAction()

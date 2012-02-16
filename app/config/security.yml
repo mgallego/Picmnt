@@ -35,7 +35,6 @@ security:
         - { path: ^/admin/, role: ROLE_ADMIN }
         - { path: ^/demo/secured/.*, role: ROLE_USER }
         - { path: ^/p/ , role: ROLE_USER }
-        #- { path: ^/img, role: ROLE_USER }
-        - { path: ^/img , role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/img/upload , role: ROLE_USER }
+        - { path: ^/img , role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/usr/redirect/ , role: ROLE_USER }
