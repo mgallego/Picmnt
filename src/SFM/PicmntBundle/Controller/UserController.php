@@ -102,7 +102,7 @@ class UserController extends Controller
     public function  profileAction($userName = null){
       $em = $this->get('doctrine')->getEntityManager();
 
-      if (!$userName){
+      if (!$userName and $this->get('security.context')->isGranted('ROLE_USER')){
 	$user = $this->container->get('security.context')->getToken()->getUser();
 	$userName = $user->getUsername();
 	return $this->redirect($this->generateUrl('usr_profile', array("userName"=>$userName)));	
