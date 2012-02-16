@@ -3,7 +3,7 @@
     {% for imageComment in mostComments %}
     <li class="slider2Image">
       <a href="{{ path('img_view', {'user': imageComment.comment.image.user.username, 'slug': imageComment.comment.image.slug}) }} ">
-	<img src="{{ asset(upload_dir ~ imageComment.comment.image.url)}}" class="box-with-shadow" />
+	<img src="{{ asset(thumbs_dir ~ imageComment.comment.image.url)}}" class="box-with-shadow" />
       </a>
       <span class="bottom"><strong>{{ imageComment.comment.image.title }}</strong><br />{{ 'By' | trans }}: {{ imageComment.comment.image.user.username }}</span>
     </li>

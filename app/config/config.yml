@@ -25,6 +25,7 @@ twig:
     strict_variables: %kernel.debug%
     globals:
         upload_dir: '/uploads/'
+        thumbs_dir: '/uploads/thumbs/'
 
 # Assetic Configuration
 assetic:
