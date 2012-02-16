@@ -41,7 +41,7 @@
 
 	  {% for image in images %}
 	  <tr>
-	    <td><a href="{{ path('img_view', {'user': app.request.get('userName'), 'slug': image.image.slug}) }}"><img src="/uploads/{{ image.image.url }}" class="img-thumbnail"/></a></td>
+	    <td><a href="{{ path('img_view', {'user': app.request.get('userName'), 'slug': image.image.slug}) }}"><img src="{{ upload_dir ~ image.image.url }}" class="img-thumbnail"/></a></td>
 	    <td>{{ image.image.title }}</td>
 	    <td>{{ image.image.category | capitalize | trans }}</td>
 	    <td><a href="{{ path('img_view', {'user': app.request.get('userName'), 'slug': image.image.slug}) }}">{{ 'View' | trans }}</a></td>

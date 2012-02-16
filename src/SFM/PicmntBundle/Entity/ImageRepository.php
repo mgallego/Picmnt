@@ -226,6 +226,28 @@ class ImageRepository extends EntityRepository
 
     }
 
+    public function getRecents($category){
+
+	return $this->getRecentsDQL($category)->getResult();
+
+    }
+
+
+    public function getRecentsDQL($category){
+	$category = $this->getCategoryCondition($category);
+
+	$query = $this->getEntityManager()->createQuery('SELECT p 
+                                                     FROM SFMPicmntBundle:Image p
+                                                     JOIN p.category c
+                                                     WHERE p.status = 1 '.$category.' 
+                                                     ORDER by p.idImage DESC
+                                                     ');
+
+	return $query;
+
+    }
+
+
 
     
 }

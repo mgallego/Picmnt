@@ -155,7 +155,13 @@ class ImageController extends Controller
 	else if ( $option == 'show' ){
 	  $image = $em->find('SFMPicmntBundle:Image',$idImage);
 	}
+	else if ( $option == 'recents'){
+	  $paginator = $this->get('ideup.simple_paginator');
+  	  $paginator->setItemsPerPage(15);
+	  $images = $paginator->paginate($em->getRepository('SFMPicmntBundle:Image')->getRecentsDQL($category))->getResult();
 
+	  return $this->render('SFMPicmntBundle:Image:showImage.html.twig', array("images"=>$images));
+	}
 	return $this->render('SFMPicmntBundle:Image:showImage.html.twig', array("image"=>$image, "paginator"=>$paginator));
     }
 
@@ -163,10 +169,7 @@ class ImageController extends Controller
 
 
     private function getPaginator($option, $idImage, $category = 'all'){
-    
-	return Array('imgNext'=>$this->getNext($option, $idImage, $category), 
-	    'imgPrevious'=>$this->getPrevious($option, $idImage, $category) );
-
+	return Array('imgNext'=>$this->getNext($option, $idImage, $category), 'imgPrevious'=>$this->getPrevious($option, $idImage, $category) );
     }
 
 

@@ -95,10 +95,7 @@ class UserController extends Controller
 	    $response->setMaxAge(0);
 	    return $response;
 	}
-     
     }
-
-
 
 
     public function  profileAction($userName){

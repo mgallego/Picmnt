@@ -35,7 +35,7 @@ img_show:
     defaults: { _controller: SFMPicmntBundle:Image:show,  idImage: 0 }
     requirements:
         category: all|portraits|landscapes|animals|sports|buildings|others
-        option: random|last|show
+        option: random|last|show|recents
 
 img_view:
     pattern: /view/{user}/{slug}

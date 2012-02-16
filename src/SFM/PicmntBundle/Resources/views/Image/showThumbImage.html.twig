@@ -1,0 +1,40 @@
+{% set category = app.request.get('category') %} 
+{% set option = app.request.get('option') %}
+
+<section id="show-thumb" class="container">
+  <article id="show-thumb-images">
+    <table class="zebra-striped">
+      <tbody>
+	{% for image in images %}
+	<tr>
+	  <td class="img-bigthumbnail"><a href="{{ path('img_view', {'user': image.user.username, 'slug': image.slug}) }}"><img src="{{ upload_dir ~ image.url }}" class="img-bigthumbnail  box-with-shadow"/></a></td>
+	  <td class="thumb-detail"><h2><a href="{{ path('img_view', {'user': image.user.username, 'slug': image.slug}) }}">{{ image.title }}</a></h2>
+	    <p>
+	      {{ 'By' | trans }}: <a href="{{ path('usr_profile', {'userName': image.user.username }) }}">{{ image.user.username }}</a>
+	    </p>
+	    <p>
+	      {{ 'Published in' | trans }}: <a href="{{ path('img_show', {'option': option, 'category': image.category}) }}">{{ image.category | capitalize | trans }}</a>
+	    </p>
+	  </td>
+	</tr>
+
+	{% else %}
+	<strong>{{ 'This user has not upload any picture' | trans }}</strong>
+	{% endfor %}
+      </tbody>
+    </table>
+  </article>
+
+  <article id="show-thumb-paginator">
+    
+    <div class="row">
+      {{ simple_paginator_render('img_show', null, { 
+      'routeParams': {'option': option , 'category': category },
+      'containerClass': 'profile-paginator',
+      
+      }
+      ) }}
+    </div>
+  </article>
+</section>
+

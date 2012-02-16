@@ -72,6 +72,16 @@ body {
     width: 100px;
 }
 
+.img-bigthumbnail{
+    width: 400px;
+}
+
+#show-thumb td{
+    text-align: left;
+    vertical-align: top;
+}
+
+
 /* Header
 ----------------------------------------------------------------------------------------------------*/
 
@@ -371,6 +381,11 @@ _-------------------------------------------------------------------------------
 .simple_paginator .right, .simple_paginator .right_disabled{
     padding-left: 8em;
 }
+
+#show-thumb-paginator{
+    text-align: center;
+}
+
 
 #remember-password{
     text-align: center;

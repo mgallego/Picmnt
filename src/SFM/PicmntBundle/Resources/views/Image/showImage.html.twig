@@ -87,72 +87,12 @@
 
       {% endblock %}
 
-      <center>
-	<section id="show_image">
-	  <div id="image-title">
-
-	    {% set Next = '' %}
-	    {% set Previous = '' %}
-
-	    {% for page in paginator %}
-	      {% if loop.index == '1' %}
-	        {% if image.idImage != page %}
-	          {% set Next =  path('img_show', {'option': 'last',  'idImage': page, 'category': app.request.get('category') })  %}
-	        {% endif %}
-	      {% else %}
-	        {% if image.idImage > page %}
-	          {% set Previous =  path('img_show', {'option': 'last', 'idImage':  page, 'category': app.request.get('category') })  %}
-	        {% endif %}
-	      {% endif %}
-	    {% endfor %}
-
-	    <h3>
-	      {% if app.request.get('option') == 'last' %}
-	        {% if Previous %}
-	          <a href="{{ Previous }}">{{ 'Previous' | trans }}</a> |
-	        {% else %}
-                  {{ 'Previous' | trans }} |
-	        {% endif %}
-	      {% endif %}
-	    </h3>
-	    <h1>
-	    <a href="{{ path('img_view', {'user': image.user.username, 'slug': image.slug}) }} ">{{ image.title }}</a>
-	    </h1>
-	    <h3>
-	      {% if app.request.get('option') == 'last' %}
-	        {% if Next %}
-	          | <a href="{{ Next }}">{{ 'Next' | trans }} </a>
-	        {% else %}
-                  | {{ 'Next' | trans }} 
-	        {% endif %} 
-	      {% endif %}
-	    </h3>
-	  </div>
-	  <br />
-
-	  <div class="row">
-
-	    <article class="span14 columns" id="imageImage">
-	      <img src="{{ asset(upload_dir ~ image.url) }}" id="image-to-modify"/>
-	      {% include "SFMPicmntBundle:Image:imageinfo.html.twig" %}
-	    </article>
-	    
-
-	    <!-- Controls
-		 ===========================
-	      -->
-	    {% include "SFMPicmntBundle:Image:controls.html.twig" %}
-
-	  </div>
-
-	</section>
-
-
-	<!--  Comments
-	      ==================================================================== -->
-	{% include "SFMPicmntBundle:Image:comments.html.twig" %}
-
-      </center>
+      {% set option = app.request.get('option') %}
+      {% if option == 'recents' %}
+          {% include "SFMPicmntBundle:Image:showThumbImage.html.twig" %}
+      {% else %}
+          {% include "SFMPicmntBundle:Image:showOneImage.html.twig" %}
+      {% endif %}
 
     </div>
   </div>
