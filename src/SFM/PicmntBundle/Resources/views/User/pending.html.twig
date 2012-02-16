@@ -1,10 +1,27 @@
 {% extends "SFMPicmntBundle::layout_private.html.twig" %}
 
 {% block content %}
+  <nav class="container-fluid" style="padding-top: 50px">
+
+      {% block interno %}
+      <section id="pestanas">
+
+	<div id="row">
+	  {{ knp_menu_render('tabs', {'currentClass': 'active'}) }}
+	</div>
+
+      </section>
+
+      {% endblock %}
+  </nav>
+
+
 <section id="profile" class="container">
 
   <article id="profile-images">
     <div class="row">
+      <h1 class="text-with-shadow">{{ 'Pending Comments' | trans }}</h1>
+      <br />
       <table class="zebra-striped">
 	<thead>
           <tr>
