@@ -1,7 +1,7 @@
 {% extends "SFMPicmntBundle::layout_private.html.twig" %}
 
 {% block title %}
- | {{ app.request.get('option') | capitalize }} {{ app.request.get('category') | capitalize }}
+ |  {{ app.request.get('category') | capitalize | trans}} {{ app.request.get('option') | capitalize | trans }}
 {% endblock title %}
 
 {% block javascript %}

@@ -76,6 +76,13 @@ body {
     width: 400px;
 }
 
+#show-thumb h1{
+    margin-bottom: 1em;
+    text-align: center;
+    
+}
+
+
 #show-thumb td{
     text-align: left;
     vertical-align: top;

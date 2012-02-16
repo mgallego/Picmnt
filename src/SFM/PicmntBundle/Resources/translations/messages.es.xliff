@@ -446,6 +446,10 @@
 	      <source>Published in</source>
 	      <target>Publicado en</target>
 	    </trans-unit>
+	    <trans-unit id="112">
+	      <source>Recents</source>
+	      <target>Recientes</target>
+	    </trans-unit>
         </body>
     </file>
 </xliff>
