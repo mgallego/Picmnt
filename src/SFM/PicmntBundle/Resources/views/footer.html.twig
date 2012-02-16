@@ -5,6 +5,7 @@
 	<p class="text-with-shadow footer-head" >Sitio</p>
 	<ul>
 	  <li><a href="{{ path('home') }}"></a></li>
+	  <li><a href="{{ path('img_show', {'category': 'all', 'option': 'recents'}) }}">{{ 'Recents' | trans }}</a></li>
 	  <li><a href="{{ path('img_show', {'category': 'all', 'option': 'last'}) }}">{{ 'Last Added' | trans }}</a></li>
 	  <li><a href="{{ path('img_show', {'category': 'all', 'option': 'random'}) }}">{{ 'Random Image' | trans }}</a></li>
 	  <li><a href="{{ path('fos_user_registration_register') }}">{{ 'Join' | trans }}</a></li>

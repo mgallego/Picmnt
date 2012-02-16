@@ -71,7 +71,7 @@
       <article class="span8 column">
 	{% include "SFMPicmntBundle:Index:info.html.twig" %}
 	<ol id="index-list">
-	  <li><a href="{{ path('img_show', {'category': 'all', 'option': 'random'}) }}">{{ 'Explore' | trans }}</a></li>
+	  <li><a href="{{ path('img_show', {'category': 'all', 'option': 'recents'}) }}">{{ 'Explore' | trans }}</a></li>
 	  <li><a href="{{ path('fos_user_registration_register') }}">{{ 'Did you like this? Register' | trans }}</a></li>
 	  <li><a href="{{ path('fos_user_security_login') }}">{{ 'Have user? Sign in Now' | trans }}</a></li>
 	</ol>
