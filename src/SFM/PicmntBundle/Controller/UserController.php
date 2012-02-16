@@ -98,9 +98,18 @@ class UserController extends Controller
     }
 
 
-    public function  profileAction($userName){
+
+    public function  profileAction($userName = null){
       $em = $this->get('doctrine')->getEntityManager();
+
+      if (!$userName){
+	$user = $this->container->get('security.context')->getToken()->getUser();
+	$userName = $user->getUsername();
+	return $this->redirect($this->generateUrl('usr_profile', array("userName"=>$userName)));	
+      }
+      
       $user =   $em->getRepository('SFMPicmntBundle:User')->findOneByUsername($userName);
+
 
       if (!$user){
 	  $e = $this->get('translator')->trans('The User Not Exists');
@@ -114,8 +123,6 @@ class UserController extends Controller
       $paginator->setItemsPerPage(10);
 
       $images = $paginator->paginate($em->getRepository('SFMPicmntBundle:Image')->getByUserDQL($userName))->getResult();
-
-
 
       $form = $this->get('form.factory')
 	->createBuilder('form', $user)
@@ -167,12 +174,13 @@ class UserController extends Controller
 
       if ($images){
 	return $this->render('SFMPicmntBundle:User:profile.html.twig', array('images' => $images, 'form' => $form->createView()));
-
       }
       else{
 	return $this->render('SFMPicmntBundle:User:profile.html.twig', array('images' => $images, 'form' => $form->createView()));
       }
     }
+
+
 
     public function  pendingAction($userName){
       $em = $this->get('doctrine')->getEntityManager();

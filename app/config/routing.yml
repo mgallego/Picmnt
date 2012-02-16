@@ -52,6 +52,10 @@ usr_edit:
     pattern: /usr/edit/{userId}
     defaults: { _controller: SFMPicmntBundle:User:edit }
 
+_usr_profile:
+    pattern: /profile
+    defaults: { _controller: SFMPicmntBundle:User:profile }
+
 usr_profile:
     pattern: /profile/{userName}
     defaults: { _controller: SFMPicmntBundle:User:profile }
