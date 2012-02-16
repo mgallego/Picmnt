@@ -516,7 +516,8 @@ th{
 
 #the-p, #the-icmnt{
     font-family: "Nimbus Roman No9 L", Sans,  serif;
-    text-shadow:2px 2px 10px rgba(0, 0, 0, 0.50);
+    letter-spacing: -0.08em;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.50);
 }
 
 #the-p{
