@@ -28,7 +28,7 @@ class MenuBuilder extends ContainerAware
     $menu->setCurrentUri($request->getRequestUri());
     $menu->setAttribute('class', 'pills'); 
 
-
+    $menu->addChild($translator->trans('Explore'), array('route' => 'img_show', 'routeParameters' => array('option'=>'recents', 'category'=>'all')));
     $menu->addChild($translator->trans('Join'), array('route' => 'fos_user_registration_register'));
     $menu->addChild($translator->trans('Login'), array('route' => 'fos_user_security_login'));
 
