@@ -2,6 +2,16 @@
 
 {% form_theme form 'SFMPicmntBundle::form.html.twig' %}
 
+{% block scripts %}
+  {{ parent() }}
+
+    <script type="text/javascript">
+      function showUploading(){
+      $( "#upload-in-progress" ).show();
+      };
+    </script>
+{% endblock scripts %}
+
 {% block content %}
 
 <section id="content" style="padding-top: 50px" class="container-fluid">
@@ -16,6 +26,7 @@
   <div class="row">
 
     <article class="span8 offset5">
+
       <form id="upload_form" action="{{ path('img_upload') }}" method="post" {{ form_enctype(form) }} >
 	<fieldset>
 	  <legend>{{ 'Please select an image' | trans }}</legend>
@@ -32,8 +43,14 @@
 	    {{ form_widget(form.dataFile) }}
 	  </div>
 	  {{ form_rest(form) }}
+
+	  <div id="upload-in-progress" style="display:none; text-align:center;"> 
+	    <p>{{ 'Uploading' | trans }}... </p> 
+	    <img src="http://camanjs.com/imgs/ajax-loader.gif" id="preset-uploading" /> 
+	  </div> 
+
 	  <div class="clearfix" style="text-align:right">
-	    <input type="submit" id="upload" class="btn primary"/>
+	    <input type="submit" id="upload" onclick="javascript:showUploading()" class="btn primary"/>
 	  </div>
 	</fieldset>
       </form>
