@@ -1,7 +1,24 @@
 {% extends "FOSUserBundle::layout.html.twig" %}
 
-{% block fos_user_content %}
-<p>
-{{ 'resetting.check_email'|trans({'%email%': user.email}, 'FOSUserBundle') }}
-</p>
-{% endblock %}
+
+{% block content %}
+
+<section id="content" class="container fos">
+  <div class="row">
+    
+    <article class="span8 column" id="info-index">
+      {% include "SFMPicmntBundle:Index:info.html.twig" %}
+    </article>
+    <article id="login-form" class="span8 column">
+      {% block fos_user_content %}
+      <p>
+	{{ 'resetting.check_email'|trans({'%email%': email}, 'FOSUserBundle') }}
+      </p>
+      {% endblock %}
+    </article>
+  </div>
+</section>      
+
+{% endblock content %}
+
+
