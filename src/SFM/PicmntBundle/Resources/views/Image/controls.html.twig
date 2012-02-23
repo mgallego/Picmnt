@@ -4,7 +4,7 @@
   <form action="{{ path('comment', { 'idImage': image.idImage}) }}" class="form-stacked" method="post">
     {% endif %}
     
-    <div class="modify-control"  style="width:300px">
+    <article id="modify-control">
       
       <div id="render-in-progress" style="display:none"> 
 	<p>{{ 'Rendering' | trans }}... </p> 
@@ -41,12 +41,11 @@
 	  
 	</div> 
 
-
       </div> 
 
-    </div> 
+    </article>
 
-    <article id="exif-data" style="width:300px; margin-top: 2em;">
+    <article id="exif-data">
       <div class="accordion"> 
 	{{ getExif(image.url) | raw }}
       </div>

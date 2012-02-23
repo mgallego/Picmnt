@@ -568,3 +568,12 @@ th{
 #about{
     margin-top: 3em;
 }
+
+#modify-control, #exif-data{
+    width: 300px;
+}
+
+#exif-data{
+    margin-top: 2em;
+}
+
