@@ -31,7 +31,7 @@ class ImageUtil{
       }
       imagecopyresampled($image_p,$image, 0,0,0,0,$width, $height, $widthOrig, $heightOrig);
       
-      imagejpeg($image_p,$imageFile,80);
+      imagejpeg($image_p,$imageFile,90);
     }
   }
 
@@ -63,7 +63,7 @@ class ImageUtil{
 
       imagecopyresampled($image_p,$image, 0,0,0,0,$width, $height, $widthOrig, $heightOrig);
 
-      imagejpeg($image_p,$imageFileDest,40);
+      imagejpeg($image_p,$imageFileDest,60);
     }
   }
 
