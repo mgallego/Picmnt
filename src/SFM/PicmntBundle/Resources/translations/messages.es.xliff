@@ -176,7 +176,7 @@
 	    </trans-unit>
 	    <trans-unit id="44">
 	      <source>Saturation</source>
-	      <target>Sauración</target>
+	      <target>Saturación</target>
 	    </trans-unit>
 	    <trans-unit id="45">
 	      <source>Contrast</source>
@@ -224,7 +224,7 @@
 	    </trans-unit>
 	    <trans-unit id="56">
 	      <source>Have you ever been told</source>
-	      <target>Alguna vez te han dicho</target>
+	      <target>¿Alguna vez te han dicho</target>
 	    </trans-unit>
 	    <trans-unit id="57">
 	      <source>pretty picture, but I have a little extra saturation</source>
@@ -240,7 +240,7 @@
 	    </trans-unit>
 	    <trans-unit id="60">
 	      <source>How much is "a bit of saturation"? How much is a bit of contrast?</source>
-	      <target>¿Cuanto es "un poco de saturación? ¿Cuanto es un poco de contraste?</target>
+	      <target>¿Cuánto es "un poco de saturación? ¿Cuánto es un poco de contraste?</target>
 	    </trans-unit>
 	    <trans-unit id="61">
 	      <source>It's time to show what you mean with images. Picmnt is a new way to comment photos.</source>
@@ -388,7 +388,7 @@
 	    </trans-unit>
 	    <trans-unit id="97">
 	      <source>How about the picture? What do you like or dislike? Make comments about the pictures, criticism, teaches how to improve or simply express what you like or do not like about is image</source>
-	      <target>¿Que te parece la foto? ¿Que te gusta o no te gusta? Haz comentarios sobre las imágenes, critica, enseña como mejorar o simplemente expresa lo que te gusta o no te gusta de es imagen</target>
+	      <target>¿Qué te parece la foto? ¿Qué te gusta o no te gusta? Haz comentarios sobre las imágenes, critica, enseña como mejorar o simplemente expresa lo que te gusta o no te gusta de es imagen</target>
 	    </trans-unit>
 	    <trans-unit id="98">
 	      <source>Opinion</source>
@@ -404,7 +404,7 @@
 	    </trans-unit>
 	    <trans-unit id="101">
 	      <source>Why conform to words? Shows what you think, feel free to edit a photo with the available controls and argue your changes. All you modify will be displayed in your comment</source>
-	      <target>¿Por que conformarse con palabras? Muestra lo que opinas, siente libre de modificar una foto con los controles disponibles y argumentar tus cambios. Todo lo que modifiques se mostrará en tu comentario</target>
+	      <target>¿Por qué conformarse con palabras? Muestra lo que opinas, siente libre de modificar una foto con los controles disponibles y argumentar tus cambios. Todo lo que modifiques se mostrará en tu comentario</target>
 	    </trans-unit>
 	    <trans-unit id="102">
 	      <source>Comment, Opinion, Teaches</source>
