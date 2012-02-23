@@ -450,6 +450,30 @@
 	      <source>Recents</source>
 	      <target>Recientes</target>
 	    </trans-unit>
+	    <trans-unit id="113">
+	      <source>Camera</source>
+	      <target>Cámara</target>
+	    </trans-unit>
+	    <trans-unit id="114">
+	      <source>Date</source>
+	      <target>Fecha</target>
+	    </trans-unit>
+	    <trans-unit id="115">
+	      <source>Lens</source>
+	      <target>Lente</target>
+	    </trans-unit>
+	    <trans-unit id="116">
+	      <source>Aperture</source>
+	      <target>Apertura</target>
+	    </trans-unit>
+	    <trans-unit id="117">
+	      <source>Exposure Time</source>
+	      <target>Tiempo Exposicion</target>
+	    </trans-unit>
+	    <trans-unit id="118">
+	      <source>Exif Data</source>
+	      <target>Datos Exif</target>
+	    </trans-unit>
         </body>
     </file>
 </xliff>

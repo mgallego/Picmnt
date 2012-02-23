@@ -57,7 +57,7 @@ $(document).ready(function() {
     });
     
     $(function() {
-	$( "#accordion" ).accordion({
+	$( ".accordion" ).accordion({
 	    autoHeight:false,
 	    collapsible:true,
 	    active:false

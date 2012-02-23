@@ -23,7 +23,7 @@ services:
 
     twig.extension.picmnt:
         class: SFM\PicmntBundle\Twig\Extension\PicmntExtension
-        arguments: ["@doctrine.orm.entity_manager"]
+        arguments: ["@doctrine.orm.entity_manager", "@translator"]
         tags:
             - { name: twig.extension }
 

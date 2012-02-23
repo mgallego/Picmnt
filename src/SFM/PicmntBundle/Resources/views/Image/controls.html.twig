@@ -11,7 +11,7 @@
 	<img src="http://camanjs.com/imgs/ajax-loader.gif" id="preset-rendering" /> 
       </div> 
       
-      <div id="accordion"> 
+      <div class="accordion"> 
 	<h3><a href="#"> {{ 'Brightness' | trans }}
 	    <input type="text" id="bAmount" name="brightness" style="border:0" class="slider-data" style="background-color:transparent"/> / 
 	    {{ 'Contrast' | trans }}
@@ -40,9 +40,18 @@
 	  <div id="sSaturation"></div> 
 	  
 	</div> 
+
+
       </div> 
 
     </div> 
+
+    <article id="exif-data" style="width:300px; margin-top: 2em;">
+      <div class="accordion"> 
+	{{ getExif(image.url) | raw }}
+      </div>
+    </article>
+
 
     <!-- New Comment
 	 ========================================== -->

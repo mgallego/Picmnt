@@ -12,8 +12,8 @@ class IndexController extends Controller
     {
       $locale = $this->get('session');
       $request = $this->get('request');
-
-
+            
+     
       if ($this->get('security.context')->isGranted('ROLE_USER')){
 	return $this->redirect($this->generateUrl('secure_home'));
       }
