@@ -1,15 +1,15 @@
 
 {% block field_label %}
 {% spaceless %}
-    <label for="{{ id }}">{{ id|trans([], 'FOSUserBundle') }}</label>
+    <label class="control-label" for="{{ id }}">{{ id|trans([], 'FOSUserBundle') }}</label>
 {% endspaceless %}
 {% endblock field_label %}
 
 {% block field_widget %}
     {% set type = type|default('text') %}
-    <div class="clearfix">
-      <div class="input">
-	<input type="{{ type }}" {{ block('widget_attributes') }} value="{{ value }}" class="xlarge"/>
+    <div class="control-group">
+      <div class="controls">
+	<input type="{{ type }}" {{ block('widget_attributes') }} value="{{ value }}" class="{{ type }}-xlarge"/>
       </div>
     </div>
 {% endblock field_widget %}

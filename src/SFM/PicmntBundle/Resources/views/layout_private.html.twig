@@ -4,21 +4,19 @@
 <section id="topbar">
   <!-- Topbar
        ================================================== -->
-  <div class="topbar" data-dropdown="dropdown">
+  <div class="navbar navbar-fixed-top" data-dropdown="dropdown">
 
-    <div class="topbar-inner">
+    <div class="navbar-inner">
 
       <div class="container">
-        <h3><a href="{{ path('home') }}">Picmnt</a></h3>
+        <a class="brand" href="{{ path('home') }}">Picmnt</a>
 
 	<ul class="nav">
-    	  
-	  {{ knp_menu_render('SFMPicmntBundle:Builder:menuCategories', {'class': 'nav'}) }} 
-	  
+	  {{ knp_menu_render('SFMPicmntBundle:Builder:menuCategories', {'class': 'nav', 'currentClass': 'active'}) }} 
 	</ul>
 	
 	{% if is_granted("IS_AUTHENTICATED_REMEMBERED") or is_granted("IS_AUTHENTICATED_FULLY") %}
-	<ul class="nav secondary-nav">
+	<ul class="nav pull-right">
 	  {% if  totalPendingComments(app.user.username) %}
 	  <li>
 	    <a href="{{ path('usr_pending', {'userName': app.user.username}) }}">{{ totalPendingComments(app.user.username) }} {{ 'Pending Comments' | trans }}</a>
@@ -26,7 +24,7 @@
 	  {% endif %}
 
 	  <li class="dropdown">
- 	    <a href="#" class="dropdown-toggle">{{ app.user.getUsername() }}</a>
+ 	    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ app.user.getUsername() }}</a>
 	    <ul class="dropdown-menu">
 	      <li><a href="{{ path('fos_user_change_password') }}">{{ 'Change Password' | trans }}</a></li>
 	      <li class="divider"></li>
@@ -35,8 +33,10 @@
 	  </li>
 	</ul>
 	{% else %}
-	<ul class="nav secondary-nav">
+	<ul class="nav pull-right">
+	  <li class="divider-vertical"></li>
 	  <li><a href="{{ path('fos_user_registration_register') }}">{{ 'Join' | trans }}</a></li>
+	  <li class="divider-vertical"></li>
 	  <li><a href="{{ path('fos_user_security_login') }}">{{ 'Login' | trans }}</a></li>
 	</ul>
 	{% endif %}

@@ -7,38 +7,41 @@
 <section id="content" class="container fos">
   <div class="row">
     
-    <article class="span8 column" id="info-index">
+    <article class="span6" id="info-index">
       {% include "SFMPicmntBundle:Index:info.html.twig" %}
     </article>
 
-    <article id="login-form" class="span8 column">
+    <article id="login-form" class="span6">
       {% if error %}
-      <div class="alert-message error">
+      <div class="alert alert-error">
 	{{ error }}
       </div>
       {% endif %}
 
-      <form action="{{ path("fos_user_security_check") }}" method="post">
+      <form action="{{ path("fos_user_security_check") }}" method="post" class="well form-horizontal">
 	<fieldset>
 	  <legend>{{ 'Login' | trans }}</legend>
 
-	  <div class="clearfix">
-	    <label for="username">{{ 'Username:' | trans }}</label>
-	    <div class="input">
-	      <input class="xlarge" id="username" name="_username" value="{{ last_username }}"size="30" type="text" />
+	  <div class="control-group">
+	    <label class="control-label" for="username">{{ 'Username:' | trans }}</label>
+	    <div class="controls">
+	      <input class="input-xlarge" id="username" name="_username" value="{{ last_username }}"size="30" type="text" />
 	    </div>
 	  </div>
 
-	  <div class="clearfix">
-	    <label for="password">{{ 'Password:' | trans }}</label>
-	    <div class="input">
-	      <input class="xlarge" id="password" name="_password" size="30" type="password" />
+	  <div class="control-group">
+	    <label class="control-label" for="password">{{ 'Password:' | trans }}</label>
+	    <div class="controls">
+	      <input class="input-xlarge" id="password" name="_password" size="30" type="password" />
 	    </div>
 	  </div> 
 
-	  <div class="clearfix">
-	    <div class="input">
-	      <input type="checkbox" id="remember_me" name="_remember_me" value="on" /> {{ 'Remember Me' | trans }}
+	  <div class="control-group">
+	    <label class="control-label" for="remember_me"> {{ 'Remember Me' | trans }}</label>
+	    <div class="controls">
+	      <label class="checkbox">
+	      <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+	      </label>
 	    </div>
 	  </div>
 
@@ -47,7 +50,7 @@
 	  </p>
 
 	  <div class="clearfix" style="text-align:right">
-	    <input type="submit" name="login" class="btn primary" />
+	    <input type="submit" name="login" class="btn" />
 	  </div>
 
       </form>

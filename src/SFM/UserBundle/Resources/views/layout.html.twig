@@ -4,15 +4,12 @@
 <header>
   <div class="container">
     <div class="row">
-      <div class="span9 column">
-	<a href="{{ path('home') }}" title="Picmnt"><img src="{{ asset('bundles/sfmpicmnt/images/Picmnt-logo.png') }}" /></a>
-	
-      </div>
-      
       <div class="span7 column">
+	<a href="{{ path('home') }}" title="Picmnt"><img src="{{ asset('bundles/sfmpicmnt/images/Picmnt-logo.png') }}" /></a>
+      </div>
+      <div class="span5 column">
 	{{ knp_menu_render('login', {'currentClass': 'active'}) }}
       </div>
-
     </div>
   </div>
 </header>

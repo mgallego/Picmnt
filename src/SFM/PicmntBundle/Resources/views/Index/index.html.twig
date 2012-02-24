@@ -27,8 +27,6 @@
 
 {% block content %}
 
-
-
 <section id="index-content">
 
   <article id="index-title">
@@ -39,27 +37,28 @@
       <p>{{ 'Comment, Opinion, Teaches' | trans }}</p>
     </div>
   </article>
-  
   <div id="index-description" class="container">
     <div class="row">
-      <article class="span-one-third">
+      <article class="span4">
 	<strong>{{ 'Comment' | trans }}</strong>
 	<br />
 	<p>{{ 'How about the picture? What do you like or dislike? Make comments about the pictures, criticism, teaches how to improve or simply express what you like or do not like about is image' | trans }}
 	</p>
       </article>
 
-      <article class="span-one-third">
+      <article class="span4">
 	<strong>{{ 'Opinion' | trans }}</strong>
 	<br />
 	<p>{{ 'Generate discussion, propose improvements, do not settle for "like" or "I do not like." Defend your ideas, defend your style' | trans }}</p>
       </article>
 
-      <article class="span-one-third">
+      <article class="span4">
 	<strong>{{ 'Teaches' | trans }}</strong>
 	<br />
 	<p>{{ 'Why conform to words? Shows what you think, feel free to edit a photo with the available controls and argue your changes. All you modify will be displayed in your comment' | trans }}</p>
       </article>
+
+
     </div>
   </div>
 
@@ -70,7 +69,7 @@
 
   <div id="index-center-detail" class="container">
     <section class="row">
-      <article class="span8 column">
+      <article class="span6">
 	{% include "SFMPicmntBundle:Index:info.html.twig" %}
 	<ol id="index-list">
 	  <li><a href="{{ path('img_show', {'category': 'all', 'option': 'recents'}) }}">{{ 'Explore' | trans }}</a></li>
@@ -78,7 +77,7 @@
 	  <li><a href="{{ path('fos_user_security_login') }}">{{ 'Have user? Sign in Now' | trans }}</a></li>
 	</ol>
       </article>
-      <article id="most-comment" class="span8 column" >
+      <article id="most-comment" class="span6" >
 	<h2 class="text-shadow">{{ 'Most commented' | trans }}</h2>
 	<div id="index-slide-comment">
 	  {% include 'SFMPicmntBundle:Index:slideComment.html.twig' %} 

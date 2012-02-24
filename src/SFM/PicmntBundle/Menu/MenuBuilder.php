@@ -26,7 +26,7 @@ class MenuBuilder extends ContainerAware
   {
     $menu = $this->factory->createItem('root');
     $menu->setCurrentUri($request->getRequestUri());
-    $menu->setAttribute('class', 'pills'); 
+    $menu->setAttribute('class', 'nav nav-pills'); 
 
     $menu->addChild($translator->trans('Explore'), array('route' => 'img_show', 'routeParameters' => array('option'=>'recents', 'category'=>'all')));
     $menu->addChild($translator->trans('Join'), array('route' => 'fos_user_registration_register'));
@@ -40,7 +40,7 @@ class MenuBuilder extends ContainerAware
   {
     $menu = $this->factory->createItem('root');
     $menu->setCurrentUri($request->getRequestUri());
-    $menu->setAttribute('class', 'tabs'); 
+    $menu->setAttribute('class', 'nav nav-tabs'); 
     $menu->setAttribute('style','align: right');
 
     $category = $request->get('category');
