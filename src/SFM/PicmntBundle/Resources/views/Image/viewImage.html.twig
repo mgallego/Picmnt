@@ -97,13 +97,19 @@
 	  </div>
 	  <br />
 
+
 	  <div class="row">
 
 
 	    <article class="span14 columns" id="imageImage">
 	      <img src="{{ asset(upload_dir ~ image.url) }}" id="image-to-modify"/>
 	     {% include "SFMPicmntBundle:Image:imageinfo.html.twig" %}
+	      <!--  Comments
+		    ==================================================================== -->
+	      {% include "SFMPicmntBundle:Image:comments.html.twig" %}
 	    </article>
+
+
 
 	    <!-- Controls
 		 ===========================
@@ -115,9 +121,6 @@
 	</section>
 
 
-	<!--  Comments
-	      ==================================================================== -->
-	{% include "SFMPicmntBundle:Image:comments.html.twig" %}
 
       </center>
 

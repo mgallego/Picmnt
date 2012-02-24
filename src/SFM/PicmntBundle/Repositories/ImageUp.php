@@ -9,7 +9,7 @@ class ImageUp
 {
  
   /**
-   * @Assert\Image(maxSize = "10M", mimeTypes = {
+   * @Assert\File(maxSize = "10M", mimeTypes = {
    *   "image/jpeg",
    *   "image/png"
    * })

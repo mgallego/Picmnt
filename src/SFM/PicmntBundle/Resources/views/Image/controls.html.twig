@@ -51,7 +51,6 @@
       </div>
     </article>
 
-
     <!-- New Comment
 	 ========================================== -->
     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") or is_granted("IS_AUTHENTICATED_FULLY") %}
@@ -74,6 +73,7 @@
       </form>
       
     </div>
+
     {% else %}
 
     <div class="round-box-with-shadow" id="show-image-register">
@@ -81,7 +81,8 @@
       <p>o si ya tienes cuenta de usuario <a href="{{ path('fos_user_security_login') }}">accede ya</a>.</p>
     </div>
 
-
     {% endif %}
+
+    {% include "SFMPicmntBundle:Addons:social.html.twig" %}
 
 </aside>
