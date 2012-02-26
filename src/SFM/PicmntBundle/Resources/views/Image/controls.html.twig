@@ -1,4 +1,4 @@
-<aside class="span6 columns">
+<aside class="span3">
 
   {% if is_granted("IS_AUTHENTICATED_REMEMBERED") or is_granted("IS_AUTHENTICATED_FULLY") %}
   <form action="{{ path('comment', { 'idImage': image.idImage}) }}" class="form-stacked" method="post">

@@ -1,6 +1,6 @@
 {% set username = image.user.username %}
 <div class="row">
-  <article class="span8 column" id="imageInfo" style="text-align:left">
+  <article class="span8" id="imageInfo" style="text-align:left">
     <p>
       {% if existsAvatar(username) %}
 	<img src="{{ avatarByUsername(username,'big') }}" class="avatar-small" />
@@ -22,7 +22,7 @@
 </div>
 
 <div class="row">
-  <article class="span14 columns" id="image-description" style="text-align:left">
+  <article class="span8" id="image-description" style="text-align:left">
     <strong>
       {{ image.description }}
     </strong>

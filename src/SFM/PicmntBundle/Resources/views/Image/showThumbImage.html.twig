@@ -3,8 +3,8 @@
 
 <section id="show-thumb" class="container">
   <h1 class="text-shadow">{{ 'Recents' | trans }}</h1>
-  <article id="show-thumb-images">
-    <table class="zebra-striped">
+  <article id="show-thumb-images" class="row">
+    <table class="table-striped span12">
       <tbody>
 	{% for image in images %}
 	<tr>
@@ -28,7 +28,7 @@
 
   <article id="show-thumb-paginator">
     
-    <div class="row">
+    <div id="thumb-paginator" class="row">
       {{ simple_paginator_render('img_show', null, { 
       'routeParams': {'option': option , 'category': category },
       'containerClass': 'profile-paginator',

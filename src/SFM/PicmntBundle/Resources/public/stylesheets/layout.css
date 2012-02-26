@@ -86,6 +86,7 @@ body {
 #show-thumb td{
     text-align: left;
     vertical-align: top;
+    padding: 1em;
 }
 
 
@@ -491,6 +492,7 @@ th{
 #index-description{
     margin-top:2.5em; 
     color:black;
+    padding: 2.5em;
 }
 
 #index-list li{
@@ -586,4 +588,8 @@ th{
 #social-links table{
     width: 300px; 
     text-align: center;
+}
+
+#thumb-paginator{
+    margin: 2em 0 10em 0;
 }
