@@ -24,17 +24,17 @@
 
       <center>
 
-	<h1>{{ image.title }}</h1>
+	<h1 id="edit-image-title">{{ image.title }}</h1>
 
-	<div class="row">
+	<div id="edit-info" class="row">
 	  
-	  <div class="span14 columns" id="imageImage">
+	  <div class="span9" id="imageImage">
 
 	    <img src="{{ asset(image_url) }}"/> 
 
 	  </div>
 
-	  <div class="span6 columns">
+	  <div class="span3">
 	    
 	    <form action="{{ path('img_edit', { 'id_image': image.idImage }) }}" method="post" {{ form_enctype(form) }} class="form-stacked">
 

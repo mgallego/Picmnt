@@ -474,6 +474,14 @@
 	      <source>Exif Data</source>
 	      <target>Datos Exif</target>
 	    </trans-unit>
+	    <trans-unit id="119">
+	      <source>View</source>
+	      <target>Ver</target>
+	    </trans-unit>
+	    <trans-unit id="120">
+	      <source>Action</source>
+	      <target>Acción</target>
+	    </trans-unit>
         </body>
     </file>
 </xliff>

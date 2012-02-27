@@ -1,7 +1,7 @@
 {% extends "SFMPicmntBundle::layout_private.html.twig" %}
 
 {% block content %}
-  <nav class="container-fluid" style="padding-top: 50px">
+  <nav class="container" style="padding-top: 50px">
 
       {% block interno %}
       <section id="pestanas">
@@ -17,51 +17,60 @@
 
 
 <section id="profile" class="container">
-
   <article id="profile-images">
-    <div class="row">
-      <h1 class="text-with-shadow">{{ 'Pending Comments' | trans }}</h1>
-      <br />
-
-      <table class="zebra-striped">
-	<thead>
-          <tr>
-            <th>{{ 'Preview' | trans }}</th>
-            <th>{{ 'Title' | trans }}</th>
-            <th>{{ 'Category' | trans }}</th>
-            <th>{{ 'Action' | trans }}</th>
-	    
-	    {% if app.user and (app.user.username == app.request.get('userName')) %}
-                 <th></th>
-	    <th>{{ 'Pending Comments' | trans }}</th>
-	    {% endif %}
-          </tr>
-	</thead>
-	<tbody>
-
-	  {% for image in images %}
-	  <tr>
-	    <td><a href="{{ path('img_view', {'user': app.request.get('userName'), 'slug': image.image.slug}) }}"><img src="{{ thumbs_dir ~ image.image.url }}" class="img-thumbnail"/></a></td>
-	    <td>{{ image.image.title }}</td>
-	    <td>{{ image.image.category | capitalize | trans }}</td>
-	    <td><a href="{{ path('img_view', {'user': app.request.get('userName'), 'slug': image.image.slug}) }}">{{ 'View' | trans }}</a></td>
-	    {% if app.user %}
-	    {% if app.user.username == app.request.get('userName') %}
-	    <td><a href="{{ path('img_edit', {'id_image': image.image.idImage}) }}">{{ 'Edit' | trans }}</a></td>
-	    <td><span class="comment-pending">{{ image.pending }}</span></td>
-	    {% endif %}
-	    {% endif %}
-
-	  </tr>
-
-	  {% else %}
-	  <strong>{{ 'This user has not upload any picture' | trans }}</strong>
-	  {% endfor %}
-	</tbody>
-      </table>
+    <h1 class="text-with-shadow">{{ 'Pending Comments' | trans }}</h1>
+    <br />
+    {% if images %}
+    <div id="profile-list-header" class="row">
+      <div class="span2">
+        {{ 'Preview' | trans }}
+      </div>
+      <div class="span5">
+        {{ 'Title' | trans }}
+      </div>
+      <div class="span1">
+        {{ 'Category' | trans }}
+      </div>
+      <div class="span1">
+        {{ 'Action' | trans }}
+      </div>
+      <div class="span2">
+	{% if app.user and (app.user.username == app.request.get('userName')) %}
+	{{ 'Pending Comments' | trans }}
+	{% endif %}
+      </div>
     </div>
+  {% endif %}
+{% for image in images %}
+    <div id="profile-list-body" class="row">
+      <div class="span2">
+	<a href="{{ path('img_view', {'user': app.request.get('userName'), 'slug': image.image.slug}) }}"><img src="{{ thumbs_dir ~ image.image.url }}" class="img-thumbnail"/></a>
+      </div>
+      <div class="span5">
+	{{ image.image.title }}
+      </div>
+      <div class="span1">
+	{{ image.image.category | capitalize | trans }}
+      </div>
+      <div class="span1">
+	<a href="{{ path('img_view', {'user': app.request.get('userName'), 'slug': image.image.slug}) }}">{{ 'View' | trans }}</a>
+	{% if app.user and (app.user.username == app.request.get('userName')) %}
+	<a href="{{ path('img_edit', {'id_image': image.image.idImage}) }}">{{ 'Edit' | trans }}</a>
+	{% endif %}
+      </div>
+       <div class="span2">
+	 {% if app.user and (app.user.username == app.request.get('userName')) %}
+	 <span class="comment-pending">{{ image.pending }}</span>
+	 {% endif %}
+       </div>
+     </div>
+     {% else %}
+     <strong>{{ 'This user has not upload any picture' | trans }}</strong>
+     {% endfor %}
   </article>
 
+
+  {% if images %}
   <article id="profile-paginator">
     <div class="row">
       {{ simple_paginator_render('usr_pending', null, { 
@@ -72,6 +81,9 @@
       ) }}
     </div>
   </article>
+  {% endif %}
+
+
 
 </section>
 

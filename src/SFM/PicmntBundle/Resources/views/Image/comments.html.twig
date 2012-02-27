@@ -1,39 +1,49 @@
-<section id="comments" class="row" style="text-align: left;">
+<section id="comments" class="row">
   <h2>{{ 'Comments' | trans }}</h2>
   <div class="comment" style="padding-top:10px">
-    <table class="zebra-striped">
-      {% for comment in image.imageComments %}
-      {% set username = comment.user.username %}
-      <tr>
-	<td>
+    {% for comment in image.imageComments %}
+    {% set username = comment.user.username %}
+    
+      <div class="span8 one-comment">
+	<div class="row">
+	<div class="span1"> {# foto #}
 	  <a href="{{ path('usr_profile', {'userName': comment.user.username }) }}">
-	    <p>
-	      {% if existsAvatar(username) %}
-	      <img src="{{ avatarByUsername(username,'big') }}" class="avatar-small" />
-	      {% else %}
-	      {% if gravatar_exists(getEmail(username)) %}
-	      <img src="{{ gravatar(getEmail(username), 50) }}" class="avatar-small" />
-	      {% else %}
-	      <img src="{{ asset('/bundles/sfmpicmnt/images/user.svg') }}" class="avatar-small" />
-	      {% endif %}
-	      {% endif %}
-	    </p>
-	  <p class="text-with-shadow">{{ username }}</p>
+	    {% if existsAvatar(username) %}
+	    <img src="{{ avatarByUsername(username,'big') }}" class="avatar-small" />
+	    {% else %}
+	    {% if gravatar_exists(getEmail(username)) %}
+	    <img src="{{ gravatar(getEmail(username), 50) }}" class="avatar-small" />
+	    {% else %}
+	    <img src="{{ asset('/bundles/sfmpicmnt/images/user.svg') }}" class="avatar-small" />
+	    {% endif %}
+	    {% endif %}
 	  </a>
-	</td>
-	<td>
-	  {{ comment.comment }}
-	</td>
-	<td>
-	  <a href="#image-title" onclick="javascript:applyProposal({{ comment.brightness }},{{ comment.contrast }}, {{ comment.exposure }},{{ comment.saturation}})" class="btn info comment-proposal">{{ 'See Proposal' | trans }}</a>
-	  {% if app.user and  app.user.id == comment.user.id %}
-	  <a href="{{ path('comment_delete', {'idComment': comment.idComment}) }}"  class="btn danger comment-proposal">{{ 'Remove' | trans }}</a>
-	  {% endif %}
-	</td>
-      </tr>
-      {% else %}
-      <h3>{{ 'There is no comment for this image. Be the first to comment' | trans }}</h3>
-      {% endfor %}
-    </table>
+	</div>
+
+	<div class="span6" style="text-align: left;">
+
+	  <span><a href="{{ path('usr_profile', {'userName': comment.user.username }) }}">{{ username }}</a></span>
+	  <span class="remove-comment"> 
+	    {% if app.user and  app.user.id == comment.user.id %}<a href="{{ path('comment_delete', {'idComment': comment.idComment}) }}"> | {{ 'Remove' | trans }}</a>
+	    {% endif %}
+	  </span>
+
+	  <div class="row">
+	    <div class="span7">
+	      {{ comment.comment }}
+	      {% if comment.brightness != 0 or comment.contrast != 0 or comment.exposure != 0 or comment.saturation != 0 %}
+	      <a href="#image-title" onclick="javascript:applyProposal({{ comment.brightness }},{{ comment.contrast }}, {{ comment.exposure }},{{ comment.saturation}})" class="btn info comment-proposal">{{ 'See Proposal' | trans }}</a>
+	      {% endif %}
+	    </div>
+	  </div>
+
+
+	</div>
+      </div>
+    </div>
+
+	{% else %}
+	<h3>{{ 'There is no comment for this image. Be the first to comment' | trans }}</h3>
+    {% endfor %}
   </div>
 </section>
