@@ -55,7 +55,7 @@
       <div class="span1">
 	<a href="{{ path('img_view', {'user': app.request.get('userName'), 'slug': image.image.slug}) }}">{{ 'View' | trans }}</a>
 	{% if app.user and (app.user.username == app.request.get('userName')) %}
-	<a href="{{ path('img_edit', {'id_image': image.image.idImage}) }}">{{ 'Edit' | trans }}</a>
+	<a href="{{ path('img_edit', {'id_image': image.image.idImage}) }}"> | {{ 'Edit' | trans }}</a>
 	{% endif %}
       </div>
        <div class="span2">

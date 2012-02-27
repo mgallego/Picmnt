@@ -25,9 +25,9 @@
   
   <div class="row">
 
-    <article class="span8 offset5">
+    <article class="span5 offset4">
 
-      <form id="upload_form" action="{{ path('img_upload') }}" method="post" {{ form_enctype(form) }} >
+      <form class="well form-horizontal" id="upload_form" action="{{ path('img_upload') }}" method="post" {{ form_enctype(form) }} >
 	<fieldset>
 	  <legend>{{ 'Please select an image' | trans }}</legend>
 	  {{ form_errors(form) }}
@@ -56,7 +56,7 @@
       </form>
     </article>
 
-    <artcile id="upload-restrictions" class="span8 offset5">
+    <artcile id="upload-restrictions" class="span5 offset4">
       <p>
 	{{ 'Remember that the images you upload must be of your property.' | trans }}
       </p>
