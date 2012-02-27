@@ -92,8 +92,7 @@ class PicmntExtension extends \Twig_Extension
 
 
     public function getExif($url){
-      
-      $image_exif = exif_read_data('uploads/'.$url, 'IFD0');
+	@$image_exif = exif_read_data('uploads/'.$url, 'IFD0');
 
       $markup = '';
 
@@ -134,8 +133,5 @@ class PicmntExtension extends \Twig_Extension
     public function getName(){
 	return 'picmnt';
     }
-
-
-
 
 }
