@@ -30,7 +30,7 @@
 
 	  <div class="row">
 	    <div class="span7">
-	      {{ comment.comment }}
+	      {{ comment.comment | nl2br }}
 	      {% if comment.brightness != 0 or comment.contrast != 0 or comment.exposure != 0 or comment.saturation != 0 %}
 	      <a href="#image-title" onclick="javascript:applyProposal({{ comment.brightness }},{{ comment.contrast }}, {{ comment.exposure }},{{ comment.saturation}})" class="btn info comment-proposal">{{ 'See Proposal' | trans }}</a>
 	      {% endif %}
