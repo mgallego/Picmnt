@@ -1,8 +1,17 @@
 {% extends "SFMPicmntBundle::layout_private.html.twig" %}
+{% set option = app.request.get('option') %}
 
 {% block title %}
  |  {{ app.request.get('category') | capitalize | trans}} {{ app.request.get('option') | capitalize | trans }}
 {% endblock title %}
+
+
+{% block meta %}
+    {% if image is defined %}
+        {% include "SFMPicmntBundle:Addons:fbMeta.html.twig" %}
+    {% endif %}
+{% endblock meta %}
+
 
 {% block javascript %}
   {{ parent() }}
@@ -87,7 +96,7 @@
 
       {% endblock %}
 
-      {% set option = app.request.get('option') %}
+
       {% if option == 'recents' %}
           {% include "SFMPicmntBundle:Image:showThumbImage.html.twig" %}
       {% else %}

@@ -4,6 +4,14 @@
  | {{ image.title }}
 {% endblock title %}
 
+
+
+{% block meta %}
+    {% if image is defined %}
+        {% include "SFMPicmntBundle:Addons:fbMeta.html.twig" %}
+    {% endif %}
+{% endblock meta %}
+
 {% block javascript %}
   {{ parent() }}
     <script src="{{ asset('bundles/sfmpicmnt/CamanJS/caman.full.min.js') }}"> </script>

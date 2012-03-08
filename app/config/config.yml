@@ -26,6 +26,7 @@ twig:
     globals:
         upload_dir: '/uploads/'
         thumbs_dir: '/uploads/thumbs/'
+        server: 'http://picmnt.com'
 
 # Assetic Configuration
 assetic:
