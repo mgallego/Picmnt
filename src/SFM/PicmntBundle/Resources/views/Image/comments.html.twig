@@ -21,6 +21,9 @@
 	</div>
 
 	<div class="span6" style="text-align: left;">
+	      {% if comment.brightness != 0 or comment.contrast != 0 or comment.exposure != 0 or comment.saturation != 0 %}
+	      <a href="#image-title" onclick="javascript:applyProposal({{ comment.brightness }},{{ comment.contrast }}, {{ comment.exposure }},{{ comment.saturation}})" class="btn info comment-proposal">{{ 'See Proposal' | trans }}</a>
+	      {% endif %}
 
 	  <span><a href="{{ path('usr_profile', {'userName': comment.user.username }) }}">{{ username }}</a></span>
 	  <span class="remove-comment"> 
@@ -29,11 +32,8 @@
 	  </span>
 
 	  <div class="row">
-	    <div class="span7">
+	    <div class="span6">
 	      {{ comment.comment | nl2br }}
-	      {% if comment.brightness != 0 or comment.contrast != 0 or comment.exposure != 0 or comment.saturation != 0 %}
-	      <a href="#image-title" onclick="javascript:applyProposal({{ comment.brightness }},{{ comment.contrast }}, {{ comment.exposure }},{{ comment.saturation}})" class="btn info comment-proposal">{{ 'See Proposal' | trans }}</a>
-	      {% endif %}
 	    </div>
 	  </div>
 
