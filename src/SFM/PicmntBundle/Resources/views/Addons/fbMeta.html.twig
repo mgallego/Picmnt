@@ -7,3 +7,7 @@
 <meta property="og:site_name" content="Picmnt" />
 <meta property="fb:admins" content="155336231201638" />
 
+<meta itemprop="name" content="{{ image.title }}">
+<meta itemprop="description" content="{{ image.description }}">
+<meta itemprop="image" content="{{ server ~ asset(upload_dir ~ image.url) }}">
+

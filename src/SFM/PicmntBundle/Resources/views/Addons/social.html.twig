@@ -1,4 +1,3 @@
-{% set url = "http://picmnt.com" ~ app.request.server.get("DOCUMENT_URI") %}
 {% set url = server ~ path('img_view', {'user': image.user.username, 'slug': image.slug}) %}
 <article id="social-links" class="round-box-with-shadow">
 <table>
