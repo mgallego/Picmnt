@@ -2,9 +2,6 @@
 #    pattern:  /
 #    defaults: { _controller: AcmeDemoBundle:Welcome:index }
 
-_assetic:
-    resource: .
-    type:     assetic
 
 _wdt:
     resource: "@WebProfilerBundle/Resources/config/routing/wdt.xml"

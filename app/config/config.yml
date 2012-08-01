@@ -5,18 +5,18 @@ imports:
 
 framework:
     secret:          %secret%
-    charset:         UTF-8
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_parameters: %kernel.debug%
     router:          { resource: "%kernel.root_dir%/config/routing.yml" }
     form:            true
     csrf_protection: true
     validation:      { enable_annotations: true }
     templating:      { engines: ['twig'] } #assets_version: SomeVersionScheme
     translator: { fallback: en }
+    trust_proxy_headers: false # Should Request object should trust proxy headers (X_FORWARDED_FOR/HTTP_CLIENT_IP)
     default_locale: %locale% 
-    session: 
-#        default_locale: en 
-#        lifetime:       3600
-        auto_start:     true
+    session: ~
     
 
 # Twig Configuration
@@ -32,6 +32,7 @@ twig:
 assetic:
     debug:          %kernel.debug%
     use_controller: false
+    bundles:        [ ]
     filters:
         cssrewrite: ~
         # closure:
@@ -64,10 +65,7 @@ swiftmailer:
     host:      %mailer_host%
     username:  %mailer_user%
     password:  %mailer_password%
-
-jms_security_extra:
-    secure_controllers:  true
-    secure_all_services: false
+    spool:     { type: memory }
 
 fos_user:
     db_driver: orm
@@ -75,7 +73,7 @@ fos_user:
     user_class: SFM\PicmntBundle\Entity\User
     template:
         engine: twig
-        theme:  FOSUserBundle::form.html.twig	         
+        #theme:  FOSUserBundle::form.html.twig	         
     registration:
         confirmation:
             enabled: true

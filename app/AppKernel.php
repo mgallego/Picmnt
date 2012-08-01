@@ -8,23 +8,25 @@ class AppKernel extends Kernel
     public function registerBundles()
     {
         $bundles = array(
-	    new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
+            new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
             new Symfony\Bundle\MonologBundle\MonologBundle(),
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
-	    new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
+            new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-	    new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
-            new SFM\PicmntBundle\SFMPicmntBundle(),      
+            new JMS\AopBundle\JMSAopBundle(),
+            new JMS\DiExtraBundle\JMSDiExtraBundle($this),
+            new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
+	    new SFM\PicmntBundle\SFMPicmntBundle(),      
 	    new FOS\UserBundle\FOSUserBundle(),
 	    new SFM\UserBundle\SFMUserBundle(),
 	    new Knp\Bundle\MenuBundle\KnpMenuBundle(),
 	    new Liip\FunctionalTestBundle\LiipFunctionalTestBundle(),
 	    new Ideup\SimplePaginatorBundle\IdeupSimplePaginatorBundle(),
 	    new Ornicar\GravatarBundle\OrnicarGravatarBundle(),
-
+            new SFM\DucksboardBundle\SFMDucksboardBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
