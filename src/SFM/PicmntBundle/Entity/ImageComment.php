@@ -36,13 +36,13 @@ class ImageComment
 
 
   /**
-   * @ORM\ManyToOne(targetEntity="User", inversedBy="imageComments", cascade={"null"})
+   * @ORM\ManyToOne(targetEntity="User", inversedBy="imageComments", cascade={"detach"})
    * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
    */
   protected $user;
 
   /**
-   * @ORM\ManyToOne(targetEntity="Image", inversedBy="imageComments", cascade={"null"})
+   * @ORM\ManyToOne(targetEntity="Image", inversedBy="imageComments", cascade={"detach"})
    * @ORM\JoinColumn(name="id_image", referencedColumnName="id_image")
    */
   protected $image;
