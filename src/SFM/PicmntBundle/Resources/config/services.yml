@@ -35,3 +35,8 @@ services:
         class: Twig_Extensions_Extension_Debug
         tags:
             - { name: twig.extension }
+
+    ducksboard.widget:
+        class: SFM\DucksboardBundle\Adapter\Widget
+        calls:
+            - [setApiKey, [%ducksboard_api%]]
