@@ -40,6 +40,17 @@ class Image {
      */
     private $title;
 
+
+     /**
+     * @var string $original_title
+     *
+     * @ORM\Column(name="original_title", type="string", length=255, nullable=true)
+     *
+     * @Assert\MaxLength(255)
+     */
+    private $original_title;
+    
+
     /**
      * @var string $decription
      * 
@@ -176,7 +187,6 @@ class Image {
     {
         return $this->url;
     }
-
     
     /**
      * Set title
@@ -194,6 +204,24 @@ class Image {
      */
     public function getTitle(){
       return $this->title;
+    }
+
+    /**
+     * Set originalTitle
+     *
+     * @param string $original_title
+     */
+    public function setOriginalTitle($original_title){
+      $this->original_title = $original_title;
+    }
+
+    /**
+     * Get originaTitle
+     *
+     * @return string $original_title
+     */
+    public function getOriginalTitle(){
+	return $this->original_title;
     }
 
     /**
