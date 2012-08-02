@@ -16,7 +16,7 @@ class ImageType extends AbstractType
   {
     $builder
 	->add('title', 'text', array('required'=>'true'))
-	->add('description', 'textarea')
+	->add('description', 'textarea', array('required'=>false))
        
         ->add('category', 'entity', 
 	    array(
