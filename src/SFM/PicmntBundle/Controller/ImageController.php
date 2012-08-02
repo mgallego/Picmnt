@@ -58,6 +58,14 @@ class ImageController extends Controller
 		$em->flush();
 
 		$imageUtil->createImageSmall('uploads/'.$newFileName,  'uploads/thumbs/'.$newFileName, 250);
+		
+		if ($this->container->getParameter('use_ducksoard') === 'yes'){
+		    $widget = $this->container->get('ducksboard.widget');
+		    $widgetId = $this->container->getParameter('upload_widget');
+		    $widget->addToCounter($widgetId);
+		}
+
+		
 		return $this->redirect($this->generateUrl('img_edit', array("id_image" => $image->getIdImage())));
 	    }
 	}
