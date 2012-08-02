@@ -127,7 +127,6 @@ class ImageRepository extends EntityRepository
     }
 
 
-
     public function findNext($idImage, $orderBy, $category = 'All')
     {
 	$category = $this->getCategoryCondition($category);

@@ -24,6 +24,8 @@ class ImageController extends Controller
 	$user = $this->container->get('security.context')->getToken()->getUser();
 	$image = new Image();
 	$imageUp = new ImageUp();
+
+	$em = $this->get('doctrine')->getEntityManager();     
             
 	$form = $this->createForm(new ImageUpType(), $imageUp);
 
@@ -44,19 +46,22 @@ class ImageController extends Controller
 
 		$imageUtil->resizeImage('uploads/'.$newFileName, 800);
 
-
 		$image->setUrl($newFileName);
 		$image->setVotes(0);
 		$image->setUser($user);
 		$image->setTitle(substr($uploadedFile->getClientOriginalName(),0,-4));
-		//$image->setSlug($this->container->get('picmnt.utils')->getSlug($newFileName, 0, $user->getId()));
+		$image->setFirstTitle($image->getTitle());
+		$image->setSlug($this->container->get('picmnt.utils')->getSlug($newFileName, 0, $user->getId()));
+		$image->setFirstSlug($image->getSlug());
 		$image->setPubDate(new \DateTime('today'));
-		$image->setStatus(0);
+		$image->setStatus(1);
+		$image->getNotifyEmail(1);
 		$image->setNotifyEmail(true);
-		$em = $this->get('doctrine')->getEntityManager();     
+		$image->setCategory($em->getRepository('SFMPicmntBundle:Category')->findOneById('6'));
 		$em->persist($image);
+		//\Doctrine\Common\Util\Debug::dump($image);
 		$em->flush();
-
+		
 		$imageUtil->createImageSmall('uploads/'.$newFileName,  'uploads/thumbs/'.$newFileName, 250);
 		
 		if ($this->container->getParameter('use_ducksoard') === 'yes'){
@@ -71,9 +76,6 @@ class ImageController extends Controller
 	}
 	return $this->render('SFMPicmntBundle:Image:upload.html.twig', array('form' => $form->createView()));
     }
-
-
-
 
 
     public function editAction($id_image){
@@ -95,12 +97,11 @@ class ImageController extends Controller
 		$form->bindRequest($request);
 
 		if ($form->isValid()) {
-		  if (!$oldSlug and $image->getTitle()){
+		    
+		    if ($oldSlug === $image->getFirstSlug() && $image->getFirstTitle() !== $image->getTitle()){
 		    $image->setSlug($this->container->get('picmnt.utils')->getSlug($image->getTitle(), $image->getIdImage(), $user->getId()));
 		  }
 
-		  $image->setStatus(1);
-		  $image->getNotifyEmail(1);
 		  $em->persist($image);
 		  $em->flush();
 	
@@ -114,7 +115,7 @@ class ImageController extends Controller
 	}
     }
 
-
+    
     public function deleteAction($idImage){
 	$em = $this->get('doctrine')->getEntityManager();     
 	$image = $em->find('SFMPicmntBundle:Image', $idImage);
@@ -174,9 +175,6 @@ class ImageController extends Controller
 	}
 	return $this->render('SFMPicmntBundle:Image:showImage.html.twig', array("image"=>$image, "paginator"=>$paginator));
     }
-
-
-
 
     private function getPaginator($option, $idImage, $category = 'all'){
 	return Array('imgNext'=>$this->getNext($option, $idImage, $category), 'imgPrevious'=>$this->getPrevious($option, $idImage, $category) );

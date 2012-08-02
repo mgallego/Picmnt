@@ -40,16 +40,14 @@ class Image {
      */
     private $title;
 
-
-     /**
-     * @var string $original_title
+    /**
+     * @var string $title
      *
-     * @ORM\Column(name="original_title", type="string", length=255, nullable=true)
+     * @ORM\Column(name="first_title", type="string", length=255, nullable=true)
      *
      * @Assert\MaxLength(255)
      */
-    private $original_title;
-    
+    private $firstTitle;
 
     /**
      * @var string $decription
@@ -104,7 +102,6 @@ class Image {
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
     private $category;
-
    
     /**
      * @var string $slug
@@ -115,6 +112,14 @@ class Image {
      */
     private $slug;
 
+    /**
+     * @var string $firstSlug
+     *
+     * @ORM\Column(name="first_slug", type="string", length=255, nullable=true)
+     *
+     * @Assert\MaxLength(255)
+     */
+    private $firstSlug;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
@@ -122,7 +127,6 @@ class Image {
      * @Assert\DateTime
      */
     protected $pubDate;
-
 
     /**
      * @ORM\Column(type="integer", nullable=false)
@@ -205,24 +209,25 @@ class Image {
     public function getTitle(){
       return $this->title;
     }
-
+    
     /**
-     * Set originalTitle
+     * Set firstTitle
      *
-     * @param string $original_title
+     * @param string $firstTitle
      */
-    public function setOriginalTitle($original_title){
-      $this->original_title = $original_title;
+    public function setFirstTitle($firstTitle){
+      $this->firstTitle = $firstTitle;
     }
 
     /**
-     * Get originaTitle
+     * Get firstTitle
      *
-     * @return string $original_title
+     * @return string 
      */
-    public function getOriginalTitle(){
-	return $this->original_title;
+    public function getFirstTitle(){
+      return $this->firstTitle;
     }
+
 
     /**
      * Set description
@@ -374,7 +379,6 @@ class Image {
     {
       return $this->imageComments;
     }   
-
     
     /**
      * Set slug
@@ -393,7 +397,24 @@ class Image {
     public function getSlug(){
       return $this->slug;
     }
-    
+
+    /**
+     * Set firtsSlug
+     *
+     * @param string $firstSlug
+     */
+    public function setFirstSlug($firtSlug){
+      $this->firstSlug = $firtSlug;
+    }
+
+    /**
+     * Get firtSlug
+     *
+     * @return string
+     */
+    public function getFirstSlug(){
+      return $this->firstSlug;
+    }
 
     /**
      * Set pubDate
