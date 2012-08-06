@@ -117,6 +117,10 @@ class ImageController extends Controller
 
     
 
+    /**
+     * Change the image status to delete 2
+     *
+     */
     public function deleteAction($idImage){
 	$em = $this->get('doctrine')->getEntityManager();     
 	$image = $em->find('SFMPicmntBundle:Image', $idImage);
@@ -125,14 +129,15 @@ class ImageController extends Controller
 	if ($this->getCurrentUserId() != $image->getUser()->getId()) { 
 	    return $this->redirect($this->generateUrl('img_show', array("option"=>"show", "idImage"=>$idImage, "category"=>'all') ));
 	}
-	else{
-	    $image->setStatus(0);
-	    $em->persist($image);
-	    $em->flush();
-	    return $this->redirect($this->generateUrl('usr_profile', array("userName"=>$user->getUsername()) ));
-	}
+	
+	$image->setStatus(2);
+	$em->persist($image);
+	$em->flush();
+	
+	return $this->redirect($this->generateUrl('usr_profile', array("userName"=>$user->getUsername()) ));
     }
     
+
 
     private function getRandomImage($category){
 	$em = $this->get('doctrine')->getEntityManager();
