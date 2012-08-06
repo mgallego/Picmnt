@@ -83,13 +83,19 @@ class ImageController extends Controller
 	$oldSlug = $image->getSlug();
 	$response = null;
 
+	//Default response
+	$form = $this->createForm(new ImageType(), $image);
+	$imgUtilsConf = $this->container->getParameter('image_utils');
+	$options = array("image_url" => $imgUtilsConf['upload_path'].$image->getUrl(), 'form' => $form->createView(), 'image'=>$image);
+	$response = $this->render('SFMPicmntBundle:Image:editImage.html.twig', $options);
+	
 	if ($this->getCurrentUserId() != $image->getUser()->getId()) { 
-	    $defaultCategory = $this->container->getParameter('default_category');
+	    $imageDefaults = $this->container->getParameter('image_defaults');
+	    $defaultCategory = $imageDefaults['category'];
 	    $options =array("option"=>"show", "idImage"=>$id_image, "category"=>$defaultCategory);
 	    $response = $this->redirect($this->generateUrl('img_show', $options));
 	}
 	else{
-	    $form = $this->createForm(new ImageType(), $image);
 	    $request = $this->get('request');
 	    if ($request->getMethod() == 'POST'){
 		$form->bindRequest($request);
@@ -102,16 +108,8 @@ class ImageController extends Controller
 		  $em->flush();
 		  
 		  $options = array("user"=>$image->getUser()->getUsername(), "slug"=>$image->getSlug());
-		  $reponse = $this->redirect($this->generateUrl('img_view', $options )); 
+		  $response = $this->redirect($this->generateUrl('img_view', $options )); 
 		}
-		else{
-		    $options = array("image_url" => 'uploads/'.$image->getUrl(), 'form' => $form->createView(), 'image'=>$image);
-		    $response = $this->render('SFMPicmntBundle:Image:editImage.html.twig', $options);
-		}
-	    }
-	    if ($response === null){
-		$options = array("image_url" => 'uploads/'.$image->getUrl(), 'form' => $form->createView(), 'image'=>$image);
-		$response = $this->render('SFMPicmntBundle:Image:editImage.html.twig', $options);
 	    }
 	}
 	return $response;
