@@ -138,32 +138,21 @@ class ImageController extends Controller
     }
     
 
-
-    private function getRandomImage($category){
-	$em = $this->get('doctrine')->getEntityManager();
-	$image = $em->getRepository('SFMPicmntBundle:Image')->getRandom($category);
-
-	if (!$image){
-	    $e = $this->get('translator')->trans('There are no pictures in the database');
-	    throw $this->createNotFoundException($e);
-	}
-          
-	return $image[0];
-    }
- 
-
+    /**
+     * Show an Image
+     *
+     */
     public function showAction($option, $idImage = 0, $category = 'all'){
 	
 	$em = $this->get('doctrine')->getEntityManager();
-	$paginator = Array();
+	$paginator = array();
 
 	if ( $option == 'last' ) {
-
-	    if (!$image = $em->find('SFMPicmntBundle:Image',$idImage)){
+	    $image = $em->find('SFMPicmntBundle:Image',$idImage);
+	    if (!$image)){
 		$images = $em->getRepository('SFMPicmntBundle:Image')->findFirst('p.idImage DESC', $category);
 		$image = $images[0];
 	    }
-
 	    $paginator = $this->getPaginator($option, $image->getIdImage(), $category);
 	}
 	else if ( $option == 'random' ){
@@ -182,10 +171,29 @@ class ImageController extends Controller
 	return $this->render('SFMPicmntBundle:Image:showImage.html.twig', array("image"=>$image, "paginator"=>$paginator));
     }
 
+
+
+    /**
+     * Get a random image from the reposiory
+     *
+     */
+    private function getRandomImage($category){
+	$em = $this->get('doctrine')->getEntityManager();
+	$image = $em->getRepository('SFMPicmntBundle:Image')->getRandom($category);
+
+	if (!$image){
+	    $e = $this->get('translator')->trans('There are no pictures in the database');
+	    throw $this->createNotFoundException($e);
+	}
+	return $image[0];
+    }
+
+
+
+
     private function getPaginator($option, $idImage, $category = 'all'){
 	return Array('imgNext'=>$this->getNext($option, $idImage, $category), 'imgPrevious'=>$this->getPrevious($option, $idImage, $category) );
     }
-
 
     private function getNext($orderOption, $idImage, $category){
 
