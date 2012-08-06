@@ -3,48 +3,42 @@
 namespace SFM\PicmntBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use SFM\PicmntBundle\Repositories\ImageUp;
-
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-
 use SFM\PicmntBundle\Entity\Image;
 use SFM\PicmntBundle\Entity\User;
-
 use SFM\PicmntBundle\Util\ImageUtil;
 use SFM\PicmntBundle\Form\ImageType;
 use SFM\PicmntBundle\Form\ImageUpType;
 
 class ImageController extends Controller
 {
-  
+
+    /**
+     * Upload an Image and set the defaults data
+     *
+     */
     public function uploadAction()
     {
-    
 	$user = $this->container->get('security.context')->getToken()->getUser();
 	$image = new Image();
 	$imageUp = new ImageUp();
-
 	$em = $this->get('doctrine')->getEntityManager();     
-            
 	$form = $this->createForm(new ImageUpType(), $imageUp);
 
 	if ($this->get('request')->getMethod() == 'POST'){
 
 	    $form->bindRequest( $this->get('request') );
-
 	    if ($form->isValid()) {
-
+		$imageUtil = $this->container->get('image.utils');
+		$imageDefaults = $this->container->getParameter('image_defaults');
 		$uploadedFile = $form['dataFile']->getData();
-		$imageUtil = new ImageUtil();
 		$extension = $imageUtil->getExtension($uploadedFile->getMimeType());
 		$newFileName = $user->getId().'_'.date("ymdHis").'_'.rand(1,9999).$extension;
 	
 		$uploadedFile->move(
-		    $_SERVER['DOCUMENT_ROOT']."/uploads",
+		    $_SERVER['DOCUMENT_ROOT'].$this->container->getParameter('upload_path'),
 		    $newFileName );
-
-		$imageUtil->resizeImage('uploads/'.$newFileName, 800);
 
 		$image->setUrl($newFileName);
 		$image->setVotes(0);
@@ -54,15 +48,15 @@ class ImageController extends Controller
 		$image->setSlug($this->container->get('picmnt.utils')->getSlug($newFileName, 0, $user->getId()));
 		$image->setFirstSlug($image->getSlug());
 		$image->setPubDate(new \DateTime('today'));
-		$image->setStatus(1);
-		$image->getNotifyEmail(1);
+		$image->setStatus($imageDefaults['status']);
+		$image->getNotifyEmail($imageDefaults['email_noti']);
 		$image->setNotifyEmail(true);
 		$image->setCategory($em->getRepository('SFMPicmntBundle:Category')->findOneById('6'));
 		$em->persist($image);
-		//\Doctrine\Common\Util\Debug::dump($image);
 		$em->flush();
 		
-		$imageUtil->createImageSmall('uploads/'.$newFileName,  'uploads/thumbs/'.$newFileName, 250);
+		$imageUtil->resizeImage($newFileName, $imageDefaults['size']);
+		$imageUtil->createImageSmall($newFileName, $newFileName, $imageDefaults['small_size']);
 		
 		if ($this->container->getParameter('use_ducksoard') === 'yes'){
 		    $widget = $this->container->get('ducksboard.widget');
@@ -70,52 +64,61 @@ class ImageController extends Controller
 		    $widget->addToCounter($widgetId);
 		}
 
-		
 		return $this->redirect($this->generateUrl('img_edit', array("id_image" => $image->getIdImage())));
 	    }
 	}
 	return $this->render('SFMPicmntBundle:Image:upload.html.twig', array('form' => $form->createView()));
     }
+    
 
 
+    /**
+     * Edit an image
+     *
+     */
     public function editAction($id_image){
-	$image = new Image();
 	$em = $this->get('doctrine')->getEntityManager();     
 	$image = $em->find('SFMPicmntBundle:Image',$id_image);
-
 	$user = $this->container->get('security.context')->getToken()->getUser();
 	$oldSlug = $image->getSlug();
+	$response = null;
 
 	if ($this->getCurrentUserId() != $image->getUser()->getId()) { 
-	    return $this->redirect($this->generateUrl('img_show', array("option"=>"show", "idImage"=>$id_image, "category"=>'all') ));
+	    $defaultCategory = $this->container->getParameter('default_category');
+	    $options =array("option"=>"show", "idImage"=>$id_image, "category"=>$defaultCategory);
+	    $response = $this->redirect($this->generateUrl('img_show', $options));
 	}
 	else{
 	    $form = $this->createForm(new ImageType(), $image);
 	    $request = $this->get('request');
-      
 	    if ($request->getMethod() == 'POST'){
 		$form->bindRequest($request);
-
 		if ($form->isValid()) {
-		    
 		    if ($oldSlug === $image->getFirstSlug() && $image->getFirstTitle() !== $image->getTitle()){
-		    $image->setSlug($this->container->get('picmnt.utils')->getSlug($image->getTitle(), $image->getIdImage(), $user->getId()));
+			$utils = $this->container->get('picmnt.utils');
+			$image->setSlug($utils->getSlug($image->getTitle(), $image->getIdImage(), $user->getId()));
 		  }
-
 		  $em->persist($image);
 		  $em->flush();
-	
-		    return $this->redirect($this->generateUrl('img_view', array("user"=>$image->getUser()->getUsername(), "slug"=>$image->getSlug()) ));
+		  
+		  $options = array("user"=>$image->getUser()->getUsername(), "slug"=>$image->getSlug());
+		  $reponse = $this->redirect($this->generateUrl('img_view', $options )); 
 		}
 		else{
-		    return $this->render('SFMPicmntBundle:Image:editImage.html.twig', array("image_url" => 'uploads/'.$image->getUrl(), 'form' => $form->createView(), 'image'=>$image));
+		    $options = array("image_url" => 'uploads/'.$image->getUrl(), 'form' => $form->createView(), 'image'=>$image);
+		    $response = $this->render('SFMPicmntBundle:Image:editImage.html.twig', $options);
 		}
 	    }
-	    return $this->render('SFMPicmntBundle:Image:editImage.html.twig', array("image_url" => 'uploads/'.$image->getUrl(), 'form' => $form->createView(), 'image'=>$image));
+	    if ($response === null){
+		$options = array("image_url" => 'uploads/'.$image->getUrl(), 'form' => $form->createView(), 'image'=>$image);
+		$response = $this->render('SFMPicmntBundle:Image:editImage.html.twig', $options);
+	    }
 	}
+	return $response;
     }
 
     
+
     public function deleteAction($idImage){
 	$em = $this->get('doctrine')->getEntityManager();     
 	$image = $em->find('SFMPicmntBundle:Image', $idImage);

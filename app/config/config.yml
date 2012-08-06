@@ -92,3 +92,16 @@ knp_menu:
     default_renderer: twig
 
 ornicar_gravatar: ~
+
+parameters:
+    image_defaults:
+        size: 800
+        small_size: 250
+        category: "all"
+        status: 1
+        email_noti: 1
+    upload_path: "/uploads"
+    image_utils:
+        upload_path: "uploads/"
+        thumbs_path: "uploads/thumbs/"
+        

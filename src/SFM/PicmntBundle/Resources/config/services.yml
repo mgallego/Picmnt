@@ -40,3 +40,7 @@ services:
         class: SFM\DucksboardBundle\Adapter\Widget
         calls:
             - [setApiKey, [%ducksboard_api%]]
+
+    image.utils:
+        class: SFM\PicmntBundle\Util\ImageUtil
+        arguments: ["@service_container"]
