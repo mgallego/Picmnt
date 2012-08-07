@@ -195,58 +195,13 @@ class ImageController extends Controller
 	
 	return $this->render('SFMPicmntBundle:Image:viewImage.html.twig', array("image"=>$image[0]));
     }
+
     
-    
 
-
-    public function hasVoted($idImage){
-    
-	$user = $this->container->get('security.context')->getToken()->getUser();
-
-	$repository = $this->get('doctrine')
-	    ->getEntityManager()
-	    ->getRepository('SFMPicmntBundle:UserVote');
-
-	$query = $repository->createQueryBuilder('uv')
-	    ->where('uv.userId = :userId AND uv.idImage = :idImage')
-	    ->setParameters(array('userId'=>$user->getId(), 'idImage'=>$idImage))
-	    ->getQuery();
-
-	$userVote = $query->getResult();
-    
-    
-	if (!$userVote) { 
-	    return 0;
-	}
-	else{
-	    return 1;
-	}
-
-    }
-
-
-    public function voteAction($idImage){
-
-	if ($this->hasVoted($idImage) == 0){
-
-	    $em = $this->get('doctrine')->getEntityManager();
-      
-	    $image = $em->find('SFMPicmntBundle:Image',$idImage);
-      
-	    $image->sumVotes();
-      
-	    $user = $this->container->get('security.context')->getToken()->getUser();
-      
-	    $image->addUserVotes($user);
-    
-	    $em->persist($image);
-	    $em->flush();
-      
-	}    
-
-    }
-
-
+    /**
+     * Delete a notification
+     *
+     */
     private function deleteNotifications($image){
       $em = $this->get('doctrine')->getEntityManager();
       $comments = $em->getRepository('SFMPicmntBundle:ImageComment')->findByImage($image);
@@ -257,11 +212,15 @@ class ImageController extends Controller
 	$em->persist($comment);
       }
       $em->flush();
-
     }
 
-    private function getCurrentUserId(){
 
+    
+    /**
+     * Get the current User ID
+     *
+     */
+    private function getCurrentUserId(){
       $user =  $this->container->get('security.context')->getToken()->getUser();
       if ($this->get('security.context')->isGranted('ROLE_USER')){
 	return $user->getId();}

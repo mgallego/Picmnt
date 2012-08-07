@@ -43,6 +43,7 @@ services:
 
     image.utils:
         class: SFM\PicmntBundle\Util\ImageUtil
+        arguments: ["@doctrine.orm.entity_manager", "@security.context"]
         calls:
             - [setParameters, [%image_utils%]]
 

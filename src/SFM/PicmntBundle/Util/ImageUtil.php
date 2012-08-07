@@ -2,13 +2,20 @@
 
 namespace SFM\PicmntBundle\Util;
 
-use Symfony\Component\DependencyInjection\ContainerInterface;
+
+use Doctrine\ORM\EntityManager;
+use Symfony\Component\Security\Core\SecurityContextInterface;
 
 class ImageUtil{
 
     private $uploadPath;
     private $thumbsPath;
-    
+    protected $em;
+    protected $securityContext;
+
+    public function __construct(EntityManager $em, SecurityContextInterface $securityContext){
+	$this->em = $em;
+    }
 
     public function resizeImage($imageFile, $maxSize){
 	$imageFile = $this->uploadPath.$imageFile;
@@ -92,6 +99,29 @@ class ImageUtil{
     public function setParameters($imageUtilsConfig){
 	$this->uploadPath = $imageUtilsConfig['upload_path'];
 	$this->thumbsPath = $imageUtilsConfig['thumbs_path'];
+    }
+
+
+
+    public function voteAction($idImage){
+
+	if ($this->hasVoted($idImage) == 0){
+
+	    $em = $this->em;
+      
+	    $image = $em->find('SFMPicmntBundle:Image',$idImage);
+      
+	    $image->sumVotes();
+      
+	    $user = $this->securityContext->getToken()->getUser();
+      
+	    $image->addUserVotes($user);
+    
+	    $em->persist($image);
+	    $em->flush();
+      
+	}    
+
     }
 
 

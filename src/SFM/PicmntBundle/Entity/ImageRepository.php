@@ -247,7 +247,29 @@ class ImageRepository extends EntityRepository
 
     }
 
+    public function hasVoted($idImage){
+    
+	$user = $this->container->get('security.context')->getToken()->getUser();
 
+	$repository = $this->get('doctrine')
+	    ->getEntityManager()
+	    ->getRepository('SFMPicmntBundle:UserVote');
 
+	$query = $repository->createQueryBuilder('uv')
+	    ->where('uv.userId = :userId AND uv.idImage = :idImage')
+	    ->setParameters(array('userId'=>$user->getId(), 'idImage'=>$idImage))
+	    ->getQuery();
+
+	$userVote = $query->getResult();
+    
+    
+	if (!$userVote) { 
+	    return 0;
+	}
+	else{
+	    return 1;
+	}
+
+    }
     
 }
