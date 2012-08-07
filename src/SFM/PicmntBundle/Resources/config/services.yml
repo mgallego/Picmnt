@@ -43,7 +43,8 @@ services:
 
     image.utils:
         class: SFM\PicmntBundle\Util\ImageUtil
-        arguments: ["@service_container"]
+        calls:
+            - [setParameters, [%image_utils%]]
 
     picmnt.paginator:
         class: SFM\PicmntBundle\Util\Paginator

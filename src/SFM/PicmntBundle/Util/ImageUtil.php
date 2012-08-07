@@ -6,22 +6,9 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class ImageUtil{
 
-    private $container;
     private $uploadPath;
     private $thumbsPath;
     
-
-
-    public function __construct(ContainerInterface $container ){
-	$this->container = $container;
-
-	$imageUtilsConfig = $container->getParameter('image_utils');
-	$this->uploadPath = $imageUtilsConfig['upload_path'];
-	$this->thumbsPath = $imageUtilsConfig['thumbs_path'];
-    }
-
-
-
 
     public function resizeImage($imageFile, $maxSize){
 	$imageFile = $this->uploadPath.$imageFile;
@@ -99,5 +86,14 @@ class ImageUtil{
 	}
 	return '.jpg';
     }
+
+
+
+    public function setParameters($imageUtilsConfig){
+	$this->uploadPath = $imageUtilsConfig['upload_path'];
+	$this->thumbsPath = $imageUtilsConfig['thumbs_path'];
+    }
+
+
 }
 

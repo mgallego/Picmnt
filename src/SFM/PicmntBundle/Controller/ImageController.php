@@ -7,7 +7,6 @@ use SFM\PicmntBundle\Repositories\ImageUp;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use SFM\PicmntBundle\Entity\Image;
 use SFM\PicmntBundle\Entity\User;
-use SFM\PicmntBundle\Util\ImageUtil;
 use SFM\PicmntBundle\Form\ImageType;
 use SFM\PicmntBundle\Form\ImageUpType;
 
@@ -157,7 +156,8 @@ class ImageController extends Controller
 	    $paginator = $paginateService->getPaginator($option, $image->getIdImage(), $category);
 	}
 	else if ( $option == 'random' ){
-	    $image = $this->getRandomImage($category);
+	    $images = $em->getRepository('SFMPicmntBundle:Image')->getRandom($category);
+	    $image = $images[0];
 	}
 	else if ( $option == 'show' ){
 	  $image = $em->find('SFMPicmntBundle:Image',$idImage);
@@ -171,24 +171,34 @@ class ImageController extends Controller
 	}
 	return $this->render('SFMPicmntBundle:Image:showImage.html.twig', array("image"=>$image, "paginator"=>$paginator));
     }
-
-
+    
+    
+    
     /**
-     * Get a random image from the reposiory
+     * View an image
      *
      */
-    private function getRandomImage($category){
+    public function viewAction($user, $slug){
 	$em = $this->get('doctrine')->getEntityManager();
-	$image = $em->getRepository('SFMPicmntBundle:Image')->getRandom($category);
-
+	$image = $em->getRepository('SFMPicmntBundle:Image')->getByUserSlug($user, $slug);
+	
 	if (!$image){
-	    $e = $this->get('translator')->trans('There are no pictures in the database');
+	    $e = $this->get('translator')->trans('Picture Not Found');
 	    throw $this->createNotFoundException($e);
 	}
-	return $image[0];
+	
+	$user = $this->container->get('security.context')->getToken()->getUser();
+	
+	if ($this->getCurrentUserId() == $image[0]->getUser()->getId()){
+	    $this->deleteNotifications($image);
+	}
+	
+	return $this->render('SFMPicmntBundle:Image:viewImage.html.twig', array("image"=>$image[0]));
     }
-
     
+    
+
+
     public function hasVoted($idImage){
     
 	$user = $this->container->get('security.context')->getToken()->getUser();
@@ -236,23 +246,6 @@ class ImageController extends Controller
 
     }
 
-    public function viewAction($user, $slug){
-	$em = $this->get('doctrine')->getEntityManager();
-	$image = $em->getRepository('SFMPicmntBundle:Image')->getByUserSlug($user, $slug);
-
-	if (!$image){
-	  $e = $this->get('translator')->trans('Picture Not Found');
-	    throw $this->createNotFoundException($e);
-	}
-	
-	$user = $this->container->get('security.context')->getToken()->getUser();
-
-	if ($this->getCurrentUserId() == $image[0]->getUser()->getId()){
-	  $this->deleteNotifications($image);
-	}
-
-	return $this->render('SFMPicmntBundle:Image:viewImage.html.twig', array("image"=>$image[0]));
-    }
 
     private function deleteNotifications($image){
       $em = $this->get('doctrine')->getEntityManager();
