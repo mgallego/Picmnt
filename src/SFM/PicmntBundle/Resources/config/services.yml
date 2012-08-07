@@ -44,3 +44,7 @@ services:
     image.utils:
         class: SFM\PicmntBundle\Util\ImageUtil
         arguments: ["@service_container"]
+
+    picmnt.paginator:
+        class: SFM\PicmntBundle\Util\Paginator
+        arguments: ["@doctrine.orm.entity_manager"]

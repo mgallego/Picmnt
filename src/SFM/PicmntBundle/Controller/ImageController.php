@@ -149,11 +149,12 @@ class ImageController extends Controller
 
 	if ( $option == 'last' ) {
 	    $image = $em->find('SFMPicmntBundle:Image',$idImage);
-	    if (!$image)){
+	    if (!$image){
 		$images = $em->getRepository('SFMPicmntBundle:Image')->findFirst('p.idImage DESC', $category);
 		$image = $images[0];
 	    }
-	    $paginator = $this->getPaginator($option, $image->getIdImage(), $category);
+	    $paginateService = $this->container->get('picmnt.paginator');
+	    $paginator = $paginateService->getPaginator($option, $image->getIdImage(), $category);
 	}
 	else if ( $option == 'random' ){
 	    $image = $this->getRandomImage($category);
@@ -172,7 +173,6 @@ class ImageController extends Controller
     }
 
 
-
     /**
      * Get a random image from the reposiory
      *
@@ -186,54 +186,6 @@ class ImageController extends Controller
 	    throw $this->createNotFoundException($e);
 	}
 	return $image[0];
-    }
-
-
-
-
-    private function getPaginator($option, $idImage, $category = 'all'){
-	return Array('imgNext'=>$this->getNext($option, $idImage, $category), 'imgPrevious'=>$this->getPrevious($option, $idImage, $category) );
-    }
-
-    private function getNext($orderOption, $idImage, $category){
-
-	if ($orderOption == 'last'){
-
-	    $em = $this->get('doctrine')->getEntityManager();
-    
-	    if ( ! $images = $em->getRepository('SFMPicmntBundle:Image')->findNext($idImage, 'p.idImage', $category)){
-
-		$images = $em->getRepository('SFMPicmntBundle:Image')->findFirst('p.idImage DESC', $category);    
-
-	    }
-
-	}
-
-	$image = $images[0];
-
-	return $image->getIdImage();
-
-    }
-
-
-    private function getPrevious($orderOption, $idImage, $category){
-
-	$em = $this->get('doctrine')->getEntityManager();
-
-	if ( $orderOption == 'last' ){
-      
-	    if ( ! $images = $em->getRepository('SFMPicmntBundle:Image')->findPrevious($idImage, 'p.idImage DESC', $category)){
-
-		$images = $em->getRepository('SFMPicmntBundle:Image')->findFirst('p.idImage DESC', $category);    
-
-	    }
-     
-	}
-
-	$image = $images[0];
-
-	return $image->getIdImage();
-
     }
 
     
