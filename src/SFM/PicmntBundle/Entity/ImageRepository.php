@@ -108,7 +108,7 @@ class ImageRepository extends EntityRepository
 	return $this->getMostCommentDQL($maxResults)->getResult();
     }
 
-    public function getMostCommentDQL($maxResults){
+    public function getMostCommentDQL($maxResults = 10){
 
         $qb = $this->_em->createQueryBuilder();
 
@@ -118,7 +118,7 @@ class ImageRepository extends EntityRepository
             ->add('where', 'p.title is not null AND p.status = 1') 
 	    ->addGroupby('p.idImage')
             ->addOrderBy('cCount', 'DESC')
-            ->setMaxResults(10);
+            ->setMaxResults($maxResults);
 
 
 	$query = $qb->getQuery();  
