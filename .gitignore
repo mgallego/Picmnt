@@ -6,7 +6,8 @@ app/config/parameters.yml
 app/bootstrap*
 app/cache/*
 app/logs/*
-build/
+build/logs/
+app/build/
 vendor/
 src/SFM/PicmntBundle/Resources/views/Addons/analytics.html.twig
 src/SFM/PicmntBundle/Resources/views/Addons/uservoice.html.twig
