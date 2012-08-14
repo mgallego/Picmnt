@@ -8,8 +8,6 @@ use Symfony\Component\DependencyInjection\ContainerAware;
 class Builder extends ContainerAware
 {
 
-  private $factory;
-
   public function menuPrincipal(FactoryInterface $factory)
   {
     $menu = $factory->createItem('root');
@@ -50,7 +48,6 @@ class Builder extends ContainerAware
     }
 
     return $menu;
-
 
   }
 
