@@ -54,8 +54,8 @@ class ImageController extends Controller
 		$em->persist($image);
 		$em->flush();
 		
-		$imageUtil->resizeImage($newFileName, $imageDefaults['size']);
-		$imageUtil->createImageSmall($newFileName, $newFileName, $imageDefaults['small_size']);
+		$imageUtil->resizeImage($imageDefaults['upload_path'].$newFileName, $imageDefaults['size']);
+		$imageUtil->createImageSmall($imageDefaults['upload_path'].$newFileName, $imageDefaults['thumbs_path'].$newFileName, $imageDefaults['small_size']);
 		
 		if ($this->container->getParameter('use_ducksoard') === 'yes'){
 		    $widget = $this->container->get('ducksboard.widget');

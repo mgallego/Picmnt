@@ -100,8 +100,12 @@ parameters:
         category: "all"
         status: 1
         email_noti: 1
-    upload_path: "/uploads"
-    image_utils:
         upload_path: "uploads/"
         thumbs_path: "uploads/thumbs/"
-        
+    upload_path: "/uploads"
+    avatar_defaults:
+        extension: ".jpg"
+        upload_big_path: "uploads/avatarbig"
+        upload_small_path: "uploads/avatarsmall"
+        big_size: 300
+        small_size: 50

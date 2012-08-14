@@ -48,10 +48,6 @@ img_vote:
 
 ##############################  USER CONTROLLER  ##############################
 
-usr_edit:
-    pattern: /usr/edit/{userId}
-    defaults: { _controller: SFMPicmntBundle:User:edit }
-
 _usr_profile:
     pattern: /profile
     defaults: { _controller: SFMPicmntBundle:User:profile }

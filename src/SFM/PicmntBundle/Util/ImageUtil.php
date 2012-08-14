@@ -8,8 +8,6 @@ use Symfony\Component\Security\Core\SecurityContextInterface;
 
 class ImageUtil{
 
-    private $uploadPath;
-    private $thumbsPath;
     protected $em;
     protected $securityContext;
 
@@ -18,7 +16,6 @@ class ImageUtil{
     }
 
     public function resizeImage($imageFile, $maxSize){
-	$imageFile = $this->uploadPath.$imageFile;
 	$width = $maxSize;
 	$height = $maxSize;
 
@@ -52,8 +49,6 @@ class ImageUtil{
 
 
     public function createImageSmall($imageFile, $imageFileDest, $maxSize){
-	$imageFile = $this->uploadPath.$imageFile;
-	$imageFileDest = $this->thumbsPath.$imageFileDest;
 	$width = $maxSize;
 	$height = $maxSize;
 
@@ -94,15 +89,6 @@ class ImageUtil{
 	return '.jpg';
     }
 
-
-
-    public function setParameters($imageUtilsConfig){
-	$this->uploadPath = $imageUtilsConfig['upload_path'];
-	$this->thumbsPath = $imageUtilsConfig['thumbs_path'];
-    }
-
-
-
     public function voteAction($idImage){
 
 	if ($this->hasVoted($idImage) == 0){
@@ -122,6 +108,16 @@ class ImageUtil{
       
 	}    
 
+    }
+
+    public function uploadFile($file, $path, $newFileName){
+	$uploadedFile = $file;
+	$uploadedFile->getPath();
+	$uploadedFile->getClientOriginalName();
+	$uploadedFile->getMimeType();
+	$uploadedFile->move(
+	    $_SERVER['DOCUMENT_ROOT']."/".$path,
+	    $newFileName );
     }
 
 

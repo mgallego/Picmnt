@@ -38,15 +38,15 @@ services:
 
     ducksboard.widget:
         class: SFM\DucksboardBundle\Adapter\Widget
+        arguments: [@sfm.ducksboard.connector]  
         calls:
             - [setApiKey, [%ducksboard_api%]]
 
     image.utils:
         class: SFM\PicmntBundle\Util\ImageUtil
         arguments: ["@doctrine.orm.entity_manager", "@security.context"]
-        calls:
-            - [setParameters, [%image_utils%]]
 
     picmnt.paginator:
         class: SFM\PicmntBundle\Util\Paginator
         arguments: ["@doctrine.orm.entity_manager"]
+        
