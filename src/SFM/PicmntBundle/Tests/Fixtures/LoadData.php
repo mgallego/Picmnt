@@ -61,7 +61,7 @@ class LoadData implements FixtureInterface, ContainerAwareInterface
     private function loadImages(){
 	$images = array();
 
-	for ($i=1; $i<11; $1++){
+	for ($i=1; $i<11; $i++){
 	    $images[] = array('idImage'    => $i,
 			'url'         => 'testImage'.$i.'.img',
 			'title'       => 'title_'.$i,
