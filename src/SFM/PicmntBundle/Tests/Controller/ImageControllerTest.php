@@ -27,13 +27,13 @@ class ImageControllerTest extends WebTestCase
   public function testGetRandomImage(){
 
     $client = $this->createClient();
-    $crawler = $client->request('GET', '/img/random');
-    $this->assertEquals(302, $client->getResponse()->getStatusCode(), "Status 200");
+    $crawler = $client->request('GET', '/all/random');
+    $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Status 200");
 
 
     $secureAccess = new SecureAccess();
     $client = $secureAccess->getClient();
-    $crawler = $client->request('GET', '/img/random');
+    $crawler = $client->request('GET', '/all/random');
     $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Status 200");
     $this->assertTrue($crawler->filter('html:contains("Picmnt")')->count() > 0, "the URL contains the Picmnt word");
 
@@ -54,30 +54,30 @@ class ImageControllerTest extends WebTestCase
   public function testGetImageAction(){
     
     $client = $this->createClient();
-    $crawler = $client->request('GET', '/img/last');
-    $this->assertEquals(302, $client->getResponse()->getStatusCode(), "Status 200");
+    $crawler = $client->request('GET', '/all/last');
+    $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Status 200");
 
     $secureAccess = new SecureAccess();
     $client = $secureAccess->getClient();
-    $crawler = $client->request('GET', '/img/last');
+    $crawler = $client->request('GET', '/all/last');
     $this->assertTrue($crawler->filter('html:contains("Picmnt")')->count() > 0, "the URL contains the Picmnt word");
 
-    $crawler = $client->request('GET', '/img/last/fakenumber');
+    $crawler = $client->request('GET', '/all/last/fakenumber');
     $this->assertTrue($crawler->filter('html:contains("Picmnt")')->count() > 0, "the URL contains the Picmnt word");
 
-    $crawler = $client->request('GET', '/img/last/999');
+    $crawler = $client->request('GET', '/all/last/999');
     $this->assertTrue($crawler->filter('html:contains("title_10")')->count() > 0, "Finding an error image");
 
     
-    $crawler = $client->request('GET','/img/last/3');
+    $crawler = $client->request('GET','/all/last/3');
     $this->assertTrue($crawler->filter('html:contains("title_3")')->count() > 0, "Finding an Image");
     
 
-    $link = $crawler->selectLink('Previous')->link();
+    $link = $crawler->selectLink('Anterior')->link();
     $crawler = $client->click($link);
     $this->assertTrue($crawler->filter('html:contains("title_2")')->count() > 0, "Previous Image");
 
-    $link = $crawler->selectLink('Next')->link();
+    $link = $crawler->selectLink('Siguiente')->link();
     $crawler = $client->click($link);
     $this->assertTrue($crawler->filter('html:contains("title_3")')->count() > 0, "Next Image");
 

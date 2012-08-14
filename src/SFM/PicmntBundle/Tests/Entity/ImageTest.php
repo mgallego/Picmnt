@@ -5,6 +5,7 @@ namespace SFM\PicmntBundle\Tests\Entity;
 use SFM\PicmntBundle\Entity\Image;
 use SFM\PicmntBundle\Entity\User;
 use SFM\PicmntBundle\Entity\ImageComment;
+use SFM\PicmntBundle\Entity\Category;
 
 class ImageTest extends \PHPUnit_Framework_TestCase {
 
@@ -58,12 +59,16 @@ class ImageTest extends \PHPUnit_Framework_TestCase {
 
     function testCategory() {
         $image = new Image();
+	$category = new Category();
+
+	$category->setName('others');
+	$category->setStatus(1);
 
         $this->assertNull($image->getCategory());
 
-        $image->setCategory(1);
+        $image->setCategory($category);
 
-        $this->assertEquals(1, $image->getCategory());
+        $this->assertEquals($category, $image->getCategory());
     }
 
     function testTags() {
@@ -88,10 +93,6 @@ class ImageTest extends \PHPUnit_Framework_TestCase {
     function testUserVotes() {
         $image = new Image();
         $user = new User();
-
-        $this->assertNull($image->getUserVotes());
-
-        $user = new User();
         $image->addUserVotes($user);
 
         $this->assertNotNull($image->getUserVotes());
@@ -100,9 +101,6 @@ class ImageTest extends \PHPUnit_Framework_TestCase {
     function testImageComments() {
         $image = new Image();
         $imageComment = new ImageComment();
-
-        $this->assertNull($image->getImageComments());
-
         $image->addImageComments($imageComment);
 
         $this->assertNotNull($image->getImageComments());

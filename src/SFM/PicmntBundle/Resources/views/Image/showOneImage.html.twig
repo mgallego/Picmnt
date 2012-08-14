@@ -20,7 +20,7 @@
 	    <h3>
 	      {% if app.request.get('option') == 'last' %}
 	        {% if Previous %}
-	          <a href="{{ Previous }}">{{ 'Previous' | trans }}</a> |
+	          <a id="previous" href="{{ Previous }}">{{ 'Previous' | trans }}</a> |
 	        {% else %}
                   {{ 'Previous' | trans }} |
 	        {% endif %}
@@ -32,7 +32,7 @@
 	    <h3>
 	      {% if app.request.get('option') == 'last' %}
 	        {% if Next %}
-	          | <a href="{{ Next }}">{{ 'Next' | trans }} </a>
+	          | <a id="next" href="{{ Next }}">{{ 'Next' | trans }} </a>
 	        {% else %}
                   | {{ 'Next' | trans }} 
 	        {% endif %} 
