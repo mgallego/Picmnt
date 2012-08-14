@@ -13,6 +13,7 @@ class ImageUtil{
 
     public function __construct(EntityManager $em, SecurityContextInterface $securityContext){
 	$this->em = $em;
+	$this->SecurityContextInterface = $securityContext;
     }
 
     public function resizeImage($imageFile, $maxSize){
