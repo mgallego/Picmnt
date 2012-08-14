@@ -6,7 +6,7 @@
    depends="prepare,prepare-env,lint,phploc,pdepend,phpmd-ci,phpcs-ci,phpcpd,phpunit,phpcb"/>
 
  <target name="build"
-   depends="prepare,vendors,lint,phploc,pdepend,phpmd-ci,phpcs-ci,phpcpd,phpunit,phpcb"/>
+   depends="prepare,prepare-env,vendors,lint,phploc,pdepend,phpmd-ci,phpcs-ci,phpcpd,phpunit,phpcb"/>
 
  <target name="build-parallel"
    depends="prepare,prepare-env,lint,tools-parallel,phpunit,phpcb"/>
@@ -41,8 +41,6 @@
 
 
  <target name="prepare-env" description="Prepare Environment">
-  <delete dir="${basedir}/build/pdepend"/>
-  <delete file="${basedir}/app/config/parameters.yml"/>
   <symlink link="${basedir}/app/config/parameters.yml" resource="/home/moises/Dev/Picmnt/app/config/parameters.yml" overwrite="true"/>
   <symlink link="${basedir}/src/SFM/PicmntBundle/Resources/views/Addons/uservoice.html.twig" resource="/home/moises/Dev/Picmnt/src/SFM/PicmntBundle/Resources/views/Addons/uservoice.html.twig" overwrite="true"/>
   <symlink link="${basedir}/src/SFM/PicmntBundle/Resources/views/Addons/analytics.html.twig" resource="/home/moises/Dev/Picmnt/src/SFM/PicmntBundle/Resources/views/Addons/analytics.html.twig" overwrite="true"/>
