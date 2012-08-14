@@ -98,7 +98,7 @@ class Image {
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="Category", inversedBy="images", cascade={"remove"})
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="images", cascade={"persist"})
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
     private $category;
