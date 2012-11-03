@@ -7,10 +7,6 @@ secure_home:
     pattern: /p
     defaults: { _controller: SFMPicmntBundle:Index:indexSecure }
 
-lang:
-    pattern: /lang/{_locale}
-    defaults: { _controller: SFMPicmntBundle:Index:lang }
-
 static_page:
     pattern: /static/{page}
     defaults: { _controller: SFMPicmntBundle:Index:static }
