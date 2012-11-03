@@ -22,7 +22,7 @@ class UserController extends Controller{
      * Show the profile and change avatar
      *
      */
-    public function  profileAction($userName = null){
+    public function profileAction($userName = null){
 	$em = $this->get('doctrine')->getEntityManager();
 	$user = $this->getUser($userName);
 
@@ -107,7 +107,7 @@ class UserController extends Controller{
     }
 
 
-    public function  pendingAction($userName){
+    public function pendingAction($userName){
 	$em = $this->get('doctrine')->getEntityManager();     
 	$user = $this->container->get('security.context')->getToken()->getUser();
 

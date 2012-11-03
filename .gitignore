@@ -6,7 +6,7 @@ app/config/parameters.yml
 app/bootstrap*
 app/cache/*
 app/logs/*
-build/logs/
+build/*
 app/build/
 vendor/
 src/SFM/PicmntBundle/Resources/views/Addons/analytics.html.twig
@@ -15,3 +15,4 @@ app/config/deploy.rb
 .Capifony/
 Capfile
 composer.phar
+TAGS
