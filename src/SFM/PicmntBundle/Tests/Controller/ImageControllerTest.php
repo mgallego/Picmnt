@@ -63,11 +63,11 @@ class ImageControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/all/last/3');
         $this->assertTrue($crawler->filter('html:contains("title_3")')->count() > 0, "Finding an Image");
 
-        $link = $crawler->selectLink('Anterior')->link();
+        $link = $crawler->selectLink('Previous')->link();
         $crawler = $client->click($link);
         $this->assertTrue($crawler->filter('html:contains("title_2")')->count() > 0, "Previous Image");
 
-        $link = $crawler->selectLink('Siguiente')->link();
+        $link = $crawler->selectLink('Next')->link();
         $crawler = $client->click($link);
         $this->assertTrue($crawler->filter('html:contains("title_3")')->count() > 0, "Next Image");
 
