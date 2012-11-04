@@ -38,6 +38,13 @@ class ImageControllerTest extends AbstractControllerTest
         $this->assertNotNull($image);
     }
 
+    public function testEditImageAnonUser()
+    {
+        $client = $this->createClient();
+        $crawler = $client->request('GET', '/img/upload');
+        $this->assertEquals(302, $client->getResponse()->getStatusCode(), "Status 200");
+    }
+
     /* public function testGetRandomImage() */
     /* { */
 
