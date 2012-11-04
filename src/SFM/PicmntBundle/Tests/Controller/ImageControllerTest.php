@@ -18,13 +18,6 @@ class ImageControllerTest extends AbstractControllerTest
 
     public function testUploadWithValidUser()
     {
-        $image = new UploadedFile(
-            realpath(dirname(__FILE__)).'/banner.png',
-            'photo.png',
-            'image/png',
-            123
-        );
-        
         $client = $this->getLoggedClient('userTest', 'passwordTest');
         $crawler = $client->request('GET', '/img/upload');
 

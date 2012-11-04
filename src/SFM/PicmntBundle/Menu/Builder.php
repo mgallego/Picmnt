@@ -8,19 +8,6 @@ use Symfony\Component\DependencyInjection\ContainerAware;
 class Builder extends ContainerAware
 {
 
-  public function menuPrincipal(FactoryInterface $factory)
-  {
-    $menu = $factory->createItem('root');
-    $menu->setCurrentUri($this->container->get('request')->getRequestUri());
-
-    $menu->addChild('Join', array('route' => 'fos_user_registration_register'));
-    $menu->addChild('Login', array('route' => 'fos_user_security_login'));
-    
-    $prueba = $this->container->get('request');
-
-    return $menu;
-  }
-
   public function menuCategories(FactoryInterface $factory)
   {
 

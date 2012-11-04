@@ -12,7 +12,7 @@
       {% endif %} 
     </div>
     <div class="span12 column">
-      <form action="{{ path('usr_edit', { 'userId': userId }) }}" method="post" {{ form_enctype(form) }}>
+      <form id="form-edit-profile" action="{{ path('usr_edit', { 'userId': userId }) }}" method="post" {{ form_enctype(form) }}>
 	{{ form_widget(form) }}
 
 	<input type="submit" />

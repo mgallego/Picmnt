@@ -1,7 +1,5 @@
 {% extends "SFMPicmntBundle::layout_private.html.twig" %}
 
-{% set username = app.request.get('userName') %}
-
 {% block content %}
   <nav class="container" style="padding-top: 50px">
 
@@ -41,7 +39,7 @@
 	  {{ form_widget(form) }}
 	  <br>
 	  <div class="clearfix btn-right">
-	    <input type="submit" class="btn primary"  />
+	    <input id="form-edit-profile-submit" type="submit" class="btn primary"  />
 	  </div>
 	  </fieldset>
 	</form>

@@ -31,7 +31,8 @@ class UserController extends Controller{
 	    throw $this->createNotFoundException($e);
 	}
 
-	$avatarOld = $user->getAvatar();
+        $avatarOld = $user->getAvatar();
+        
 	$images = $this->getPaginatedImages($user, $em);
 	
 	$form = $this->getAvatarForm($user);
@@ -61,7 +62,7 @@ class UserController extends Controller{
 		$em->flush();
 	    }
 	}
-	return $this->render('SFMPicmntBundle:User:profile.html.twig', array('images' => $images, 'form' => $form->createView()));
+	return $this->render('SFMPicmntBundle:User:profile.html.twig', array('images' => $images, 'form' => $form->createView(), 'username' => $user->getUsername()));
     }
 
 
@@ -86,12 +87,12 @@ class UserController extends Controller{
 
 	$em = $this->get('doctrine')->getEntityManager();
 
-	if (!$userName and $this->get('security.context')->isGranted('ROLE_USER')){
+	if (!$userName && $this->get('security.context')->isGranted('ROLE_USER')){
 	    $user = $this->container->get('security.context')->getToken()->getUser();
 	    $userName = $user->getUsername();
-	    return $this->redirect($this->generateUrl('usr_profile', array("userName"=>$userName)));	
+            return  $em->getRepository('SFMPicmntBundle:User')->findOneByUsername($userName);
+	    //return $this->redirect($this->generateUrl('usr_profile', array("userName"=>$userName)));	
 	}
-	
 	return  $em->getRepository('SFMPicmntBundle:User')->findOneByUsername($userName);
     }
 
@@ -110,6 +111,11 @@ class UserController extends Controller{
     public function pendingAction($userName){
 	$em = $this->get('doctrine')->getEntityManager();     
 	$user = $this->container->get('security.context')->getToken()->getUser();
+
+	if (!$this->getUser($userName)){
+	    $e = $this->get('translator')->trans('The User Not Exists');
+	    throw $this->createNotFoundException($e);
+	}
 
 	if ($user->getUsername() != $userName) { 
 	    return $this->redirect($this->generateUrl('img_show', array("option"=>"random", "category"=>"all")));

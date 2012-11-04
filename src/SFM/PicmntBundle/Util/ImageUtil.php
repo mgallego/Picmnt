@@ -89,5 +89,15 @@ class ImageUtil{
 	}
 	return '.jpg';
     }
+    
+    public function uploadFile($file, $path, $newFileName){
+	$uploadedFile = $file;
+	$uploadedFile->getPath();
+	$uploadedFile->getClientOriginalName();
+	$uploadedFile->getMimeType();
+	$uploadedFile->move(
+	    $_SERVER['DOCUMENT_ROOT']."/".$path,
+	    $newFileName );
+    }
 }
 
