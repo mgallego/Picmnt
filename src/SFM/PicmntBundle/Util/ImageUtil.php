@@ -89,38 +89,5 @@ class ImageUtil{
 	}
 	return '.jpg';
     }
-
-    public function voteAction($idImage){
-
-	if ($this->hasVoted($idImage) == 0){
-
-	    $em = $this->em;
-      
-	    $image = $em->find('SFMPicmntBundle:Image',$idImage);
-      
-	    $image->sumVotes();
-      
-	    $user = $this->securityContext->getToken()->getUser();
-      
-	    $image->addUserVotes($user);
-    
-	    $em->persist($image);
-	    $em->flush();
-      
-	}    
-
-    }
-
-    public function uploadFile($file, $path, $newFileName){
-	$uploadedFile = $file;
-	$uploadedFile->getPath();
-	$uploadedFile->getClientOriginalName();
-	$uploadedFile->getMimeType();
-	$uploadedFile->move(
-	    $_SERVER['DOCUMENT_ROOT']."/".$path,
-	    $newFileName );
-    }
-
-
 }
 
