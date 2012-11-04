@@ -40,3 +40,4 @@ security:
         - { path: ^/img/upload , role: ROLE_USER }
         - { path: ^/img , role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/usr/redirect/ , role: ROLE_USER }
+        - { path: ^/comment/ , role: ROLE_USER }

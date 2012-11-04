@@ -76,7 +76,7 @@ class CommentController extends Controller{
 	}
 
 	if ($user->getId() != $comment->getUser()->getId()) { 
-	    return $this->redirect($this->generateUrl('img_show', array("option"=>"show", "idImage"=>$idImage, "category"=>'all') ));
+	    return $this->redirect($this->generateUrl('home'));
 	}
 	else{
 	    $image = $comment->getImage();
