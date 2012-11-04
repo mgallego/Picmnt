@@ -11,7 +11,7 @@ class SecureAccess extends WebTestCase
     public function getClient()
   {
 
-    $this->loadFixtures(array('SFM\PicmntBundle\Tests\Fixtures\LoadData'));
+    $this->loadFixtures(array('SFM\PicmntBundle\Tests\DataFixtures\ORM\LoadUserImageData'));
 
     $client = $this->createClient();
 

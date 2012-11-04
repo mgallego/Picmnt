@@ -7,11 +7,18 @@ use Liip\FunctionalTestBundle\Test\WebTestCase;
 
 abstract class AbstractControllerTest extends WebTestCase
 {
+    public function setUp()
+    {
+        $this->loadFixtures(
+            [
+                'SFM\PicmntBundle\Tests\DataFixtures\ORM\LoadUserImageData',
+                'SFM\PicmntBundle\Tests\DataFixtures\ORM\LoadCategoryData'
+            ]
+        );
+    }
+
     public function getLoggedClient()
     {
-
-        $this->loadFixtures(array('SFM\PicmntBundle\Tests\Fixtures\LoadData'));
-
         $client = $this->createClient();
 
         $crawler = $client->request('GET', '/logout');

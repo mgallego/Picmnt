@@ -1,6 +1,6 @@
 <?php
 
-namespace SFM\PicmntBundle\Tests\Fixtures;
+namespace SFM\PicmntBundle\Tests\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
@@ -11,7 +11,7 @@ use SFM\PicmntBundle\Entity\User;
 use SFM\PicmntBundle\Entity\Image;
 use SFM\PicmntBundle\Entity\Category;
 
-class LoadData implements FixtureInterface, ContainerAwareInterface
+class LoadUserImageData implements FixtureInterface, ContainerAwareInterface
 {
     protected $userManager;
 

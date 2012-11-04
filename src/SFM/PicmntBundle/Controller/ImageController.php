@@ -60,6 +60,11 @@ class ImageController extends Controller
                 $em->flush();
 
                 $imageUtil->resizeImage($imageDefaults['upload_path'].$newFileName, $imageDefaults['size']);
+                
+                if (!is_dir($imageDefaults['thumbs_path'])) {
+                    mkdir($imageDefaults['thumbs_path']);
+                }
+
                 $imageUtil->createImageSmall(
                     $imageDefaults['upload_path'].$newFileName,
                     $imageDefaults['thumbs_path'].$newFileName,

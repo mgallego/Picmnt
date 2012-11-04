@@ -27,24 +27,15 @@ class ImageControllerTest extends AbstractControllerTest
         $client = $this->getLoggedClient();
         $crawler = $client->request('GET', '/img/upload');
 
-        if (200 !== $client->getResponse()->getStatusCode()) {
-            echo '<pre>';
-            var_dump($crawler->text());
-            echo '<pre>';
-        }
-
         $form = $crawler->selectButton('upload')->form();
         $form['picmnt_image_imageuptype[dataFile]']->upload(realpath(dirname(__FILE__)).'/banner.png');
         $crawler = $client->submit($form);
-
-        if (200 !== $client->getResponse()->getStatusCode()) {
-            echo '<pre>';
-            var_dump($crawler->text());
-            echo '<pre>';
-        }
         
-        $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Status 200");
-        $this->assertTrue($crawler->filter('html:contains("Picmnt")')->count() > 0, "the URL contains the Picmnt word");
+        $this->assertEquals(302, $client->getResponse()->getStatusCode(), "Status 200");
+        $em = $this->getContainer()->get('doctrine')->getEntityManager();
+        $image = $em->getRepository('SFMPicmntBundle:Image')->findOneByTitle('banner');
+
+        $this->assertNotNull($image);
     }
 
     /* public function testGetRandomImage() */

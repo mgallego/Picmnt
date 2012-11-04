@@ -32,11 +32,11 @@ parameters:
         status: 1
         email_noti: 1
         upload_path: %kernel.cache_dir%/uploads/
-        thumbs_path: %kernel.cache_dir%/test_uploads/thumbs/
-    upload_path: %kernel.cache_dir%/test_uploads
+        thumbs_path: %kernel.cache_dir%/uploads/thumbs/
+    upload_path: %kernel.cache_dir%/uploads
     avatar_defaults:
         extension: ".jpg"
-        upload_big_path: %kernel.cache_dir%/test_uploads/avatarbig
-        upload_small_path: %kernel.cache_dir%/test_uploads/avatarsmall
+        upload_big_path: %kernel.cache_dir%/uploads/avatarbig
+        upload_small_path: %kernel.cache_dir%/uploads/avatarsmall
         big_size: 300
         small_size: 50
