@@ -96,7 +96,7 @@ class ImageController extends Controller
 
         //Default response
         $form = $this->createForm(new ImageType(), $image);
-        $imgUtilsConf = $this->container->getParameter('image_utils');
+        $imgUtilsConf = $this->container->getParameter('image_defaults');
         $options = array("image_url" => $imgUtilsConf['upload_path'].$image->getUrl(), 'form' => $form->createView(), 'image'=>$image);
         $response = $this->render('SFMPicmntBundle:Image:editImage.html.twig', $options);
     

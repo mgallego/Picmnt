@@ -36,7 +36,7 @@
 
 	  <div class="span3">
 	    
-	    <form action="{{ path('img_edit', { 'id_image': image.idImage }) }}" method="post" {{ form_enctype(form) }} class="form-stacked">
+	    <form id="edit-form" action="{{ path('img_edit', { 'id_image': image.idImage }) }}" method="post" {{ form_enctype(form) }} class="form-stacked">
 
 	      <fieldset style="text-align:left">
 		<legend>{{ 'Edit' | trans }}</legend>
@@ -67,7 +67,7 @@
 
 
 		<div class="actions"> 
-		   <input type="submit" class="btn primary" value="{{ 'Save Changes' | trans }}">&nbsp;<button type="reset" class="btn">{{ 'Cancel' | trans }}</button> 
+		   <input type="submit" class="btn primary" id="edit-image" value="{{ 'Save Changes' | trans }}">&nbsp;<button type="reset" class="btn">{{ 'Cancel' | trans }}</button> 
 		</div> 
 	      </fieldset>
 	    </form>

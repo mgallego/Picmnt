@@ -17,7 +17,7 @@ abstract class AbstractControllerTest extends WebTestCase
         );
     }
 
-    public function getLoggedClient()
+    public function getLoggedClient($username = 'userTest', $password = 'passwordTest')
     {
         $client = $this->createClient();
 
@@ -25,8 +25,8 @@ abstract class AbstractControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/login');
 
         $form = $crawler->selectButton('login')->form();
-        $form['_username'] = 'userTest';
-        $form['_password'] = 'passwordTest';
+        $form['_username'] = $username;
+        $form['_password'] = $password;
         $crawler = $client->submit($form);
         return $client;
     }

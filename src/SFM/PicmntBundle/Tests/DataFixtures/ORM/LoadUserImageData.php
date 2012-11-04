@@ -10,6 +10,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use SFM\PicmntBundle\Entity\User;
 use SFM\PicmntBundle\Entity\Image;
 use SFM\PicmntBundle\Entity\Category;
+use SFM\PicmntBundle\Entity\ImageComment;
 
 class LoadUserImageData implements FixtureInterface, ContainerAwareInterface
 {
@@ -38,15 +39,27 @@ class LoadUserImageData implements FixtureInterface, ContainerAwareInterface
 
         foreach ($images as $ref => $ImageData) {
             $image = new Image();
-
+            $comment = new ImageComment();
+            $comment->setComment('testComment');
+            $comment->setUser($user);
+            
             foreach ($ImageData as $property => $value) {
                 $image->{'set'.ucfirst($property)}($value);
             }
-
+            $comment->setImage($image);
             $image->setUser($user);
             $em->persist($image);
+            $em->persist($comment);
         }
         $em->flush();
+
+        $userDifferent = $this->userManager->createUser();
+        $userDifferent->setUsername('userTest2');
+        $userDifferent->setEmail('test2@picmnt.com');
+        $userDifferent->setPlainPassword('passwordTest2');
+        $userDifferent->setEnabled(true);
+        $this->userManager->updateUser($userDifferent);
+
     }
 
     private function loadImages()
@@ -66,7 +79,8 @@ class LoadUserImageData implements FixtureInterface, ContainerAwareInterface
                         'category'    => $category,
                         'tags'        => 'tags_'.$i,
                         'status'      => '1',
-                        'votes'       => '0');
+                        'votes'       => '0',
+                        'slug'        => 'title_'.$i);
         }
 
         return $images;
