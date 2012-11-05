@@ -55,6 +55,16 @@ class UserController extends Controller{
 		    $imageUtil->uploadFile($files["avatar"], $avatarDefaults['upload_big_path'], $newFileName);
 
 		    $imageUtil->resizeImage($avatarDefaults['upload_big_path'].$newFileName, $avatarDefaults['big_size']);
+
+                    if (!is_dir($avatarDefaults['upload_big_path'])) {
+                        mkdir($avatarDefaults['upload_big_path']);
+                    }
+
+
+                    if (!is_dir($avatarDefaults['upload_small_path'])) {
+                        mkdir($avatarDefaults['upload_small_path']);
+                    }
+
 		    $imageUtil->createImageSmall($avatarDefaults['upload_big_path'].$newFileName, $avatarDefaults['upload_small_path'].$newFileName, $avatarDefaults['small_size']);	 
 		    $user->setAvatar($newFileName);
 		}
