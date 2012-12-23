@@ -8,7 +8,7 @@ set :port, 22123
 set :repository,  "git://github.com/mgallego/Picmnt.git"
 set :scm,         :git
 set :model_manager, "doctrine"
-set :branch, "Dev"
+set :branch, "master"
 set :deploy_migrations_interactive, false
 
 set :shared_files,      ["app/config/parameters.yml", "src/SFM/PicmntBundle/Resources/views/Addons/analytics.html.twig", "src/SFM/PicmntBundle/Resources/views/Addons/uservoice.html.twig"]
