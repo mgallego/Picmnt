@@ -3,10 +3,6 @@ home:
     pattern: /
     defaults: { _controller: SFMPicmntBundle:Index:index }
   
-secure_home: 
-    pattern: /p
-    defaults: { _controller: SFMPicmntBundle:Index:indexSecure }
-
 static_page:
     pattern: /static/{page}
     defaults: { _controller: SFMPicmntBundle:Index:static }
