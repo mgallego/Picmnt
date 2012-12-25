@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Picmnt{% block title %}{% endblock title %}</title>
+
+    {% block meta %}
+
+    {% endblock meta %}
+
+    <link href="/favicon.ico" rel="shortcut icon">
+
+    {% block stylesheet %}
+        <link rel="stylesheet" href="{{ asset('bundles/sfmpicmnt/stylesheets/picmnt.css')}}">
+        <link rel="stylesheet" href="{{ asset('bundles/sfmpicmnt/stylesheets/fluid_grid.css')}}">
+    {% endblock stylesheet %}
+
+    {% block javascript %}
+    {% endblock javascript %}
+
+    {% block scripts %}
+    {% endblock scripts %}
+
+    {% block header %}
+	<header class="grid_12">
+	    <span class="picmnt-title">Picmnt</span>
+	</header>
+
+    {% endblock header %}
+    {% block menu %}{% endblock menu %}
+    {% block fos_user_content %}{% endblock fos_user_content %}
+
+    {% block content %}
+
+
+	<div class="clear"></div>
+
+	<div id="image-section">
+	    <div id="image" class="grid_6"> 
+		<img src="/uploads/3_121225195601_7749.png" id="image-to-modify">
+	    </div>
+	    <div id="image-info" class="grid_6"> 
+		<h1 id="image-title">Image Title</h1>
+		<p>
+		    Image info
+		</p>
+	    </div>
+	</div>
+
+
+    {% endblock content %}
+
+    {% block footer %}{% endblock footer %}
+  </body>
+</html>
+

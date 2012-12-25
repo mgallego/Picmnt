@@ -154,7 +154,6 @@ class ImageController extends Controller
      *
      */
     public function showAction($option, $idImage = 0, $category = 'all'){
-    
         $em = $this->get('doctrine')->getEntityManager();
         $paginator = array();
 
@@ -190,11 +189,12 @@ class ImageController extends Controller
      * View an image
      *
      */
-    public function viewAction($user, $slug){
+    public function viewAction($user, $slug)
+    {
         $em = $this->get('doctrine')->getEntityManager();
         $image = $em->getRepository('SFMPicmntBundle:Image')->getByUserSlug($user, $slug);
     
-        if (!$image){
+        if (!$image) {
             $e = $this->get('translator')->trans('Picture Not Found');
             throw $this->createNotFoundException($e);
         }
@@ -204,8 +204,9 @@ class ImageController extends Controller
         if ($this->getCurrentUserId() == $image[0]->getUser()->getId()){
             $this->deleteNotifications($image);
         }
-    
-        return $this->render('SFMPicmntBundle:Image:viewImage.html.twig', array("image"=>$image[0]));
+
+        return $this->render('SFMPicmntBundle:Image:viewImageNew.html.twig', array("image"=>$image[0]));
+        /* return $this->render('SFMPicmntBundle:Image:viewImage.html.twig', array("image"=>$image[0])); */
     }
 
     

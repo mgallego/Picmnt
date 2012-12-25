@@ -1,0 +1,29 @@
+body {
+    /* background: white url('../images/background.gif');
+ */
+    font-family: "Nimbus Roman No9 L", Sans, serif;
+}
+
+.picmnt-title {
+    font-family: "Nimbus Roman No9 L", Sans, serif;
+    font-size: 4em;
+    color: #484848;
+} 
+
+#image-section {
+    padding-top: 30px;
+}
+
+#image-section img, #image-section canvas {
+    margin-left: 20px;
+    border: 10px solid white;
+    border-radius: 8px;
+    box-shadow: 5px 5px 10px #333;
+    -webkit-box-shadow: 5px 5px 10px #333;
+    -moz-box-shadow: 5px 5px 10px #333;
+}
+
+#image-title {
+    margin-top: 0;
+    font-size: 3em;
+}
