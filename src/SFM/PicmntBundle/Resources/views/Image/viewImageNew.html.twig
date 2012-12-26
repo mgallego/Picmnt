@@ -32,17 +32,27 @@
 
     {% block content %}
 
-
 	<div class="clear"></div>
 
 	<div id="image-section">
 	    <div id="image" class="grid_6"> 
-		<img src="/uploads/3_121225195601_7749.png" id="image-to-modify">
+		<img src="{{ asset(upload_dir ~ image.url) }}" id="image-to-modify"/>
 	    </div>
 	    <div id="image-info" class="grid_6"> 
-		<h1 id="image-title">Image Title</h1>
+		<h1 id="image-title">{{ image.title }}</h1>
 		<p>
-		    Image info
+		    Author: {{ image.user.username }}
+		</p>
+		<p>
+		    Date: {{ image.pubDate | date() }}
+		</p>
+		<p>
+		    Description: 
+		    <br>
+		    {{ image.description }}
+		</p>
+		<p>
+		    Category: {{ image.category }}
 		</p>
 	    </div>
 	</div>

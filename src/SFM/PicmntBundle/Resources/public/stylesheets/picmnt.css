@@ -6,9 +6,13 @@ body {
 
 .picmnt-title {
     font-family: "Nimbus Roman No9 L", Sans, serif;
-    font-size: 4em;
-    color: #484848;
+    font-size: 7em;
+    color: rgba(0, 0, 0, 0.19);
 } 
+
+h1 {
+    font-weight: normal !important;
+}
 
 #image-section {
     padding-top: 30px;
