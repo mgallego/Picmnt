@@ -1,13 +1,15 @@
 body {
-    /* background: white url('../images/background.gif');
- */
-    font-family: "Nimbus Roman No9 L", Sans, serif;
+    /* background: white url('http://subtlepatterns.subtlepatterns.netdna-cdn.com/patterns/creampaper.png'); */
+    background: whiteSmoke;
+    font-family: 'Libre Baskerville', serif;
+    /* font-family: "Nimbus Roman No9 L", Sans, serif; */
+    font-size: 16px;
 }
 
-.picmnt-title {
-    font-family: "Nimbus Roman No9 L", Sans, serif;
-    font-size: 7em;
+.picmnt-title a{
+    font-size: 6em;
     color: rgba(0, 0, 0, 0.19);
+    text-decoration: none !important;
 } 
 
 h1 {
@@ -30,4 +32,49 @@ h1 {
 #image-title {
     margin-top: 0;
     font-size: 3em;
+}
+
+.image-extra-info {
+    margin-top: -20px;
+    padding-left: 2em;
+}
+
+#image-info p {
+    padding-bottom: 10px;
+}
+
+#separator {
+    margin: 60px auto 10px auto;
+    width: 960px;
+}
+
+#comments-title {
+    text-align: center;
+}
+
+#comment-form .textarea {
+    height: 150px;
+    width: 400px;
+    resize: none;
+}
+
+#comments {
+    margin-top: 50px;
+}
+
+#comments h3 {
+    text-align: center;    
+}
+
+.comment hr {
+    margin-top: 20px;
+}
+
+.comment {
+    margin-bottom: 60px;
+}
+
+.comment-text {
+    margin-top: -10px;
+    padding-left: 2em;
 }

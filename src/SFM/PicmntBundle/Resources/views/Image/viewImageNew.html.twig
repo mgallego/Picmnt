@@ -11,9 +11,11 @@
     <link href="/favicon.ico" rel="shortcut icon">
 
     {% block stylesheet %}
+        <link href='http://fonts.googleapis.com/css?family=Libre+Baskerville' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="{{ asset('bundles/sfmpicmnt/stylesheets/picmnt.css')}}">
-        <link rel="stylesheet" href="{{ asset('bundles/sfmpicmnt/stylesheets/fluid_grid.css')}}">
+	<link rel="stylesheet" href="{{ asset('bundles/sfmpicmnt/stylesheets/fluid_grid.css')}}">
     {% endblock stylesheet %}
+    
 
     {% block javascript %}
     {% endblock javascript %}
@@ -23,9 +25,8 @@
 
     {% block header %}
 	<header class="grid_12">
-	    <span class="picmnt-title">Picmnt</span>
+	    <span class="picmnt-title"><a href="{{ path('home') }}" title="Picmnt">Picmnt</a></span>
 	</header>
-
     {% endblock header %}
     {% block menu %}{% endblock menu %}
     {% block fos_user_content %}{% endblock fos_user_content %}
@@ -34,30 +35,93 @@
 
 	<div class="clear"></div>
 
-	<div id="image-section">
-	    <div id="image" class="grid_6"> 
-		<img src="{{ asset(upload_dir ~ image.url) }}" id="image-to-modify"/>
-	    </div>
-	    <div id="image-info" class="grid_6"> 
+	<section id="image-section">
+
+	    <article id="image" class="grid_6"> 
+		<img src="{{ asset(upload_dir ~ image.url) }}" id="image-to-modify" alt="{{image.title}}">
+	    </article>
+
+	    <article id="image-info" class="grid_6"> 
 		<h1 id="image-title">{{ image.title }}</h1>
 		<p>
-		    Author: {{ image.user.username }}
+		    Author: <a href="{{ path('usr_profile', {'userName': image.user.username }) }}">{{ image.user.username }}</a>
 		</p>
 		<p>
 		    Date: {{ image.pubDate | date() }}
 		</p>
 		<p>
 		    Description: 
-		    <br>
-		    {{ image.description }}
 		</p>
+		<div class="image-extra-info">
+		    {{ image.description }}
+		</div>
 		<p>
 		    Category: {{ image.category }}
 		</p>
+	    </article>
+	</section>
+
+	<div class="clear"></div>
+	<hr id="separator"/>
+
+	<section id="comments-section" class="container container_12">
+
+	    <div id="comments-title" class="grid_2 prefix_5 suffix_5">
+		<h2>Comments</h2>
 	    </div>
-	</div>
+	    <div class="clear"></div>
+	    
+	    <article id="comment-form" class="grid_4 prefix_4 suffix_4">
+		
+		<form action="{{ path('comment', { 'idImage': image.idImage}) }}" class="form-stacked" method="post">
+		    <div class="input" > 
+			<textarea placeholder="Insert your comment here" class="textarea" name="comment" required="required"></textarea> 
+			<span class="help-block"> 
+			</span> 
+			<input type="submit" value="{{ 'Save Changes' | trans }}">&nbsp;
+			<button type="reset" class="btn" onclick="javascript:applyProposal(0,0,0,0)">{{ 'Cancel' | trans }}</button> 
+		    </div> 
 
+		</form>
+	    </article>
+	    <div class="clear"></div>
+	    <article id="comments"b>
+		{% for comment in image.imageComments %}
+		  {% set username = comment.user.username %}
+		  <article class="comment grid_6 suffix_6">
+		      <p>
+			  Author: <a href="{{ path('usr_profile', {'userName': comment.user.username }) }}">{{ username }}</a>
+		      </p>
+		      <p>
+			  Date: {{ image.pubDate | date() }}
+		      </p>
+		      <p>
+			  Comment: 
+		      </p>
+		      <div class="comment-text">
+			  {{ comment.comment | nl2br }}
+		      </div>
+		      <hr/>
+		  </article>
+	      {% else %}
+		<h3 class="grid_12">{{ 'There is no comment for this image. Be the first to comment' | trans }}</h3>
+		{% endfor %}
+	    </article>
 
+	</section>
+
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
     {% endblock content %}
 
     {% block footer %}{% endblock footer %}
