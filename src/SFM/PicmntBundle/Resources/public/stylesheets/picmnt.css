@@ -96,3 +96,19 @@ h1 {
     display: inline;
     float:right;
 }
+
+/* #image-comment { */
+/*     text-align: center; */
+/* } */
+    
+#image-comment img, #image-comment canvas {
+    top: 10px;
+    display: none;
+    /* margin-right: 10px; */
+    position: fixed;
+    border: 10px solid white;
+    border-radius: 8px;
+    box-shadow: 5px 5px 10px #333;
+    -webkit-box-shadow: 5px 5px 10px #333;
+    -moz-box-shadow: 5px 5px 10px #333;
+}
