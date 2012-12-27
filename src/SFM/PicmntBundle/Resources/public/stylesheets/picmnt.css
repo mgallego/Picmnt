@@ -1,9 +1,8 @@
 body {
-    /* background: white url('http://subtlepatterns.subtlepatterns.netdna-cdn.com/patterns/creampaper.png'); */
     background: whiteSmoke;
     font-family: 'Libre Baskerville', serif;
     /* font-family: "Nimbus Roman No9 L", Sans, serif; */
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .picmnt-title a{
@@ -48,6 +47,8 @@ h1 {
     width: 960px;
 }
 
+/* COMMENTS */
+
 #comments-title {
     text-align: center;
 }
@@ -71,7 +72,8 @@ h1 {
 }
 
 .comment {
-    margin-bottom: 60px;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 .comment-text {
@@ -96,19 +98,18 @@ h1 {
     display: inline;
     float:right;
 }
-
-/* #image-comment { */
-/*     text-align: center; */
-/* } */
     
 #image-comment img, #image-comment canvas {
     top: 10px;
     display: none;
-    /* margin-right: 10px; */
     position: fixed;
     border: 10px solid white;
     border-radius: 8px;
     box-shadow: 5px 5px 10px #333;
     -webkit-box-shadow: 5px 5px 10px #333;
     -moz-box-shadow: 5px 5px 10px #333;
+}
+
+.link-to-comment {
+    float: right;
 }

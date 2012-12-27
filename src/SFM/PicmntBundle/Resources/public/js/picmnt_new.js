@@ -5,7 +5,7 @@ $(document).ready(function() {
 	if ('down' === direction) {
 	    $('#image-to-comment').fadeIn();
 	} else {
-	    $('#image-to-comment').fadeOut();
+	    $('#image-to-comment').fadeOut(1);
 	}
     });
 

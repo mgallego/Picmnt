@@ -109,7 +109,8 @@
 		  
 		{% for comment in image.imageComments %}
 		  {% set username = comment.user.username %}
-		  <article class="comment grid_6 suffix_6">
+		  <article id="comment-{{ loop.index }}" class="comment grid_6 suffix_6">
+		      <a class="link-to-comment" href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}#comment-{{ loop.index }}">#{{ loop.index }}</a>
 		      <p>
 			  Author: <a href="{{ path('usr_profile', {'userName': comment.user.username }) }}">{{ username }}</a>
 		      </p>
