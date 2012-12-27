@@ -24,8 +24,15 @@
     {% endblock scripts %}
 
     {% block header %}
-	<header class="grid_12">
-	    <span class="picmnt-title"><a href="{{ path('home') }}" title="Picmnt">Picmnt</a></span>
+	<header class="container container_12">
+	    <span class="grid_4 picmnt-title"><a href="{{ path('home') }}" title="Picmnt">Picmnt</a></span>
+	    <span id="login-menu" class="grid_8">
+		<ul>
+		    <li><a href="{{ path('fos_user_security_login') }}">{{ 'Login' | trans }}</a></li> 
+		    <li>&nbsp|&nbsp</li> 
+		    <li><a href="{{ path('fos_user_registration_register') }}">{{ 'Join' | trans }}</a></li>
+		</ul>
+	    </span>
 	</header>
     {% endblock header %}
     {% block menu %}{% endblock menu %}
