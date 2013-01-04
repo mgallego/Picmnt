@@ -7,9 +7,17 @@
       <link href="/favicon.ico" rel="shortcut icon">
 
       {% block stylesheet %}
-        <link href='http://fonts.googleapis.com/css?family=Libre+Baskerville' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="{{ asset('bundles/sfmpicmnt/stylesheets/picmnt.css')}}">
-	<link rel="stylesheet" href="{{ asset('bundles/sfmpicmnt/stylesheets/fluid_grid.css')}}">
+
+       {% stylesheets filter='?yui_css' output='css/libs.css' 
+          '@SFMPicmntBundle/Resources/public/stylesheets/fluid_grid.css' %}
+	<link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="all" />
+	{% endstylesheets %}
+
+	{% stylesheets filter='less, ?yui_css' output='css/picmnt.css' 
+          '@SFMPicmntBundle/Resources/public/less/general.less' %}
+	<link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="all" />
+	{% endstylesheets %}
+
       {% endblock stylesheet %}
       
 
