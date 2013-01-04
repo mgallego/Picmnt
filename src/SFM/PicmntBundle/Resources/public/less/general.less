@@ -1,15 +1,86 @@
+@header-background-color: white;
+@body-background-color: whiteSmoke;
+@general-font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+@general-font-size: 16px;
+@p-letter-color: #00008B;
+
 body {
-    background: whiteSmoke;
-    font-family: 'Libre Baskerville', serif;
-    /* font-family: "Nimbus Roman No9 L", Sans, serif; */
-    font-size: 14px;
+    background: @body-background-color;
+    font-family: @general-font-family;
+    font-size: @general-font-size;
+    margin: 0;
+}
+
+header {
+    height: 65px;
+    width: 100%;
+    background: @header-background-color;
+
+background-image: linear-gradient(bottom, #F7F7FF 0%, #FFFFFF 66%, #F7F7FF 100%);
+background-image: -o-linear-gradient(bottom, #F7F7FF 0%, #FFFFFF 66%, #F7F7FF 100%);
+background-image: -moz-linear-gradient(bottom, #F7F7FF 0%, #FFFFFF 66%, #F7F7FF 100%);
+background-image: -webkit-linear-gradient(bottom, #F7F7FF 0%, #FFFFFF 66%, #F7F7FF 100%);
+background-image: -ms-linear-gradient(bottom, #F7F7FF 0%, #FFFFFF 66%, #F7F7FF 100%);
+
+background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0, #F7F7FF),
+	color-stop(0.66, #FFFFFF),
+	color-stop(1, #F7F7FF)
+);
+}
+
+.p-letter {
+    color: @p-letter-color !important;
+}
+
+header .p-letter {
+    font-size: 1.8em;
 }
 
 .picmnt-title a{
-    font-size: 6em;
-    color: rgba(0, 0, 0, 0.19);
+    font-family: "Nimbus Roman No9 L", Sans, serif;
+    font-size: 2em;
+    color: black;
     text-decoration: none !important;
+    letter-spacing: -1px;
 } 
+
+header .icmnt-word {
+    margin-left: -5px;
+}
+
+#login-menu {
+    font-size: 0.8em;
+    margin-top: 2em;
+    text-align: right;
+}
+
+#login-menu ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    text-align: center;
+}
+
+#login-menu ul li {
+    display: inline;
+    float:right;
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+#login-menu ul li a{
+    text-decoration: none;
+    color: black;
+}
+
+#login-menu ul li a:hover{
+    text-decoration: none;
+    color: @p-letter-color;
+}
 
 h1 {
     font-weight: normal !important;
@@ -96,25 +167,4 @@ h1 {
 
 .link-to-comment {
     float: right;
-}
-
-
-
-/* HEADER */
-#login-menu {
-    font-size: 0.8em;
-    margin-top: 2em;
-    text-align: right;
-}
-
-#login-menu ul {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-    text-align: center;
-}
-
-#login-menu ul li {
-    display: inline;
-    float:right;
 }

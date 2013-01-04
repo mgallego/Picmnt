@@ -34,20 +34,22 @@
 
     <body>
 	{% block header %}
-	  <header class="container container_12">
-	      <span class="grid_4 picmnt-title"><a href="{{ path('home') }}" title="Picmnt">Picmnt</a></span>
-	      <div id="login-menu" class="grid_8">
-		  <ul>
-		      {% if is_granted("IS_AUTHENTICATED_REMEMBERED") or is_granted("IS_AUTHENTICATED_FULLY") %}
-			<li><a href="{{ path('fos_user_security_logout') }}">{{ 'Logout' | trans }}</a></li>
-		      <li>&nbsp;|&nbsp;</li> 
-		      <li><a href="#">{{ app.user.getUsername() }}</a></li> 
-		    {% else %}
-		      <li><a href="{{ path('fos_user_registration_register') }}">{{ 'Join' | trans }}</a></li>
-		      <li>&nbsp;|&nbsp;</li> 
-		      <li><a href="{{ path('fos_user_security_login') }}">{{ 'Login' | trans }}</a></li> 
-		    {% endif %}
-		  </ul>
+	  <header class="alpha omega">
+	      <div class="container container_12">
+		  <span class="grid_4 picmnt-title"><a href="{{ path('home') }}" title="Picmnt"><span class="p-letter">P</span><span class="icmnt-word">icmnt</class=></a></span>
+		  <div id="login-menu" class="grid_8">
+		      <ul>
+			  {% if is_granted("IS_AUTHENTICATED_REMEMBERED") or is_granted("IS_AUTHENTICATED_FULLY") %}
+			    <li><a href="{{ path('fos_user_security_logout') }}">{{ 'Logout' | trans }}</a></li>
+			  <li>&nbsp;|&nbsp;</li> 
+			  <li><a href="#">{{ app.user.getUsername() }}</a></li> 
+			{% else %}
+			  <li><a href="{{ path('fos_user_registration_register') }}">{{ 'Join' | trans }}</a></li>
+			  <li>&nbsp;|&nbsp;</li> 
+			  <li><a href="{{ path('fos_user_security_login') }}">{{ 'Login' | trans }}</a></li> 
+			{% endif %}
+		      </ul>
+		  </div>
 	      </div>
 	  </header>
 	{% endblock header %}
