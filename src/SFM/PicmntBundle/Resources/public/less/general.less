@@ -1,8 +1,10 @@
-@header-background-color: white;
-@body-background-color: whiteSmoke;
+@header-background-color: #FAFAFA url('http://g.virbcdn.com/_f/files/e6/FileItem-195901-swl_bg_white.jpg');
+@body-background-color: white; /* whiteSmoke url('http://dribbble.com/images/noise-f1.gif'); */ 
 @general-font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-@general-font-size: 16px;
+@general-font-size: 14px;
 @p-letter-color: #00008B;
+
+/* GENERAL */
 
 body {
     background: @body-background-color;
@@ -11,160 +13,63 @@ body {
     margin: 0;
 }
 
-header {
-    height: 65px;
-    width: 100%;
-    background: @header-background-color;
-
-background-image: linear-gradient(bottom, #F7F7FF 0%, #FFFFFF 66%, #F7F7FF 100%);
-background-image: -o-linear-gradient(bottom, #F7F7FF 0%, #FFFFFF 66%, #F7F7FF 100%);
-background-image: -moz-linear-gradient(bottom, #F7F7FF 0%, #FFFFFF 66%, #F7F7FF 100%);
-background-image: -webkit-linear-gradient(bottom, #F7F7FF 0%, #FFFFFF 66%, #F7F7FF 100%);
-background-image: -ms-linear-gradient(bottom, #F7F7FF 0%, #FFFFFF 66%, #F7F7FF 100%);
-
-background-image: -webkit-gradient(
-	linear,
-	left bottom,
-	left top,
-	color-stop(0, #F7F7FF),
-	color-stop(0.66, #FFFFFF),
-	color-stop(1, #F7F7FF)
-);
+.picmnt-title {
+    font-family: "Nimbus Roman No9 L", Sans, serif;
 }
 
 .p-letter {
     color: @p-letter-color !important;
 }
 
-header .p-letter {
-    font-size: 1.8em;
+/* HEADER */
+
+header {
+    height: 45px;
+    width: 100%;
+    background: @header-background-color;
+    box-shadow: 1px 1px 3px black;
 }
 
-.picmnt-title a{
-    font-family: "Nimbus Roman No9 L", Sans, serif;
-    font-size: 2em;
-    color: black;
-    text-decoration: none !important;
-    letter-spacing: -1px;
-} 
-
-header .icmnt-word {
-    margin-left: -5px;
-}
-
-#login-menu {
-    font-size: 0.8em;
-    margin-top: 2em;
-    text-align: right;
-}
-
-#login-menu ul {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-    text-align: center;
-}
-
-#login-menu ul li {
-    display: inline;
-    float:right;
-    font-size: 1.3em;
+header .picmnt-title {
+    font-size: 23px;
     font-weight: bold;
 }
 
-#login-menu ul li a{
-    text-decoration: none;
-    color: black;
+header .picmnt-title a {
+    text-decoration: none !important;
+} 
+
+header .p-letter {
+    font-size: 33px;
 }
 
-#login-menu ul li a:hover{
+header .icmnt-word {
+    letter-spacing: -2px;
+    color: #5E5E5E;
+}
+
+header li {
+    margin-top: 16px;
+}
+
+header  ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+header ul li {
+    display: inline;
+    float:right;
+    font-weight: bold;
+}
+
+header ul li a{
+    text-decoration: none;
+    color: #5E5E5E;
+}
+
+header ul li a:hover{
     text-decoration: none;
     color: @p-letter-color;
-}
-
-h1 {
-    font-weight: normal !important;
-}
-
-#image-section {
-    padding-top: 30px;
-}
-
-#image-section img, #image-section canvas {
-    margin-left: 20px;
-    border: 10px solid white;
-    border-radius: 8px;
-    box-shadow: 5px 5px 10px #333;
-    -webkit-box-shadow: 5px 5px 10px #333;
-    -moz-box-shadow: 5px 5px 10px #333;
-}
-
-#image-title {
-    margin-top: 0;
-    font-size: 3em;
-}
-
-.image-extra-info {
-    margin-top: -20px;
-    padding-left: 2em;
-}
-
-#image-info p {
-    padding-bottom: 10px;
-}
-
-#separator {
-    margin: 60px auto 10px auto;
-    width: 960px;
-}
-
-
-
-/* COMMENTS */
-
-#comments-title {
-    text-align: center;
-}
-
-#comment-form .textarea {
-    height: 150px;
-    width: 400px;
-    resize: none;
-}
-
-#comments {
-    margin-top: 50px;
-}
-
-#comments h3 {
-    text-align: center;    
-}
-
-.comment hr {
-    margin-top: 20px;
-}
-
-.comment {
-    margin-top: 30px;
-    margin-bottom: 30px;
-}
-
-.comment-text {
-    margin-top: -10px;
-    padding-left: 2em;
-}
-
-#image-comment img, #image-comment canvas {
-    top: 10px;
-    display: none;
-    position: fixed;
-    border: 10px solid white;
-    border-radius: 8px;
-    box-shadow: 5px 5px 10px #333;
-    -webkit-box-shadow: 5px 5px 10px #333;
-    -moz-box-shadow: 5px 5px 10px #333;
-}
-
-.link-to-comment {
-    float: right;
 }
