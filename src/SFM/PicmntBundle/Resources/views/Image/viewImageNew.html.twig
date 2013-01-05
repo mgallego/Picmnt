@@ -1,147 +1,99 @@
-<!DOCTYPE html>
-<html>
-    <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Picmnt{% block title %}{% endblock title %}</title>
-	
-      <link href="/favicon.ico" rel="shortcut icon">
+{% extends "SFMPicmntBundle::layout.html.twig" %}
 
-      {% block stylesheet %}
+{% block javascript %}
+  {{ parent() }}
 
-       {% stylesheets filter='?yui_css' output='css/libs.css' 
-          '@SFMPicmntBundle/Resources/public/stylesheets/fluid_grid.css' %}
-	<link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="all" />
-	{% endstylesheets %}
+  <script src="{{ asset('bundles/sfmpicmnt/libs/waypoints.min.js') }}"></script>
+  <script src="{{ asset('bundles/sfmpicmnt/js/picmnt_new.js') }}"></script>
+{% endblock javascript %}
 
-	{% stylesheets filter='less, ?yui_css' output='css/picmnt.css' 
-          '@SFMPicmntBundle/Resources/public/less/general.less' %}
-	<link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="all" />
-	{% endstylesheets %}
+{% block content %}
+  {{ parent() }}
 
-      {% endblock stylesheet %}
+  <div class="clear"></div>
+
+  <section id="image-section">
+
+      <article id="image" class="grid_6"> 
+	  <img src="{{ asset(upload_dir ~ image.url) }}" id="image-to-modify" alt="{{image.title}}">
+      </article>
+
+      <article id="image-info" class="grid_6"> 
+	  <h1 id="image-title">{{ image.title }}</h1>
+	  <p>
+	      Author: <a href="{{ path('usr_profile', {'userName': image.user.username }) }}">{{ image.user.username }}</a>
+	  </p>
+	  <p>
+	      Date: {{ image.pubDate | date() }}
+	  </p>
+	  <p>
+	      Description: 
+	  </p>
+	  <div class="image-extra-info">
+	      {{ image.description }}
+	  </div>
+	  <p>
+	      Category: {{ image.category }}
+	  </p>
+      </article>
+  </section>
+
+  <div class="clear"></div>
+  <hr id="separator"/>
+
+  <section id="comments-section" class="container container_12">
+
+      <div id="comments-title" class="grid_2 prefix_5 suffix_5">
+	  <h2>Comments</h2>
+      </div>
+      <div class="clear"></div>
       
+      <article id="comment-form" class="grid_4 prefix_4 suffix_4">
+	  
+	  <form action="{{ path('comment', { 'idImage': image.idImage}) }}" class="form-stacked" method="post">
+	      <div class="input" > 
+		  <textarea placeholder="Insert your comment here" class="textarea" name="comment" required="required"></textarea> 
+		  <span class="help-block"> 
+		  </span> 
+		  <input type="submit" value="{{ 'Save Changes' | trans }}">&nbsp;
+		  <button type="reset" class="btn" onclick="javascript:applyProposal(0,0,0,0)">{{ 'Cancel' | trans }}</button> 
+	      </div> 
 
-      {% block javascript %}
-	<script src="http://code.jquery.com/jquery.min.js"></script>
-	<script src="{{ asset('bundles/sfmpicmnt/libs/waypoints.min.js') }}"></script>
-	<script src="{{ asset('bundles/sfmpicmnt/js/picmnt_new.js') }}"></script>
-      {% endblock javascript %}
+	  </form>
+      </article>
+      <div class="clear"></div>
 
-      {% block scripts %}
-	
-      {% endblock scripts %}
-    </head>
+      <article id="image-comment" class="grid_6 prefix_6"> 
+	  <img src="{{ asset(upload_dir ~ image.url) }}" id="image-to-comment" alt="{{image.title}}">
+      </article>
 
-    <body>
-	{% block header %}
-	  <header class="alpha omega">
-	      <div class="container container_12">
-		  <span class="grid_4 picmnt-title"><a href="{{ path('home') }}" title="Picmnt"><span class="p-letter">P</span><span class="icmnt-word">icmnt</class=></a></span>
-		  <div id="login-menu" class="grid_8">
-		      <ul>
-			  {% if is_granted("IS_AUTHENTICATED_REMEMBERED") or is_granted("IS_AUTHENTICATED_FULLY") %}
-			    <li><a href="{{ path('fos_user_security_logout') }}">{{ 'Logout' | trans }}</a></li>
-			  <li>&nbsp;|&nbsp;</li> 
-			  <li><a href="#">{{ app.user.getUsername() }}</a></li> 
-			{% else %}
-			  <li><a href="{{ path('fos_user_registration_register') }}">{{ 'Join' | trans }}</a></li>
-			  <li>&nbsp;|&nbsp;</li> 
-			  <li><a href="{{ path('fos_user_security_login') }}">{{ 'Login' | trans }}</a></li> 
-			{% endif %}
-		      </ul>
-		  </div>
-	      </div>
-	  </header>
-	{% endblock header %}
-
-	{% block content %}
-	<div class="clear"></div>
-
-	<section id="image-section">
-
-	    <article id="image" class="grid_6"> 
-		<img src="{{ asset(upload_dir ~ image.url) }}" id="image-to-modify" alt="{{image.title}}">
-	    </article>
-
-	    <article id="image-info" class="grid_6"> 
-		<h1 id="image-title">{{ image.title }}</h1>
+      <article id="comments">
+	  {% if image.imageComments | length > 0  %}
+	    <div id="show-image-to-comment"></div>
+	  {% endif %}
+	  
+	  {% for comment in image.imageComments %}
+	    {% set username = comment.user.username %}
+	    <article id="comment-{{ loop.index }}" class="comment grid_6 suffix_6">
+		<a class="link-to-comment" href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}#comment-{{ loop.index }}">#{{ loop.index }}</a>
 		<p>
-		    Author: <a href="{{ path('usr_profile', {'userName': image.user.username }) }}">{{ image.user.username }}</a>
+		    Author: <a href="{{ path('usr_profile', {'userName': comment.user.username }) }}">{{ username }}</a>
 		</p>
 		<p>
 		    Date: {{ image.pubDate | date() }}
 		</p>
 		<p>
-		    Description: 
+		    Comment: 
 		</p>
-		<div class="image-extra-info">
-		    {{ image.description }}
+		<div class="comment-text">
+		    {{ comment.comment | nl2br }}
 		</div>
-		<p>
-		    Category: {{ image.category }}
-		</p>
+		<hr/>
 	    </article>
-	</section>
-
-	<div class="clear"></div>
-	<hr id="separator"/>
-
-	<section id="comments-section" class="container container_12">
-
-	    <div id="comments-title" class="grid_2 prefix_5 suffix_5">
-		<h2>Comments</h2>
-	    </div>
-	    <div class="clear"></div>
-	    
-	    <article id="comment-form" class="grid_4 prefix_4 suffix_4">
-		
-		<form action="{{ path('comment', { 'idImage': image.idImage}) }}" class="form-stacked" method="post">
-		    <div class="input" > 
-			<textarea placeholder="Insert your comment here" class="textarea" name="comment" required="required"></textarea> 
-			<span class="help-block"> 
-			</span> 
-			<input type="submit" value="{{ 'Save Changes' | trans }}">&nbsp;
-			<button type="reset" class="btn" onclick="javascript:applyProposal(0,0,0,0)">{{ 'Cancel' | trans }}</button> 
-		    </div> 
-
-		</form>
-	    </article>
-	    <div class="clear"></div>
-
-	    <article id="image-comment" class="grid_6 prefix_6"> 
-		<img src="{{ asset(upload_dir ~ image.url) }}" id="image-to-comment" alt="{{image.title}}">
-	    </article>
-
-	    <article id="comments">
-		{% if image.imageComments | length > 0  %}
-		  <div id="show-image-to-comment"></div>
-		{% endif %}
-		  
-		{% for comment in image.imageComments %}
-		  {% set username = comment.user.username %}
-		  <article id="comment-{{ loop.index }}" class="comment grid_6 suffix_6">
-		      <a class="link-to-comment" href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}#comment-{{ loop.index }}">#{{ loop.index }}</a>
-		      <p>
-			  Author: <a href="{{ path('usr_profile', {'userName': comment.user.username }) }}">{{ username }}</a>
-		      </p>
-		      <p>
-			  Date: {{ image.pubDate | date() }}
-		      </p>
-		      <p>
-			  Comment: 
-		      </p>
-		      <div class="comment-text">
-			  {{ comment.comment | nl2br }}
-		      </div>
-		      <hr/>
-		  </article>
-		{% else %}
-		  <h3 class="grid_12">{{ 'There is no comment for this image. Be the first to comment' | trans }}</h3>
-		{% endfor %}
-	    </article>
-	</section>
-	<br/>
-      {% endblock content %}
-    </body>
-</html>
-
+	  {% else %}
+	    <h3 class="grid_12">{{ 'There is no comment for this image. Be the first to comment' | trans }}</h3>
+	  {% endfor %}
+      </article>
+  </section>
+  <br/>
+{% endblock content %}

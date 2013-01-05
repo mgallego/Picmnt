@@ -1,4 +1,4 @@
-@header-background-color: #FAFAFA url('http://g.virbcdn.com/_f/files/e6/FileItem-195901-swl_bg_white.jpg');
+@header-background-color: #FAFAFA url('/bundles/sfmpicmnt/images/header-back.jpg');
 @body-background-color: white; /* whiteSmoke url('http://dribbble.com/images/noise-f1.gif'); */ 
 @general-font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 @general-font-size: 14px;
@@ -27,7 +27,7 @@ header {
     height: 45px;
     width: 100%;
     background: @header-background-color;
-    box-shadow: 1px 1px 3px black;
+    box-shadow: 1px 1px 3px gray;
 }
 
 header .picmnt-title {
@@ -48,28 +48,69 @@ header .icmnt-word {
     color: #5E5E5E;
 }
 
-header li {
+header .menu li {
+    margin-left: 20px;
+    padding-left: 16px;
+}
+
+header .menu  ul {
+    list-style-type: none;
     margin-top: 16px;
 }
 
-header  ul {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-}
-
-header ul li {
+header .menu  ul li {
     display: inline;
-    float:right;
     font-weight: bold;
 }
 
-header ul li a{
+header a {
     text-decoration: none;
     color: #5E5E5E;
-}
+} 
 
-header ul li a:hover{
+header a:hover{
     text-decoration: none;
     color: @p-letter-color;
 }
+
+header .menu li.upload {
+    background-position: 0px top; 
+    background-repeat: no-repeat;
+    background-image: url('/bundles/sfmpicmnt/images/upload_ico_gray.png');
+    margin-right: 10px;
+}
+
+header .menu li.upload:hover {
+    background-image: url('/bundles/sfmpicmnt/images/upload_ico_blue.png');
+}
+
+.menu {
+    text-align: right;
+}
+
+#login-menu li {
+    padding-left: 1px;
+    margin-left: auto;
+}
+
+.tooltip-menu ul {
+    background: @header-background-color;
+    border-radius: 3px;
+    box-shadow: 1px 1px 3px gray;
+    opacity: 0;
+
+    position: absolute;
+    text-align: left;
+
+    -moz-transition: opacity .25s ease .1s;
+    -webkit-transition: opacity .25s ease .1s;
+    -o-transition: opacity .25s ease .1s;
+    -ms-transition: opacity .25s ease .1s;
+    transition: opacity .25s ease .1s;
+}
+			 
+#explore-submenu li{
+    display: block;
+}
+
+.tooltip-menu li:hover > ul { opacity: 1; }
