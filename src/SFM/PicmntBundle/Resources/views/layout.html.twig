@@ -24,31 +24,30 @@
 	  <div class="grid_4 prefix_4 menu">
 	      <ul class="tooltip-menu">
 		  <li>
-		      <a href="">Explore</a>
+		      <a href="">{% trans %}Explore{% endtrans %}</a>
 		      <ul id="explore-submenu">
-			  <li><a href="">Popular</a></li>
-			  <li><a href="">Most viewed</a></li>
+			  <li><a href="">{% trans %}Popular{% endtrans %}</a></li>
+			  <li><a href="">{% trans %}Most viewed{% endtrans %}</a></li>
 		      </ul>
 		  </li>
 		  <li class="upload">
-		      <a href="">Upload Image</a>
+		      <a href="">{% trans %}Upload Image{% endtrans %}</a>
 		  </li>
 	      </ul>
 	  </div>
 	  <div id="login-menu" class="grid_3 menu">
 	      <ul>
 		  {% if is_granted("IS_AUTHENTICATED_REMEMBERED") or is_granted("IS_AUTHENTICATED_FULLY") %}
-		    <li><a href="{{ path('fos_user_security_logout') }}">{{ 'Logout' | trans }}</a></li>
-		  <li>&nbsp;|&nbsp;</li> 
-		  <li><a href="#">{{ app.user.getUsername() }}</a></li> 
+		    <li><a href="{{ path('fos_user_security_logout') }}">{% trans %}Logout{% endtrans %}</a></li>
+		    <li>&nbsp;|&nbsp;</li> 
+		    <li><a href="#">{{ app.user.getUsername() }}</a></li> 
 		{% else %}
-		  <li><a href="{{ path('fos_user_registration_register') }}">{{ 'Join' | trans }}</a></li>
+		  <li><a href="{{ path('fos_user_registration_register') }}">{% trans %}Join{% endtrans %}</a></li>
 		  <li>&nbsp;|&nbsp;</li> 
-		  <li><a href="{{ path('fos_user_security_login') }}">{{ 'Login' | trans }}</a></li> 
+		  <li><a href="{{ path('fos_user_security_login') }}">{% trans %}Login{% endtrans %}</a></li> 
 		{% endif %}
 	      </ul>
 	  </div>
       </div>
   </header>
 {% endblock header %}
-
