@@ -37,24 +37,39 @@
 	  </span>
       </article>
 
-      <article id="image-info" class="grid_3 img-box"> 
-	  <div class="image-extra-info">
-	      <p>
-		  {{ image.pubDate | date() }}
-	      </p>
-	      <p>
-		  {{ image.description }}
-	      </p>
-	      <p>
-		  Category: {{ image.category }}
-	      </p>
-	  </div>
+      <article id="img-description" class="grid_3 img-box">
+	  <p>
+	      {{ image.description }}
+	  </p>
       </article>
+
+      <article id="img-info" class="grid_3 img-box"> 
+	  <ul>
+	      <li class="pub-date">
+		  <span class="info-key">{% trans %}Uploaded{% endtrans %}:</span> {{ image.pubDate | date() }}
+	      </li>
+	      <li class="category">
+		  <span class="info-key">{% trans %}Category{% endtrans %}:</span> {{ image.category }}
+	      </li>
+	  </ul>
+      </article>
+      
+      <article id="img-sucks-rocks" class="grid_3 img-box">
+	  <ul>
+	      <li>
+		  <a href="" class="like"></a>
+	      <li>
+		  <a href="" class="dislike"></a>
+	      </li>
+	  </ul>
+      </article>
+
       <article id="img-controls" class="grid_3 img-box">
 	  <div>
 	      aaaa
 	  </div>
       </article>
+
   </section>
 
   <div class="clear"></div>
