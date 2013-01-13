@@ -16,7 +16,7 @@
 
   <div class="clear"></div>
 
-  <section id="image-section" class="container container_12">
+  <section id="image-section"  class="container container_12">
       <div class="grid_12">
 	  <h1 id="image-title">{{ image.title }}</h1>
       </div>
@@ -24,7 +24,8 @@
       <div class="clear"></div>
   
       <article id="image" class="grid_9"> 
-	  <img src="http://pcdn.500px.net/22932653/12b47fc53ef8d48a1d731807c27e3c5485b36d96/4.jpg" id="image-to-modify" alt="{{image.title}}">
+	  {# <img src="http://pcdn.500px.net/22932653/12b47fc53ef8d48a1d731807c27e3c5485b36d96/4.jpg" id="image-to-modify" alt="{{image.title}}">  #}
+	  <img src="http://pcdn.500px.net/23010177/bd2ba092a30565032f4ab287cecfc714a6962524/4.jpg" id="image-to-modify" alt="{{image.title}}"> 
 	  {# <img src="{{ asset(upload_dir ~ image.url) }}" id="image-to-modify" alt="{{image.title}}"> #}
       </article>
 
@@ -43,17 +44,6 @@
 	  </p>
       </article>
 
-      <article id="img-info" class="grid_3 img-box"> 
-	  <ul>
-	      <li class="pub-date">
-		  <span class="info-key">{% trans %}Uploaded{% endtrans %}:</span> {{ image.pubDate | date() }}
-	      </li>
-	      <li class="category">
-		  <span class="info-key">{% trans %}Category{% endtrans %}:</span> {{ image.category }}
-	      </li>
-	  </ul>
-      </article>
-      
       <article id="img-sucks-rocks" class="grid_3 img-box">
 	  <ul>
 	      <li>
@@ -66,9 +56,21 @@
 
       <article id="img-controls" class="grid_3 img-box">
 	  <div>
-	      aaaa
+	      sliders
 	  </div>
       </article>
+
+      <article id="img-info" class="grid_3 img-box"> 
+	  <ul>
+	      <li class="pub-date">
+		  <span class="info-key">{% trans %}Uploaded{% endtrans %}:</span> {{ image.pubDate | date() }}
+	      </li>
+	      <li class="category">
+		  <span class="info-key">{% trans %}Category{% endtrans %}:</span> {{ image.category }}
+	      </li>
+	  </ul>
+      </article>
+
 
   </section>
 

@@ -10,7 +10,14 @@ h1 {
 
 #image-section img, #image-section canvas {
     margin-left: 20px;
-    /* box-shadow: 0 0 100px #D5D5D5; */
+    max-width: 800px;
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    #image-section img, #image-section canvas {
+	margin-left: 20px;
+	max-width: 600px;
+    }
 }
 
 #image-title {
@@ -90,6 +97,7 @@ h1 {
     padding-left: 53px;
 }
 
+
 #img-sucks-rocks ul li a.like{
     float: left;
     margin: 5px 0 5px 60px;
@@ -108,6 +116,21 @@ h1 {
 
 #img-sucks-rocks ul li a.dislike:hover{
     background-position: -52px top; 
+}
+
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    #img-sucks-rocks ul li a.like{
+	float: left;
+	margin: 5px 0 5px 30px;
+	background-position: -104px top; 
+    }
+
+    #img-sucks-rocks ul li a.dislike{
+	float: right;
+	margin: 5px 30px 5px 0;
+	background-position: -158px top; 
+    }
 }
 
 #separator {
