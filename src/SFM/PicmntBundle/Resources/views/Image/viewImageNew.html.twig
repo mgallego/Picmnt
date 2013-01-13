@@ -3,8 +3,12 @@
 {% block javascript %}
   {{ parent() }}
 
+  {% stylesheets filter='less, ?yui_css' output='css/picmnt.css' 
+          '@SFMPicmntBundle/Resources/public/less/view_image.less' %}
+  <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="all" />
+  {% endstylesheets %}
+
   <script src="{{ asset('bundles/sfmpicmnt/libs/waypoints.min.js') }}"></script>
-  <script src="{{ asset('bundles/sfmpicmnt/js/picmnt_new.js') }}"></script>
 {% endblock javascript %}
 
 {% block content %}
@@ -12,29 +16,44 @@
 
   <div class="clear"></div>
 
-  <section id="image-section">
+  <section id="image-section" class="container container_12">
+      <div class="grid_12">
+	  <h1 id="image-title">{{ image.title }}</h1>
+      </div>
 
-      <article id="image" class="grid_6"> 
-	  <img src="{{ asset(upload_dir ~ image.url) }}" id="image-to-modify" alt="{{image.title}}">
+      <div class="clear"></div>
+  
+      <article id="image" class="grid_9"> 
+	  <img src="http://pcdn.500px.net/22932653/12b47fc53ef8d48a1d731807c27e3c5485b36d96/4.jpg" id="image-to-modify" alt="{{image.title}}">
+	  {# <img src="{{ asset(upload_dir ~ image.url) }}" id="image-to-modify" alt="{{image.title}}"> #}
       </article>
 
-      <article id="image-info" class="grid_6"> 
-	  <h1 id="image-title">{{ image.title }}</h1>
-	  <p>
-	      Author: <a href="{{ path('usr_profile', {'userName': image.user.username }) }}">{{ image.user.username }}</a>
-	  </p>
-	  <p>
-	      Date: {{ image.pubDate | date() }}
-	  </p>
-	  <p>
-	      Description: 
-	  </p>
+      <article id="img-author" class="grid_3 img-box">
+	  <h2>
+	      <a href="{{ path('usr_profile', {'userName': image.user.username }) }}">{{ image.user.username }}</a>
+	  </h2>
+	  <span class="author-avatar">
+	      <img src="http://acdn.500px.net/26121.jpg" alt="user-avatar" />
+	  </span>
+      </article>
+
+      <article id="image-info" class="grid_3 img-box"> 
 	  <div class="image-extra-info">
-	      {{ image.description }}
+	      <p>
+		  {{ image.pubDate | date() }}
+	      </p>
+	      <p>
+		  {{ image.description }}
+	      </p>
+	      <p>
+		  Category: {{ image.category }}
+	      </p>
 	  </div>
-	  <p>
-	      Category: {{ image.category }}
-	  </p>
+      </article>
+      <article id="img-controls" class="grid_3 img-box">
+	  <div>
+	      aaaa
+	  </div>
       </article>
   </section>
 
