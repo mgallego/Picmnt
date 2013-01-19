@@ -1,0 +1,41 @@
+@import url('variables.less');
+
+.button {
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -o-border-radius: 2px;
+    -ms-border-radius: 2px;
+    border-radius: 2px;
+}
+
+.accept-button {
+    background-color: @acceptButtonColor;
+}
+
+.accept-button:hover {
+    background-image: -o-linear-gradient(bottom, #053A94 12%, #0754DA 76%);
+    background-image: -moz-linear-gradient(bottom, #053A94 12%, #0754DA 76%);
+    background-image: -webkit-linear-gradient(bottom, #053A94 12%, #0754DA 76%);
+    background-image: -ms-linear-gradient(bottom, #053A94 12%, #0754DA 76%);
+    background-image: linear-gradient(bottom, #053A94 12%, #0754DA 76%);
+    -webkit-box-shadow: 0 1px 1px #968E8E;
+    -moz-box-shadow: 0 1px 1px #968E8E;
+    -o-box-shadow: 0 1px 1px #968E8E;
+    -ms-box-shadow: 0 1px 1px #968E8E;
+    box-shadow: 0 1px 1px #968E8E;
+}
+
+.cancel-button {
+    background-color: @cancelButtonColor;
+}
+
+.cancel-button:hover {
+    background-image: -o-linear-gradient(bottom, #5C5C5C 16%, #888282 76%);
+    background-image: -moz-linear-gradient(bottom, #5C5C5C 16%, #888282 76%);
+    background-image: -webkit-linear-gradient(bottom, #5C5C5C 16%, #888282 76%);
+    background-image: -ms-linear-gradient(bottom, #5C5C5C 16%, #888282 76%);
+    background-image: linear-gradient(bottom, #5C5C5C 16%, #888282 76%);
+}

@@ -13,3 +13,24 @@
 // Image
 @boxBorderColor: #EBEBEB;
 @img-box-backcolor: #FDFDFD;
+
+// Forms
+@textareaBorder: 1px solid #D6D5D5;
+@textareaBackgroundColor: #FFF;
+.textareaBackground () {
+    background-image: -o-linear-gradient(bottom, #FAFAFA 0%, #FFF 50%, #FFF 100%);
+    background-image: -moz-linear-gradient(bottom, #FAFAFA 0%, #FFF 50%, #FFF 100%);
+    background-image: -webkit-linear-gradient(bottom, #FAFAFA 0%, #FFF 50%, #FFF 100%);
+    background-image: -ms-linear-gradient(bottom, #FAFAFA 0%, #FFF 50%, #FFF 100%);
+
+    background-image: linear-gradient(bottom, #FAFAFA 0%, #FFF 50%, #FFF 100%);
+}
+.resizable (@value) {
+    -webkit-resize: @value;
+    -moz-resize: @value;
+    -o-resize: @value;
+    -ms-resize: @value;
+    resize: @value;
+}
+@acceptButtonColor: #0753DA;
+@cancelButtonColor: #888282;

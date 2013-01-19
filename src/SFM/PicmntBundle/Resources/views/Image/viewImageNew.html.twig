@@ -7,6 +7,8 @@
 
   {% stylesheets filter='less, ?yui_css' output='css/img-picmnt.css' 
           '@SFMPicmntBundle/Resources/public/less/view_image.less'
+          '@SFMPicmntBundle/Resources/public/less/comments.less'
+          '@SFMPicmntBundle/Resources/public/less/forms.less'
           '@SFMPicmntBundle/Resources/public/less/img_box.less' %}
   <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="all" />
   {% endstylesheets %}
@@ -39,30 +41,68 @@
   <div class="clear"></div>
 
   <section id="image-section"  class="container container_12">
+
       <div class="grid_12">
 	  <h1 id="image-title">{{ image.title }}</h1>
       </div>
 
       <div class="clear"></div>
   
-      <article id="image" class="grid_9"> 
-	  <img src="http://pcdn.500px.net/22932653/12b47fc53ef8d48a1d731807c27e3c5485b36d96/4.jpg" id="image-to-modify" alt="{{image.title}}">
-	 {# <img src="http://pcdn.500px.net/23010177/bd2ba092a30565032f4ab287cecfc714a6962524/4.jpg" id="image-to-modify" alt="{{image.title}}"> #} 
-	 {# <img src="{{ asset(upload_dir ~ image.url) }}" id="image-to-modify" alt="{{image.title}}"> #}
-      </article>
+      {#    ###############              MAIN SECTION      ###############      #}
+      <section id="main" class="grid_9">
 
-      <section class="grid_3">
+	  <article id="image" > 
+	      <img src="http://pcdn.500px.net/22932653/12b47fc53ef8d48a1d731807c27e3c5485b36d96/4.jpg" id="image-to-modify" alt="{{image.title}}">
+	      {# <img src="http://pcdn.500px.net/23010177/bd2ba092a30565032f4ab287cecfc714a6962524/4.jpg" id="image-to-modify" alt="{{image.title}}"> #} 
+	      {# <img src="{{ asset(upload_dir ~ image.url) }}" id="image-to-modify" alt="{{image.title}}"> #}
+	  </article>
+
+	  <article id="comments">
+	      <form action="{{ path('comment', { 'idImage': image.idImage}) }}" class="form-stacked" method="post">
+		  <textarea placeholder="Add your comment..." class="textarea" name="comment" required="required"></textarea> 
+		  <button class="button cancel-button" type="reset"  onclick="javascript:applyProposal(0,0,0,0)">{{ 'Cancel' | trans }}</button> 
+		  <input class="button accept-button" type="submit" value="{% trans %}Comment{% endtrans %}">&nbsp;
+	      </form>
+	      
+	      {#  ################   COMMENTS   ################## #}
+
+	      {% if image.imageComments | length > 0  %}
+		<div id="show-image-to-comment"></div>
+	      {% endif %}
+	      
+	      {% for comment in image.imageComments %}
+		{% set username = comment.user.username %}
+	      <article id="comment-{{ loop.index }}">
+		  <a class="link-to-comment" href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}#comment-{{ loop.index }}">#{{ loop.index }}</a>
+		  <p>
+		      {% trans %}Author{% endtrans %}: <a href="{{ path('usr_profile', {'userName': comment.user.username }) }}">{{ username }}</a>
+		  </p>
+		  <p>
+		      {% trans %}Date{% endtrans %}: {{ image.pubDate | date() }}
+		  </p>
+		  <p>
+		      {% trans %}Comment{% endtrans %}: 
+		  </p>
+		  <div class="comment-text">
+		      {{ comment.comment | nl2br }}
+		  </div>
+		  <hr/>
+	      </article>
+	    {% else %}
+	      <h3 class="grid_12">{{ 'There is no comment for this image. Be the first to comment' | trans }}</h3>
+	    {% endfor %}
+	  </article>
+
+      </section>
+
+      {#    ###############              info SECTION      ###############      #}
+      <section id="info" class="grid_3">
 
 	  <div id="img-author" class="img-box">
 	      <h2><a href="{{ path('usr_profile', {'userName': image.user.username }) }}">{{ image.user.username }}</a></h2>
 	      <img src="http://acdn.500px.net/26121.jpg" alt="user-avatar" />
 	  </div>
 
-	  {% if image.description is defined %}
-	    <div id="img-description" class="img-box">
-		<p>{{ image.description }}</p>
-	    </div>
-	  {% endif %}
 
 	  {# <div id="img-sucks-rocks" class="img-box">
 	      <ul>
@@ -111,6 +151,15 @@
 
 	      <div id="slider-saturation" class="slider"></div>
 	  </div>
+	  {% if image.description is defined %}
+	    <div id="img-description" class="img-box">
+		<p>{{ image.description }}</p>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis cursus, felis eget malesuada gravida, ipsum leo iaculis augue, quis condimentum massa nisl ac enim. Praesent at elementum nisl. Fusce ullamcorper, ligula vel pharetra mattis, arcu turpis luctus erat, id interdum ipsum dolor vitae enim. Cras imperdiet volutpat adipiscing. Pellentesque fringilla, quam in viverra interdum, nunc elit fringilla neque, non placerat felis massa eget leo. Aenean sagittis ante urna. Etiam auctor feugiat augue, at porta quam pretium ac. Proin suscipit dapibus risus a euismod. Vivamus vehicula vestibulum tellus, placerat lobortis neque pharetra nec.
+
+Nullam a quam non nisl condimentum sodales ut vel eros. Praesent convallis laoreet risus nec sagittis. Sed lobortis eleifend accumsan. Duis ultrices erat ac justo gravida suscipit. Integer ultrices massa quis mauris mollis accumsan non ut odio. Mauris iaculis feugiat dui id venenatis. Maecenas et lectus sed erat malesuada pharetra. Duis at orci vitae tortor ultricies bibendum. Duis quis lectus nunc. Integer convallis bibendum urna, id gravida mauris cursus id. Vivamus feugiat nulla et dui eleifend et scelerisque leo sodales. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Quisque congue, orci in ultricies convallis, nisl libero hendrerit elit, a blandit urna enim ac dui. Integer consequat, orci eu fermentum fermentum, mi ante mollis dui, et rutrum neque eros vel nibh. Fusce vestibulum, enim id lobortis consectetur, tortor metus accumsan neque, vel auctor eros libero quis magna. Nunc pellentesque condimentum odio non lacinia.
+		</p>
+	    </div>
+	  {% endif %}
 
 	  <div id="img-info" class="img-box"> 
 	      <ul>
@@ -127,63 +176,4 @@
 
 
   </section>
-
-  <div class="clear"></div>
-  <hr id="separator"/>
-
-  <section id="comments-section" class="container container_12">
-
-      <div id="comments-title" class="grid_2 prefix_5 suffix_5">
-	  <h2>Comments</h2>
-      </div>
-      <div class="clear"></div>
-      
-      <article id="comment-form" class="grid_4 prefix_4 suffix_4">
-	  
-	  <form action="{{ path('comment', { 'idImage': image.idImage}) }}" class="form-stacked" method="post">
-	      <div class="input" > 
-		  <textarea placeholder="Insert your comment here" class="textarea" name="comment" required="required"></textarea> 
-		  <span class="help-block"> 
-		  </span> 
-		  <input type="submit" value="{{ 'Save Changes' | trans }}">&nbsp;
-		  <button type="reset" class="btn" onclick="javascript:applyProposal(0,0,0,0)">{{ 'Cancel' | trans }}</button> 
-	      </div> 
-
-	  </form>
-      </article>
-      <div class="clear"></div>
-
-      <article id="image-comment" class="grid_6 prefix_6"> 
-	  <img src="{{ asset(upload_dir ~ image.url) }}" id="image-to-comment" alt="{{image.title}}">
-      </article>
-
-      <article id="comments">
-	  {% if image.imageComments | length > 0  %}
-	    <div id="show-image-to-comment"></div>
-	  {% endif %}
-	  
-	  {% for comment in image.imageComments %}
-	    {% set username = comment.user.username %}
-	    <article id="comment-{{ loop.index }}" class="comment grid_6 suffix_6">
-		<a class="link-to-comment" href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}#comment-{{ loop.index }}">#{{ loop.index }}</a>
-		<p>
-		    Author: <a href="{{ path('usr_profile', {'userName': comment.user.username }) }}">{{ username }}</a>
-		</p>
-		<p>
-		    Date: {{ image.pubDate | date() }}
-		</p>
-		<p>
-		    Comment: 
-		</p>
-		<div class="comment-text">
-		    {{ comment.comment | nl2br }}
-		</div>
-		<hr/>
-	    </article>
-	  {% else %}
-	    <h3 class="grid_12">{{ 'There is no comment for this image. Be the first to comment' | trans }}</h3>
-	  {% endfor %}
-      </article>
-  </section>
-  <br/>
 {% endblock content %}
