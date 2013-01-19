@@ -3,6 +3,7 @@ web/bundles/
 web/HtmlMockups
 web/uploads/*
 web/css/*
+web/js/*
 app/config/parameters.yml
 app/bootstrap*
 app/cache/*

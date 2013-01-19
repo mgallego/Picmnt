@@ -5,9 +5,9 @@
 
   {{ parent() }}
 
-  {% stylesheets filter='less, ?yui_css' output='css/picmnt.css' 
+  {% stylesheets filter='less, ?yui_css' output='css/img-picmnt.css' 
           '@SFMPicmntBundle/Resources/public/less/view_image.less'
-          '@SFMPicmntBundle/Resources/public/less/img_box.less'%}
+          '@SFMPicmntBundle/Resources/public/less/img_box.less' %}
   <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="all" />
   {% endstylesheets %}
 
@@ -20,12 +20,12 @@
 
   <script src="{{ asset('bundles/sfmpicmnt/js/jquery-ui-1.10.0.custom.min.js') }}"></script>
   <script src="{{ asset('bundles/sfmpicmnt/libs/waypoints.min.js') }}"></script>
+  <script src="{{ asset('bundles/sfmpicmnt/libs/caman.full.min.js') }}"></script>
   
-  <script>
-      $(function() {
-      $( ".slider" ).slider();
-      });
-  </script>
+  {% javascripts filter='?yui_js'
+      '@SFMPicmntBundle/Resources/public/js/image.js' %}
+        <script src="{{ asset_url }}"></script>
+  {% endjavascripts %}
 
 {% endblock javascript %}
 
@@ -42,9 +42,9 @@
       <div class="clear"></div>
   
       <article id="image" class="grid_9"> 
-	  <img src="http://pcdn.500px.net/22932653/12b47fc53ef8d48a1d731807c27e3c5485b36d96/4.jpg" id="image-to-modify" alt="{{image.title}}">
+	 {# <img src="http://pcdn.500px.net/22932653/12b47fc53ef8d48a1d731807c27e3c5485b36d96/4.jpg" id="image-to-modify" alt="{{image.title}}"> #}
 	 {# <img src="http://pcdn.500px.net/23010177/bd2ba092a30565032f4ab287cecfc714a6962524/4.jpg" id="image-to-modify" alt="{{image.title}}"> #} 
-	  {# <img src="{{ asset(upload_dir ~ image.url) }}" id="image-to-modify" alt="{{image.title}}"> #}
+	  <img src="{{ asset(upload_dir ~ image.url) }}" id="image-to-modify" alt="{{image.title}}"> 
       </article>
 
       <section class="grid_3">
@@ -54,9 +54,11 @@
 	      <img src="http://acdn.500px.net/26121.jpg" alt="user-avatar" />
 	  </div>
 
-	  <div id="img-description" class="img-box">
-	      <p>{{ image.description }}</p>
-	  </div>
+	  {% if image.description is defined %}
+	    <div id="img-description" class="img-box">
+		<p>{{ image.description }}</p>
+	    </div>
+	  {% endif %}
 
 	  {# <div id="img-sucks-rocks" class="img-box">
 	      <ul>
@@ -69,21 +71,36 @@
 	  </div> #}
 
 	  <div  id="img-controls" class="img-box">
-	      <p>
-		  Brightness
-	      </p>
+	      <div class="control-data">
+		  <span class="control-title">
+		      {% trans %}Brightness{% endtrans %}:
+		  </span>
+	      </div>
+
 	      <div id="slider-brightness" class="slider"></div>
-	      <p>
-		  Contrast
-	      </p>
+
+	      <div class="control-data">
+		  <span class="control-title">
+		      {% trans %}Contrast{% endtrans %}:
+		  </span>
+	      </div>
+
 	      <div id="slider-contrast" class="slider"></div>
-	      <p>
-		  Exposition
-	      </p>
-	      <div id="slider-exposition" class="slider"></div>
-	      <p>
-		  Saturation
-	      </p>
+
+	      <div class="control-data">
+		  <span class="control-title">
+		      {% trans %}Exposure{% endtrans %}:
+		  </span>
+	      </div>
+
+	      <div id="slider-exposure" class="slider"></div>
+
+	      <div class="control-data">
+		  <span class="control-title">
+		      {% trans %}Saturation{% endtrans %}:
+		  </span>
+	      </div>
+
 	      <div id="slider-saturation" class="slider"></div>
 	  </div>
 
