@@ -27,6 +27,10 @@
         <script src="{{ asset_url }}"></script>
   {% endjavascripts %}
 
+  <script>
+      Caman.remoteProxy = "{{ asset('bundles/sfmpicmnt/libs/caman_proxy.php') }}";
+  </script>
+
 {% endblock javascript %}
 
 {% block content %}
@@ -42,9 +46,9 @@
       <div class="clear"></div>
   
       <article id="image" class="grid_9"> 
-	 {# <img src="http://pcdn.500px.net/22932653/12b47fc53ef8d48a1d731807c27e3c5485b36d96/4.jpg" id="image-to-modify" alt="{{image.title}}"> #}
+	  <img src="http://pcdn.500px.net/22932653/12b47fc53ef8d48a1d731807c27e3c5485b36d96/4.jpg" id="image-to-modify" alt="{{image.title}}">
 	 {# <img src="http://pcdn.500px.net/23010177/bd2ba092a30565032f4ab287cecfc714a6962524/4.jpg" id="image-to-modify" alt="{{image.title}}"> #} 
-	  <img src="{{ asset(upload_dir ~ image.url) }}" id="image-to-modify" alt="{{image.title}}"> 
+	 {# <img src="{{ asset(upload_dir ~ image.url) }}" id="image-to-modify" alt="{{image.title}}"> #}
       </article>
 
       <section class="grid_3">
@@ -75,6 +79,7 @@
 		  <span class="control-title">
 		      {% trans %}Brightness{% endtrans %}:
 		  </span>
+		  <input type="text" id="brightness-amount" name="brightness"  class="slider-data"/>
 	      </div>
 
 	      <div id="slider-brightness" class="slider"></div>
@@ -83,6 +88,7 @@
 		  <span class="control-title">
 		      {% trans %}Contrast{% endtrans %}:
 		  </span>
+		  <input type="text" id="contrast-amount" name="contrast"  class="slider-data"/>
 	      </div>
 
 	      <div id="slider-contrast" class="slider"></div>
@@ -91,6 +97,7 @@
 		  <span class="control-title">
 		      {% trans %}Exposure{% endtrans %}:
 		  </span>
+		  <input type="text" id="exposure-amount" name="exposure"  class="slider-data"/>
 	      </div>
 
 	      <div id="slider-exposure" class="slider"></div>
@@ -99,6 +106,7 @@
 		  <span class="control-title">
 		      {% trans %}Saturation{% endtrans %}:
 		  </span>
+		  <input type="text" id="saturation-amount" name="saturation"  class="slider-data"/>
 	      </div>
 
 	      <div id="slider-saturation" class="slider"></div>
