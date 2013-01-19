@@ -1,0 +1,131 @@
+@import url('variables.less');
+
+/////////////////////////////////
+//       header
+/////////////////////////////////
+
+header {
+    height: @headerHeight;
+    width: 100%;
+    background: @header-background-color;
+    -webkit-box-shadow: 1px 1px 10px gray;
+    -o-box-shadow: 1px 1px 10px gray;
+    -moz-box-shadow: 1px 1px 10px gray;
+    box-shadow: 1px 1px 10px gray;
+}
+
+header .picmnt-title {
+    font-size: @headerTitleSize;
+    font-weight: bold;
+}
+
+header .p-letter {
+    font-size: 33px;
+    font-size: @headerTitleSize * 1.4;
+}
+
+header .icmnt-word {
+    letter-spacing: -2px;
+    color: @darkGrey;
+}
+
+header .menu li {
+    margin-left: 20px;
+    padding-left: 16px;
+}
+
+header .menu  ul {
+    list-style-type: none;
+    margin-top: 16px;
+}
+
+header .menu  ul li {
+    display: inline;
+    font-weight: bold;
+}
+
+header .menu {
+    text-align: right;
+}
+
+
+
+/////////////////////////////////
+//       updload menu
+/////////////////////////////////
+
+.upload {
+    padding-left: 20px;
+}
+
+.upload a {
+    padding-left: 3px;
+}
+
+header .menu li.upload {
+    background-position: 0px top; 
+    background-repeat: no-repeat;
+    background-image: url('/bundles/sfmpicmnt/images/upload_ico_gray.png');
+    margin-right: 10px;
+    -webkit-transition: background-image  0.3s ease-in-out;
+    -moz-transition: background-image 0.3s ease-in-out;
+    -o-transition: background-image 0.3s ease-in-out;
+    transition: background-image 0.3s ease-in-out;
+}
+
+header .menu li.upload:hover {
+    background-image: url('/bundles/sfmpicmnt/images/upload_ico_blue.png');
+}
+
+header .menu li.upload:hover  a {
+    color: @p-letter-color;
+}
+
+
+/////////////////////////////////
+//       tooltip
+/////////////////////////////////
+
+.tooltip-menu ul {
+    background: @header-background-color;
+    box-shadow: 1px 1px 1px gray;
+    opacity: 0;
+    padding: 0;
+
+    position: absolute;
+    top: 10px;
+    left: 10px;
+
+    text-align: left;
+
+    width: 100px;
+
+    -moz-transition: opacity .15s ease .1s;
+    -webkit-transition: opacity .15s ease .1s;
+    -o-transition: opacity .15s ease .1s;
+    -ms-transition: opacity .15s ease .1s;
+    transition: opacity .15s ease .1s;
+}
+
+.tooltip-menu li {
+    position: relative;
+}
+
+#explore-submenu li{
+    display: block;
+    padding: 0 0 7px 6px;
+    margin: 0;
+}
+
+.tooltip-menu li:hover > ul { opacity: 1; }
+
+
+/////////////////////////////////
+//       login menu
+/////////////////////////////////
+
+#login-menu li {
+    padding-left: 1px;
+    margin-left: auto;
+}
+

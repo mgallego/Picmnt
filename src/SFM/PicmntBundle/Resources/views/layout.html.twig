@@ -4,7 +4,8 @@
   {{ parent() }}
 
   {% stylesheets filter='less, ?yui_css' output='css/picmnt.css' 
-          '@SFMPicmntBundle/Resources/public/less/general.less' %}
+          '@SFMPicmntBundle/Resources/public/less/general.less'
+          '@SFMPicmntBundle/Resources/public/less/header.less' %}
   <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="all" />
   {% endstylesheets %}
 

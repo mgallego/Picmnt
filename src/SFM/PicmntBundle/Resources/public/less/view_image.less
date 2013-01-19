@@ -1,8 +1,4 @@
-@img-box-backcolor: #FDFDFD; /*#FAFAFA url('/bundles/sfmpicmnt/images/header-back.jpg');*/
-
-h1 {
-    font-weight: normal !important;
-}
+@import url('variables.less');
 
 #image-section {
     padding-top: 30px;
@@ -24,100 +20,6 @@ h1 {
     margin: 0 0 10px 20px;
     font-size: 2em;
 }
-
-.img-box {
-    background: @img-box-backcolor;
-    box-shadow: 30px 0 50px #D5D5D5;
-    -webkit-box-shadow: 30px 0 50px #D5D5D5;
-    -moz-box-shadow: 30px 0 50px #D5D5D5;
-    -webkit-border-radius: 3px;
-    border-radius: 3px;
-    margin-bottom: 10px;
-}
-
-.img-box div, .img-box h2 {
-    padding-left: 15px;
-}
-
-.img-box p {
-    padding-bottom: 10px;
-}
-
-#img-author.img-box h2 {
-    display: inline;
-    font-weight: normal;
-    float: left;
-    padding-left: 20px;
-}
-
-#img-author.img-box .author-avatar img {
-    float: right;
-    margin: 5px;
-    height: 100px;
-    width: 100px;
-}
-
-#img-author.img-box h2 a {
-    color: black;
-    text-decoration: none !important;
-}
-
-#img-author.img-box h2 a:hover {
-    color: #00008B;
-}
-
-#img-description p {
-    padding: 10px 0 10px 15px;
-    margin: 0;
-}
-
-#img-info ul {
-    padding-left: 15px;
-    list-style: none;
-}
-
-#img-info ul li .info-key {
-    color: #6B6666;
-}
-
-#img-sucks-rocks ul {
-    padding: 0;
-    margin: 0;
-}
-
-#img-sucks-rocks ul li {
-    display: inline;
-}
-
-#img-sucks-rocks ul li a {
-    background-repeat: no-repeat;
-    background-image: url('/bundles/sfmpicmnt/images/like_dislike_sprite.png');
-    margin-right: 10px;
-    padding-top: 60px;
-    padding-left: 53px;
-}
-
-
-#img-sucks-rocks ul li a.like{
-    float: left;
-    margin: 5px 0 5px 60px;
-    background-position: -104px top; 
-}
-
-#img-sucks-rocks ul li a.like:hover{
-    background-position: 0px top; 
-}
-
-#img-sucks-rocks ul li a.dislike{
-    float: right;
-    margin: 5px 60px 5px 0;
-    background-position: -158px top; 
-}
-
-#img-sucks-rocks ul li a.dislike:hover{
-    background-position: -52px top; 
-}
-
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
     #img-sucks-rocks ul li a.like{
