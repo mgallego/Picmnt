@@ -70,27 +70,36 @@
 		<div id="show-image-to-comment"></div>
 	      {% endif %}
 	      
+	      <ul>
 	      {% for comment in image.imageComments %}
 		{% set username = comment.user.username %}
-	      <article id="comment-{{ loop.index }}">
+		
+		<li id="comment-{{ loop.index }}" class="comment">
 		  <a class="link-to-comment" href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}#comment-{{ loop.index }}">#{{ loop.index }}</a>
-		  <p>
-		      {% trans %}Author{% endtrans %}: <a href="{{ path('usr_profile', {'userName': comment.user.username }) }}">{{ username }}</a>
-		  </p>
-		  <p>
-		      {% trans %}Date{% endtrans %}: {{ image.pubDate | date() }}
-		  </p>
-		  <p>
-		      {% trans %}Comment{% endtrans %}: 
-		  </p>
+
+		  <span>
+		      {# try to create a twig function #}
+
+		      {% if existsAvatar(username) %}
+			<img src="{{ avatarByUsername(username,'big') }}" class="avatar-small" />
+		      {% else %}
+			{% if gravatar_exists(getEmail(username)) %}
+			  <img src="{{ gravatar(getEmail(username), 50) }}" class="avatar-small" />
+			{% else %}
+			  <img src="{{ asset('/bundles/sfmpicmnt/images/user.svg') }}" class="avatar-small" />
+			{% endif %}
+		      {% endif %}
+		      <a href="{{ path('usr_profile', {'userName': comment.user.username }) }}">{{ username }}</a> {{ image.pubDate | date() }}
+		  </span>
+		  <hr/>
 		  <div class="comment-text">
 		      {{ comment.comment | nl2br }}
 		  </div>
-		  <hr/>
-	      </article>
+		</li>
 	    {% else %}
 	      <h3 class="grid_12">{{ 'There is no comment for this image. Be the first to comment' | trans }}</h3>
 	    {% endfor %}
+	      </ul>
 	  </article>
 
       </section>
