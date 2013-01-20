@@ -61,7 +61,7 @@
 	      <form action="{{ path('comment', { 'idImage': image.idImage}) }}" class="form-stacked" method="post">
 		  <textarea placeholder="Add your comment..." class="textarea" name="comment" required="required"></textarea> 
 		  <button class="button cancel-button" type="reset"  onclick="javascript:applyProposal(0,0,0,0)">{{ 'Cancel' | trans }}</button> 
-		  <input class="button accept-button" type="submit" value="{% trans %}Comment{% endtrans %}">&nbsp;
+		  <input class="button accept-button" type="submit" value="{% trans %}Send Comment{% endtrans %}">&nbsp;
 	      </form>
 	      
 	      {#  ################   COMMENTS   ################## #}
@@ -89,16 +89,21 @@
 			  <img src="{{ asset('/bundles/sfmpicmnt/images/user.svg') }}" class="avatar-small" />
 			{% endif %}
 		      {% endif %}
-		      <a href="{{ path('usr_profile', {'userName': comment.user.username }) }}">{{ username }}</a> {{ image.pubDate | date() }}
+		      <a href="{{ path('usr_profile', {'userName': comment.user.username }) }}">{{ username }}</a>
+		      <span class="comment-date">{{ image.pubDate | date() }}</span>
 		  </span>
-		  <hr/>
 		  <div class="comment-text">
 		      {{ comment.comment | nl2br }}
 		  </div>
+		  
+		  <a class="see-proposal" href="#image-title" onclick="javascript:applyProposal({{ comment.brightness }},{{ comment.contrast }}, {{ comment.exposure }},{{ comment.saturation}})" class="btn info comment-proposal">{{ 'See Proposal' | trans }}</a>
+
 		</li>
+
 	    {% else %}
 	      <h3 class="grid_12">{{ 'There is no comment for this image. Be the first to comment' | trans }}</h3>
 	    {% endfor %}
+
 	      </ul>
 	  </article>
 
@@ -163,10 +168,6 @@
 	  {% if image.description is defined %}
 	    <div id="img-description" class="img-box">
 		<p>{{ image.description }}</p>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis cursus, felis eget malesuada gravida, ipsum leo iaculis augue, quis condimentum massa nisl ac enim. Praesent at elementum nisl. Fusce ullamcorper, ligula vel pharetra mattis, arcu turpis luctus erat, id interdum ipsum dolor vitae enim. Cras imperdiet volutpat adipiscing. Pellentesque fringilla, quam in viverra interdum, nunc elit fringilla neque, non placerat felis massa eget leo. Aenean sagittis ante urna. Etiam auctor feugiat augue, at porta quam pretium ac. Proin suscipit dapibus risus a euismod. Vivamus vehicula vestibulum tellus, placerat lobortis neque pharetra nec.
-
-Nullam a quam non nisl condimentum sodales ut vel eros. Praesent convallis laoreet risus nec sagittis. Sed lobortis eleifend accumsan. Duis ultrices erat ac justo gravida suscipit. Integer ultrices massa quis mauris mollis accumsan non ut odio. Mauris iaculis feugiat dui id venenatis. Maecenas et lectus sed erat malesuada pharetra. Duis at orci vitae tortor ultricies bibendum. Duis quis lectus nunc. Integer convallis bibendum urna, id gravida mauris cursus id. Vivamus feugiat nulla et dui eleifend et scelerisque leo sodales. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Quisque congue, orci in ultricies convallis, nisl libero hendrerit elit, a blandit urna enim ac dui. Integer consequat, orci eu fermentum fermentum, mi ante mollis dui, et rutrum neque eros vel nibh. Fusce vestibulum, enim id lobortis consectetur, tortor metus accumsan neque, vel auctor eros libero quis magna. Nunc pellentesque condimentum odio non lacinia.
-		</p>
 	    </div>
 	  {% endif %}
 
