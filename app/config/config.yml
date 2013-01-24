@@ -112,3 +112,10 @@ parameters:
         upload_small_path: "uploads/avatarsmall"
         big_size: 100
         small_size: 50
+
+liip_imagine:
+    filter_sets:
+        thumbnail:
+            quality: 75
+            filters:
+                thumbnail: { size: [200, 200], mode: outbound }

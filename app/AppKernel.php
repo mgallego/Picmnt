@@ -28,6 +28,7 @@ class AppKernel extends Kernel
 	    new Ideup\SimplePaginatorBundle\IdeupSimplePaginatorBundle(),
 	    new Ornicar\GravatarBundle\OrnicarGravatarBundle(),
             new RaulFraile\Bundle\LadybugBundle\RaulFraileLadybugBundle(),
+            new Liip\ImagineBundle\LiipImagineBundle(),
             new SFM\DucksboardBundle\SFMDucksboardBundle(),
         );
 
