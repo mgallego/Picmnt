@@ -44,7 +44,7 @@
   <section id="image-section"  class="container container_12">
 
       <div id="image-title" class="grid_12">
-	  <a href="#" id="see-original" class="button accept-button">{% trans %}View Original{% endtrans %}</a>
+	  <a href="#" id="see-original" class="button accept-button" onclick="javascript:seeOriginal()">{% trans %}View Original{% endtrans %}</a>
 	  <h1>{{ image.title }}</h1>
       </div>
 
@@ -81,12 +81,12 @@
 		      {# try to create a twig function #}
 
 		      {% if existsAvatar(username) %}
-			<img src="{{ avatarByUsername(username,'small') }}" class="avatar-small" />
+			<img src="{{ avatarByUsername(username,'small') }}" class="avatar-small" alt="avatar-small" />
 		      {% else %}
 			{% if gravatar_exists(getEmail(username)) %}
-			  <img src="{{ gravatar(getEmail(username), 50) }}" class="avatar-small" />
+			  <img src="{{ gravatar(getEmail(username), 50) }}" class="avatar-small" alt="avatar-small"/>
 			{% else %}
-			  <img src="{{ asset('/bundles/sfmpicmnt/images/default_user50x50.png') }}" class="avatar-small" />
+			  <img src="{{ asset('/bundles/sfmpicmnt/images/default_user50x50.png') }}" class="avatar-small" alt="avatar-small" />
 			{% endif %}
 		      {% endif %}
 		      <a href="{{ path('usr_profile', {'userName': comment.user.username }) }}">{{ username }}</a>
@@ -96,8 +96,9 @@
 		      {{ comment.comment | nl2br }}
 		  </div>
 		  
-		  <a class="see-proposal" href="#image-title" onclick="javascript:applyProposal({{ comment.brightness }},{{ comment.contrast }}, {{ comment.exposure }},{{ comment.saturation}})" class="btn info comment-proposal">{{ 'See Proposal' | trans }}</a>
-
+		  {% if comment.brightness != 0 or comment.contrast != 0 or comment.exposure != 0 or comment.saturation != 0 %}
+		    <a class="see-proposal" href="#image-title" onclick="javascript:applyProposal({{ comment.brightness }},{{ comment.contrast }}, {{ comment.exposure }},{{ comment.saturation}})" >{{ 'See Proposal' | trans }}</a>
+		    {% endif %}
 		</li>
 
 	    {% else %}
@@ -116,12 +117,12 @@
 	      <h2><a href="{{ path('usr_profile', {'userName': image.user.username }) }}">{{ image.user.username }}</a></h2>
 
 		      {% if existsAvatar(image.user.username) %}
-			<img src="{{ avatarByUsername(image.user.username,'big') }}" />
+			<img src="{{ avatarByUsername(image.user.username,'big') }}" alt="avatar"/>
 		      {% else %}
 			{% if gravatar_exists(getEmail(image.user.username)) %}
-			  <img src="{{ gravatar(getEmail(image.user.username), 100) }}" />
+			  <img src="{{ gravatar(getEmail(image.user.username), 100) }}" alt="avatar" />
 			{% else %}
-			  <img src="{{ asset('/bundles/sfmpicmnt/images/default_user100x100.png') }}" />
+			  <img src="{{ asset('/bundles/sfmpicmnt/images/default_user100x100.png') }}" alt="avatar"/>
 			{% endif %}
 		      {% endif %}
 	  </div>
