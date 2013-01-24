@@ -42,8 +42,9 @@
 
   <section id="image-section"  class="container container_12">
 
-      <div class="grid_12">
-	  <h1 id="image-title">{{ image.title }}</h1>
+      <div id="image-title" class="grid_12">
+	  <a href="#" class="button accept-button">{% trans %}View Original{% endtrans %}</a>
+	  <h1>{{ image.title }}</h1>
       </div>
 
       <div class="clear"></div>
@@ -52,9 +53,9 @@
       <section id="main" class="grid_9">
 
 	  <article id="image" > 
-	      <img src="http://pcdn.500px.net/22932653/12b47fc53ef8d48a1d731807c27e3c5485b36d96/4.jpg" id="image-to-modify" alt="{{image.title}}">
+	      {# <img src="http://pcdn.500px.net/22932653/12b47fc53ef8d48a1d731807c27e3c5485b36d96/4.jpg" id="image-to-modify" alt="{{image.title}}"> #}
 	      {# <img src="http://pcdn.500px.net/23010177/bd2ba092a30565032f4ab287cecfc714a6962524/4.jpg" id="image-to-modify" alt="{{image.title}}"> #} 
-	      {# <img src="{{ asset(upload_dir ~ image.url) }}" id="image-to-modify" alt="{{image.title}}"> #}
+	      <img src="{{ asset(upload_dir ~ image.url) }}" id="image-to-modify" alt="{{image.title}}"> 
 	  </article>
 
 	  <article id="comments">
@@ -86,7 +87,7 @@
 			{% if gravatar_exists(getEmail(username)) %}
 			  <img src="{{ gravatar(getEmail(username), 50) }}" class="avatar-small" />
 			{% else %}
-			  <img src="{{ asset('/bundles/sfmpicmnt/images/user.svg') }}" class="avatar-small" />
+			  <img src="{{ asset('/bundles/sfmpicmnt/images/default_user50x50.png') }}" class="avatar-small" />
 			{% endif %}
 		      {% endif %}
 		      <a href="{{ path('usr_profile', {'userName': comment.user.username }) }}">{{ username }}</a>
@@ -114,7 +115,7 @@
 
 	  <div id="img-author" class="img-box">
 	      <h2><a href="{{ path('usr_profile', {'userName': image.user.username }) }}">{{ image.user.username }}</a></h2>
-	      <img src="http://acdn.500px.net/26121.jpg" alt="user-avatar" />
+	      <img src="{{ asset('/bundles/sfmpicmnt/images/default_user100x100.png') }}"  alt="user-avatar"  />
 	  </div>
 
 
