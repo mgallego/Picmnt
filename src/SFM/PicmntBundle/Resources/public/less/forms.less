@@ -1,7 +1,7 @@
 @import url('variables.less');
 
 .button {
-    color: white;
+    color: #FFF !important;
     padding: 8px 12px;
     border: none;
     -webkit-border-radius: 2px;
@@ -13,7 +13,6 @@
 
 .accept-button {
     background-color: @acceptButtonColor;
-    color: #FFF !important;
 }
 
 .accept-button:hover {
@@ -39,4 +38,16 @@
     background-image: -webkit-linear-gradient(bottom, #5C5C5C 16%, #888282 76%);
     background-image: -ms-linear-gradient(bottom, #5C5C5C 16%, #888282 76%);
     background-image: linear-gradient(bottom, #5C5C5C 16%, #888282 76%);
+}
+
+.danger-button {
+    background-color: @dangerButtonColor;
+}
+
+.danger-button:hover {
+    background-image: -o-linear-gradient(bottom, #AD0C14 0%, #CF000A 51%);
+    background-image: -moz-linear-gradient(bottom, #AD0C14 0%, #CF000A 51%);
+    background-image: -webkit-linear-gradient(bottom, #AD0C14 0%, #CF000A 51%);
+    background-image: -ms-linear-gradient(bottom, #AD0C14 0%, #CF000A 51%);
+    background-image: linear-gradient(bottom, #AD0C14 0%, #CF000A 51%);
 }

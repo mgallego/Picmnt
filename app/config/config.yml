@@ -108,7 +108,7 @@ parameters:
     upload_path: "/uploads"
     avatar_defaults:
         extension: ".jpg"
-        upload_big_path: "uploads/avatarbig"
+        upload_big_path: "uploads/avatarbig/"
         upload_small_path: "uploads/avatarsmall"
         big_size: 100
         small_size: 50

@@ -38,12 +38,13 @@
 {% block content %}
   {{ parent() }}
 
+  <form action="{{ path('comment', { 'idImage': image.idImage}) }}" class="form-stacked" method="post">
   <div class="clear"></div>
 
   <section id="image-section"  class="container container_12">
 
       <div id="image-title" class="grid_12">
-	  <a href="#" class="button accept-button">{% trans %}View Original{% endtrans %}</a>
+	  <a href="#" id="see-original" class="button accept-button">{% trans %}View Original{% endtrans %}</a>
 	  <h1>{{ image.title }}</h1>
       </div>
 
@@ -59,11 +60,9 @@
 	  </article>
 
 	  <article id="comments">
-	      <form action="{{ path('comment', { 'idImage': image.idImage}) }}" class="form-stacked" method="post">
-		  <textarea placeholder="Add your comment..." class="textarea" name="comment" required="required"></textarea> 
-		  <button class="button cancel-button" type="reset"  onclick="javascript:applyProposal(0,0,0,0)">{{ 'Cancel' | trans }}</button> 
-		  <input class="button accept-button" type="submit" value="{% trans %}Send Comment{% endtrans %}">&nbsp;
-	      </form>
+	      <textarea placeholder="Add your comment..." class="textarea" name="comment" required="required"></textarea> 
+	      <button class="button cancel-button" type="reset"  onclick="javascript:applyProposal(0,0,0,0)">{{ 'Cancel' | trans }}</button> 
+	      <input class="button accept-button" type="submit" value="{% trans %}Send Comment{% endtrans %}">&nbsp;
 	      
 	      {#  ################   COMMENTS   ################## #}
 
@@ -82,7 +81,7 @@
 		      {# try to create a twig function #}
 
 		      {% if existsAvatar(username) %}
-			<img src="{{ avatarByUsername(username,'big') }}" class="avatar-small" />
+			<img src="{{ avatarByUsername(username,'small') }}" class="avatar-small" />
 		      {% else %}
 			{% if gravatar_exists(getEmail(username)) %}
 			  <img src="{{ gravatar(getEmail(username), 50) }}" class="avatar-small" />
@@ -115,10 +114,26 @@
 
 	  <div id="img-author" class="img-box">
 	      <h2><a href="{{ path('usr_profile', {'userName': image.user.username }) }}">{{ image.user.username }}</a></h2>
-	      <img src="{{ asset('/bundles/sfmpicmnt/images/default_user100x100.png') }}"  alt="user-avatar"  />
+
+		      {% if existsAvatar(image.user.username) %}
+			<img src="{{ avatarByUsername(image.user.username,'big') }}" />
+		      {% else %}
+			{% if gravatar_exists(getEmail(image.user.username)) %}
+			  <img src="{{ gravatar(getEmail(image.user.username), 100) }}" />
+			{% else %}
+			  <img src="{{ asset('/bundles/sfmpicmnt/images/default_user100x100.png') }}" />
+			{% endif %}
+		      {% endif %}
 	  </div>
 
-
+	  {% if app.user and  app.user.id == image.user.id  %}
+	    <div id="img-actions" class="img-box">
+		<ul>
+		    <li><a href="{{ path('img_edit', {'id_image': image.idImage}) }}"  class="button cancel-button">{% trans %}Edit{% endtrans %}</a></li>
+		    <li><a href="{{ path('img_delete', { 'idImage': image.idImage }) }}"  class="button danger-button">{% trans %}Remove{% endtrans %}</a></li>
+		</ul>
+	    </div>
+	    {% endif %}
 	  {# <div id="img-sucks-rocks" class="img-box">
 	      <ul>
 		  <li>
@@ -166,7 +181,7 @@
 
 	      <div id="slider-saturation" class="slider"></div>
 	  </div>
-	  {% if image.description is defined %}
+	  {% if image.description %}
 	    <div id="img-description" class="img-box">
 		<p>{{ image.description }}</p>
 	    </div>
@@ -178,7 +193,8 @@
 		      <span class="info-key">{% trans %}Uploaded{% endtrans %}:</span> {{ image.pubDate | date() }}
 		  </li>
 		  <li class="category">
-		      <span class="info-key">{% trans %}Category{% endtrans %}:</span> {{ image.category }}
+		    <span class="info-key">{% trans %}Category{% endtrans %}:</span>
+		    <a href="{{ path('img_show', { 'option': 'recents', 'category': image.category}) }}">{{ image.category }}</a>
 		  </li>
 	      </ul>
 	  </div>
@@ -187,4 +203,5 @@
 
 
   </section>
+  </form>
 {% endblock content %}
