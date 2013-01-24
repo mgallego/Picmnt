@@ -1,0 +1,58 @@
+{% extends "SFMPicmntBundle::layout.html.twig" %}
+
+{% block stylesheet %} 
+
+  {{ parent() }}
+
+  {% stylesheets filter='less, ?yui_css' output='css/img-picmnt.css' 
+    '@SFMPicmntBundle/Resources/public/less/edit_image.less'
+    '@SFMPicmntBundle/Resources/public/less/forms.less'
+          '@SFMPicmntBundle/Resources/public/less/img_box.less' %}
+  <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="all" />
+	    {% endstylesheets %}
+
+{% endblock stylesheet %} 
+	  
+{% block content %}
+
+  {{ parent() }}
+
+  <div class="clear"></div>
+
+  <div class="container container_12">
+      <section id="img-section"  class="grid_9">
+	  <div class="span9" id="imageImage">
+	      <img src="{{ asset(image_url) }}" alt="image-to-modify"/> 
+	  </div>
+      </section>
+
+      <section id="img-edition" class="grid_3">
+	  
+	  <form id="edit-form" action="{{ path('img_edit', { 'id_image': image.idImage }) }}" method="post" {{ form_enctype(form) }} class="form-stacked">
+	      <fieldset>
+		  {{ form_errors(form.title) }}
+		  {{ form_label(form.title, 'Title' | trans) }}
+		  {{ form_widget(form.title) }}
+
+		  {{ form_errors(form.description) }}
+		  {{ form_label(form.description, 'Description' | trans) }}
+		  {{ form_widget(form.description) }}
+
+		  {{ form_errors(form.category) }}
+		  {{ form_label(form.category, 'Category' | trans) }}
+		  {{ form_widget(form.category) }}
+
+		  {{ form_errors(form.notify_email) }}
+		  {{ form_label(form.notify_email, 'Notify comments by email' | trans) }}
+		  {{ form_widget(form.notify_email) }}
+
+
+		  {{ form_rest(form) }}
+
+
+		  <input type="submit" class="button accept-button" id="edit-image" value="{{ 'Save Changes' | trans }}">&nbsp;<button type="reset" class="button cancel-button">{{ 'Cancel' | trans }}</button> 
+	      </fieldset>
+	  </form>
+      </section>
+  </div>
+{% endblock %}
