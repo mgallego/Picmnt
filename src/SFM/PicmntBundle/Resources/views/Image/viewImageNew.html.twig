@@ -29,14 +29,32 @@
         <script src="{{ asset_url }}"></script>
   {% endjavascripts %}
 
-  <script>
+{#  <script>
       Caman.remoteProxy = "{{ asset('bundles/sfmpicmnt/libs/caman_proxy.php') }}";
   </script>
+#}
 
 {% endblock javascript %}
 
 {% block content %}
   {{ parent() }}
+
+  {% if paginator is defined %}
+    {% set Next = '' %}
+    {% set Previous = '' %}
+  
+    {% for page in paginator %}
+      {% if loop.index == '1' %}
+	{% if image.idImage != page %}
+	  {% set Next =  path('img_show', {'option': 'last',  'idImage': page, 'category': app.request.get('category') })  %}
+	{% endif %}
+      {% else %}
+	{% if image.idImage > page %}
+	  {% set Previous =  path('img_show', {'option': 'last', 'idImage':  page, 'category': app.request.get('category') })  %}
+	{% endif %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
 
   <form action="{{ path('comment', { 'idImage': image.idImage}) }}" class="form-stacked" method="post">
   <div class="clear"></div>
@@ -45,7 +63,13 @@
 
       <div id="image-title" class="grid_12">
 	  <a href="#" id="see-original" class="button accept-button" onclick="javascript:seeOriginal()">{% trans %}View Original{% endtrans %}</a>
-	  <h1>{{ image.title }}</h1>
+	  <h1>
+	      {% if paginator is defined %}
+		<a href="{{ path('img_view', {'user': image.user.username, 'slug': image.slug}) }} ">{{ image.title }}</a>
+	      {% else %}
+		{{ image.title }}
+	      {% endif %}
+	  </h1>
       </div>
 
       <div class="clear"></div>
@@ -53,12 +77,25 @@
       {#    ###############              MAIN SECTION      ###############      #}
       <section id="main" class="grid_9">
 
-	  <article id="image" > 
-	      {# <img src="http://pcdn.500px.net/22932653/12b47fc53ef8d48a1d731807c27e3c5485b36d96/4.jpg" id="image-to-modify" alt="{{image.title}}"> #}
-	      {# <img src="http://pcdn.500px.net/23010177/bd2ba092a30565032f4ab287cecfc714a6962524/4.jpg" id="image-to-modify" alt="{{image.title}}"> #} 
-	      <img src="{{ asset(upload_dir ~ image.url) }}" id="image-to-modify" alt="{{image.title}}"> 
-	  </article>
 
+	  <article id="image" >
+ 	      <span id="previous-link">
+	      {% if paginator is defined and app.request.get('option') == 'last' %}
+		{% if Previous %}
+		  <a id="previous" href="{{ Previous }}"><<</a>
+		{% endif %}
+	      {% endif %}
+	      </span>
+	      <img src="{{ asset(upload_dir ~ image.url) }}" id="image-to-modify" alt="{{image.title}}"> 
+	      <span id="next-link">
+	      {% if paginator is defined and  app.request.get('option') == 'last' %}
+		{% if Next %}
+		  <a id="next" href="{{ Next }}">>></a>
+		{% endif %} 
+	      {% endif %}
+	      </span>
+	  </article>	 
+ 
 	  <article id="comments">
 	      <textarea placeholder="Add your comment..." class="textarea" name="comment" required="required"></textarea> 
 	      <button class="button cancel-button" type="reset"  onclick="javascript:applyProposal(0,0,0,0)">{{ 'Cancel' | trans }}</button> 

@@ -98,7 +98,7 @@ class ImageController extends Controller
         $form = $this->createForm(new ImageType(), $image);
         $imgUtilsConf = $this->container->getParameter('image_defaults');
         $options = array("image_url" => $imgUtilsConf['upload_path'].$image->getUrl(), 'form' => $form->createView(), 'image'=>$image);
-        $response = $this->render('SFMPicmntBundle:Image:editImage.html.twig', $options);
+        $response = $this->render('SFMPicmntBundle:Image:editImageNew.html.twig', $options);
     
         if ($this->getCurrentUserId() != $image->getUser()->getId()) { 
             $imageDefaults = $this->container->getParameter('image_defaults');
@@ -180,7 +180,8 @@ class ImageController extends Controller
 
             return $this->render('SFMPicmntBundle:Image:showImage.html.twig', array("images"=>$images));
         }
-        return $this->render('SFMPicmntBundle:Image:showImage.html.twig', array("image"=>$image, "paginator"=>$paginator));
+        return $this->render('SFMPicmntBundle:Image:viewImageNew.html.twig', array("image"=>$image, "paginator"=>$paginator));
+        //return $this->render('SFMPicmntBundle:Image:showImageNew.html.twig', array("image"=>$image, "paginator"=>$paginator));
     }
     
     
