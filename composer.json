@@ -5,14 +5,16 @@
         "psr-0": { "": "src/" }
     },
     "require": {
-        "php": ">=5.4",
+        "php": ">=5.4.6",
+        "ext-intl": "*",
+        "ext-apc": "*",
         "symfony/symfony": "2.1.*",
-        "doctrine/orm": "2.2.*",
-        "doctrine/doctrine-bundle": "dev-master",
-        "twig/extensions": "dev-master",
+        "doctrine/orm": "2.3.*",
+        "doctrine/doctrine-bundle": "v1.0.0",
+        "twig/extensions": "1.0.x-dev",
         "symfony/assetic-bundle": "2.1.x-dev",
         "symfony/swiftmailer-bundle": "2.1.x-dev",
-        "symfony/monolog-bundle": "2.1.x-dev",
+        "symfony/monolog-bundle": "2.1.7",
         "sensio/distribution-bundle": "2.1.x-dev",
         "sensio/framework-extra-bundle": "2.1.x-dev",
         "sensio/generator-bundle": "2.1.x-dev",
@@ -25,6 +27,7 @@
 	"liip/functional-test-bundle": "dev-master",
 	"ideup/simple-paginator-bundle": "dev-master",
 	"ornicar/gravatar-bundle": "dev-master",
+        "raulfraile/ladybug-bundle": "dev-master",
 	"sfm/ducksboard-bundle": "dev-master"
     },
     "scripts": {

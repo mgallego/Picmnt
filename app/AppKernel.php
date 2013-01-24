@@ -27,6 +27,7 @@ class AppKernel extends Kernel
 	    new Liip\FunctionalTestBundle\LiipFunctionalTestBundle(),
 	    new Ideup\SimplePaginatorBundle\IdeupSimplePaginatorBundle(),
 	    new Ornicar\GravatarBundle\OrnicarGravatarBundle(),
+            new RaulFraile\Bundle\LadybugBundle\RaulFraileLadybugBundle(),
             new SFM\DucksboardBundle\SFMDucksboardBundle(),
         );
 
