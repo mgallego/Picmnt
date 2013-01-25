@@ -1,0 +1,41 @@
+{% extends "SFMPicmntBundle::layout.html.twig" %}
+
+{% set category = app.request.get('category') %} 
+{% set option = app.request.get('option') %}
+
+{% block stylesheet %} 
+
+  {{ parent() }}
+
+  {% stylesheets filter='less, ?yui_css' output='css/img-picmnt.css' 
+          '@SFMPicmntBundle/Resources/public/less/thumbs.less'
+          '@SFMPicmntBundle/Resources/public/less/img_box.less' %}
+  <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="all" />
+  {% endstylesheets %}
+  
+{% endblock stylesheet %} 
+
+{% block javascript %}
+  {{ parent() }}
+
+{% endblock javascript %}
+
+{% block content %}
+  {{ parent() }}
+
+  <div class="clear"></div>
+
+  <section id="image-section"  class="container container_12">
+
+      <ul class="img-thumbs">
+	  {% for image in images %}
+	    {% set imageUrl =  '/uploads/' ~ image.url %}
+	    <li class="img-thumb">
+		<a href="{{ path('img_view', {'user': image.user.username, 'slug': image.slug}) }}"><img src="{{ imageUrl | imagine_filter('thumbnail') }}" alt="{{ image.title }}"/></a>
+	    </li>
+	  {% endfor %}
+      </ul>
+
+  </section>
+
+{% endblock content %}

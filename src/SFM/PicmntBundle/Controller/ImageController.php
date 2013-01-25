@@ -65,12 +65,13 @@ class ImageController extends Controller
                     mkdir($imageDefaults['thumbs_path']);
                 }
 
-                $imageUtil->createImageSmall(
-                    $imageDefaults['upload_path'].$newFileName,
-                    $imageDefaults['thumbs_path'].$newFileName,
-                    $imageDefaults['small_size']
-                );
+                /* $imageUtil->createImageSmall( */
+                /*     $imageDefaults['upload_path'].$newFileName, */
+                /*     $imageDefaults['thumbs_path'].$newFileName, */
+                /*     $imageDefaults['small_size'] */
+                /* ); */
 
+                
                 if ($this->container->getParameter('use_ducksoard') === 'yes') {
                     $widget = $this->container->get('ducksboard.widget');
                     $widgetId = $this->container->getParameter('upload_widget');

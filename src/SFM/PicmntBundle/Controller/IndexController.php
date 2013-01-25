@@ -10,17 +10,15 @@ class IndexController extends Controller
 
     public function indexAction(Request $request)
     {
-        if ($this->get('security.context')->isGranted('ROLE_USER')){
-            $response = $this->redirect($this->generateUrl('img_show', Array("option"=>"recents", "category"=>'all')));
-        }else{
-            $em = $this->get('doctrine')->getEntityManager();
-            $lastImages = $em->getRepository('SFMPicmntBundle:Image')->getLastImages(10);
-            $mostCommentImages = $em->getRepository('SFMPicmntBundle:Image')->getMostComment(10);
-            $responseData = array('lastImages'=>$lastImages, 'mostComments'=>$mostCommentImages);
-            $response = $this->render('SFMPicmntBundle:Index:index.html.twig', $responseData);
-            $response->setPublic();
-        }
-        return $response;
+        $em = $this->get('doctrine')->getEntityManager();
+        $paginator = array();
+        
+        $paginator = $this->get('ideup.simple_paginator');
+        $paginator->setItemsPerPage(1000);
+        $images = $paginator->paginate($em->getRepository('SFMPicmntBundle:Image')->getRecentsDQL('all'))->getResult();
+
+        return $this->render('SFMPicmntBundle:Image:recents.html.twig', array("images"=>$images));
+
     }
 
     public function staticAction($page)
