@@ -2,9 +2,9 @@
 web/bundles/
 web/HtmlMockups
 web/uploads/*
-web/media/*
-web/css/*
-web/js/*
+web/media/
+web/css/
+web/js/
 app/config/parameters.yml
 app/bootstrap*
 app/cache/*
