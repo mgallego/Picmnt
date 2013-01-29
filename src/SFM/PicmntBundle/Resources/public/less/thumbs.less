@@ -1,14 +1,26 @@
 @import url('variables.less');
 
-ul.img-thumbs {
-    list-style: none;
-    padding-left: 60px;
+.thumbnail {
+    display: block;
+    float: left;
 }
 
-li.img-thumb {
-    display: inline;
-}
-
-li.img-thumb img {
+.img-thumb {
+    position: relative;
     margin: 5px;
+    height: 200px;
+    width: 200px;
+}
+
+
+.thumb-info {
+    display: block;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    height: 50px;
+    width: 200px;
+    color: #FFF;
+    background: black;
+    background: rgba(0, 0, 0, 0.65);
 }
