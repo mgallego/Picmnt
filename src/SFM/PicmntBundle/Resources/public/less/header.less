@@ -36,7 +36,7 @@ header .menu li {
 
 header .menu  ul {
     list-style-type: none;
-    margin-top: 16px;
+//    margin-top: 16px;
 }
 
 header .menu  ul li {
@@ -86,38 +86,58 @@ header .menu li.upload:hover  a {
 //       tooltip
 /////////////////////////////////
 
-.tooltip-menu ul {
+ul.tooltip-menu span {
+    color: @darkGrey;
+}
+
+ul.tooltip-menu ul {
     background: @header-background-color;
+    -webkit-box-shadow: 1px 1px 1px gray;
+    -moz-box-shadow: 1px 1px 1px gray;
+    -o-box-shadow: 1px 1px 1px gray;
+    -ms-box-shadow: 1px 1px 1px gray;
     box-shadow: 1px 1px 1px gray;
-    opacity: 0;
+    display: none;
     padding: 0;
 
     position: absolute;
-    top: 10px;
+    top: 32px;
     left: 10px;
 
-    text-align: left;
-
-    width: 100px;
-
-    -moz-transition: opacity .15s ease .1s;
-    -webkit-transition: opacity .15s ease .1s;
-    -o-transition: opacity .15s ease .1s;
-    -ms-transition: opacity .15s ease .1s;
-    transition: opacity .15s ease .1s;
+    width: 120px;
 }
 
-.tooltip-menu li {
+ul.tooltip-menu > li {
+    padding-bottom: 20px;
     position: relative;
+    z-index: 10;
 }
 
-#explore-submenu li{
+.submenu li {
+    float: left;
     display: block;
-    padding: 0 0 7px 6px;
-    margin: 0;
+    padding: 4px 6px;
+    margin: 0 !important;
 }
 
-.tooltip-menu li:hover > ul { opacity: 1; }
+.submenu li a {
+    display: block;
+    padding: 0 90px 0 0;
+}
+
+ul.tooltip-menu li:hover > ul { 
+   display: block;
+}
+
+.submenu li:hover { 
+    background: @PicmntLightGrey;
+    width: 100px;
+    -webkit-box-shadow: 0 1px 5px @darkGrey;
+    -moz-box-shadow: 0 1px 5px @darkGrey;
+    -o-box-shadow: 0 1px 5px @darkGrey;
+    -ms-box-shadow: 0 1px 5px @darkGrey;
+    box-shadow: 0 1px 5px @darkGrey;
+}
 
 
 /////////////////////////////////

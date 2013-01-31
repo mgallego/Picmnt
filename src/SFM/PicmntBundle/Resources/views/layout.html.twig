@@ -25,37 +25,14 @@
 	  <div class="grid_4 prefix_4 menu">
 	      <ul class="tooltip-menu">
 		  <li>
-		      <a href="">{% trans %}Explore{% endtrans %}</a>
-		      <ul id="explore-submenu">
-			  <li>
-			      <a href="{{ path('img_show', { 'option': 'recents', 'category': 'all'}) }}">{% trans %}All{% endtrans %}</a>
-			  </li>
-			  <li>
-			      <a href="{{ path('img_show', { 'option': 'recents', 'category': 'portraits'}) }}">{% trans %}Portraits{% endtrans %}</a>
-			  </li>
-			  <li>
-			      <a href="{{ path('img_show', { 'option': 'recents', 'category': 'landscapes'}) }}">{% trans %}Portraits{% endtrans %}</a>
-			  </li>
-			  <li>
-			      <a href="{{ path('img_show', { 'option': 'recents', 'category': 'sports'}) }}">{% trans %}Portraits{% endtrans %}</a>
-			  </li>
-			  <li>
-			      <a href="{{ path('img_show', { 'option': 'recents', 'category': 'animals'}) }}">{% trans %}Portraits{% endtrans %}</a>
-			  </li>
-			  <li>
-			      <a href="{{ path('img_show', { 'option': 'recents', 'category': 'buildings'}) }}">{% trans %}Portraits{% endtrans %}</a>
-			  </li>
-			  <li>
-			      <a href="{{ path('img_show', { 'option': 'recents', 'category': 'others'}) }}">{% trans %}Portraits{% endtrans %}</a>
-			  </li>
-		      </ul>
+		      <span>{% trans %}Explore{% endtrans %}</span>
+		      {{ knp_menu_render('SFMPicmntBundle:Builder:menuCategories', {'class': 'tooltip-menu', 'currentClass': 'active'}) }} 
 		  </li>
 		  <li><a href="{{ path('img_show', { 'option': 'random', 'category': 'all'}) }}">{% trans %}Random{% endtrans %}</a></li>
 
 		  <li class="upload">
 		      <a href="{{ path('img_upload') }}">{% trans %}Upload Image{% endtrans %}</a>
 		  </li>
-
 	      </ul>
 	  </div>
 	  <div id="login-menu" class="grid_3 menu">

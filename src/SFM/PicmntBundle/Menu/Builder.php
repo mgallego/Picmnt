@@ -14,7 +14,7 @@ class Builder extends ContainerAware
     $menu = $factory->createItem('root');
 
     $menu->setCurrentUri($this->container->get('request')->getRequestUri());
-    $menu->setAttribute('class', 'nav');     
+    $menu->setAttribute('class', 'submenu');     
     $em = $this->container->get('doctrine')->getEntityManager();
 
     $categories = $em->getRepository('SFMPicmntBundle:Category')->findAll();
