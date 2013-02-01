@@ -20,16 +20,17 @@
         "sensio/generator-bundle": "2.1.x-dev",
         "jms/security-extra-bundle": "1.1.*",
         "jms/di-extra-bundle": "1.0.*",
-	"jms/aop-bundle": "1.0.*",
-	"friendsofsymfony/user-bundle": "dev-master",
-	"knplabs/knp-menu-bundle": "1.0.0", 
-	"doctrine/doctrine-fixtures-bundle": "dev-master", 
-	"liip/functional-test-bundle": "dev-master",
-	"ideup/simple-paginator-bundle": "dev-master",
-	"ornicar/gravatar-bundle": "dev-master",
+        "jms/aop-bundle": "1.0.*",
+        "friendsofsymfony/user-bundle": "dev-master",
+        "knplabs/knp-menu-bundle": "1.0.0", 
+        "doctrine/doctrine-fixtures-bundle": "dev-master", 
+        "liip/functional-test-bundle": "dev-master",
+        "ideup/simple-paginator-bundle": "dev-master",
+        "ornicar/gravatar-bundle": "dev-master",
         "raulfraile/ladybug-bundle": "dev-master",
-	"liip/imagine-bundle": "dev-master",
-	"sfm/ducksboard-bundle": "dev-master"
+        "liip/imagine-bundle": "dev-master",
+        "sfm/ducksboard-bundle": "dev-master",
+        "leafo/lessphp": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [
