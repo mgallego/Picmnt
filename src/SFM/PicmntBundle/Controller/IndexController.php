@@ -10,12 +10,18 @@ class IndexController extends Controller
 
     public function indexAction(Request $request)
     {
+        $category = 'all';
+
+        if ($request->get('category')) {
+            $category = $request->get('category');
+        }
+
         $em = $this->get('doctrine')->getEntityManager();
         $paginator = array();
         
         $paginator = $this->get('ideup.simple_paginator');
         $paginator->setItemsPerPage(1000);
-        $images = $paginator->paginate($em->getRepository('SFMPicmntBundle:Image')->getRecentsDQL('all'))->getResult();
+        $images = $paginator->paginate($em->getRepository('SFMPicmntBundle:Image')->getRecentsDQL($category))->getResult();
 
         return $this->render('SFMPicmntBundle:Image:recents.html.twig', array("images"=>$images));
 

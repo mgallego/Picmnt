@@ -27,11 +27,23 @@ class Builder extends ContainerAware
       $option  = 'recents';
     }
 
-    $menu->addChild($this->container->get('translator')->trans('All'), array('route' => 'img_show', 'routeParameters'=> array('option'=>$option, 'idImage'=>$idImage, 'category'=>'all')));
+    $menu->addChild(
+        $this->container->get('translator')->trans('All'),
+        [
+            'route' => 'home',
+            'routeParameters'=> ['category'=>'all']
+        ]
+    );
 
     foreach ($categories as $category)
     {
-      $menu->addChild($this->container->get('translator')->trans(ucwords($category->getName())), array('route' => 'img_show', 'routeParameters'=> array('option'=>$option, 'idImage'=>$idImage, 'category'=>$category->getName())));
+      $menu->addChild(
+          $this->container->get('translator')->trans(ucwords($category->getName())),
+          [
+              'route' => 'home',
+              'routeParameters' => ['category'=>$category->getName()]
+              ]
+      );
     }
 
     return $menu;
