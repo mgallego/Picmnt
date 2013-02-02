@@ -26,7 +26,8 @@
 	  
 	{% block javascript %}
 	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-	  <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+	  <script src="{{ asset('bundles/sfmpicmnt/libs/jquery.mobile.custom.min.js') }}"></script>
+	  {#<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>  #}
 	  {#<script src="http://code.jquery.com/jquery.min.js"></script>#}
 	{% endblock javascript %}
 
@@ -41,11 +42,11 @@
 	      document.createElement('footer');
 	      document.createElement('hgroup');
 
-
-	      $(document).bind('pagecreate', function() {
+	      {#$(document).bind('pagecreate', function() {#}
 	          $('.tooltip-menu').live('tap', function() {
-		  $('.submenu').toggle();
-	      })})
+	      	      $('.submenu').toggle();
+	          })
+	      {#})#}
 
 	  </script>
 
