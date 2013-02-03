@@ -9,6 +9,7 @@ use SFM\PicmntBundle\Entity\Image;
 use SFM\PicmntBundle\Entity\User;
 use SFM\PicmntBundle\Form\ImageType;
 use SFM\PicmntBundle\Form\ImageUpType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 /**
  * Image Controller
@@ -21,6 +22,7 @@ class ImageController extends Controller
     /**
      * Upload an Image and set the defaults data
      *
+     * @Route ("/img/upload", name="img_upload")
      */
     public function uploadAction()
     {
@@ -87,6 +89,7 @@ class ImageController extends Controller
     /**
      * Edit an image
      *
+     * @Route ("/img/edit/{id_image}", name="img_edit")     
      */
     public function editAction($id_image){
         $em = $this->get('doctrine')->getEntityManager();     
@@ -132,6 +135,7 @@ class ImageController extends Controller
     /**
      * Change the image status to delete 2
      *
+     * @Route ("/img/delete/{id_image}", name="img_delete")     
      */
     public function deleteAction($idImage){
         $em = $this->get('doctrine')->getEntityManager();     
@@ -153,8 +157,12 @@ class ImageController extends Controller
     /**
      * Show an Image
      *
+     * @Route ("/{category}/{option}/{idImage}", name="img_show",
+     * defaults={"idImage"=0},
+     * requirements={"category" = "all|portraits|landscapes|animals|sports|buildings|others", "option" = "random|last|show|recents"})     
      */
     public function showAction($option, $idImage = 0, $category = 'all'){
+
         $em = $this->get('doctrine')->getEntityManager();
         $paginator = array();
 
@@ -190,6 +198,7 @@ class ImageController extends Controller
     /**
      * View an image
      *
+     * @Route ("/view/{user}/{slug}", name="img_view")     
      */
     public function viewAction($user, $slug)
     {

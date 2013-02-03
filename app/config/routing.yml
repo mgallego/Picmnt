@@ -1,42 +1,5 @@
-############################ INDEX CONTROLLER   ###############################
-home:
-    pattern: /
-    defaults: { _controller: SFMPicmntBundle:Index:index }
-  
-static_page:
-    pattern: /static/{page}
-    defaults: { _controller: SFMPicmntBundle:Index:static }
-
-########################### IMAGE CONTROLLER   #################################
-
-img_upload:
-    pattern: /img/upload
-    defaults: { _controller: SFMPicmntBundle:Image:upload }
-
-img_edit:
-    pattern: /img/edit/{id_image}
-    defaults: { _controller: SFMPicmntBundle:Image:edit }
-
-img_delete:
-    pattern: /img/delete/{idImage}
-    defaults: { _controller: SFMPicmntBundle:Image:delete }
-    
-
-img_show:
-    pattern: /{category}/{option}/{idImage}
-    defaults: { _controller: SFMPicmntBundle:Image:show,  idImage: 0 }
-    requirements:
-        category: all|portraits|landscapes|animals|sports|buildings|others
-        option: random|last|show|recents
-
-img_view:
-    pattern: /view/{user}/{slug}
-    defaults: { _controller: SFMPicmntBundle:Image:view }
-
-img_vote:
-    pattern: /img/vote/{idImage}
-    defaults: { _controller: SFMPicmntBundle:Image:vote }
-
+sfm_website:
+    resource: "@SFMPicmntBundle/Resources/config/routing.yml"
 
 ##############################  USER CONTROLLER  ##############################
 

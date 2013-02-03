@@ -4,10 +4,16 @@ namespace SFM\PicmntBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use SFM\PicmntBundle\Entity\Image;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class IndexController extends Controller
 {
 
+    /**
+     * Index Action
+     *
+     * @Route ("/", name="home")
+     */
     public function indexAction(Request $request)
     {
         $category = 'all';
@@ -27,6 +33,11 @@ class IndexController extends Controller
 
     }
 
+    /**
+     * Static pages
+     *
+     * @Route ("/static/{page}", name="static_page")
+     */
     public function staticAction($page)
     {
         return $this->render('SFMPicmntBundle:Static:'.$page.'.html.twig');

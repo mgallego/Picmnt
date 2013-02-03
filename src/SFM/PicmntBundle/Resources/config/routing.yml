@@ -1,3 +1,8 @@
-#homepage:
-#    pattern:  /
-#    defaults: { _controller: PSNMainBundle:Default:index }
+############################ INDEX CONTROLLER   ###############################
+sfm_index:
+    resource: "@SFMPicmntBundle/Controller/IndexController.php"
+    type:     annotation
+
+sfm_image:
+    resource: "@SFMPicmntBundle/Controller/ImageController.php"
+    type:     annotation
