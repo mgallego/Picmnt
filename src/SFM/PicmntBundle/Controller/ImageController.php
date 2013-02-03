@@ -130,8 +130,6 @@ class ImageController extends Controller
         return $response;
     }
 
-    
-
     /**
      * Change the image status to delete 2
      *
@@ -153,7 +151,6 @@ class ImageController extends Controller
         return $this->redirect($this->generateUrl('usr_profile', array("userName"=>$user->getUsername()) ));
     }
     
-
     /**
      * Show an Image
      *
@@ -187,13 +184,10 @@ class ImageController extends Controller
             $paginator->setItemsPerPage(15);
             $images = $paginator->paginate($em->getRepository('SFMPicmntBundle:Image')->getRecentsDQL($category))->getResult();
 
-            return $this->render('SFMPicmntBundle:Image:showImage.html.twig', array("images"=>$images));
+            return $this->render('SFMPicmntBundle:Image:recents.html.twig', array("images"=>$images));
         }
         return $this->render('SFMPicmntBundle:Image:viewImageNew.html.twig', array("image"=>$image, "paginator"=>$paginator));
-        //return $this->render('SFMPicmntBundle:Image:showImageNew.html.twig', array("image"=>$image, "paginator"=>$paginator));
     }
-    
-    
     
     /**
      * View an image
@@ -220,8 +214,6 @@ class ImageController extends Controller
         /* return $this->render('SFMPicmntBundle:Image:viewImage.html.twig', array("image"=>$image[0])); */
     }
 
-    
-
     /**
      * Delete a notification
      *
@@ -237,8 +229,6 @@ class ImageController extends Controller
         }
         $em->flush();
     }
-
-
     
     /**
      * Get the current User ID
@@ -251,6 +241,4 @@ class ImageController extends Controller
       
         return 0;
     }
-
-
 }

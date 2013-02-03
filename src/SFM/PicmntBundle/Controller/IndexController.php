@@ -18,10 +18,6 @@ class IndexController extends Controller
     {
         $category = 'all';
 
-        if ($request->get('category')) {
-            $category = $request->get('category');
-        }
-
         $em = $this->get('doctrine')->getEntityManager();
         $paginator = array();
         
@@ -29,7 +25,7 @@ class IndexController extends Controller
         $paginator->setItemsPerPage(1000);
         $images = $paginator->paginate($em->getRepository('SFMPicmntBundle:Image')->getRecentsDQL($category))->getResult();
 
-        return $this->render('SFMPicmntBundle:Image:recents.html.twig', array("images"=>$images));
+        return $this->render('SFMPicmntBundle:Image:recents.html.twig', array("images"=>$images, "option" => "recents"));
 
     }
 
