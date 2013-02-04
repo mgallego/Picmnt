@@ -42,9 +42,10 @@
 	      document.createElement('footer');
 	      document.createElement('hgroup');
 
-	      {#$(document).bind('pagecreate', function() {#}
-	          $('.tooltip-menu').live('tap', function() {
-	      	      $('.submenu').toggle();
+	      {#$(document).bin
+d('pagecreate', function() {#}
+	          $('#explore-tooltip').live('tap', function() {
+	      	      $('#explore-tooltip').children('ul').toggle();
 	          })
 	      {#})#}
 
