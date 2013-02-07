@@ -1,7 +1,23 @@
-{% extends "FOSUserBundle::layout.html.twig" %}
+{% extends "SFMPicmntBundle::layout.html.twig" %}
 
 
 {% block title %} | {{ 'Remember the password' | trans }}{% endblock %}
+
+{% block stylesheet %} 
+
+  {{ parent() }}
+
+  {% stylesheets filter='lessphp, ?yui_css' output='css/img-viewpicmnt.css' 
+          '@SFMPicmntBundle/Resources/public/less/user.less'
+          '@SFMPicmntBundle/Resources/public/less/alert.less'
+          '@SFMPicmntBundle/Resources/public/less/forms.less'
+          '@SFMPicmntBundle/Resources/public/less/img_box.less' %}
+  <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="all" />
+  {% endstylesheets %}
+
+  <link href="{{ asset('bundles/sfmpicmnt/css/ui-lightness/jquery-ui-1.10.0.custom.css') }}" rel="stylesheet">
+
+{% endblock stylesheet %} 
 
 {% block content %}
 
