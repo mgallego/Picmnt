@@ -1,63 +1,60 @@
-{% extends "FOSUserBundle::layout.html.twig" %}
+{% extends "SFMPicmntBundle::layout.html.twig" %}
 
 {% block title %} | Login{% endblock %}
 
+{% block stylesheet %} 
+
+  {{ parent() }}
+
+  {% stylesheets filter='lessphp, ?yui_css' output='css/img-viewpicmnt.css' 
+          '@SFMPicmntBundle/Resources/public/less/user.less'
+          '@SFMPicmntBundle/Resources/public/less/alert.less'
+          '@SFMPicmntBundle/Resources/public/less/forms.less'
+          '@SFMPicmntBundle/Resources/public/less/img_box.less' %}
+  <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="all" />
+  {% endstylesheets %}
+
+  <link href="{{ asset('bundles/sfmpicmnt/css/ui-lightness/jquery-ui-1.10.0.custom.css') }}" rel="stylesheet">
+
+{% endblock stylesheet %} 
+
+
 {% block content %}
 
-<section id="content" class="container fos">
-  <div class="row">
-    
-    <article class="span6" id="info-index">
-      {% include "SFMPicmntBundle:Index:info.html.twig" %}
-    </article>
-
-    <article id="login-form" class="span6">
-      {% if error %}
-      <div class="alert alert-error">
-	{{ error }}
+  <section id="login"  class="container container_12">
+      <div class="clear">
       </div>
-      {% endif %}
 
-      <form action="{{ path("fos_user_security_check") }}" method="post" class="well form-horizontal">
-	<fieldset>
-	  <legend>{{ 'Login' | trans }}</legend>
+	  <article class="grid_4 prefix_4">
 
-	  <div class="control-group">
-	    <label class="control-label" for="username">{{ 'Username:' | trans }}</label>
-	    <div class="controls">
-	      <input class="input-xlarge" id="username" name="_username" value="{{ last_username }}"size="30" type="text" />
-	    </div>
-	  </div>
+	      {% if error %}
+			<div class="alert alert-error">
+			    {{ error | trans }}
+			</div>
+	      {% endif %}
 
-	  <div class="control-group">
-	    <label class="control-label" for="password">{{ 'Password:' | trans }}</label>
-	    <div class="controls">
-	      <input class="input-xlarge" id="password" name="_password" size="30" type="password" />
-	    </div>
-	  </div> 
+	      <form action="{{ path("fos_user_security_check") }}" method="post">
 
-	  <div class="control-group">
-	    <label class="control-label" for="remember_me"> {{ 'Remember Me' | trans }}</label>
-	    <div class="controls">
-	      <label class="checkbox">
-	      <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-	      </label>
-	    </div>
-	  </div>
 
-	  <p id="remember-password">
-	    <a href="{{ path('fos_user_resetting_request') }}" >{{ 'Remember the password' | trans }}</a>
-	  </p>
+		  <h2>{% trans %}Acceder{% endtrans %}</h2>
+		  <fieldset>
+		      <label class="control-label" for="username">{{ 'Username:' | trans }}</label>
+		      <input type="text" id="username" name="_username" value="{{ last_username }}" size="30" />
 
-	  <div class="clearfix" style="text-align:right">
-	    <input type="submit" name="login" class="btn" />
-	  </div>
+		      <label class="control-label" for="password">{{ 'Password:' | trans }}</label>
+		      <input type="password" id="password" name="_password" size="30" />
+		      
+		      <label class="control-label" for="remember_me"> {{ 'Remember Me' | trans }}</label>
+		      <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
 
-      </form>
-      </fieldset>
-    </article>
+		      <a href="{{ path('fos_user_resetting_request') }}" >{{ 'Remember the password' | trans }}</a>
 
-  </div>
-</section>      
+		      <input type="submit"  class="button accept-button" />
+
+	      </fieldset>
+	      </form>
+	  </article>
+
+  </section>      
 
 {% endblock content %}
