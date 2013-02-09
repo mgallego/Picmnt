@@ -1,120 +1,34 @@
-{% extends "SFMPicmntBundle::layout_private.html.twig" %}
+{% extends "SFMPicmntBundle::layout.html.twig" %}
 
 {% block content %}
-  <nav class="container" style="padding-top: 50px">
-
-      {% block interno %}
-      <section id="pestanas">
-
-	<div id="row">
-	  {{ knp_menu_render('tabs', {'currentClass': 'active'}) }}
-	</div>
-
-      </section>
-
-      {% endblock %}
-  </nav>
-
-<section id="profile" class="container">
-  <article id="profile-avatar">
-    <div class="row">
-      <div class="span4">
-	{% if existsAvatar(username) %}
-	<img src="{{ avatarByUsername(username,'big') }}" class="avatar-large white-box-with-shadow"/>
-	{% else %}
-	    {% if gravatar_exists(getEmail(username)) %}
-	        <img src="{{ gravatar(getEmail(username), 300) }}" class="avatar-large white-box-with-shadow" />
-	    {% else %}
-	        <img src="{{ asset('/bundles/sfmpicmnt/images/user.svg') }}" class="avatar-large white-box-with-shadow"/>
-	    {% endif %}
-	{% endif %}
-      </div>
-
-      {% if app.user %}
-      {% if app.user.username == username %}
-      <div class="spam2 offset6">
-	<form action="{{ path('usr_profile', { 'userName': username }) }}" method="post" {{ form_enctype(form) }}>
-	  <fieldset>
-	    <legend>{{ 'Change Avatar' | trans }}</legend>
-	  {{ form_widget(form) }}
-	  <br>
-	  <div class="clearfix btn-right">
-	    <input id="form-edit-profile-submit" type="submit" class="btn primary"  />
-	  </div>
-	  </fieldset>
-	</form>
-      </div>
-
-      {% endif %}
-      {% endif %}
-    </div>
-  </article>
 
 
-  <article id="profile-images">
-    {% if images %}
-    <div id="profile-list-header" class="row">
-      <div class="span2">
-        {{ 'Preview' | trans }}
-      </div>
-      <div class="span5">
-        {{ 'Title' | trans }}
-      </div>
-      <div class="span1">
-        {{ 'Category' | trans }}
-      </div>
-      <div class="span1">
-        {{ 'Action' | trans }}
-      </div>
-      <div class="span2">
-	{% if app.user and (app.user.username == username) %}
-	{{ 'Pending Comments' | trans }}
-	{% endif %}
-      </div>
-    </div>
-  {% endif %}
-{% for image in images %}
-    <div id="profile-list-body" class="row">
-      <div class="span2">
-	<a href="{{ path('img_view', {'user': username, 'slug': image.slug}) }}"><img src="{{ thumbs_dir ~ image.url }}" class="img-thumbnail"/></a>
-      </div>
-      <div class="span5">
-	{{ image.title }}
-      </div>
-      <div class="span1">
-	{{ image.category | capitalize | trans }}
-      </div>
-      <div class="span1">
-	<a href="{{ path('img_view', {'user': username, 'slug': image.slug}) }}">{{ 'View' | trans }}</a>
-	{% if app.user and ( app.user.username == username) %}
-	<a href="{{ path('img_edit', {'id_image': image.idImage}) }}"> | {{ 'Edit' | trans }}</a>
-	{% endif %}
-      </div>
-       <div class="span2">
-	 {% if app.user and (app.user.username == username) %}
-	 <span class="comment-pending">{{ imagePendingComments(image.idImage) }}</span>
-	 {% endif %}
-       </div>
-     </div>
-     {% else %}
-     <strong>{{ 'This user has not upload any picture' | trans }}</strong>
-     {% endfor %}
-  </article>
+  <div class="clear"></div>
 
 
-  {% if images %}
-  <article id="profile-paginator">
-    <div class="row">
-      {{ simple_paginator_render('usr_profile', null, { 
-      'routeParams': {'userName': username},
-      'containerClass': 'profile-paginator',
-      }
-      ) }}
-    </div>
-  </article>
-  {% endif %}
+  <section id="profile" class="container container_12">
 
-</section>
+      <article id="profile-info" class="grid_4 img-box">
+		  <span id="profile-avatar">
+			  {% if existsAvatar(user.username) %}
+	          <img src="{{ avatarByUsername(user.username,'big') }}" alt="avatar"/>
+			  {% else %}
+		      {% if gravatar_exists(getEmail(user.username)) %}
+		      <img src="{{ gravatar(getEmail(user.username), 300) }}" />
+		      {% else %}
+		      <img src="{{ asset('/bundles/sfmpicmnt/images/default_user100x100.png') }}" alt="avatar"/>
+		      {% endif %}
+			  {% endif %}
+		  </span>
+		  <span id="profile-info">
+			  <h2>{{ user.username }}</h2>
+		  </span>
+      </article>
+
+      <article id="profile-images">
+		  {% include "SFMPicmntBundle:Image:thumbs.html.twig" with {'images': user.images} %}
+      </article>
+  </section>
 
 {% endblock %}
 

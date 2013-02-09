@@ -32,10 +32,11 @@ class UserController extends Controller{
 	}
 
         $avatarOld = $user->getAvatar();
-        
+
 	$images = $this->getPaginatedImages($user, $em);
-	
+
 	$form = $this->getAvatarForm($user);
+
 	$request = $this->get('request');
 
 	if ($request->getMethod() == 'POST'){
@@ -72,7 +73,7 @@ class UserController extends Controller{
 		$em->flush();
 	    }
 	}
-	return $this->render('SFMPicmntBundle:User:profile.html.twig', array('images' => $images, 'form' => $form->createView(), 'username' => $user->getUsername()));
+	return $this->render('SFMPicmntBundle:User:profile.html.twig', array('images' => $images, 'form' => $form->createView(), 'user' => $user));
     }
 
 
@@ -83,7 +84,7 @@ class UserController extends Controller{
      */
     private function getAvatarForm($user){
 	return $this->get('form.factory')
-	    ->createBuilder('form', $user)
+	    ->createBuilder('form')
 	    ->add('avatar', 'file', array('required'=>false))
 	    ->getForm();
     }

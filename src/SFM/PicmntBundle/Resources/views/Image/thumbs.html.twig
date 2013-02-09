@@ -1,0 +1,14 @@
+  <div class="clear"></div>
+      <ul class="img-thumbs">
+	  {% for image in images %}
+	    {% set imageUrl =  '/uploads/' ~ image.url %}
+	      <div class="thumbnail">
+		  <div class="img-thumb">
+		      <a href="{{ path('img_view', {'user': image.user.username, 'slug': image.slug}) }}"><img src="{{ imageUrl | imagine_filter('thumbnail') }}" alt="{{ image.title }}"/></a>
+		      <div class="thumb-info">
+			  {{ image.title | truncate(20) }}
+		      </div>
+		  </div>
+	      </div>
+	  {% endfor %}
+      </ul>

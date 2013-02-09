@@ -1,8 +1,5 @@
 {% extends "SFMPicmntBundle::layout.html.twig" %}
 
-{% set category = app.request.get('category') %} 
-{% set option = app.request.get('option') %}
-
 {% block javascript %}
   {{ parent() }}
 
@@ -14,20 +11,7 @@
   <div class="clear"></div>
 
   <section id="image-section"  class="container container_12">
-
-      <ul class="img-thumbs">
-	  {% for image in images %}
-	    {% set imageUrl =  '/uploads/' ~ image.url %}
-	      <div class="thumbnail">
-		  <div class="img-thumb">
-		      <a href="{{ path('img_view', {'user': image.user.username, 'slug': image.slug}) }}"><img src="{{ imageUrl | imagine_filter('thumbnail') }}" alt="{{ image.title }}"/></a>
-		      <div class="thumb-info">
-			  {{ image.title | truncate(20) }}
-		      </div>
-		  </div>
-	      </div>
-	  {% endfor %}
-      </ul>
-
+    {% include "SFMPicmntBundle:Image:thumbs.html.twig" with {'images': images} %}
   </section>
+
 {% endblock content %}

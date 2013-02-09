@@ -26,7 +26,6 @@
 	  <h2 class="form-title">{{ 'Please select an image' | trans }}</h2>
 	  <form  action="{{ path('img_upload') }}" method="POST" {{ form_enctype(form) }} >
 	      <fieldset>
-{#		  {{ form_label(form.dataFile , 'Url' | trans ) }} #}
 		  {{ form_widget(form.dataFile) }}
 
 		  {{ form_rest(form) }}
