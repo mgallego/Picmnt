@@ -3,18 +3,6 @@
 {% set category = app.request.get('category') %} 
 {% set option = app.request.get('option') %}
 
-{% block stylesheet %} 
-
-  {{ parent() }}
-
-  {% stylesheets filter='lessphp, ?yui_css' output='css/img-thumbs-picmnt.css' 
-          '@SFMPicmntBundle/Resources/public/less/thumbs.less'
-          '@SFMPicmntBundle/Resources/public/less/img_box.less' %}
-  <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="all" />
-  {% endstylesheets %}
-  
-{% endblock stylesheet %} 
-
 {% block javascript %}
   {{ parent() }}
 

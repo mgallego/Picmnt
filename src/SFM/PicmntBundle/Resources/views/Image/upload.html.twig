@@ -1,71 +1,40 @@
-{% extends "SFMPicmntBundle::layout_private.html.twig" %}
-
-{% form_theme form 'SFMPicmntBundle::form.html.twig' %}
-
-{% block scripts %}
-  {{ parent() }}
-
-    <script type="text/javascript">
-      function showUploading(){
-      $( "#upload-in-progress" ).show();
-      };
-    </script>
-{% endblock scripts %}
+{% extends "SFMPicmntBundle::layout.html.twig" %}
 
 {% block content %}
+  {{ parent() }}
 
-<section id="content" style="padding-top: 50px" class="container-fluid">
-  {% block interno %}
-  <section id="pestanas">
-    <div id="row">
-      {{ knp_menu_render('tabs', {'currentClass': 'active'}) }}
-    </div>
+  <section id="upload"  class="container container_12">
+
+      <div class="clear">
+      </div>
+
+      <article id="upload-info" class="grid_4 prefix_4">
+	  <p>
+	      {{ 'Remember that the images you upload must be of your property.' | trans }}
+	  </p>
+	  <p>
+	      {{ 'It is forbidden to upload images of nude or erotic.' | trans }}
+	  </p>
+      </article>
+
+      <article class="grid_4 prefix_4">
+
+	  {% if form_errors(form) %}
+	    {{ form_errors(form) }}
+	  {% endif %}
+
+	  <h2 class="form-title">{{ 'Please select an image' | trans }}</h2>
+	  <form  action="{{ path('img_upload') }}" method="POST" {{ form_enctype(form) }} >
+	      <fieldset>
+{#		  {{ form_label(form.dataFile , 'Url' | trans ) }} #}
+		  {{ form_widget(form.dataFile) }}
+
+		  {{ form_rest(form) }}
+
+		  <input type="submit" class="button accept-button"/>
+	      </fieldset>
+	  </form>
+      </article>
   </section>
-  {% endblock %}
-  
-  <div class="row">
-
-    <article class="span5 offset4">
-
-      <form class="well form-horizontal" id="upload_form" action="{{ path('img_upload') }}" method="post" {{ form_enctype(form) }} >
-	<fieldset>
-	  <legend>{{ 'Please select an image' | trans }}</legend>
-	  {{ form_errors(form) }}
-	  <div>
-	    {% if form_errors(form.dataFile) %}
-	    <div class="alert-message error">
-	      <div id="upload-error">
-		{{ form_errors(form.dataFile) }}
-	      </div>
-	    </div>
-	    {% endif %}
-	    {{ form_label(form.dataFile , 'Url' | trans ) }}
-	    {{ form_widget(form.dataFile) }}
-	  </div>
-	  {{ form_rest(form) }}
-
-	  <div id="upload-in-progress" style="display:none; text-align:center;"> 
-	    <p>{{ 'Uploading' | trans }}... </p> 
-	    <img src="http://camanjs.com/imgs/ajax-loader.gif" id="preset-uploading" /> 
-	  </div> 
-
-	  <div class="clearfix" style="text-align:right">
-	    <input type="submit" id="upload" onclick="javascript:showUploading()" class="btn primary"/>
-	  </div>
-	</fieldset>
-      </form>
-    </article>
-
-    <artcile id="upload-restrictions" class="span5 offset4">
-      <p>
-	{{ 'Remember that the images you upload must be of your property.' | trans }}
-      </p>
-      <p>
-	{{ 'It is forbidden to upload images of nude or erotic.' | trans }}
-    </artcile>
-
-  </div>
-</section>
-
 {% endblock %}
 

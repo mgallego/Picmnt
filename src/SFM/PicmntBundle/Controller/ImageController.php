@@ -133,7 +133,7 @@ class ImageController extends Controller
     /**
      * Change the image status to delete 2
      *
-     * @Route ("/img/delete/{id_image}", name="img_delete")     
+     * @Route ("/img/delete/{idImage}", name="img_delete")     
      */
     public function deleteAction($idImage){
         $em = $this->get('doctrine')->getEntityManager();     

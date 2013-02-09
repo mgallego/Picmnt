@@ -1,18 +1,5 @@
 {% extends "SFMPicmntBundle::layout.html.twig" %}
 
-{% block stylesheet %} 
-
-  {{ parent() }}
-
-  {% stylesheets filter='lessphp, ?yui_css' output='css/img-edit-picmnt.css' 
-    '@SFMPicmntBundle/Resources/public/less/edit_image.less'
-    '@SFMPicmntBundle/Resources/public/less/forms.less'
-          '@SFMPicmntBundle/Resources/public/less/img_box.less' %}
-  <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="all" />
-	    {% endstylesheets %}
-
-{% endblock stylesheet %} 
-	  
 {% block content %}
 
   {{ parent() }}
