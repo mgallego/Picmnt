@@ -10,6 +10,9 @@ use SFM\PicmntBundle\Entity\User;
 use SFM\PicmntBundle\Form\ImageType;
 use SFM\PicmntBundle\Form\ImageUpType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+
 
 /**
  * Image Controller
@@ -67,13 +70,6 @@ class ImageController extends Controller
                     mkdir($imageDefaults['thumbs_path']);
                 }
 
-                /* $imageUtil->createImageSmall( */
-                /*     $imageDefaults['upload_path'].$newFileName, */
-                /*     $imageDefaults['thumbs_path'].$newFileName, */
-                /*     $imageDefaults['small_size'] */
-                /* ); */
-
-                
                 if ($this->container->getParameter('use_ducksoard') === 'yes') {
                     $widget = $this->container->get('ducksboard.widget');
                     $widgetId = $this->container->getParameter('upload_widget');
@@ -163,30 +159,60 @@ class ImageController extends Controller
         $em = $this->get('doctrine')->getEntityManager();
         $paginator = array();
 
-        if ( $option == 'last' ) {
-            $image = $em->find('SFMPicmntBundle:Image',$idImage);
-            if (!$image){
-                $images = $em->getRepository('SFMPicmntBundle:Image')->findFirst('p.idImage DESC', $category);
-                $image = $images[0];
-            }
-            $paginateService = $this->container->get('picmnt.paginator');
-            $paginator = $paginateService->getPaginator($option, $image->getIdImage(), $category);
-        }
-        else if ( $option == 'random' ){
-            $images = $em->getRepository('SFMPicmntBundle:Image')->getRandom($category);
-            $image = $images[0];
-        }
-        else if ( $option == 'show' ){
-            $image = $em->find('SFMPicmntBundle:Image',$idImage);
-        }
-        else if ( $option == 'recents'){
-            $paginator = $this->get('ideup.simple_paginator');
-            $paginator->setItemsPerPage(15);
-            $images = $paginator->paginate($em->getRepository('SFMPicmntBundle:Image')->getRecentsDQL($category))->getResult();
+        $imagesPerPage = $this->container->getParameter('images_per_page');
 
-            return $this->render('SFMPicmntBundle:Image:recents.html.twig', array("images"=>$images));
+        switch ($option) {
+            case 'random':
+                $image = $em->getRepository('SFMPicmntBundle:Image')->getRandom($category);
+                break;
+            case 'show':
+                $image = $em->find('SFMPicmntBundle:Image',$idImage);
+                break;
+            case 'recents':
+                $paginator = $this->get('ideup.simple_paginator');
+                $paginator->setItemsPerPage($imagesPerPage);
+            $images = $em->getRepository('SFMPicmntBundle:Image')
+                ->getRecentsDQL($category)
+                ->setMaxResults($imagesPerPage)
+                ->getResult();
+                return $this->render('SFMPicmntBundle:Image:recents.html.twig', array("images"=>$images));
+                break;
         }
+        
         return $this->render('SFMPicmntBundle:Image:viewImageNew.html.twig', array("image"=>$image, "paginator"=>$paginator));
+    }
+
+    /**
+     * View an image
+     *
+     * @Route ("/ajax/images/get_more", name="ajax_img_get_more")     
+     */
+    public function getMoreImagesAction(Request $request)
+    {
+        $imagesPerPage = $this->container->getParameter('images_per_page');
+        $em = $this->get('doctrine')->getEntityManager();
+        $serializeImage = [];
+        $page = $request->query->get('page');
+        $category = $request->query->get('category');
+        $username = $request->query->get('username');
+        $option = $request->query->get('option');
+
+        if ($option === 'recents') {
+            $images = $em->getRepository('SFMPicmntBundle:Image')
+                ->getRecentsDQL('all')
+                ->setFirstResult($page * $imagesPerPage)
+                ->setMaxResults($imagesPerPage)
+                ->getResult();
+
+            foreach ($images as $image) {
+                $serializeImage[] = ['slug' => $image->getSlug(),
+                    'username' => $image->getUser()->getUsername(),
+                    'title' => $image->getTitle(),
+                    'url' => $image->getUrl()
+                ];
+            }
+        }
+        return new Response(json_encode($serializeImage));
     }
     
     /**

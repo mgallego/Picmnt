@@ -41,7 +41,7 @@ class ImageRepository extends EntityRepository
 	$query->setParameter('randIdImage', $randIdImage);
 	$query->setMaxResults(1);
 
-	return $query->getResult();
+	return $query->getSingleResult();
 
     }
 

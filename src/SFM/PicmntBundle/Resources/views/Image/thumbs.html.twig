@@ -1,5 +1,5 @@
   <div class="clear"></div>
-      <ul class="img-thumbs">
+      <div class="img-thumbs">
 	  {% for image in images %}
 	    {% set imageUrl =  '/uploads/' ~ image.url %}
 	      <div class="thumbnail">
@@ -16,4 +16,4 @@
 		  </div>
 	      </div>
 	  {% endfor %}
-      </ul>
+	  </div>
