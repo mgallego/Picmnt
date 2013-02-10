@@ -164,19 +164,19 @@ class ImageController extends Controller
         switch ($option) {
             case 'random':
                 $image = $em->getRepository('SFMPicmntBundle:Image')->getRandom($category);
-                break;
+            break;
             case 'show':
                 $image = $em->find('SFMPicmntBundle:Image',$idImage);
-                break;
+            break;
             case 'recents':
                 $paginator = $this->get('ideup.simple_paginator');
-                $paginator->setItemsPerPage($imagesPerPage);
+            $paginator->setItemsPerPage($imagesPerPage);
             $images = $em->getRepository('SFMPicmntBundle:Image')
                 ->getRecentsDQL($category)
                 ->setMaxResults($imagesPerPage)
                 ->getResult();
-                return $this->render('SFMPicmntBundle:Image:recents.html.twig', array("images"=>$images));
-                break;
+            return $this->render('SFMPicmntBundle:Image:recents.html.twig', array("images"=>$images));
+            break;
         }
         
         return $this->render('SFMPicmntBundle:Image:viewImageNew.html.twig', array("image"=>$image, "paginator"=>$paginator));
@@ -189,32 +189,10 @@ class ImageController extends Controller
      */
     public function getMoreImagesAction(Request $request)
     {
-        $imagesPerPage = $this->container->getParameter('images_per_page');
-        $em = $this->get('doctrine')->getEntityManager();
-        $serializeImage = [];
-        $page = $request->query->get('page');
-        $category = $request->query->get('category');
-        $username = $request->query->get('username');
-        $option = $request->query->get('option');
-
-        if ($option === 'recents') {
-            $images = $em->getRepository('SFMPicmntBundle:Image')
-                ->getRecentsDQL('all')
-                ->setFirstResult($page * $imagesPerPage)
-                ->setMaxResults($imagesPerPage)
-                ->getResult();
-
-            foreach ($images as $image) {
-                $serializeImage[] = ['slug' => $image->getSlug(),
-                    'username' => $image->getUser()->getUsername(),
-                    'title' => $image->getTitle(),
-                    'url' => $image->getUrl()
-                ];
-            }
-        }
-        return new Response(json_encode($serializeImage));
+        $images = $this->get('sfm_picmnt.thumb_manager')->getMoreThumbs($request);
+        return new Response(json_encode($images));
     }
-    
+
     /**
      * View an image
      *

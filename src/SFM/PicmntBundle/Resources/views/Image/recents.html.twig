@@ -3,40 +3,15 @@
 {% block javascript %}
   {{ parent() }}
 
+  {% javascripts filter='?yui_js'
+      '@SFMPicmntBundle/Resources/public/js/picmnt.js' %}
+        <script src="{{ asset_url }}"></script>
+  {% endjavascripts %}
+
 <script>
-var page = 1;
-
-function getMore() {
-    $.ajax({
-	     url: '/app_dev.php/ajax/images/get_more?option=recents&page=' +  ++page,
-		 dataType: 'json'
-    }).done(function(data) {
-	   //console.log(data);
-	   for (i in data)
-	   {
-	       image = data[i];
-	       imageUrl = '/media/cache/thumbnail/uploads/' +  image['url'];
-
-	       htmlText = "<div class='thumbnail'>\
-		     <div class='img-thumb'>\
-				 <a href='#'><img src='" +  imageUrl + "' alt='" + image["title"] + "'/></a>\
-		          <div class='thumb-info'>\
-				    <span>" + image["title"] + "</span>\
-					  <p>\
-						  By: <a href='#'>\
-							  "+ image["username"] +"\
-						  </a>\
-			   </p>\
-		      </div>\
-		  </div>\
-	      </div>";
-
-          $('.img-thumbs').append(htmlText);
-	   }
-    });
-}
-
+	var page = 1;
 </script>
+
 {% endblock javascript %}
 
 {% block content %}
