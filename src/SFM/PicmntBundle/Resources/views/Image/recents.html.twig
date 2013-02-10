@@ -9,7 +9,21 @@
   {% endjavascripts %}
 
 <script>
+
+	{% if app.request.get('category') == '' %}
+	   var category = 'all';
+	{% else %}
+	   var category = "{{ app.request.get('category') }}";
+	{% endif %}
+
+	{% if app.request.get('option') == '' %}
+	   var option = 'recents';
+	{% else %}
+	   var option = "{{ app.request.get('option') }}";
+	{% endif %}
+
 	var page = 1;
+
 </script>
 
 {% endblock javascript %}
@@ -20,7 +34,7 @@
   <div class="clear"></div>
 
   <section id="image-section"  class="container container_12">
-    {% include "SFMPicmntBundle:Image:thumbs.html.twig" with {'images': images} %}
+      {% include "SFMPicmntBundle:Image:thumbs.html.twig" with {'images': images} %}
   </section>
 
 {% endblock content %}

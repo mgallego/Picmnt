@@ -1,7 +1,7 @@
-function getMore() {
+function loadMoreThumbs() {
 
     $.ajax({
-	url: '/app_dev.php/ajax/images/get_more?option=recents&page=' +  ++page,
+	url: '/app_dev.php/ajax/images/get_more?option='+option+'&page=' +  ++page +'&category='+category,
 	async: false,
 	dataType: 'json'
     }).success(function(images) {
@@ -25,7 +25,7 @@ function getMore() {
 
             $('.img-thumbs').append(htmlText);
 
-	    //goto last
+	    //document.location.href = '#load-more-thumbs';
 	}
 
     });

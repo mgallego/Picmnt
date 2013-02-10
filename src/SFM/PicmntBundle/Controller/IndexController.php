@@ -20,9 +20,10 @@ class IndexController extends Controller
 
         $em = $this->get('doctrine')->getEntityManager();
         $paginator = array();
-        
+
+        $imagesPerPage = $this->container->getParameter('images_per_page');
         $paginator = $this->get('ideup.simple_paginator');
-        $paginator->setItemsPerPage(1000);
+        $paginator->setItemsPerPage($imagesPerPage);
         $images = $paginator->paginate($em->getRepository('SFMPicmntBundle:Image')->getRecentsDQL($category))->getResult();
 
         return $this->render('SFMPicmntBundle:Image:recents.html.twig', array("images"=>$images, "option" => "recents"));

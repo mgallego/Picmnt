@@ -63,7 +63,7 @@ class ThumbManager
         
         if ($option === 'recents') {
             $images = $this->em->getRepository('SFMPicmntBundle:Image')
-                ->getRecentsDQL('all')
+                ->getRecentsDQL($category)
                 ->setFirstResult($page * $this->imagesPerPage)
                 ->setMaxResults($this->imagesPerPage)
                 ->getResult();
