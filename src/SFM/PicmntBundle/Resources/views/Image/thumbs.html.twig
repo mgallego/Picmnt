@@ -18,6 +18,8 @@
 	  {% endfor %}
 	  </div>
 	  <div class="clear"></div>
+	  {% if loadMore %}
 	  <div id="load-more-thumbs" class="grid_2 prefix_5">
 		  <a href="javascript:loadMoreThumbs()">{% trans %}Load More{% endtrans %}</a>
 	  </div>
+	  {% endif %}

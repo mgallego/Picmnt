@@ -33,7 +33,13 @@ class UserController extends Controller{
 
         $avatarOld = $user->getAvatar();
 
-	$images = $this->getPaginatedImages($user, $em);
+        $images = $em->getRepository('SFMPicmntBundle:Image')
+            ->getByUsername($user->getUsername(), null, $this->container->getParameter('images_per_page'));
+
+        $loadMore = true;
+        if (count($images) < $this->container->getParameter('images_per_page')) {
+            $loadMore = false;
+        }
 
 	$form = $this->getAvatarForm($user);
 
@@ -73,7 +79,7 @@ class UserController extends Controller{
 		$em->flush();
 	    }
 	}
-	return $this->render('SFMPicmntBundle:User:profile.html.twig', array('images' => $images, 'form' => $form->createView(), 'user' => $user));
+	return $this->render('SFMPicmntBundle:User:profile.html.twig', array('images' => $images, 'form' => $form->createView(), 'user' => $user, 'loadMore'=> $loadMore));
     }
 
 
@@ -113,6 +119,7 @@ class UserController extends Controller{
      *
      */
     private function getPaginatedImages($user, $em){
+        return $em->getRepository('SFMPicmntBundle:Image')->getByUser($username, null, 10);
 	$paginator = $this->get('ideup.simple_paginator');
 	$paginator->setItemsPerPage(10);
 	return  $paginator->paginate($em->getRepository('SFMPicmntBundle:Image')->getByUserDQL($user->getUsername()))->getResult();

@@ -52,7 +52,7 @@ class ThumbManager
      * 
      * @param array $params
      */
-    public function getMoreThumbs(Request $request)
+    public function getMoreThumbs(Request $request, $imagemanagerResponse )
     {
         $serializeImages = [];
         
@@ -60,17 +60,26 @@ class ThumbManager
         $category = $request->query->get('category');
         $username = $request->query->get('username');
         $option = $request->query->get('option');
+        $username = $request->query->get('username');
         
         if ($option === 'recents') {
             $images = $this->em->getRepository('SFMPicmntBundle:Image')
-                ->getRecentsDQL($category)
-                ->setFirstResult($page * $this->imagesPerPage)
-                ->setMaxResults($this->imagesPerPage)
-                ->getResult();
+                    ->getRecents($category, $page * $this->imagesPerPage, $this->imagesPerPage);
+        } elseif ($option = 'profile') {
+            $images = $this->em->getRepository('SFMPicmntBundle:Image')
+                ->getByUsername($username, $page * $this->imagesPerPage, $this->imagesPerPage);
+        }
 
+        if ($images) {
             foreach ($images as $image) {
                 $user = $image->getUser();
                 $thumb = new ThumbType();
+                
+                $imagemanagerResponse->filterAction(
+                        $request,
+                        'uploads/'.$image->getUrl(),      // original image you want to apply a filter to
+                        'thumbnail'              // filter defined in config.yml
+                    );
                 
                 $thumb->setSlug($image->getSlug());
                 $thumb->setImageId($image->getIdImage());
@@ -96,11 +105,11 @@ class ThumbManager
                     )
                 );
                 
-                $serializeImage[] = $thumb->toArray();
+                $serializeImages[] = $thumb->toArray();
             }
         }
 
-        return $serializeImage;
+        return $serializeImages;
     }
     
 }

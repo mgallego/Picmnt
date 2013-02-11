@@ -164,19 +164,19 @@ class ImageController extends Controller
         switch ($option) {
             case 'random':
                 $image = $em->getRepository('SFMPicmntBundle:Image')->getRandom($category);
-            break;
+                break;
             case 'show':
                 $image = $em->find('SFMPicmntBundle:Image',$idImage);
-            break;
+                break;
             case 'recents':
-                $paginator = $this->get('ideup.simple_paginator');
-            $paginator->setItemsPerPage($imagesPerPage);
-            $images = $em->getRepository('SFMPicmntBundle:Image')
-                ->getRecentsDQL($category)
-                ->setMaxResults($imagesPerPage)
-                ->getResult();
-            return $this->render('SFMPicmntBundle:Image:recents.html.twig', array("images"=>$images));
-            break;
+                $images = $em->getRepository('SFMPicmntBundle:Image')
+                    ->getRecents($category, null, $imagesPerPage);
+                $loadMore = true;
+                if (count($images) < $imagesPerPage) {
+                    $loadMore = false;
+                }
+                return $this->render('SFMPicmntBundle:Image:recents.html.twig', array("images"=>$images, 'loadMore' => $loadMore));
+                break;
         }
         
         return $this->render('SFMPicmntBundle:Image:viewImageNew.html.twig', array("image"=>$image, "paginator"=>$paginator));
@@ -189,7 +189,8 @@ class ImageController extends Controller
      */
     public function getMoreImagesAction(Request $request)
     {
-        $images = $this->get('sfm_picmnt.thumb_manager')->getMoreThumbs($request);
+        $images = $this->get('sfm_picmnt.thumb_manager')->getMoreThumbs($request, $this->container
+            ->get('liip_imagine.controller'));
         return new Response(json_encode($images));
     }
 

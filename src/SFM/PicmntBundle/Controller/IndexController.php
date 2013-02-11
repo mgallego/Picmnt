@@ -25,8 +25,12 @@ class IndexController extends Controller
         $paginator = $this->get('ideup.simple_paginator');
         $paginator->setItemsPerPage($imagesPerPage);
         $images = $paginator->paginate($em->getRepository('SFMPicmntBundle:Image')->getRecentsDQL($category))->getResult();
-
-        return $this->render('SFMPicmntBundle:Image:recents.html.twig', array("images"=>$images, "option" => "recents"));
+        $loadMore = true;
+        if (count($images) < $imagesPerPage) {
+            $loadMore = false;
+        }
+        
+        return $this->render('SFMPicmntBundle:Image:recents.html.twig', array("images"=>$images, "option" => "recents", 'loadMore' => $loadMore));
 
     }
 

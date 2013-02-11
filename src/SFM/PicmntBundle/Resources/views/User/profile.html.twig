@@ -1,5 +1,25 @@
 {% extends "SFMPicmntBundle::layout.html.twig" %}
 
+{% block javascript %}
+  {{ parent() }}
+
+  {% javascripts filter='?yui_js'
+      '@SFMPicmntBundle/Resources/public/js/picmnt.js' %}
+        <script src="{{ asset_url }}"></script>
+  {% endjavascripts %}
+
+<script>
+
+	var category = 'all';
+	var option = 'profile';
+	var username = '{{ user.username }}';
+	var page = 1;
+
+</script>
+
+{% endblock javascript %}
+
+
 {% block content %}
 
 
@@ -26,7 +46,7 @@
       </article>
 
       <article id="profile-images">
-		  {% include "SFMPicmntBundle:Image:thumbs.html.twig" with {'images': user.images} %}
+		  {% include "SFMPicmntBundle:Image:thumbs.html.twig" with {'images': images} %}
       </article>
   </section>
 

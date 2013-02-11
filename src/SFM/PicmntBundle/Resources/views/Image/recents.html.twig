@@ -22,6 +22,8 @@
 	   var option = "{{ app.request.get('option') }}";
 	{% endif %}
 
+	var username = '';
+
 	var page = 1;
 
 </script>
@@ -34,7 +36,7 @@
   <div class="clear"></div>
 
   <section id="image-section"  class="container container_12">
-      {% include "SFMPicmntBundle:Image:thumbs.html.twig" with {'images': images} %}
+      {% include "SFMPicmntBundle:Image:thumbs.html.twig" with {'images': images, 'loadMore': loadMore} %}
   </section>
 
 {% endblock content %}

@@ -1,7 +1,7 @@
 function loadMoreThumbs() {
 
     $.ajax({
-	url: '/app_dev.php/ajax/images/get_more?option='+option+'&page=' +  ++page +'&category='+category,
+	url: '/app_dev.php/ajax/images/get_more?option='+option+'&page=' +  ++page +'&category='+category+'&username='+ username,
 	async: false,
 	dataType: 'json'
     }).success(function(images) {

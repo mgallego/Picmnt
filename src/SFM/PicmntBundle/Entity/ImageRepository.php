@@ -63,14 +63,17 @@ class ImageRepository extends EntityRepository
     }
 
 
-    public function getByUser($user){
+    public function getByUsername($username, $offset = 0, $maxResults = 20){
 
-	return $this->getByUserDQL($user)->getResult();
+	return $this->getByUserDQL($username)
+            ->setFirstResult($offset)
+            ->setMaxResults($maxResults)
+            ->getResult();
 
     }
 
 
-    public function getByUserDQL($user){
+    public function getByUserDQL($username){
 	$query = $this->getEntityManager()->createQuery('SELECT p 
                                                      FROM SFMPicmntBundle:Image p
                                                      JOIN p.user u
@@ -83,7 +86,7 @@ class ImageRepository extends EntityRepository
 
 	//	select i.*, count(c.notified) from Image_Comment c, Image i  where notified  = 0 and i.id_image = c.id_image group by i.id_image;
 
-	$query->setParameter('username', $user);
+	$query->setParameter('username', $username);
 
 	return $query;
 
@@ -226,9 +229,12 @@ class ImageRepository extends EntityRepository
 
     }
 
-    public function getRecents($category){
+    public function getRecents($category, $offset = 0, $maxResults = 30){
 
-	return $this->getRecentsDQL($category)->getResult();
+	return $this->getRecentsDQL($category)
+            ->setFirstResult($offset)
+            ->setMaxResults($maxResults)
+            ->getResult();
 
     }
 
