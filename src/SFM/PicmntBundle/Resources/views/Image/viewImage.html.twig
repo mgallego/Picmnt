@@ -7,6 +7,13 @@
 
   <link href="{{ asset('bundles/sfmpicmnt/css/ui-lightness/jquery-ui-1.10.0.custom.css') }}" rel="stylesheet">
 
+	{% stylesheets filter='lessphp, ?yui_css' output='css/picmnt.css' 
+	            '@SFMPicmntBundle/Resources/public/less/view_image.less'
+			    '@SFMPicmntBundle/Resources/public/less/comments.less'
+				  %}
+	<link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="all" />
+	{% endstylesheets %}
+	
 {% endblock stylesheet %} 
 
 {% block javascript %}
@@ -106,7 +113,7 @@
 		      {# try to create a twig function #}
 
 		      {% if existsAvatar(username) %}
-			<img src="{{ avatarByUsername(username,'small') }}" class="avatar-small" alt="avatar-small" />
+			<img src="{{ avatarByUsername(username,'big') | imagine_filter('avatar_small') }}" class="avatar-small" alt="avatar-small" />
 		      {% else %}
 			{% if gravatar_exists(getEmail(username)) %}
 			  <img src="{{ gravatar(getEmail(username), 50) }}" class="avatar-small" alt="avatar-small"/>
