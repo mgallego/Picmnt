@@ -93,9 +93,10 @@
  
 	  <article id="comments">
 	      <textarea placeholder="Add your comment..." class="textarea" name="comment" required="required"></textarea> 
-	      <button class="button cancel-button" type="reset"  onclick="javascript:applyProposal(0,0,0,0)">{{ 'Cancel' | trans }}</button> 
-	      <input class="button accept-button" type="submit" value="{% trans %}Send Comment{% endtrans %}">&nbsp;
-	      
+		  <div id="comment-buttons">
+ 			  <button class="button cancel-button" type="reset"  onclick="javascript:applyProposal(0,0,0,0)">{{ 'Cancel' | trans }}</button> 
+			  <input class="button accept-button" type="submit" value="{% trans %}Send Comment{% endtrans %}">&nbsp;
+	      </div>
 	      {#  ################   COMMENTS   ################## #}
 
 	      {% if image.imageComments | length > 0  %}
