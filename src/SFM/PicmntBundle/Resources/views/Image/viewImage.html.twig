@@ -1,135 +1,234 @@
-{% extends "SFMPicmntBundle::layout_private.html.twig" %}
-
-{% block title %}
- | {{ image.title }}
-{% endblock title %}
+{% extends "SFMPicmntBundle::layout.html.twig" %}
 
 
+{% block stylesheet %} 
 
-{% block meta %}
-    {% if image is defined %}
-        {% include "SFMPicmntBundle:Addons:fbMeta.html.twig" %}
-    {% endif %}
-{% endblock meta %}
+  {{ parent() }}
+
+  <link href="{{ asset('bundles/sfmpicmnt/css/ui-lightness/jquery-ui-1.10.0.custom.css') }}" rel="stylesheet">
+
+{% endblock stylesheet %} 
 
 {% block javascript %}
   {{ parent() }}
-    <script src="{{ asset('bundles/sfmpicmnt/CamanJS/caman.full.min.js') }}"> </script>
+
+  <script src="{{ asset('bundles/sfmpicmnt/js/jquery-ui-1.10.0.custom.min.js') }}"></script>
+  <script src="{{ asset('bundles/sfmpicmnt/libs/waypoints.min.js') }}"></script>
+  <script src="{{ asset('bundles/sfmpicmnt/libs/caman.full.min.js') }}"></script>
+  
+  {% javascripts filter='?yui_js'
+      '@SFMPicmntBundle/Resources/public/js/image.js' %}
+        <script src="{{ asset_url }}"></script>
+  {% endjavascripts %}
+
 {% endblock javascript %}
 
-{% block scripts %}
+{% block content %}
   {{ parent() }}
 
-    <script type="text/javascript">
-      function applyFilter(){
-      
-      var vBrightness = $( "#sBrightness" ).slider( "value" );
-      var vContrast = $( "#sContrast" ).slider( "value" );
-      var vSaturation = $( "#sSaturation" ).slider( "value" );
-      var vExposure = $( "#sExposure" ).slider( "value" );
-
-      //Caman.remoteProxy = "{{ asset('bundles/sfmpicmnt/CamanJS/proxies/caman_proxy.php') }}";
-
-      Caman("#image-to-modify", function () {
-      $( "#render-in-progress" ).show();
-      this.revert(function(){
-      this.brightness(vBrightness).contrast(vContrast).saturation(vSaturation).exposure(vExposure).render();
-      $( "#render-in-progress" ).hide();
-      });
-      
-      });
-      };
-    </script>
-
-    <script type="text/javascript">
-      function applyProposal(brightness, contrast, exposure, saturation){
+  {% if paginator is defined %}
+    {% set Next = '' %}
+    {% set Previous = '' %}
+  
+    {% for page in paginator %}
+      {% if loop.index == '1' %}
+	{% if image.idImage != page %}
+	  {% set Next =  path('img_show', {'option': 'last',  'idImage': page, 'category': app.request.get('category') })  %}
+	{% endif %}
+      {% else %}
+	{% if image.idImage > page %}
+	  {% set Previous =  path('img_show', {'option': 'last', 'idImage':  page, 'category': app.request.get('category') })  %}
+	{% endif %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
 
 
-          $( "#bAmount" ).val(brightness);
-          $( "#cAmount" ).val(contrast);
-          $( "#aExposure" ).val(exposure);
-          $( "#aSaturation" ).val(saturation);
+  <form action="{{ path('comment', { 'idImage': image.idImage}) }}" class="form-stacked" method="post">
+  <div class="clear"></div>
 
-      $( "#sBrightness , #sContrast, #sSaturation, #sExposure" ).slider({
-      change: null
-      });
+  <section id="image-section"  class="container container_12">
 
-          $( "#sBrightness" ).slider( "value", brightness );
-          $( "#sContrast" ).slider( "value", contrast );
-          $( "#sExposure" ).slider( "value", exposure );
-          $( "#sSaturation" ).slider( "value", saturation );
+      <div id="image-title" class="grid_12">
+	  <a href="#" id="see-original" class="button accept-button" onclick="javascript:seeOriginal()">{% trans %}View Original{% endtrans %}</a>
+	  <h1>
+	      {% if paginator is defined %}
+		<a href="{{ path('img_view', {'user': image.user.username, 'slug': image.slug}) }} ">{{ image.title }}</a>
+	      {% else %}
+		{{ image.title }}
+	      {% endif %}
+	  </h1>
+      </div>
 
-            $( "#sBrightness , #sContrast, #sSaturation, #sExposure" ).slider({
-      change: applyFilter
-      });
-
-
-      applyFilter();
-
-      document.location.href = '#image-title';
-
-      };
-    </script>
+      <div class="clear"></div>
+  
+      {#    ###############              MAIN SECTION      ###############      #}
+      <section id="main" class="grid_9">
 
 
-{% endblock scripts %}
+	  <article id="image" >
+ 	      <span id="previous-link">
+	      {% if paginator is defined and app.request.get('option') == 'last' %}
+		{% if Previous %}
+		  <a id="previous" href="{{ Previous }}"><<</a>
+		{% endif %}
+	      {% endif %}
+	      </span>
+	      <img src="{{ asset(upload_dir ~ image.url) }}" id="image-to-modify" alt="{{image.title}}"> 
+	      <span id="next-link">
+	      {% if paginator is defined and  app.request.get('option') == 'last' %}
+		{% if Next %}
+		  <a id="next" href="{{ Next }}">>></a>
+		{% endif %} 
+	      {% endif %}
+	      </span>
+	  </article>	 
+ 
+	  <article id="comments">
+	      <textarea placeholder="Add your comment..." class="textarea" name="comment" required="required"></textarea> 
+	      <button class="button cancel-button" type="reset"  onclick="javascript:applyProposal(0,0,0,0)">{{ 'Cancel' | trans }}</button> 
+	      <input class="button accept-button" type="submit" value="{% trans %}Send Comment{% endtrans %}">&nbsp;
+	      
+	      {#  ################   COMMENTS   ################## #}
 
+	      {% if image.imageComments | length > 0  %}
+		<div id="show-image-to-comment"></div>
+	      {% endif %}
+	      
+	      <ul>
+	      {% for comment in image.imageComments %}
+		{% set username = comment.user.username %}
+		
+		<li id="comment-{{ loop.index }}" class="comment">
+		  <a class="link-to-comment" href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}#comment-{{ loop.index }}">#{{ loop.index }}</a>
 
-{% block content %}
+		  <span>
+		      {# try to create a twig function #}
 
+		      {% if existsAvatar(username) %}
+			<img src="{{ avatarByUsername(username,'small') }}" class="avatar-small" alt="avatar-small" />
+		      {% else %}
+			{% if gravatar_exists(getEmail(username)) %}
+			  <img src="{{ gravatar(getEmail(username), 50) }}" class="avatar-small" alt="avatar-small"/>
+			{% else %}
+			  <img src="{{ asset('/bundles/sfmpicmnt/images/default_user50x50.png') }}" class="avatar-small" alt="avatar-small" />
+			{% endif %}
+		      {% endif %}
+		      <a href="{{ path('usr_profile', {'userName': comment.user.username }) }}">{{ username }}</a>
+		      <span class="comment-date">{{ image.pubDate | date() }}</span>
+		  </span>
+		  <div class="comment-text">
+		      {{ comment.comment | nl2br }}
+		  </div>
+		  
+		  {% if comment.brightness != 0 or comment.contrast != 0 or comment.exposure != 0 or comment.saturation != 0 %}
+		    <a class="see-proposal" href="#image-title" onclick="javascript:applyProposal({{ comment.brightness }},{{ comment.contrast }}, {{ comment.exposure }},{{ comment.saturation}})" >{{ 'See Proposal' | trans }}</a>
+		    {% endif %}
+		</li>
 
-<section id="content" style="padding-top: 50px">
-  <div class="container-fluid">
-    
-    <div style="background:#FFF">
+	    {% else %}
+	      <h3 class="grid_12">{{ 'There is no comment for this image. Be the first to comment' | trans }}</h3>
+	    {% endfor %}
 
-
-      {% block interno %}
-      <section id="pestanas">
-
-	<div id="row">
-	  {{ knp_menu_render('tabs', {'currentClass': 'active'}) }}
-	</div>
+	      </ul>
+	  </article>
 
       </section>
 
-      {% endblock %}
+      {#    ###############              info SECTION      ###############      #}
+      <section id="info" class="grid_3">
 
-      <center> 
-	<section id="show_image">
-	  	  
-	  <div id="image-title">
-	    <h1>
-	    {{ image.title }}
-	    </h1>
-	  </div>
-	  <br />
+	  <div id="img-author" class="img-box">
+	      <h2><a href="{{ path('usr_profile', {'userName': image.user.username }) }}">{{ image.user.username }}</a></h2>
 
-
-	  <div class="row">
-
-	    <article class="span9" id="imageImage">
-	      <img src="{{ asset(upload_dir ~ image.url) }}" id="image-to-modify"/>
-	     {% include "SFMPicmntBundle:Image:imageinfo.html.twig" %}
-	      {% include "SFMPicmntBundle:Image:comments.html.twig" %}
-	    </article>
-
-	    <!-- Controls
-		 ===========================
-	      -->
-	    {% include "SFMPicmntBundle:Image:controls.html.twig" %}
-
+		      {% if existsAvatar(image.user.username) %}
+			<img src="{{ avatarByUsername(image.user.username,'big') }}" alt="avatar"/>
+		      {% else %}
+			{% if gravatar_exists(getEmail(image.user.username)) %}
+			  <img src="{{ gravatar(getEmail(image.user.username), 100) }}" alt="avatar" />
+			{% else %}
+			  <img src="{{ asset('/bundles/sfmpicmnt/images/default_user100x100.png') }}" alt="avatar"/>
+			{% endif %}
+		      {% endif %}
 	  </div>
 
-	</section>
+	  {% if app.user and  app.user.id == image.user.id  %}
+	    <div id="img-actions" class="img-box">
+		<ul>
+		    <li><a href="{{ path('img_edit', {'id_image': image.idImage}) }}"  class="button cancel-button">{% trans %}Edit{% endtrans %}</a></li>
+		    <li><a href="{{ path('img_delete', { 'idImage': image.idImage }) }}"  class="button danger-button">{% trans %}Remove{% endtrans %}</a></li>
+		</ul>
+	    </div>
+	    {% endif %}
+	  {# <div id="img-sucks-rocks" class="img-box">
+	      <ul>
+		  <li>
+		      <a href="" class="like"></a>
+		  <li>
+		      <a href="" class="dislike"></a>
+		  </li>
+	      </ul>
+	  </div> #}
+
+	  <div  id="img-controls" class="img-box">
+	      <div class="control-data">
+		  <span class="control-title">
+		      {% trans %}Brightness{% endtrans %}:
+		  </span>
+		  <input type="text" id="brightness-amount" name="brightness"  class="slider-data"/>
+	      </div>
+
+	      <div id="slider-brightness" class="slider"></div>
+
+	      <div class="control-data">
+		  <span class="control-title">
+		      {% trans %}Contrast{% endtrans %}:
+		  </span>
+		  <input type="text" id="contrast-amount" name="contrast"  class="slider-data"/>
+	      </div>
+
+	      <div id="slider-contrast" class="slider"></div>
+
+	      <div class="control-data">
+		  <span class="control-title">
+		      {% trans %}Exposure{% endtrans %}:
+		  </span>
+		  <input type="text" id="exposure-amount" name="exposure"  class="slider-data"/>
+	      </div>
+
+	      <div id="slider-exposure" class="slider"></div>
+
+	      <div class="control-data">
+		  <span class="control-title">
+		      {% trans %}Saturation{% endtrans %}:
+		  </span>
+		  <input type="text" id="saturation-amount" name="saturation"  class="slider-data"/>
+	      </div>
+
+	      <div id="slider-saturation" class="slider"></div>
+	  </div>
+	  {% if image.description %}
+	    <div id="img-description" class="img-box">
+		<p>{{ image.description }}</p>
+	    </div>
+	  {% endif %}
+
+	  <div id="img-info" class="img-box"> 
+	      <ul>
+		  <li class="pub-date">
+		      <span class="info-key">{% trans %}Uploaded{% endtrans %}:</span> {{ image.pubDate | date() }}
+		  </li>
+		  <li class="category">
+		    <span class="info-key">{% trans %}Category{% endtrans %}:</span>
+		    <a href="{{ path('img_show', { 'option': 'recents', 'category': image.category}) }}">{{ image.category }}</a>
+		  </li>
+	      </ul>
+	  </div>
+  
+    </section>
 
 
+  </section>
+  </form>
 
-       </center> 
-
-    </div>
-  </div>
-</section>
-{% endblock %}
-
-
+{% endblock content %}

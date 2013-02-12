@@ -1,59 +1,30 @@
-{% extends "SFMPicmntBundle::layout_private.html.twig" %}
-
-{% form_theme form 'SFMPicmntBundle::form.html.twig' %}
+{% extends "SFMPicmntBundle::layout.html.twig" %}
 
 {% block content %}
 
-<section id="content" style="padding-top: 50px">
-  <div class="container-fluid">
+  {{ parent() }}
 
-    <div style="background:#FFF">
+  <div class="clear"></div>
 
-
-      {% block interno %}
-      <section id="pestanas">
-
-	<div id="row">
-	  {{ knp_menu_render('tabs', {'currentClass': 'active'}) }}
-	</div>
-
+  <div class="container container_12">
+      <section id="img-section"  class="grid_9">
+	  <div class="span9" id="imageImage">
+	      <img src="{{ asset(image_url) }}" alt="image-to-modify"/> 
+	  </div>
       </section>
 
-      {% endblock %}
-      
-
-      <center>
-
-	<h1 id="edit-image-title">{{ image.title }}</h1>
-
-	<div id="edit-info" class="row">
+      <section id="img-edition" class="grid_3">
 	  
-	  <div class="span9" id="imageImage">
-
-	    <img src="{{ asset(image_url) }}"/> 
-
-	  </div>
-
-	  <div class="span3">
-	    
-	    <form id="edit-form" action="{{ path('img_edit', { 'id_image': image.idImage }) }}" method="post" {{ form_enctype(form) }} class="form-stacked">
-
-	      <fieldset style="text-align:left">
-		<legend>{{ 'Edit' | trans }}</legend>
-
-		<div>
+	  <form id="edit-form" action="{{ path('img_edit', { 'id_image': image.idImage }) }}" method="post" {{ form_enctype(form) }} class="form-stacked">
+	      <fieldset>
 		  {{ form_errors(form.title) }}
 		  {{ form_label(form.title, 'Title' | trans) }}
 		  {{ form_widget(form.title) }}
-		</div>
 
-		<div>
 		  {{ form_errors(form.description) }}
 		  {{ form_label(form.description, 'Description' | trans) }}
 		  {{ form_widget(form.description) }}
-		</div>
-		
-		<div>
+
 		  {{ form_errors(form.category) }}
 		  {{ form_label(form.category, 'Category' | trans) }}
 		  {{ form_widget(form.category) }}
@@ -63,26 +34,12 @@
 		  {{ form_widget(form.notify_email) }}
 
 
-		{{ form_rest(form) }}
+		  {{ form_rest(form) }}
 
 
-		<div class="actions"> 
-		   <input type="submit" class="btn primary" id="edit-image" value="{{ 'Save Changes' | trans }}">&nbsp;<button type="reset" class="btn">{{ 'Cancel' | trans }}</button> 
-		</div> 
+		  <button type="reset" class="button cancel-button">{{ 'Cancel' | trans }}</button>&nbsp;<input type="submit" class="button accept-button" id="edit-image" value="{{ 'Save Changes' | trans }}">
 	      </fieldset>
-	    </form>
-	    <br/>
-	    <div id="remove-image">
-	      <a href="{{ path('img_delete', { 'idImage': image.idImage }) }}" class="btn danger">{{ 'Remove Image' | trans }}</a>
-	    </div>
-
-	  </div>
-
-	</div>
-      </center>
-
-    </div>
+	  </form>
+      </section>
   </div>
-</section>
-
 {% endblock %}
