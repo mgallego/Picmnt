@@ -2,43 +2,55 @@
 
 {% block title %} | About {% endblock title %}
 
+
+{% block stylesheet %}
+{{ parent() }}	  
+
+	{% stylesheets filter='lessphp, ?yui_css' output='css/picmnt.css' 
+	            '@SFMPicmntBundle/Resources/public/less/static.less' %}
+	<link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="all" />
+	{% endstylesheets %}
+	
+{% endblock stylesheet %}
+
+
+
 {% block content %}
-<section id="about" class="container">
-  <div class="row">
-    <h1 class="text-shadow">{{ 'About Us' | trans }}</h1>
-  </div>
-  
-  <article class="row">
-    <div class="span2" id="about-image">
-      <img src="https://si0.twimg.com/profile_images/1632513746/2976162280_cff9793de5_m.jpg" />
-    </div>
-    <div class="span6">
-      <h2>Moises Gallego</h2>
-      <p>
-	{{ 'At the moment I am the team, I am' | trans }} <strong>{{ 'Developer' | trans }}, sysadmin, CEO, CTO, SEO, ABC ... XYZ</strong>.
-      </p>
-      <p>
-	<a href="http://twitter.com/moisesgallego">Twitter</a>
-      </p>
-    </div>
 
-  </article>
 
-  <article id="thanks" class="row">
-    <br />
-    <h1 class="text-shadow">Agradecimientos</h1>
-    <h2>En la parte técnica, por echarme una mano cuando mas lo necesitaba</h2>
+<section id="about" class="container container_12">
+	<div class="clear"></div>
+
+	<h1>{{ 'About Us' | trans }}</h1>
+
+	<article id="abour-info" class="img-box grid_12">
+		<span class="grid_2">
+			<img src="https://si0.twimg.com/profile_images/1632513746/2976162280_cff9793de5_m.jpg" alt="Moises Gallego"/>
+		</span>
+		<span class="grid_8">
+			<h2>Moises Gallego</h2>
+			<p>
+				{{ 'At the moment I am the team, I am' | trans }} <strong>{{ 'Developer' | trans }}, sysadmin, CEO, CTO, SEO, ABC ... XYZ</strong>.
+			</p>
+			<p>
+				<a href="http://twitter.com/moisesgallego">Twitter</a>
+			</p>
+		</span>
+	</article>
+
+  <article id="thanks">
+    <h2>Agradecimientos</h2>
+    <h3>En la parte técnica, por echarme una mano cuando mas lo necesitaba</h3>
     <ul>
       <li><a href="https://twitter.com/#!/raulfraile">Raúl Fraile Beneyto</a></li>
       <li><a href="https://twitter.com/#!/pgodel">Pablo Godel</a></li>
       <li><a href="https://twitter.com/#!/adanlobato">Adán Lobato</a></li>
       <li><a href="https://twitter.com/#!/Osukaru80">Óscar Lopez</a></li>
       <li><a href="https://twitter.com/#!/mariotux">Mario Nunes</a></li>
-      <li><a href="https://twitter.com/#!/Emper">César Saiz</a></li>
-      <li><a href="https://twitter.com/#!/imobilis">Juan Traverso</a></li>
+      <li><a href="https://twitter.com/#!/Nass600">Ignacio Velazquez</a></li>
     </ul>
     <br />
-    <h2>A los que han tenido que pegarse con la primera versión</h2>
+    <h3>A los que han tenido que pegarse con la primera versión</h3>
     <ul>
       <li>Xuco Martin</li>
       <li>Marcos Lueje</li>
@@ -47,7 +59,7 @@
       <li>Miguel Angel Calle</li>
     </ul>
     <br />
-    <h2>Y un agradecimiento especial a:</h2>
+    <h3>Y un agradecimiento especial a:</h3>
     <ul>
       <li>Isa, mi mujer. <strong>Por aguantar como he consumido mucho tiempo de estar juntos en este proyecto y por su apoyo</strong></li>
       <li>Alba, mi hija. <strong>Por portarse tan bien y haberme dejado trabajar :)</strong></li>
