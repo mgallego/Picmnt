@@ -1,25 +1,25 @@
-	  <div class="clear"></div>
-      <div class="img-thumbs">
-	  {% for image in images %}
-	    {% set imageUrl =  '/uploads/' ~ image.url %}
-	      <div class="thumbnail">
-		  <div class="img-thumb">
-		      <a href="{{ path('img_view', {'user': image.user.username, 'slug': image.slug}) }}"><img src="{{ imageUrl | imagine_filter('thumbnail') }}" alt="{{ image.title }}"/></a>
-		      <div class="thumb-info">
-				  <span>{{ image.title | truncate(20) }}</span>
-			   <p>
-				   {% trans %}By{% endtrans %}: <a href="{{ path('usr_profile', {'userName': image.user.username }) }}">
-					   {{ image.user.username | truncate(20)}}
-				   </a>
-			   </p>
-		      </div>
-		  </div>
-	      </div>
-	  {% endfor %}
-	  </div>
-	  <div class="clear"></div>
-	  {% if loadMore %}
-	  <div id="load-more-thumbs" class="grid_2 prefix_5">
-		  <a href="javascript:loadMoreThumbs()">{% trans %}Load More{% endtrans %}</a>
-	  </div>
-	  {% endif %}
+<div class="clear"></div>
+<div class="img-thumbs">
+	{% for image in images %}
+	{% set imageUrl =  '/uploads/' ~ image.url %}
+	<div class="thumbnail">
+		<div class="img-thumb">
+		    <a href="{{ path('img_view', {'user': image.user.username, 'slug': image.slug}) }}"><img src="{{ imageUrl | imagine_filter('thumbnail') }}" alt="{{ image.title }}"/></a>
+		    <div class="thumb-info">
+				<span>{{ image.title | truncate(20) }}</span>
+				<p>
+					{% trans %}By{% endtrans %}: <a href="{{ path('usr_profile', {'userName': image.user.username }) }}">
+						{{ image.user.username | truncate(20)}}
+					</a>
+				</p>
+		    </div>
+		</div>
+	</div>
+	{% endfor %}
+</div>
+<div class="clear"></div>
+{% if loadMore %}
+<div id="load-more-thumbs" class="grid_2 prefix_5">
+	<a href="javascript:loadMoreThumbs()">{% trans %}Load More{% endtrans %}</a>
+</div>
+{% endif %}

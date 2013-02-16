@@ -1,5 +1,3 @@
-@import url('variables.less');
-
 /////////////////////////////////
 //       header
 /////////////////////////////////
@@ -14,39 +12,38 @@ header {
     box-shadow: 1px 1px 10px gray;
 }
 
-header .picmnt-title {
+.picmnt-title {
     font-size: @headerTitleSize;
     font-weight: bold;
 }
 
-header .p-letter {
+.p-letter {
     font-size: 33px;
     font-size: @headerTitleSize * 1.4;
 }
 
-header .icmnt-word {
+.icmnt-word {
     letter-spacing: -2px;
     color: @darkGrey;
 }
 
-header .menu li {
-    margin-left: 20px;
-    padding-left: 16px;
-}
+/* .menu li { */
+/*     margin-left: 20px; */
+/*     padding-left: 16px; */
+/* } */
 
-header .menu  ul {
-    list-style-type: none;
-//    margin-top: 16px;
-}
+/* .menu  ul { */
+/*     list-style-type: none; */
+/* } */
 
-header .menu  ul li {
-    display: inline;
-    font-weight: bold;
-}
+/* .menu ul li { */
+/*     display: inline; */
+/*     font-weight: bold; */
+/* } */
 
-header .menu {
-    text-align: right;
-}
+/* .menu { */
+/*     text-align: right; */
+/* } */
 
 
 
@@ -54,98 +51,40 @@ header .menu {
 //       updload menu
 /////////////////////////////////
 
-.upload {
-    padding-left: 20px;
-}
-
-.upload a {
-    padding-left: 3px;
-}
-
-header .menu li.upload {
-    background-position: 0px top; 
-    background-repeat: no-repeat;
-    /* background-image: url('/bundles/sfmpicmnt/images/upload_ico_gray.png'); */
-    margin-right: 10px;
-    -webkit-transition: background-image  0.3s ease-in-out;
-    -moz-transition: background-image 0.3s ease-in-out;
-    -o-transition: background-image 0.3s ease-in-out;
-    transition: background-image 0.3s ease-in-out;
-}
-
-/* header .menu li.upload:hover { */
-/*     background-image: url('/bundles/sfmpicmnt/images/upload_ico_blue.png'); */
+/* .upload { */
+/*     padding-left: 20px; */
 /* } */
 
-header .menu li.upload:hover  a {
-    color: @p-letter-color;
-}
+/* .upload a { */
+/*     padding-left: 3px; */
+/* } */
 
+/* header .menu li.upload { */
+/*     background-position: 0px top;  */
+/*     background-repeat: no-repeat; */
+/*     /\* background-image: url('/bundles/sfmpicmnt/images/upload_ico_gray.png'); *\/ */
+/*     margin-right: 10px; */
+/*     -webkit-transition: background-image  0.3s ease-in-out; */
+/*     -moz-transition: background-image 0.3s ease-in-out; */
+/*     -o-transition: background-image 0.3s ease-in-out; */
+/*     transition: background-image 0.3s ease-in-out; */
+/* } */
 
-/////////////////////////////////
-//       tooltip
-/////////////////////////////////
+/* /\* header .menu li.upload:hover { *\/ */
+/* /\*     background-image: url('/bundles/sfmpicmnt/images/upload_ico_blue.png'); *\/ */
+/* /\* } *\/ */
 
-ul.tooltip-menu span {
-    color: @darkGrey;
-}
-
-ul.tooltip-menu ul {
-    background: @header-background-color;
-    -webkit-box-shadow: 1px 1px 1px gray;
-    -moz-box-shadow: 1px 1px 1px gray;
-    -o-box-shadow: 1px 1px 1px gray;
-    -ms-box-shadow: 1px 1px 1px gray;
-    box-shadow: 1px 1px 1px gray;
-    display: none;
-    padding: 0;
-
-    position: absolute;
-    top: 32px;
-    left: 10px;
-
-    width: 130px;
-}
-
-ul.tooltip-menu > li {
-    padding-bottom: 20px;
-    position: relative;
-    z-index: 10;
-}
-
-.submenu li {
-    float: left;
-    display: block;
-    padding: 8px 10px;
-    margin: 0 !important;
-}
-
-.submenu li a {
-    display: block;
-    padding: 0 100px 0 0;
-}
-
-ul.tooltip-menu li:hover > ul, ul.tooltip-menu li:focus > ul { 
-   display: block;
-}
-
-.submenu li:hover, .submenu li:focus { 
-    background: @PicmntLightGrey;
-    width: 107px;
-    -webkit-box-shadow: 0 1px 5px @darkGrey;
-    -moz-box-shadow: 0 1px 5px @darkGrey;
-    -o-box-shadow: 0 1px 5px @darkGrey;
-    -ms-box-shadow: 0 1px 5px @darkGrey;
-    box-shadow: 0 1px 5px @darkGrey;
-}
+/* header .menu li.upload:hover  a { */
+/*     color: @p-letter-color; */
+/* } */
 
 
 /////////////////////////////////
 //       login menu
 /////////////////////////////////
 
-#login-menu li {
-    padding-left: 1px;
-    margin-left: auto;
-}
+/* #login-menu li { */
+/*     padding-left: 1px; */
+/*     margin-left: auto; */
+/* } */
 
