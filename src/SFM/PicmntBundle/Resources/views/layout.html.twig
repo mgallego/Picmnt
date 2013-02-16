@@ -10,20 +10,19 @@
 				<span class="p-letter">P</span><span class="icmnt-word">icmnt</span>
 			</a>
 		</div>
-		<div class="grid_4 prefix_4 menu">
+		<div class="grid_4 prefix_1 menu">
 			<ul class="tooltip-menu unstyled inline">
 				<li id="explore-tooltip">
 					<span>{% trans %}Explore{% endtrans %}</span>
 					{{ knp_menu_render('SFMPicmntBundle:Builder:menuCategories', {'class': 'tooltip-menu', 'currentClass': 'active'}) }}
 				</li>
 				<li><a href="{{ path('img_show', { 'option': 'random', 'category': 'all'}) }}">{% trans %}Random{% endtrans %}</a></li>
-
-				<li class="upload">
+				<li>
 					<a href="{{ path('img_upload') }}">{% trans %}Upload Image{% endtrans %}</a>
 				</li>
 			</ul>
 		</div>
-		<div class="grid_3">
+		<div class="grid_3 prefix_3">
 			<ul class="unstyled inline">
 				{% if is_granted("IS_AUTHENTICATED_REMEMBERED") or is_granted("IS_AUTHENTICATED_FULLY") %}
 				<li><a href="{{ path('fos_user_security_logout') }}">{% trans %}Logout{% endtrans %}</a></li>
