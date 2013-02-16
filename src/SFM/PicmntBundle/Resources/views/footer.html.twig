@@ -1,15 +1,15 @@
 <footer>
 	<div class="clear"></div>
 
-    <section class="container container_12">
-<hr/>
-{#		<article class="grid_12">
+    <section class="container_12">
+		<hr/>
+		{#		<article class="grid_12">
 			© Moisés Gallego 2011
 		</article>
-#}
+		#}
 
 		<article class="grid_6">
-			<ul>
+			<ul class="unstyled inline">
 				<li><a href="http://blog.picmnt.com">BLOG</a></li>
 				<li><a href="{{ path('static_page', {'page': 'about'}) }}">{{ 'About Us' | trans }}</a></li>
 				<li><a href="#">FAQs</a></li>
@@ -19,19 +19,19 @@
 			</ul>
 		</article>
 		<article class="grid_5 prefix_1">
-			<ul>
+			<ul class="unstyled inline">
 				<li><a href="https://twitter.com/picmnt">Twitter</a></li>
 				<li><a href="http://www.facebook.com/pages/Picmnt/155336231201638">Facebook</a></li>
 				<li><a href="https://plus.google.com/109480910514723706163">Google+</a></li>
 			</ul>
 		</article>
 
-    {% block addons %}
+		{% block addons %}
 
-    {% include "SFMPicmntBundle:Addons:analytics.html.twig" %}
-    {% include "SFMPicmntBundle:Addons:uservoice.html.twig" %}
+		{% include "SFMPicmntBundle:Addons:analytics.html.twig" %}
+		{% include "SFMPicmntBundle:Addons:uservoice.html.twig" %}
 
-    {% endblock addons %}
+		{% endblock addons %}
 
 	</section>
 </footer>
