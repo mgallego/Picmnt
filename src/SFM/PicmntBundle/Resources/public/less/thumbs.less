@@ -1,23 +1,15 @@
 @import url('variables.less');
 
-#image-section {
-    min-height: 800px;
-}
-
 .thumbnail {
     display: block;
     float: left;
 }
 
-.img-thumbs {
-    padding-left: 40px;
-}
-
 .img-thumb {
     position: relative;
-    margin: 5px;
-    height: 200px;
-    width: 200px;
+    margin: 8px;
+    height: @thumbSmallHeight;
+    width:  @thumbSmallWidth;
 }
 
 
@@ -27,7 +19,7 @@
     bottom: 0px;
     left: 0px;
     height: 50px;
-    width: 200px;
+    width: @thumbSmallWidth;
     color: #FFF;
     background: black;
     background: rgba(0, 0, 0, 0.65);
