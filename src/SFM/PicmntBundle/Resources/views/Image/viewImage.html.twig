@@ -133,31 +133,33 @@
 
 
 			{#    ###############              info SECTION      ###############      #}
-			<section id="info" class="grid_3">
+			<section class="grid_3 subsection">
 
-				<div id="img-author" class="img-box">
-					<h2><a href="{{ path('usr_profile', {'userName': image.user.username }) }}">{{ image.user.username }}</a></h2>
-
+				<div  class="img-box span-medium ">
+					<p>
 					{% if existsAvatar(image.user.username) %}
-					<img src="{{ avatarByUsername(image.user.username,'big') }}" alt="avatar"/>
+					<img src="{{ avatarByUsername(image.user.username,'big') }}" class="right thumb-medium span" alt="avatar"/>
 					{% else %}
 					{% if gravatar_exists(getEmail(image.user.username)) %}
-					<img src="{{ gravatar(getEmail(image.user.username), 100) }}" alt="avatar" />
+					<img src="{{ gravatar(getEmail(image.user.username), 100) }}"  class="right thumb-medium span" alt="avatar" />
 					{% else %}
-					<img src="{{ asset('/bundles/sfmpicmnt/images/default_user100x100.png') }}" alt="avatar"/>
+					<img src="{{ asset('/bundles/sfmpicmnt/images/default_user100x100.png') }}" class="right thumb-medium  span" alt="avatar"/>
 					{% endif %}
 					{% endif %}
+					</p>
+					<h2 class="span"><a href="{{ path('usr_profile', {'userName': image.user.username }) }}">{{ image.user.username }}</a></h2>
+
 				</div>
 
 				{% if app.user and  app.user.id == image.user.id  %}
-				<div id="img-actions" class="img-box">
+				<div class="img-box">
 					<ul>
 						<li><a href="{{ path('img_edit', {'id_image': image.idImage}) }}"  class="button cancel-button">{% trans %}Edit{% endtrans %}</a></li>
 						<li><a href="{{ path('img_delete', { 'idImage': image.idImage }) }}"  class="button danger-button">{% trans %}Remove{% endtrans %}</a></li>
 					</ul>
 				</div>
 				{% endif %}
-				{# <div id="img-sucks-rocks" class="img-box">
+				{# <div class="img-box">
 					<ul>
 						<li>
 							<a href="" class="like"></a>
@@ -167,50 +169,43 @@
 					</ul>
 				</div> #}
 
-				<div  id="img-controls" class="img-box">
-					<div class="control-data">
-						<span class="control-title">
+				<div class="img-box">
+						<span class="control-title span_2">
 							{% trans %}Brightness{% endtrans %}:
 						</span>
-						<input type="text" id="brightness-amount" name="brightness"  class="slider-data"/>
-					</div>
+						<input type="text" id="brightness-amount" name="brightness"  class="slider-data fake-input inline"/>
 
 					<div id="slider-brightness" class="slider"></div>
 
-					<div class="control-data">
-						<span class="control-title">
+						<span class="control-title span_2">
 							{% trans %}Contrast{% endtrans %}:
 						</span>
-						<input type="text" id="contrast-amount" name="contrast"  class="slider-data"/>
-					</div>
+						<input type="text" id="contrast-amount" name="contrast"  class="slider-data fake-input inline"/>
 
 					<div id="slider-contrast" class="slider"></div>
 
-					<div class="control-data">
-						<span class="control-title">
+						<span class="control-title span_2">
 							{% trans %}Exposure{% endtrans %}:
 						</span>
-						<input type="text" id="exposure-amount" name="exposure"  class="slider-data"/>
-					</div>
+						<input type="text" id="exposure-amount" name="exposure"  class="slider-data fake-input inline"/>
 
 					<div id="slider-exposure" class="slider"></div>
 
-					<div class="control-data">
-						<span class="control-title">
+						<span class="control-title span_2">
 							{% trans %}Saturation{% endtrans %}:
 						</span>
-						<input type="text" id="saturation-amount" name="saturation"  class="slider-data"/>
-					</div>
+						<input type="text" id="saturation-amount" name="saturation"  class="slider-data fake-input inline"/>
 
 					<div id="slider-saturation" class="slider"></div>
+
 				</div>
 				{% if image.description %}
-				<div id="img-description" class="img-box">
-					<p>{{ image.description }}</p>
+				<div class="img-box">
+					<p class="span_2">{{ image.description }}</p>
 				</div>
 				{% endif %}
 
-				<div id="img-info" class="img-box"> 
+				<div class="img-box"> 
 					<ul>
 						<li class="pub-date">
 							<span class="info-key">{% trans %}Uploaded{% endtrans %}:</span> {{ image.pubDate | date() }}
