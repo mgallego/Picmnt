@@ -2,9 +2,9 @@
 
 {% block stylesheet %}
 
-  {{ parent() }}
+{{ parent() }}
 
-  <link href="{{ asset('bundles/sfmpicmnt/css/ui-lightness/jquery-ui-1.10.0.custom.css') }}" rel="stylesheet">
+<link href="{{ asset('bundles/sfmpicmnt/css/ui-lightness/jquery-ui-1.10.0.custom.css') }}" rel="stylesheet">
 
 {% endblock stylesheet %} 
 
@@ -68,7 +68,7 @@
  					<span class="paginator-link left" >
 						{% if paginator is defined and app.request.get('option') == 'last' %}
 						{% if Previous %}
-													   <a href="{{ Previous }}"><<</a>
+						<a href="{{ Previous }}"><<</a>
 													   {% endif %}
 													   {% endif %}
 													   </span>
@@ -113,9 +113,9 @@
 							</p>
 							<p>
 								{{ comment.comment | nl2br }}
-							{% if comment.brightness != 0 or comment.contrast != 0 or comment.exposure != 0 or comment.saturation != 0 %}
-							<a class="right button-small default-button hidden-element-inline hidden" href="#image-title" onclick="javascript:applyProposal({{ comment.brightness }},{{ comment.contrast }}, {{ comment.exposure }},{{ comment.saturation}})" >{{ 'See Proposal' | trans }}</a>
-							{% endif %}
+								{% if comment.brightness != 0 or comment.contrast != 0 or comment.exposure != 0 or comment.saturation != 0 %}
+								<a class="right button-small default-button hidden-element-inline hidden" href="#image-title" onclick="javascript:applyProposal({{ comment.brightness }},{{ comment.contrast }}, {{ comment.exposure }},{{ comment.saturation}})" >{{ 'See Proposal' | trans }}</a>
+								{% endif %}
 							</p>
 						</li>
 
@@ -136,21 +136,18 @@
 
 				<div  class="img-box span-medium ">
 					<p>
-					{% if existsAvatar(image.user.username) %}
-					<img src="{{ avatarByUsername(image.user.username,'big') }}" class="right thumb-medium span" alt="avatar"/>
-					{% else %}
-					{% if gravatar_exists(getEmail(image.user.username)) %}
-					<img src="{{ gravatar(getEmail(image.user.username), 100) }}"  class="right thumb-medium span" alt="avatar" />
-					{% else %}
-					<img src="{{ asset('/bundles/sfmpicmnt/images/default_user100x100.png') }}" class="right thumb-medium  span" alt="avatar"/>
-					{% endif %}
-					{% endif %}
+						{% if existsAvatar(image.user.username) %}
+						<img src="{{ avatarByUsername(image.user.username,'big') }}" class="right thumb-medium span" alt="avatar"/>
+						{% else %}
+						{% if gravatar_exists(getEmail(image.user.username)) %}
+						<img src="{{ gravatar(getEmail(image.user.username), 100) }}"  class="right thumb-medium span" alt="avatar" />
+						{% else %}
+						<img src="{{ asset('/bundles/sfmpicmnt/images/default_user100x100.png') }}" class="right thumb-medium  span" alt="avatar"/>
+						{% endif %}
+						{% endif %}
 					</p>
 					<h2 class="span"><a href="{{ path('usr_profile', {'userName': image.user.username }) }}">{{ image.user.username }}</a></h2>
 
-				</div>
-				<div id="see-original" class="img-box span-small center">
-					<a href="#" class="button accept-button" onclick="javascript:seeOriginal()">{% trans %}View Original{% endtrans %}</a>
 				</div>
 				{% if app.user and  app.user.id == image.user.id  %}
 				<div class="img-box">
@@ -171,34 +168,37 @@
 				</div> #}
 
 				<div class="img-box">
-						<span class="control-title span_2">
-							{% trans %}Brightness{% endtrans %}:
-						</span>
-						<input type="text" id="brightness-amount" name="brightness"  class="slider-data fake-input inline"/>
+					<span class="control-title span_2">
+						{% trans %}Brightness{% endtrans %}:
+					</span>
+					<input type="text" id="brightness-amount" name="brightness"  class="slider-data fake-input inline"/>
 
 					<div id="slider-brightness" class="slider"></div>
 
-						<span class="control-title span_2">
-							{% trans %}Contrast{% endtrans %}:
-						</span>
-						<input type="text" id="contrast-amount" name="contrast"  class="slider-data fake-input inline"/>
+					<span class="control-title span_2">
+						{% trans %}Contrast{% endtrans %}:
+					</span>
+					<input type="text" id="contrast-amount" name="contrast"  class="slider-data fake-input inline"/>
 
 					<div id="slider-contrast" class="slider"></div>
 
-						<span class="control-title span_2">
-							{% trans %}Exposure{% endtrans %}:
-						</span>
-						<input type="text" id="exposure-amount" name="exposure"  class="slider-data fake-input inline"/>
+					<span class="control-title span_2">
+						{% trans %}Exposure{% endtrans %}:
+					</span>
+					<input type="text" id="exposure-amount" name="exposure"  class="slider-data fake-input inline"/>
 
 					<div id="slider-exposure" class="slider"></div>
 
-						<span class="control-title span_2">
-							{% trans %}Saturation{% endtrans %}:
-						</span>
-						<input type="text" id="saturation-amount" name="saturation"  class="slider-data fake-input inline"/>
+					<span class="control-title span_2">
+						{% trans %}Saturation{% endtrans %}:
+					</span>
+					<input type="text" id="saturation-amount" name="saturation"  class="slider-data fake-input inline"/>
 
 					<div id="slider-saturation" class="slider"></div>
-
+					<p id="see-original" class=" row_1 span_1  center">
+						<a href="#" class="button accept-button" onclick="javascript:seeOriginal()">{% trans %}View Original{% endtrans %}</a>
+					</p>
+					<p class="row"></p>
 				</div>
 				{% if image.description %}
 				<div class="img-box">
