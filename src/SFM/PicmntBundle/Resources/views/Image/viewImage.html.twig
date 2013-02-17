@@ -50,8 +50,7 @@
 	<form action="{{ path('comment', { 'idImage': image.idImage}) }}"  method="post">
 
 		<section class="container_12">
-			<div class="grid_12">
-				<a href="#" id="see-original" class="button accept-button" onclick="javascript:seeOriginal()">{% trans %}View Original{% endtrans %}</a>
+			<div class="grid_12 center">
 				<h1>
 					{% if paginator is defined %}
 					<a href="{{ path('img_view', {'user': image.user.username, 'slug': image.slug}) }} ">{{ image.title }}</a>
@@ -150,7 +149,9 @@
 					<h2 class="span"><a href="{{ path('usr_profile', {'userName': image.user.username }) }}">{{ image.user.username }}</a></h2>
 
 				</div>
-
+				<div id="see-original" class="img-box span-small center">
+					<a href="#" class="button accept-button" onclick="javascript:seeOriginal()">{% trans %}View Original{% endtrans %}</a>
+				</div>
 				{% if app.user and  app.user.id == image.user.id  %}
 				<div class="img-box">
 					<ul>
