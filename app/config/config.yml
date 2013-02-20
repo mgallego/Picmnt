@@ -119,7 +119,7 @@ liip_imagine:
         thumbnail:
             quality: 75
             filters:
-                thumbnail: { size: [180, 180], mode: outbound }
+                thumbnail: { size: [270, 270], mode: outbound }
         avatar-small:
             quality: 75
             filters:
