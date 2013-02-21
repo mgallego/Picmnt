@@ -44,6 +44,9 @@ assetic:
         lessphp:
             file: %kernel.root_dir%/../vendor/leafo/lessphp/lessc.inc.php
             apply_to: "\.less$"
+        less:
+            node: %node%
+            node_paths: %node_paths%
 
 # Doctrine Configuration
 doctrine:
