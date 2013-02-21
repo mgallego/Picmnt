@@ -3,38 +3,35 @@
 {% block header %}
 {{ parent() }}
 
-<header class="alpha omega">
-    <nav class="container_12 navbar">
+<header class="alpha omega navbar">
+    <nav class="container_12">
 		<div class="grid_1 picmnt-title brand">
 			<a href='{{ path("home") }}' title="Picmnt"> 
 				<span class="p-letter">P</span><span class="icmnt-word">icmnt</span>
 			</a>
 		</div>
-		<div class="nav">
-			<ul class="tooltip-menu unstyled inline">
-				<li id="explore-tooltip">
-					<span>{% trans %}Explore{% endtrans %}</span>
-					{{ knp_menu_render('SFMPicmntBundle:Builder:menuCategories', {'class': 'tooltip-menu', 'currentClass': 'active'}) }}
-				</li>
-				<li><a href="{{ path('img_show', { 'option': 'random', 'category': 'all'}) }}">{% trans %}Random{% endtrans %}</a></li>
-				<li>
-					<a href="{{ path('img_upload') }}">{% trans %}Upload Image{% endtrans %}</a>
-				</li>
-			</ul>
-		</div>
-		<div class="nav pull-right">
-			<ul class="unstyled inline">
-				{% if is_granted("IS_AUTHENTICATED_REMEMBERED") or is_granted("IS_AUTHENTICATED_FULLY") %}
-				<li><a href="{{ path('fos_user_security_logout') }}">{% trans %}Logout{% endtrans %}</a></li>
-				<li>&nbsp;|&nbsp;</li> 
-				<li><a href="{{ path('usr_profile', {'userName': app.user.getUsername()})}}">{{ app.user.getUsername() }}</a></li> 
-				{% else %}
-				<li><a href="{{ path('fos_user_registration_register') }}">{% trans %}Join{% endtrans %}</a></li>
-				<li>&nbsp;|&nbsp;</li> 
-				<li><a href="{{ path('fos_user_security_login') }}">{% trans %}Login{% endtrans %}</a></li> 
-				{% endif %}
-			</ul>
-		</div>
+		<ul class="tooltip-menu unstyled nav">
+			<li id="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					{% trans %}Explore{% endtrans %}
+					<b class="caret"></b>
+				</a>
+				{{ knp_menu_render('SFMPicmntBundle:Builder:menuCategories', {'class': 'dropdown-menu', 'currentClass': 'active'}) }}
+			</li>
+			<li><a href="{{ path('img_show', { 'option': 'random', 'category': 'all'}) }}">{% trans %}Random{% endtrans %}</a></li>
+			<li>
+				<a href="{{ path('img_upload') }}">{% trans %}Upload Image{% endtrans %}</a>
+			</li>
+		</ul>
+		<ul class="unstyled nav pull-right">
+			{% if is_granted("IS_AUTHENTICATED_REMEMBERED") or is_granted("IS_AUTHENTICATED_FULLY") %}
+			<li><a href="{{ path('fos_user_security_logout') }}">{% trans %}Logout{% endtrans %}</a></li>
+			<li><a href="{{ path('usr_profile', {'userName': app.user.getUsername()})}}">{{ app.user.getUsername() }}</a></li> 
+			{% else %}
+			<li><a href="{{ path('fos_user_registration_register') }}">{% trans %}Join{% endtrans %}</a></li>
+			<li><a href="{{ path('fos_user_security_login') }}">{% trans %}Login{% endtrans %}</a></li> 
+			{% endif %}
+		</ul>
     </nav>
 </header>
 {% endblock header %}
