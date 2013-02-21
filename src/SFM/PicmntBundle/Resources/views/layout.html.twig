@@ -5,12 +5,12 @@
 
 <header class="alpha omega">
     <nav class="container_12 navbar">
-		<div class="grid_1 picmnt-title">
+		<div class="grid_1 picmnt-title brand">
 			<a href='{{ path("home") }}' title="Picmnt"> 
 				<span class="p-letter">P</span><span class="icmnt-word">icmnt</span>
 			</a>
 		</div>
-		<div class="grid_4 prefix_1 menu">
+		<div class="nav">
 			<ul class="tooltip-menu unstyled inline">
 				<li id="explore-tooltip">
 					<span>{% trans %}Explore{% endtrans %}</span>
@@ -22,7 +22,7 @@
 				</li>
 			</ul>
 		</div>
-		<div class="grid_3 prefix_3">
+		<div class="nav pull-right">
 			<ul class="unstyled inline">
 				{% if is_granted("IS_AUTHENTICATED_REMEMBERED") or is_granted("IS_AUTHENTICATED_FULLY") %}
 				<li><a href="{{ path('fos_user_security_logout') }}">{% trans %}Logout{% endtrans %}</a></li>

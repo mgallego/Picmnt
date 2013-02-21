@@ -19,3 +19,50 @@ header {
     letter-spacing: -2px;
     color: @darkGrey;
 }
+
+.navbar {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.navbar .brand {
+    margin-bottom: 0;
+}
+
+.navbar .nav {
+  position: relative;
+  left: 0;
+  display: block;
+  float: left;
+  margin: 0 10px 0 0;
+}
+
+.navbar .nav.pull-right {
+  float: right; // redeclare due to specificity
+  margin-right: 0; // remove margin on float right nav
+}
+
+.navbar .nav > li {
+  float: left;
+}
+
+// Links
+.navbar .nav > li > a {
+  float: none;
+  // Vertically center the text given @navbarHeight
+  padding: ((@navbarHeight - @baseLineHeight) / 2) 15px ((@navbarHeight - @baseLineHeight) / 2);
+  color: @navbarLinkColor;
+  text-decoration: none;
+  text-shadow: 0 1px 0 @navbarBackgroundHighlight;
+}
+.navbar .nav .dropdown-toggle .caret {
+  margin-top: 8px;
+}
+
+// Hover/focus
+.navbar .nav > li > a:focus,
+.navbar .nav > li > a:hover {
+  background-color: @navbarLinkBackgroundHover; // "transparent" is default to differentiate :hover/:focus from .active
+  color: @navbarLinkColorHover;
+  text-decoration: none;
+}
