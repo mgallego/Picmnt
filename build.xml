@@ -136,6 +136,21 @@
    <exec command="phpunit --log-junit build/logs/junit.xml --coverage-clover build/logs/clover.xml -c app"/>
  </target>
 
+<target name="assets" description="Installs bundle assets in web directory">
+    <delete includeemptydirs="true">
+      <fileset dir="${basedir}/web/css" includes="**/*"/>
+    </delete>
+    <exec executable="php" failonerror="true">
+      <arg line="app/console assets:install web --symlink"/>
+    </exec>
+
+    <exec executable="php" failonerror="true">
+      <arg line="app/console assetic:dump"/>
+    </exec>
+
+    <antcall target="cache"/>
+  </target>
+
  <target name="phpcb" description="Aggregate tool output with PHP_CodeBrowser">
   <exec executable="phpcb">
    <arg value="--log" />

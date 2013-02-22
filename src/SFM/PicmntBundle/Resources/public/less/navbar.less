@@ -16,6 +16,7 @@
   *z-index: 2;
 }
 
+
 // Inner for background effects
 // Gradient is applied to its own element because overflow visible is not honored by IE when filter is present
 .navbar-inner {
@@ -50,7 +51,7 @@
   float: left;
   display: block;
   // Vertically center the text given @navbarHeight
-  padding: ((@navbarHeight - @baseLineHeight) / 2) 20px ((@navbarHeight - @baseLineHeight) / 2);
+  padding: 0 20px ((@navbarHeight - @baseLineHeight) / 2);
   margin-left: -20px; // negative indent to left-align the text down the page
   font-size: 20px;
   font-weight: 200;
@@ -230,6 +231,11 @@
   float: left;
   margin: 0 10px 0 0;
 }
+
+ul.nav {
+    margin-top: 10px !important;
+}
+
 .navbar .nav.pull-right {
   float: right; // redeclare due to specificity
   margin-right: 0; // remove margin on float right nav
@@ -500,7 +506,8 @@ header {
     width: 100%;
     background: @header-background-color;
     .box-shadow(1px 1px 10px gray);
-    height: @headerHeight;
+    //height: @headerHeight;
+    height: @navbarHeight;
 }
 
 .picmnt-title {
