@@ -31,7 +31,9 @@ Vagrant.configure("2") do |config|
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
-  # config.vm.synced_folder "../data", "/vagrant_data"
+  #config.vm.synced_folder "../", "/var/www/picmnt"
+  nfs_setting = RUBY_PLATFORM =~ /darwin/ || RUBY_PLATFORM =~ /linux/
+  config.vm.synced_folder "../", "/var/www/picmnt", id: "vagrant-root" , :nfs => nfs_setting
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -91,7 +93,12 @@ Vagrant.configure("2") do |config|
     #chef.json = { :mysql_password => "foo" }
 
 
-    chef.json = { "mysql" => {
+    chef.json = { 
+      'nginx'           => { 'user' => 'vagrant'},
+      'php5-fpm-nginx'  => { 'user' => 'vagrant', 'group' => 'vagrant' },
+
+      "mysql" => {
+        "server" => { "version" => "5.5" },
         "server_root_password" => "P4ssW0rd",
         "server_repl_password" => "P4ssW0rd",
         "server_debian_password" => "P4ssW0rd",
@@ -100,11 +107,14 @@ Vagrant.configure("2") do |config|
     }
 
     chef.add_recipe "nginx"
-    chef.add_recipe "mysql::server"
-#    chef.add_recipe "mysql"
     chef.add_recipe "dotdeb"
     chef.add_recipe "dotdeb::php54" #http://stackoverflow.com/questions/13390129/updating-the-php-version-of-the-chef-php-cookbook
     chef.add_recipe "php"
+    chef.add_recipe "mysql::server"
+    chef.add_recipe "mysql::client"
+    #chef.add_recipe "phpmyadmin"
+    chef.add_recipe "php5-fpm-nginx"
+
   end
 
   # Enable provisioning with chef server, specifying the chef server URL,
