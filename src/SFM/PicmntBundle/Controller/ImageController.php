@@ -65,12 +65,11 @@ class ImageController extends Controller
                 $em->flush();
 
                 $imageUtil->resizeImage($imageDefaults['upload_path'].$newFileName, $imageDefaults['size']);
-                
+
                 if (!is_dir($imageDefaults['thumbs_path'])) {
                     mkdir($imageDefaults['thumbs_path']);
                 }
-
-                if ($this->container->getParameter('use_ducksoard') === 'yes') {
+                if ($this->container->getParameter('use_ducksboard') === 'yes') {
                     $widget = $this->container->get('ducksboard.widget');
                     $widgetId = $this->container->getParameter('upload_widget');
                     $widget->addToCounter($widgetId);
