@@ -15,7 +15,7 @@
       <form id="form-edit-profile" action="{{ path('usr_edit', { 'userId': userId }) }}" method="post" {{ form_enctype(form) }}>
 	{{ form_widget(form) }}
 
-	<input type="submit" />
+	<input id="form-edit-profile-submit" type="submit" />
 
       </form>
     </div>
