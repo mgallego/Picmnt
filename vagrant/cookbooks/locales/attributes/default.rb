@@ -1,0 +1,2 @@
+
+default['locales']['locales']  = ['en']

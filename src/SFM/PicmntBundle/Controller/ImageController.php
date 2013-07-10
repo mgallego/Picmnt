@@ -65,12 +65,11 @@ class ImageController extends Controller
                 $em->flush();
 
                 $imageUtil->resizeImage($imageDefaults['upload_path'].$newFileName, $imageDefaults['size']);
-                
+
                 if (!is_dir($imageDefaults['thumbs_path'])) {
                     mkdir($imageDefaults['thumbs_path']);
                 }
-
-                if ($this->container->getParameter('use_ducksoard') === 'yes') {
+                if ($this->container->getParameter('use_ducksboard') === 'yes') {
                     $widget = $this->container->get('ducksboard.widget');
                     $widgetId = $this->container->getParameter('upload_widget');
                     $widget->addToCounter($widgetId);
@@ -152,7 +151,7 @@ class ImageController extends Controller
      *
      * @Route ("/{category}/{option}/{idImage}", name="img_show",
      * defaults={"idImage"=0},
-     * requirements={"category" = "all|portraits|landscapes|animals|sports|buildings|others", "option" = "random|last|show|recents"})     
+     * requirements={"category" = "all|portraits|landscapes|animals|sports|buildings|others", "option" = "random|show|recents"})     
      */
     public function showAction($option, $idImage = 0, $category = 'all'){
 

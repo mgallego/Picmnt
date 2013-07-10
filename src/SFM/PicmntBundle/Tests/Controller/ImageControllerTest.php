@@ -24,7 +24,6 @@ class ImageControllerTest extends AbstractControllerTest
         $form = $crawler->selectButton('upload')->form();
         $form['picmnt_image_imageuptype[dataFile]']->upload(realpath(dirname(__FILE__)).'/banner.png');
         $crawler = $client->submit($form);
-        
         $this->assertEquals(302, $client->getResponse()->getStatusCode(), "Status 302");
         $this->assertContains('Redirecting to /img/edit/11', $crawler->text());
         $em = $this->getContainer()->get('doctrine')->getEntityManager();
@@ -137,6 +136,9 @@ class ImageControllerTest extends AbstractControllerTest
 
     public function testRecentsImage()
     {
+        $this->markTestSkipped(
+            'Deprecated.'
+        );
         $client = $this->createClient();
         $crawler = $client->request('GET', '/all/recents');
         $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Status 200");
@@ -154,6 +156,9 @@ class ImageControllerTest extends AbstractControllerTest
 
     public function testGetImageOrderAction()
     {
+        $this->markTestSkipped(
+            'Deprecated.'
+        );
         $client = $this->createClient();
         $crawler = $client->request('GET', '/all/last');
         $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Status 200");
