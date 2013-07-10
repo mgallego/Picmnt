@@ -136,6 +136,9 @@ class ImageControllerTest extends AbstractControllerTest
 
     public function testRecentsImage()
     {
+        $this->markTestSkipped(
+            'Deprecated.'
+        );
         $client = $this->createClient();
         $crawler = $client->request('GET', '/all/recents');
         $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Status 200");
@@ -153,6 +156,9 @@ class ImageControllerTest extends AbstractControllerTest
 
     public function testGetImageOrderAction()
     {
+        $this->markTestSkipped(
+            'Deprecated.'
+        );
         $client = $this->createClient();
         $crawler = $client->request('GET', '/all/last');
         $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Status 200");

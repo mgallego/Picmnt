@@ -151,7 +151,7 @@ class ImageController extends Controller
      *
      * @Route ("/{category}/{option}/{idImage}", name="img_show",
      * defaults={"idImage"=0},
-     * requirements={"category" = "all|portraits|landscapes|animals|sports|buildings|others", "option" = "random|last|show|recents"})     
+     * requirements={"category" = "all|portraits|landscapes|animals|sports|buildings|others", "option" = "random|show|recents"})     
      */
     public function showAction($option, $idImage = 0, $category = 'all'){
 
