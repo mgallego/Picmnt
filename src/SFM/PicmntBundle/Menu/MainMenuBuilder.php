@@ -34,7 +34,8 @@ class MainMenuBuilder extends ContainerAware
 
         $randomMenu = $menu->addChild('Random', ['route' => 'img_show', 'routeParameters' => ['option'=>'random', 'category'=>'all']]);
         $uploadMenu = $menu->addChild('Upload Image', ['route' => 'img_upload']);
-        
+
+        $divider = $menu->addChild('divider')->setLabel('')->setAttributes(['class' => 'divider-vertical']);
         return $menu;
     }
 
