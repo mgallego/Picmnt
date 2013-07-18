@@ -27,7 +27,7 @@ class ImageController extends Controller
      *
      * @Route ("/img/upload", name="img_upload")
      */
-    public function uploadAction()
+    public function uploadAction(Request $request)
     {
         $user = $this->container->get('security.context')->getToken()->getUser();
         $image = new Image();
@@ -36,7 +36,8 @@ class ImageController extends Controller
         $form = $this->createForm(new ImageUpType(), $imageUp);
 
         if ($this->get('request')->getMethod() == 'POST') {
-            $form->bindRequest($this->get('request'));
+            $form->handleRequest($request);
+
             if ($form->isValid()) {
                 $imageUtil = $this->container->get('image.utils');
                 $imageDefaults = $this->container->getParameter('image_defaults');
@@ -78,6 +79,7 @@ class ImageController extends Controller
                 return $this->redirect($this->generateUrl('img_edit', array("id_image" => $image->getIdImage())));
             }
         }
+
         return $this->render('SFMPicmntBundle:Image:upload.html.twig', array('form' => $form->createView()));
     }
 
