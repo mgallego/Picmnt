@@ -27,13 +27,13 @@ class MainMenuBuilder extends ContainerAware
             )
             ->setLabel('Explore <b class="caret"></b>')
             ->setExtra('safe_label', true);
-        $exploreMenu->setChildrenAttribute('class', 'dropdown-menu');
-        $exploreMenu->addChild('aaaa')->setExtra('safe_label', true);
-        $exploreMenu->addChild('b');
-        //$exploreMenu = $menu->addChild('Explore', array('route' => 'img_show', 'routeParameters' => array('option'=>'recents', 'category'=>'all')));
 
-        
+        $exploreMenu->setChildrenAttributes(['class' => 'dropdown-menu', 'role' => 'menu']);
+        $exploreMenu->addChild('recents', ['route' => 'img_show', 'routeParameters' => ['option'=>'recents', 'category'=>'all']] );
+        $exploreMenu->addChild('popular', ['route' => 'img_show', 'routeParameters' => ['option'=>'recents', 'category'=>'all']] );        
 
+        $randomMenu = $menu->addChild('Random', ['route' => 'img_show', 'routeParameters' => ['option'=>'random', 'category'=>'all']]);
+        $uploadMenu = $menu->addChild('Upload Image', ['route' => 'img_upload']);
         
         return $menu;
     }
