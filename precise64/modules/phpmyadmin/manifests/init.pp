@@ -51,9 +51,11 @@ class phpmyadmin (
     content  => template('phpmyadmin/config.db.php'),
   }
   ->
-  # phpMyAdmin will display a warning if its control user
+  # phpMyAdmin will display a warning if its control user 
   # is equal to the mysql root user and so
-  # we create the default phpmyadmin user here
+  # we create the default phpmyadmin user here.
+  # On some machines the phpmyadmin user might be already installed.
+  # We have to drop and re-add this user because of new privileges and password.
   exec{ 'creating-phpmyadmin-controluser':
     command => "echo \"CREATE USER 'phpmyadmin'@'localhost'\
       IDENTIFIED BY '${::pma_controluser_password}';\
@@ -61,7 +63,7 @@ class phpmyadmin (
       | mysql -u root -p'${::pma_mysql_root_password}'",
     path    => ['/usr/local/bin', '/usr/bin', '/bin'],
     unless  => "mysql -u root -p'${::pma_mysql_root_password}'\
-      -e 'select * from mysql.user\\G' \
-      | grep 'User: phpmyadmin'"
+      -e 'select * from mysql.user WHERE User=\"phpmyadmin\"' \
+      | grep 'phpmyadmin'"
   }
 }

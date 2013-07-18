@@ -6,7 +6,6 @@ framework:
     profiler: { only_exceptions: false }
 
 web_profiler:
-    verbose: true
     toolbar: true
     intercept_redirects: false
 

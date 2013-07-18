@@ -1,4 +1,5 @@
-# A Facter plugin that loads facts from /etc/facts.d.
+# A Facter plugin that loads facts from /etc/facter/facts.d
+# and /etc/puppetlabs/facter/facts.d.
 #
 # Facts can be in the form of JSON, YAML or Text files
 # and any executable that returns key=value pairs.
@@ -10,6 +11,7 @@
 # The cache is stored in /tmp/facts_cache.yaml as a mode
 # 600 file and will have the end result of not calling your
 # fact scripts more often than is needed
+
 class Facter::Util::DotD
     require 'yaml'
 
@@ -54,8 +56,8 @@ class Facter::Util::DotD
         begin
             require 'json'
         rescue LoadError
-            require 'rubygems'
-            retry
+            retry if require 'rubygems'
+            raise
         end
 
         JSON.load(File.read(file)).each_pair do |f, v|
@@ -92,6 +94,7 @@ class Facter::Util::DotD
                 cache_save!
             end
         else
+            Puppet.deprecation_warning("TTL for external facts is being removed. See http://links.puppetlabs.com/factercaching for more information.")
             Facter.debug("Using cached data for #{file}")
         end
 
@@ -181,3 +184,10 @@ end
 
 Facter::Util::DotD.new("/etc/facter/facts.d").create
 Facter::Util::DotD.new("/etc/puppetlabs/facter/facts.d").create
+
+# Windows has a different configuration directory that defaults to a vendor
+# specific sub directory of the %COMMON_APPDATA% directory.
+if Dir.const_defined? 'COMMON_APPDATA' then
+  windows_facts_dot_d = File.join(Dir::COMMON_APPDATA, 'PuppetLabs', 'facter', 'facts.d')
+  Facter::Util::DotD.new(windows_facts_dot_d).create
+end
