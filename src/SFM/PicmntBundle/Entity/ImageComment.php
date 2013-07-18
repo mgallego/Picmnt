@@ -30,7 +30,7 @@ class ImageComment
    *
    * @ORM\Column(name="comment", type="string", length=2000, nullable=false)
    *
-   * @Assert\MaxLength(2000)
+   * @Assert\Length(max = "2000")
    */
   private $comment;
 
