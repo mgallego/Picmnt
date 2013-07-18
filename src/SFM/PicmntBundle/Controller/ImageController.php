@@ -110,7 +110,7 @@ class ImageController extends Controller
         else{
             $request = $this->get('request');
             if ($request->getMethod() == 'POST'){
-                $form->bindRequest($request);
+                $form->handleRequest($request);
                 if ($form->isValid()) {
                     if ($oldSlug === $image->getFirstSlug() && $image->getFirstTitle() !== $image->getTitle()){
                         $utils = $this->container->get('picmnt.utils');

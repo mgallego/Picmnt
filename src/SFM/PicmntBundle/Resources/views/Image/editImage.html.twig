@@ -1,45 +1,46 @@
 {% extends "SFMPicmntBundle::layout.html.twig" %}
 
+{% form_theme form _self %}
+
+
 {% block content %}
 
-  {{ parent() }}
-
-  <div class="clear"></div>
-
-  <div class="container container_12">
-      <section id="img-section"  class="grid_9">
-	  <div class="span9" id="imageImage">
-	      <img src="{{ asset(image_url) }}" alt="image-to-modify"/> 
-	  </div>
-      </section>
-
-      <section id="img-edition" class="grid_3">
-	  
-	  <form id="edit-form" action="{{ path('img_edit', { 'id_image': image.idImage }) }}" method="post" {{ form_enctype(form) }} class="form-stacked">
-	      <fieldset>
-		  {{ form_errors(form.title) }}
-		  {{ form_label(form.title, 'Title' | trans) }}
-		  {{ form_widget(form.title) }}
-
-		  {{ form_errors(form.description) }}
-		  {{ form_label(form.description, 'Description' | trans) }}
-		  {{ form_widget(form.description) }}
-
-		  {{ form_errors(form.category) }}
-		  {{ form_label(form.category, 'Category' | trans) }}
-		  {{ form_widget(form.category) }}
-
-		  {{ form_errors(form.notify_email) }}
-		  {{ form_label(form.notify_email, 'Notify comments by email' | trans) }}
-		  {{ form_widget(form.notify_email) }}
+{{ parent() }}
 
 
-		  {{ form_rest(form) }}
+<div class="row">
+    <section class="span9">
+	    <img src="{{ asset(image_url) }}" alt="image-to-modify"/> 
+    </section>
+
+    <section class="span3">
+		
+		<form  action="{{ path('img_edit', { 'id_image': image.idImage }) }}" method="post" {{ form_enctype(form) }} class="form-stacked">
+			<fieldset>
+				<legend>Edit Image</legend>
+				{{ form_errors(form.title) }}
+				{{ form_label(form.title, 'Title' | trans) }}
+				{{ form_widget(form.title) }}
+
+				{{ form_errors(form.description) }}
+				{{ form_label(form.description, 'Description' | trans) }}
+				{{ form_widget(form.description) }}
+
+				{{ form_errors(form.category) }}
+				{{ form_label(form.category, 'Category' | trans) }}
+				{{ form_widget(form.category) }}
+
+				{{ form_errors(form.notify_email) }}
+				<label class="checkbox">
+				{{ form_widget(form.notify_email) }} {{ 'Notify comments by email' | trans }}
+				</label>
 
 
-		  <button type="reset" class="button cancel-button">{{ 'Cancel' | trans }}</button>&nbsp;<input type="submit" class="button accept-button" id="edit-image" value="{{ 'Save Changes' | trans }}">
-	      </fieldset>
-	  </form>
-      </section>
-  </div>
+				{{ form_rest(form) }}
+
+				<button type="reset" class="btn btn-danger">{{ 'Cancel' | trans }}</button>&nbsp;<input type="submit" class="btn btn-primary" id="edit-image" value="{{ 'Save Changes' | trans }}">
+			</fieldset>
+		</form>
+    </section>
+</div>
 {% endblock %}
