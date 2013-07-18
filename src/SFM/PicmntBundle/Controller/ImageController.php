@@ -158,7 +158,9 @@ class ImageController extends Controller
     public function showAction($option, $idImage = 0, $category = 'all'){
 
         $em = $this->get('doctrine')->getEntityManager();
-        $paginator = array();
+        $categories = $em->getRepository('SFMPicmntBundle:Category')->findAll();
+
+        $paginator = [];
 
         $imagesPerPage = $this->container->getParameter('images_per_page');
 
@@ -176,11 +178,11 @@ class ImageController extends Controller
                 if (count($images) < $imagesPerPage) {
                     $loadMore = false;
                 }
-                return $this->render('SFMPicmntBundle:Image:recents.html.twig', array("images"=>$images, 'loadMore' => $loadMore));
+                return $this->render('SFMPicmntBundle:Image:recents.html.twig', ["images"=>$images, 'loadMore' => $loadMore, 'categories' => $categories]);
                 break;
         }
-        
-        return $this->render('SFMPicmntBundle:Image:viewImage.html.twig', array("image"=>$image, "paginator"=>$paginator));
+
+        return $this->render('SFMPicmntBundle:Image:viewImage.html.twig', ['image' => $image, 'paginator' => $paginator]);
     }
 
     /**
