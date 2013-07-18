@@ -36,7 +36,7 @@ class Image {
      *
      * @ORM\Column(name="title", type="string", length=255, nullable=true)
      *
-     * @Assert\MaxLength(255)
+     * @Assert\Length(max = "255")
      */
     private $title;
 
@@ -45,7 +45,7 @@ class Image {
      *
      * @ORM\Column(name="first_title", type="string", length=255, nullable=true)
      *
-     * @Assert\MaxLength(255)
+     * @Assert\Length(max = "255")
      */
     private $firstTitle;
 
@@ -54,7 +54,7 @@ class Image {
      * 
      * @ORM\Column(name="description", type="string", length=500, nullable=true)
      *
-     * @Assert\MaxLength(500)
+     * @Assert\Length(max = "255")
      */
     private $description;
 
@@ -64,7 +64,7 @@ class Image {
      *
      * @ORM\Column(name="tags", type="string", length=255, nullable=true)
      *
-     *  @Assert\MaxLength(255)
+     * @Assert\Length(max = "255")
      */
     private $tags;
 
@@ -108,7 +108,7 @@ class Image {
      *
      * @ORM\Column(name="slug", type="string", length=255, nullable=true)
      *
-     * @Assert\MaxLength(255)
+     * @Assert\Length(max = "255")
      */
     private $slug;
 
@@ -117,7 +117,7 @@ class Image {
      *
      * @ORM\Column(name="first_slug", type="string", length=255, nullable=true)
      *
-     * @Assert\MaxLength(255)
+     * @Assert\Length(max = "255")
      */
     private $firstSlug;
 
