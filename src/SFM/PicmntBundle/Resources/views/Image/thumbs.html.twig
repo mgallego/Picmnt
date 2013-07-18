@@ -1,12 +1,14 @@
-<div class="clear"></div>
-<div class="grid_12">
+<div class="page-header">
+	<h1>Recents <small>Last uploaded images</small></h1>
+</div>
+<ul class="thumbnails">
 	{% for image in images %}
 	{% set imageUrl =  '/uploads/' ~ image.url %}
-	<div class="thumbnail">
-		<div class="img-thumb">
-		    <a href="{{ path('img_view', {'user': image.user.username, 'slug': image.slug}) }}"><img src="{{ imageUrl | imagine_filter('thumbnail') }}" alt="{{ image.title }}"/></a>
-		    <div class="thumb-info">
-				<span>{{ image.title | truncate(20) }}</span>
+	<li class="span3">
+		<div class="thumbnail">
+			<a href="{{ path('img_view', {'user': image.user.username, 'slug': image.slug}) }}"><img src="{{ imageUrl | imagine_filter('thumbnail') }}" alt="{{ image.title }}"/></a>
+			<div>
+				<h5>{{ image.title | truncate(20) }}</h5>
 				<p>
 					{% trans %}By{% endtrans %}: <a href="{{ path('usr_profile', {'userName': image.user.username }) }}">
 						{{ image.user.username | truncate(20)}}
@@ -14,10 +16,10 @@
 				</p>
 		    </div>
 		</div>
-	</div>
+	</li>
 	{% endfor %}
-</div>
-<div class="clear"></div>
+</ul>
+
 {% if loadMore %}
 <div id="load-more-thumbs" class="grid_2 prefix_5">
 	<a href="javascript:loadMoreThumbs()">{% trans %}Load More{% endtrans %}</a>
