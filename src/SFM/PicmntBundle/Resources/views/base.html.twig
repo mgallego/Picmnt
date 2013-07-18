@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>Picmnt{% block title %}{% endblock %}</title>
@@ -12,6 +12,7 @@
       <link href="/favicon.ico" rel="shortcut icon">
 
       {% block stylesheet %}
+	      <link href="{{ asset('bundles/sfmpicmnt/bootstrap/css/picmnt.css') }}" rel="stylesheet" media="screen">
 	      <link href="{{ asset('bundles/sfmpicmnt/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" media="screen">
 		  
 		  <!--[if lt IE 9]>
@@ -54,10 +55,11 @@ d('pagecreate', function() {#}
 
       {% endblock header %}
 
+	  <div class="container">
       {% block content %}
       
       {% endblock %}
-
+	  </div>
 
       {% block footer %}
         {% include 'SFMPicmntBundle::footer.html.twig' %}
