@@ -8,7 +8,7 @@
 		<div class="thumbnail">
 			<a href="{{ path('img_view', {'user': image.user.username, 'slug': image.slug}) }}"><img src="{{ imageUrl | imagine_filter('thumbnail') }}" alt="{{ image.title }}"/></a>
 			<div>
-				<h5>{{ image.title | truncate(20) }}</h5>
+				<a href="{{ path('img_view', {'user': image.user.username, 'slug': image.slug}) }}"><h5>{{ image.title | truncate(20) }}</h5></a>
 				<p>
 					{% trans %}By{% endtrans %}: <a href="{{ path('usr_profile', {'userName': image.user.username }) }}">
 						{{ image.user.username | truncate(20)}}
