@@ -1,6 +1,6 @@
 <div class="row-fluid">
 	<div class="page-header span8">
-		<h1>Recents <small>Portraits</small></h1>
+		<h1>{{ option | capitalize }}  <small>{% if category == 'all' %} {{ 'All Categories' | trans }} {% else %}{{ category | capitalize }} {% endif %}</small></h1>
 	</div>
 
 	<div class="span4">

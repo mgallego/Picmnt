@@ -142,6 +142,15 @@ class Image {
      */
     protected $notify_email;
 
+
+    /**
+     * @var integer $notify_email
+     *
+     * @ORM\Column(type="integer", name="popularity", nullable=false)
+     *
+     */
+    protected $popularity = 0;
+
     
 
     public function __construct()
@@ -473,6 +482,25 @@ class Image {
 	return false;
       }
       return true;
+    }
+
+    /**
+     * Set popularity
+     *
+     * @param integer $popularity
+     */
+    public function setPopularity($popularity){
+	//0 -- removed ; 1 -- normal
+      $this->popularity = $popularity;
+    }
+
+    /**
+     * Get popularity
+     *
+     * @return integer popularity
+     */
+    public function getPopularity(){
+      return $this->popularity;
     }
     
 

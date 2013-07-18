@@ -27,7 +27,7 @@ class IndexController extends Controller
         $paginator->setItemsPerPage($imagesPerPage);
         //$images = $paginator->paginate($em->getRepository('SFMPicmntBundle:Image')->getRecentsDQL($category))->getResult();
         $images = $em->getRepository('SFMPicmntBundle:Image')
-            ->findByCategoryAndOrder($category, 'idImage',  null, $imagesPerPage);
+            ->findByCategoryAndOrder($category, 'popularity',  null, $imagesPerPage);
         $loadMore = true;
         if (count($images) < $imagesPerPage) {
             $loadMore = false;
@@ -35,8 +35,9 @@ class IndexController extends Controller
         
         return $this->render(
             'SFMPicmntBundle:Image:recents.html.twig',
-            ["images" => $images,
-                "option" => "recents",
+            ['images' => $images,
+                'category' => $category,
+                'option' => "popular",
                 'loadMore' => $loadMore,
                 'categories' => $categories]
         );

@@ -151,11 +151,15 @@ class ImageController extends Controller
     /**
      * Show an Image
      *
-     * @Route ("/{category}/{option}/{idImage}", name="img_show",
+     * @Route ("/{option}/{idImage}", name="img_show",
      * defaults={"idImage"=0},
-     * requirements={"category" = "all|portraits|landscapes|animals|sports|buildings|others", "option" = "random|show|recents"})     
+     * requirements={"category" = "all|portraits|landscapes|animals|sports|buildings|others", "option" = "random|show|recents|popular"})     
      */
-    public function showAction($option, $idImage = 0, $category = 'all'){
+    public function showAction(Request $request, $option, $idImage = 0, $category = 'all'){
+        
+        if ($request->get('cat')) {
+            $category = $request->get('cat');
+        }
 
         $em = $this->get('doctrine')->getEntityManager();
         $categories = $em->getRepository('SFMPicmntBundle:Category')->findAll();
@@ -178,7 +182,14 @@ class ImageController extends Controller
                 if (count($images) < $imagesPerPage) {
                     $loadMore = false;
                 }
-                return $this->render('SFMPicmntBundle:Image:recents.html.twig', ["images"=>$images, 'loadMore' => $loadMore, 'categories' => $categories]);
+                return $this->render(
+                    'SFMPicmntBundle:Image:recents.html.twig',
+                    ['option' => $option,
+                        'category' => $category,
+                        'images' => $images,
+                        'loadMore' => $loadMore,
+                        'categories' => $categories]
+                );
                 break;
         }
 
