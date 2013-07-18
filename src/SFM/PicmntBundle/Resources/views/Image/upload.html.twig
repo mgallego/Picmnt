@@ -3,21 +3,10 @@
 {% block content %}
   {{ parent() }}
 
-  <section id="upload"  class="container container_12">
 
-      <div class="clear">
-      </div>
+  <section class="row">
 
-      <article id="upload-info" class="grid_4 prefix_4">
-	  <p>
-	      {{ 'Remember that the images you upload must be of your property.' | trans }}
-	  </p>
-	  <p>
-	      {{ 'It is forbidden to upload images of nude or erotic.' | trans }}
-	  </p>
-      </article>
-
-      <article class="grid_4 prefix_4">
+      <article class="span4 offset4 text-center">
 
 	  {% if form_errors(form) %}
 	    {{ form_errors(form) }}
@@ -34,6 +23,16 @@
 	      </fieldset>
 	  </form>
       </article>
+
+      <article class="span4 offset4 text-center">
+	  <p>
+	      {{ 'Remember that the images you upload must be of your property.' | trans }}
+	  </p>
+	  <p>
+	      {{ 'It is forbidden to upload images of nude or erotic.' | trans }}
+	  </p>
+      </article>
+
   </section>
 {% endblock %}
 
