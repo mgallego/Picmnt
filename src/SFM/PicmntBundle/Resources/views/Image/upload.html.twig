@@ -1,46 +1,10 @@
 {% extends "SFMPicmntBundle::layout.html.twig" %}
 
-{% block  scripts %}
+{% block javascript %}
 {{ parent() }}
+<script src="{{ asset('bundles/sfmpicmnt/js/upload.js') }}"></script>
 
-<script>
-	$(document).ready(function(){
-	function handleFileSelect(evt) {
-    var files = evt.target.files; // FileList object
-
-    // Loop through the FileList and render image files as thumbnails.
-    for (var i = 0, f; f = files[i]; i++) {
-
-    // Only process image files.
-    if (!f.type.match('image.*')) {
-    continue;
-    }
-
-    var reader = new FileReader();
-
-    // Closure to capture the file information.
-    reader.onload = (function(theFile) {
-    return function(e) {
-
-    // Render thumbnail.
-    var span = document.createElement('span');
-    span.innerHTML = ['<li><img class="thumbnail" src="', e.target.result,
-											   '" title="', escape(theFile.name), '"/></li>'].join('');
-
-	$('#thumbs').html(span);
-    };
-    })(f);
-
-    // Read in the image file as a data URL.
-    reader.readAsDataURL(f);
-    }
-	}
-
-	document.getElementById('picmnt_image_imageuptype_dataFile').addEventListener('change', handleFileSelect, false);
-	});
-</script>
-
-{% endblock scripts %}
+{% endblock javascript %}
 
 {% block content %}
 {{ parent() }}
@@ -49,38 +13,32 @@
 <section class="row">
 
     <article class="row">
-		<div class="span5 offset3 text-center">
-			<h2>{{ 'Please select an image' | trans }}</h2>
-		</div>
-		<div class="span8 offset2 text-center">
+		<div class="span6 text-center">
+			<output id="list"></output>
 			<ul id="thumbs" class="thumbnails">
 			</ul>
 		</div>
-		<div class="span5 offset3 text-center">			
+
+		<div class="span5 offset1 text-center">			
+
 			{% if form_errors(form) %}
 			{{ form_errors(form) }}
 			{% endif %}
 
 			<form  action="{{ path('img_upload') }}" method="POST" {{ form_enctype(form) }} >
 				<fieldset>
+					<legend>{{ 'Upload Image' | trans }}</legend>
 					{{ form_widget(form.dataFile) }}
 
 					{{ form_rest(form) }}
-
-					<input id="upload" type="submit" class="button accept-button"/>
+					<span class="help-block">				{{ 'Remember that the images you upload must be of your property.' | trans }}
+						{{ 'It is forbidden to upload images of nude or erotic.' | trans }}
+					</span>
+					<div class="row">
+						<input id="upload" type="submit" class="btn-large btn"/>
+					</div>
 				</fieldset>
 			</form>
-		</div>
-    </article>
-
-    <article class="row">
-		<div class="span5 offset3 text-center">
-			<p>
-				{{ 'Remember that the images you upload must be of your property.' | trans }}
-			</p>
-			<p>
-				{{ 'It is forbidden to upload images of nude or erotic.' | trans }}
-			</p>
 		</div>
     </article>
 
