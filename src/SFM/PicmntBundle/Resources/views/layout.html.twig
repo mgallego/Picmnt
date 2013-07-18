@@ -10,42 +10,8 @@
 			<a class="brand" href='{{ path("home") }}' title="Picmnt"> 
 				<span class="p-letter">P</span><span class="icmnt-word">icmnt</span>
 			</a>
-
 			{{ knp_menu_render('SFMPicmntBundle:MainMenuBuilder:mainMenu', {'allow_safe_labels': true, 'currentClass': 'active', 'currentAsLink': true}) | raw}}
-
-<!-- 			<ul class="nav"> -->
-<!-- 				<li class="divider-vertical"></li> -->
-<!-- 				<li id="dropdown"> -->
-<!-- 					<a href="#" class="dropdown-toggle" data-toggle="dropdown"> -->
-<!-- 						{#{% trans %}Explore{% endtrans %} -->
-<!-- 						<b class="caret"></b> -->
-<!-- 					</a> -->
-<!-- {#					{{ knp_menu_render('SFMPicmntBundle:Builder:menuCategories', {'class': 'dropdown-menu', 'currentClass': 'active'}) }} #} -->
-<!-- 				</li> -->
-<!-- 				<li> -->
-<!-- 					<a href="{{ path('img_show', { 'option': 'random', 'category': 'all'}) }}">{% trans %}Random{% endtrans %}</a> -->
-<!-- 				</li> -->
-<!-- 				<li> -->
-<!-- 					<a href="{{ path('img_upload') }}">{% trans %}Upload Image{% endtrans %}</a> -->
-<!-- 				</li> -->
-<!-- 				<li class="divider-vertical"></li> -->
-<!-- 			</ul> -->
-
-
-<!-- 			<ul class="nav pull-right"> -->
-<!-- 				<li class="divider-vertical"></li> -->
-<!-- 				{% if is_granted("IS_AUTHENTICATED_REMEMBERED") or is_granted("IS_AUTHENTICATED_FULLY") %} -->
-<!-- 				<li><a href="{{ path('fos_user_security_logout') }}">{% trans %}Logout{% endtrans %}</a></li> -->
-<!-- 				<li class="divider-vertical"></li> -->
-<!-- 				<li><a href="{{ path('usr_profile', {'userName': app.user.getUsername()})}}">{{ app.user.getUsername() }}</a></li>  -->
-<!-- 				{% else %} -->
-<!-- 				<li><a href="{{ path('fos_user_registration_register') }}">{% trans %}Join{% endtrans %}</a></li> -->
-<!-- 				<li class="divider-vertical"></li> -->
-<!-- 				<li><a href="{{ path('fos_user_security_login') }}">{% trans %}Login{% endtrans %}</a></li>  -->
-<!-- 				{% endif %} -->
-<!-- 			</ul> -->
-
-<!-- 		</div> -->
+			{{ knp_menu_render('SFMPicmntBundle:MainMenuBuilder:loginMenu', {'allow_safe_labels': true, 'currentClass': 'active', 'currentAsLink': true}) | raw}}
     </nav>
 </header>
 {% endblock header %}

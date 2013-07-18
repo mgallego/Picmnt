@@ -32,10 +32,32 @@ class MainMenuBuilder extends ContainerAware
         $exploreMenu->addChild('recents', ['route' => 'img_show', 'routeParameters' => ['option'=>'recents', 'category'=>'all']] );
         $exploreMenu->addChild('popular', ['route' => 'img_show', 'routeParameters' => ['option'=>'recents', 'category'=>'all']] );        
 
-        $randomMenu = $menu->addChild('Random', ['route' => 'img_show', 'routeParameters' => ['option'=>'random', 'category'=>'all']]);
-        $uploadMenu = $menu->addChild('Upload Image', ['route' => 'img_upload']);
+        $menu->addChild('Random', ['route' => 'img_show', 'routeParameters' => ['option'=>'random', 'category'=>'all']]);
+        $menu->addChild('Upload Image', ['route' => 'img_upload']);
 
-        $divider = $menu->addChild('divider')->setLabel('')->setAttributes(['class' => 'divider-vertical']);
+        $menu->addChild('divider')->setLabel('')->setAttributes(['class' => 'divider-vertical']);
+
+        return $menu;
+    }
+
+    public function LoginMenu(FactoryInterface $factory, array $options)
+    {
+        $securityContext = $this->container->get('security.context');
+
+        $menu = $factory->createItem('login-menu');
+        $menu->setChildrenAttribute('class', 'nav pull-right');
+
+        $menu->addChild('divider')->setLabel('')->setAttributes(['class' => 'divider-vertical']);
+
+        if ($securityContext->isGranted('ROLE_USER')) {
+            $username = $securityContext->getToken()->getUsername();
+            $menu->addChild($username, ['route' => 'usr_profile', 'routeParameters'=> ['userName' => $username]]);
+            $menu->addChild('Logout', ['route' => 'fos_user_security_logout']);
+        } else {
+            $menu->addChild('Login', ['route' => 'fos_user_security_login']);
+            $menu->addChild('Sign up', ['route' => 'fos_user_registration_register']);
+        }
+
         return $menu;
     }
 
