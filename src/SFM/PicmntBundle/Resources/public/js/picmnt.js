@@ -1,15 +1,27 @@
-function loadMoreThumbs() {
-    $.ajax({
-	url: '/app_dev.php/ajax/images/get_more?option='+option+'&page=' +  ++page +'&category='+category+'&username='+ username,
-	async: false,
-	dataType: 'json'
-    }).success(function(images) {
-	console.log(images);
-	for (i in images)
-	{
-	    image = images[i];
+$(document).ready(function() {
 
-	    htmlText = "<li class='span3'>\
+
+
+    $('#load-more-thumbs').click(function(event) {
+	event.preventDefault();
+	loadMoreThumbs();
+    });
+
+
+});
+
+    function loadMoreThumbs() {
+	$.ajax({
+	    url: '/app_dev.php/ajax/images/get_more?option='+option+'&page=' +  ++page +'&category='+category+'&username='+ username,
+	    async: false,
+	    dataType: 'json'
+	}).success(function(images) {
+	    console.log(images);
+	    for (i in images)
+	    {
+		image = images[i];
+
+		htmlText = "<li class='span3'>\
                        <div class='thumbnail'>\
                        <a href='"+  image['imageViewUrl'] +"'><img src='" +  image['url'] + "' alt='" + image["title"] + "'/></a>\
                        <div class='thumb-info'>\
@@ -22,10 +34,9 @@ function loadMoreThumbs() {
                        </div>\
                        </li>";
 
-            $('.thumbnails').append(htmlText);
+		$('.thumbnails').append(htmlText);
+		//document.location.href = '#load-more-thumbs';
+	    }
+	});
+    };
 
-	    //document.location.href = '#load-more-thumbs';
-	}
-
-    });
-}
