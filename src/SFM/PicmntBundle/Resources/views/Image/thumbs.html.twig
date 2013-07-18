@@ -1,5 +1,5 @@
 <div class="page-header">
-	<h1>Recents <small>Last uploaded images</small></h1>
+	<h1>Recents <small>Portraits</small></h1>
 </div>
 <ul class="thumbnails">
 	{% for image in images %}
@@ -21,7 +21,7 @@
 </ul>
 
 {% if loadMore %}
-<div id="load-more-thumbs" class="grid_2 prefix_5">
-	<a href="javascript:loadMoreThumbs()">{% trans %}Load More{% endtrans %}</a>
+<div id="load-more-thumbs" class="text-center">
+	<a href="javascript:loadMoreThumbs()" class="btn btn-block btn-large">{% trans %}Load More{% endtrans %}</a>
 </div>
 {% endif %}
