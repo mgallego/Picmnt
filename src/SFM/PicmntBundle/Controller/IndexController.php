@@ -19,18 +19,27 @@ class IndexController extends Controller
         $category = 'all';
 
         $em = $this->get('doctrine')->getEntityManager();
-        $paginator = array();
+        $categories = $em->getRepository('SFMPicmntBundle:Category')->findAll();
+        $paginator = [];
 
         $imagesPerPage = $this->container->getParameter('images_per_page');
         $paginator = $this->get('ideup.simple_paginator');
         $paginator->setItemsPerPage($imagesPerPage);
-        $images = $paginator->paginate($em->getRepository('SFMPicmntBundle:Image')->getRecentsDQL($category))->getResult();
+        //$images = $paginator->paginate($em->getRepository('SFMPicmntBundle:Image')->getRecentsDQL($category))->getResult();
+        $images = $em->getRepository('SFMPicmntBundle:Image')
+            ->findByCategoryAndOrder($category, 'idImage',  null, $imagesPerPage);
         $loadMore = true;
         if (count($images) < $imagesPerPage) {
             $loadMore = false;
         }
         
-        return $this->render('SFMPicmntBundle:Image:recents.html.twig', array("images"=>$images, "option" => "recents", 'loadMore' => $loadMore));
+        return $this->render(
+            'SFMPicmntBundle:Image:recents.html.twig',
+            ["images" => $images,
+                "option" => "recents",
+                'loadMore' => $loadMore,
+                'categories' => $categories]
+        );
 
     }
 

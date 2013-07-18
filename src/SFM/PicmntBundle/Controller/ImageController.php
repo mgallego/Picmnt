@@ -173,7 +173,7 @@ class ImageController extends Controller
                 break;
             case 'recents':
                 $images = $em->getRepository('SFMPicmntBundle:Image')
-                    ->getRecents($category, null, $imagesPerPage);
+                    ->findByCategoryAndOrder($category, 'idImage',  null, $imagesPerPage);
                 $loadMore = true;
                 if (count($images) < $imagesPerPage) {
                     $loadMore = false;

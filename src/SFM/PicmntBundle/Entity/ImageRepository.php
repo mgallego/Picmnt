@@ -107,30 +107,6 @@ class ImageRepository extends EntityRepository
     }
 
 
-    public function getMostComment($maxResults){
-	return $this->getMostCommentDQL($maxResults)->getResult();
-    }
-
-    public function getMostCommentDQL($maxResults = 10){
-
-        $qb = $this->_em->createQueryBuilder();
-
-        $qb->add('select', 'c as comment, count(c) as cCount')
-            ->add('from', 'SFMPicmntBundle:ImageComment c')
-	    ->join('c.image','p')
-            ->add('where', 'p.title is not null AND p.status = 1') 
-	    ->addGroupby('p.idImage')
-            ->addOrderBy('cCount', 'DESC')
-            ->setMaxResults($maxResults);
-
-
-	$query = $qb->getQuery();  
-
-	return $query;
-
-    }
-
-
     public function findNext($idImage, $orderBy, $category = 'All')
     {
 	$category = $this->getCategoryCondition($category);
@@ -229,29 +205,29 @@ class ImageRepository extends EntityRepository
 
     }
 
-    public function getRecents($category, $offset = 0, $maxResults = 30){
 
-	return $this->getRecentsDQL($category)
+    public function findByCategoryAndOrder($category, $orderField, $offset = 0, $maxResults = 30)
+    {
+        return $this->findByCategoryAndOrderDQL($category, $orderField)
             ->setFirstResult($offset)
             ->setMaxResults($maxResults)
             ->getResult();
-
     }
 
 
-    public function getRecentsDQL($category){
-	$category = $this->getCategoryCondition($category);
-
+    public function findByCategoryAndOrderDQL($category, $orderField){
+        $category = $this->getCategoryCondition($category);
+        
 	$query = $this->getEntityManager()->createQuery('SELECT p 
                                                      FROM SFMPicmntBundle:Image p
                                                      JOIN p.category c
                                                      WHERE p.status = 1 '.$category.' 
-                                                     ORDER by p.idImage DESC
+                                                     ORDER by p.'.$orderField.' DESC
                                                      ');
-
+        
 	return $query;
-
     }
+
 
     public function hasVoted($idImage){
     
