@@ -21,14 +21,14 @@ class AppKernel extends Kernel
 	    new SFM\UserBundle\SFMUserBundle(),
 	    new Knp\Bundle\MenuBundle\KnpMenuBundle(),
 	    new Liip\FunctionalTestBundle\LiipFunctionalTestBundle(),
-	    //new Ideup\SimplePaginatorBundle\IdeupSimplePaginatorBundle(),
+	    new Ideup\SimplePaginatorBundle\IdeupSimplePaginatorBundle(),
 	    new Ornicar\GravatarBundle\OrnicarGravatarBundle(),
-            //new RaulFraile\Bundle\LadybugBundle\RaulFraileLadybugBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
             new SFM\DucksboardBundle\SFMDucksboardBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
+            //new RaulFraile\Bundle\LadybugBundle\RaulFraileLadybugBundle(),
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();

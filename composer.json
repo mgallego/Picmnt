@@ -27,7 +27,9 @@
         "ornicar/gravatar-bundle": "dev-master",
         "liip/imagine-bundle": "dev-master",
         "sfm/ducksboard-bundle": "dev-master",
-        "leafo/lessphp": "dev-master"
+        "leafo/lessphp": "dev-master",
+	"ideup/simple-paginator-bundle":"*",
+	"raulfraile/ladybug-bundle": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [
@@ -48,7 +50,7 @@
     "config": {
         "bin-dir": "bin"
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "extra": {
         "symfony-app-dir": "app",
         "symfony-web-dir": "web",
