@@ -8,6 +8,10 @@ $(document).ready(function() {
     });
 
 
+    $('#category-select').change(function() {
+	window.location = '/app_dev.php/'+option+'?cat=' + $('#category-select option:selected').text().toLowerCase();
+    });
+
 });
 
     function loadMoreThumbs() {

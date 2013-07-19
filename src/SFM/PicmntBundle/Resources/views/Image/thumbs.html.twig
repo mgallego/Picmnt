@@ -5,9 +5,10 @@
 
 	<div class="span4">
 		{% if categories is defined %}
-		<select class="pull-right">
-			{% for category in categories %}
-			Category: <option>{{ category | capitalize | trans }}</option>
+		<select id="category-select" class="pull-right">
+			<option>All</option>
+			{% for opt_category in categories %}
+			<option {% if opt_category == category %} selected {% endif %}>{{ opt_category | capitalize | trans }}</option>
 			{% endfor %}
 		</select>
 		{% endif %}
