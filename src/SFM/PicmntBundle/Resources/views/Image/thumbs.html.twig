@@ -11,6 +11,8 @@
 			<option {% if opt_category == category %} selected {% endif %}>{{ opt_category | capitalize | trans }}</option>
 			{% endfor %}
 		</select>
+		{% else %}
+		<a class="btn btn-row btn-large btn-success" href="{{ path('img_show', {'option': 'recents'}) }}">{{ 'Explore the last upload images, comment or modify' | trans }}</a>
 		{% endif %}
 	</div>
 </div>

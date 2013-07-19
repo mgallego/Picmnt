@@ -178,21 +178,28 @@ class ImageController extends Controller
             case 'recents':
                 $images = $em->getRepository('SFMPicmntBundle:Image')
                     ->findByCategoryAndOrder($category, 'idImage',  null, $imagesPerPage);
-                $loadMore = true;
-                if (count($images) < $imagesPerPage) {
-                    $loadMore = false;
-                }
-                return $this->render(
-                    'SFMPicmntBundle:Image:recents.html.twig',
-                    ['option' => $option,
-                        'category' => $category,
-                        'images' => $images,
-                        'loadMore' => $loadMore,
-                        'categories' => $categories]
-                );
                 break;
+            case 'popular':
+                $images = $em->getRepository('SFMPicmntBundle:Image')
+                    ->findByCategoryAndOrder($category, 'popularity',  null, $imagesPerPage);
+                break;
+
         }
 
+        if ($option === 'recents' || $option === 'popular') {
+            $loadMore = true;
+            if (count($images) < $imagesPerPage) {
+                $loadMore = false;
+            }
+            return $this->render(
+                'SFMPicmntBundle:Image:recents.html.twig',
+                ['option' => $option,
+                    'category' => $category,
+                    'images' => $images,
+                    'loadMore' => $loadMore,
+                        'categories' => $categories]
+            );
+        }
         return $this->render('SFMPicmntBundle:Image:viewImage.html.twig', ['image' => $image, 'paginator' => $paginator]);
     }
 

@@ -38,8 +38,8 @@ class IndexController extends Controller
             ['images' => $images,
                 'category' => $category,
                 'option' => "popular",
-                'loadMore' => $loadMore,
-                'categories' => $categories]
+                'loadMore' => $loadMore
+                ]
         );
 
     }
