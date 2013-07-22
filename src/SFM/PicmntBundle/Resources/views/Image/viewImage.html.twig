@@ -58,213 +58,144 @@
 					{% else %}
 					{{ image.title }}
 					{% endif %}
-					<a href="{{ path('usr_profile', {'userName': image.user.username }) }}">  <small>{{ image.user.username }}</small></a>
+					<a href="{{ path('usr_profile', {'userName': image.user.username }) }}"><small>{{ image.user.username }}</small></a>
 				</h1>
 			</div>
 		</section>
 
 
+
+
 		<section class="row">
-			<article class="text-center">
-				<img class="span9"src="{{ asset(upload_dir ~ image.url) }}" id="image-to-modify" alt="{{image.title}}">
+			<article class="span9">
+				<img class="img-polaroid input-block-level" src="{{ asset(upload_dir ~ image.url) }}" id="image-to-modify" alt="{{image.title}}">
+
+				<h4 class="page-header">Comment or modify the image</h4>
+				<textarea rows=5 placeholder="Add your comment here." class="input-block-level" name="comment" required="required"></textarea>
+ 				<button class="btn btn-danger" type="reset"  onclick="javascript:applyProposal(0,0,0,0)">{{ 'Cancel' | trans }}</button>
+				<input class="btn" type="submit" value="{% trans %}Send Comment{% endtrans %}">&nbsp;
+
+				
+				<h4 class="page-header">Comments</h4>
+				<ul class="unstyled subsection_1">
+					{% for comment in image.imageComments %}
+					{% set username = comment.user.username %}
+					
+					<li id="comment-{{ loop.index }}" class="comment row hidden-element-parent accent large">
+						<a class="link-to-comment hide" href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}#comment-{{ loop.index }}">#{{ loop.index }}</a>
+						<p>
+							{# try to create a twig function #}
+
+							{% if existsAvatar(username) %}
+							<img src="{{ avatarByUsername(username,'big') | imagine_filter('avatar_small') }}" class="thumb-small left span_1" alt="avatar-small" />
+							{% else %}
+							{% if gravatar_exists(getEmail(username)) %}
+							<img src="{{ gravatar(getEmail(username), 50) }}" class="avatar-small left span_1" alt="thumb-small"/>
+							{% else %}
+							<img src="{{ asset('/bundles/sfmpicmnt/images/default_user50x50.png') }}" class="thumb-small left span_1" alt="avatar-small" />
+							{% endif %}
+							{% endif %}
+							<a href="{{ path('usr_profile', {'userName': comment.user.username }) }}">{{ username }}</a>
+							<span class="minor-import">{{ image.pubDate | date() }}</span>
+						</p>
+						<p>
+							{{ comment.comment | nl2br }}
+							{% if comment.brightness != 0 or comment.contrast != 0 or comment.exposure != 0 or comment.saturation != 0 %}
+							<a class="right button-small default-button hidden-element-inline hidden" href="#image-title" onclick="javascript:applyProposal({{ comment.brightness }},{{ comment.contrast }}, {{ comment.exposure }},{{ comment.saturation}})" >{{ 'See Proposal' | trans }}</a>
+							{% endif %}
+						</p>
+					</li>
+
+					{% else %}
+					<h5>{{ 'There is no comment for this image. Be the first to comment' | trans }}</h5>
+					{% endfor %}
+
+				</ul>
+
+
+
 			</article>
 
 
-			<div class="row span3">
-				<h4 class="page-header">Retouch Image</h4>
+			<div class="span3">
+				<div class="span3">
+					<h4 class="page-header">Retouch Image</h4>
 
-				<span class="control-title">
-					{% trans %}Brightness{% endtrans %}:
-				</span>
-				<input type="text" id="brightness-amount" name="brightness"  class="slider-data fake-input"/>
+					<span class="control-title">
+						{% trans %}Brightness{% endtrans %}:
+					</span>
+					<input type="text" id="brightness-amount" name="brightness"  class="slider-data fake-input"/>
 
-				<div id="slider-brightness" class="slider"></div>
+					<div id="slider-brightness" class="slider"></div>
 
-				<span class="control-title">
-					{% trans %}Contrast{% endtrans %}:
-				</span>
-				<input type="text" id="contrast-amount" name="contrast"  class="slider-data fake-input"/>
+					<span class="control-title">
+						{% trans %}Contrast{% endtrans %}:
+					</span>
+					<input type="text" id="contrast-amount" name="contrast"  class="slider-data fake-input"/>
 
-				<div id="slider-contrast" class="slider"></div>
+					<div id="slider-contrast" class="slider"></div>
 
-				<span class="control-title">
-					{% trans %}Exposure{% endtrans %}:
-				</span>
-				<input type="text" id="exposure-amount" name="exposure"  class="slider-data fake-input"/>
+					<span class="control-title">
+						{% trans %}Exposure{% endtrans %}:
+					</span>
+					<input type="text" id="exposure-amount" name="exposure"  class="slider-data fake-input"/>
 
-				<div id="slider-exposure" class="slider"></div>
+					<div id="slider-exposure" class="slider"></div>
 
-				<span class="control-title">
-					{% trans %}Saturation{% endtrans %}:
-				</span>
-				<input type="text" id="saturation-amount" name="saturation"  class="slider-data fake-input"/>
+					<span class="control-title">
+						{% trans %}Saturation{% endtrans %}:
+					</span>
+					<input type="text" id="saturation-amount" name="saturation"  class="slider-data fake-input"/>
 
-				<div id="slider-saturation" class="slider"></div>
-				<br />
-				<p>
-					<a id="reset-retouch" href="" class="btn btn-info pull-right">{% trans %}View Original{% endtrans %}</a>
-				</p>
-			</div>
+					<div id="slider-saturation" class="slider"></div>
+					<br />
+					<p>
+						<a id="reset-retouch" href="" class="btn pull-right">{% trans %}View Original{% endtrans %}</a>
+					</p>
+				</div>
 
-
-			{% if app.user and  app.user.id == image.user.id  %}
-			<div class="span3 row">
-				<ul class="inline">
-					<h4 class="page-header">User Actions</h4>
-					<li class="span1"><a href="{{ path('img_edit', {'id_image': image.idImage}) }}"  class="btn btn-primary">{% trans %}Edit{% endtrans %}</a></li>
-					<li class="span1"><a href="{{ path('img_delete', { 'idImage': image.idImage }) }}"  class="btn btn-danger">{% trans %}Remove{% endtrans %}</a></li>
-				</ul>
-			</div>
-			{% endif %}
-
-
-
-
-
-
-
-		</section>
-
-			<!-- 	<article class="subsection"> -->
-			<!-- 		<textarea placeholder="Add your comment..." class="textarea-large" name="comment" required="required"></textarea>  -->
-			<!-- 		<div class="right"> -->
- 			<!-- 			<button class="button cancel-button" type="reset"  onclick="javascript:applyProposal(0,0,0,0)">{{ 'Cancel' | trans }}</button>  -->
-			<!-- 			<input class="button accept-button" type="submit" value="{% trans %}Send Comment{% endtrans %}">&nbsp; -->
-			<!-- 		</div> -->
-
-
-			<!-- 		{#  ################   COMMENTS   ################## #} -->
-
-			<!-- 		<ul class="unstyled subsection_1"> -->
-			<!-- 			{% for comment in image.imageComments %} -->
-			<!-- 			{% set username = comment.user.username %} -->
-						
-			<!-- 			<li id="comment-{{ loop.index }}" class="comment row hidden-element-parent accent large"> -->
-			<!-- 				<a class="link-to-comment hide" href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}#comment-{{ loop.index }}">#{{ loop.index }}</a> -->
-			<!-- 				<p> -->
-			<!-- 					{# try to create a twig function #} -->
-
-			<!-- 					{% if existsAvatar(username) %} -->
-			<!-- 					<img src="{{ avatarByUsername(username,'big') | imagine_filter('avatar_small') }}" class="thumb-small left span_1" alt="avatar-small" /> -->
-			<!-- 					{% else %} -->
-			<!-- 					{% if gravatar_exists(getEmail(username)) %} -->
-			<!-- 					<img src="{{ gravatar(getEmail(username), 50) }}" class="avatar-small left span_1" alt="thumb-small"/> -->
-			<!-- 					{% else %} -->
-			<!-- 					<img src="{{ asset('/bundles/sfmpicmnt/images/default_user50x50.png') }}" class="thumb-small left span_1" alt="avatar-small" /> -->
-			<!-- 					{% endif %} -->
-			<!-- 					{% endif %} -->
-			<!-- 					<a href="{{ path('usr_profile', {'userName': comment.user.username }) }}">{{ username }}</a> -->
-			<!-- 					<span class="minor-import">{{ image.pubDate | date() }}</span> -->
-			<!-- 				</p> -->
-			<!-- 				<p> -->
-			<!-- 					{{ comment.comment | nl2br }} -->
-			<!-- 					{% if comment.brightness != 0 or comment.contrast != 0 or comment.exposure != 0 or comment.saturation != 0 %} -->
-			<!-- 					<a class="right button-small default-button hidden-element-inline hidden" href="#image-title" onclick="javascript:applyProposal({{ comment.brightness }},{{ comment.contrast }}, {{ comment.exposure }},{{ comment.saturation}})" >{{ 'See Proposal' | trans }}</a> -->
-			<!-- 					{% endif %} -->
-			<!-- 				</p> -->
-			<!-- 			</li> -->
-
-			<!-- 			{% else %} -->
-			<!-- 			<h3 class="grid_12">{{ 'There is no comment for this image. Be the first to comment' | trans }}</h3> -->
-			<!-- 			{% endfor %} -->
-
-			<!-- 		</ul> -->
-			<!-- 	</article> -->
-
-			<!-- </section> -->
-
-
-
-
-			<!-- {#    ###############              info SECTION      ###############      #} -->
-			<!-- <section class="grid_3 subsection"> -->
-
-			<!-- 	<div  class="img-box span-medium "> -->
-			<!-- 		<p> -->
-			<!-- 			{% if existsAvatar(image.user.username) %} -->
-			<!-- 			<img src="{{ avatarByUsername(image.user.username,'big') }}" class="right thumb-medium span" alt="avatar"/> -->
-			<!-- 			{% else %} -->
-			<!-- 			{% if gravatar_exists(getEmail(image.user.username)) %} -->
-			<!-- 			<img src="{{ gravatar(getEmail(image.user.username), 100) }}"  class="right thumb-medium span" alt="avatar" /> -->
-			<!-- 			{% else %} -->
-			<!-- 			<img src="{{ asset('/bundles/sfmpicmnt/images/default_user100x100.png') }}" class="right thumb-medium  span" alt="avatar"/> -->
-			<!-- 			{% endif %} -->
-			<!-- 			{% endif %} -->
-			<!-- 		</p> -->
-			<!-- 		<h2 class="span"><a href="{{ path('usr_profile', {'userName': image.user.username }) }}">{{ image.user.username }}</a></h2> -->
-
-			<!-- 	</div> -->
-			<!-- 	{% if app.user and  app.user.id == image.user.id  %} -->
-			<!-- 	<div class="img-box"> -->
-			<!-- 		<ul class="inline"> -->
-			<!-- 			<li><a href="{{ path('img_edit', {'id_image': image.idImage}) }}"  class="button cancel-button">{% trans %}Edit{% endtrans %}</a></li> -->
-			<!-- 			<li><a href="{{ path('img_delete', { 'idImage': image.idImage }) }}"  class="button danger-button">{% trans %}Remove{% endtrans %}</a></li> -->
-			<!-- 		</ul> -->
-			<!-- 	</div> -->
-			<!-- 	{% endif %} -->
-			<!-- 	{# <div class="img-box"> -->
-			<!-- 		<ul> -->
-			<!-- 			<li> -->
-			<!-- 				<a href="" class="like"></a> -->
-			<!-- 			<li> -->
-			<!-- 				<a href="" class="dislike"></a> -->
-			<!-- 			</li> -->
-			<!-- 		</ul> -->
-			<!-- 	</div> #} -->
-
-			<!-- 	<div class="img-box"> -->
-			<!-- 		<span class="control-title span_2"> -->
-			<!-- 			{% trans %}Brightness{% endtrans %}: -->
-			<!-- 		</span> -->
-			<!-- 		<input type="text" id="brightness-amount" name="brightness"  class="slider-data fake-input inline"/> -->
-
-			<!-- 		<div id="slider-brightness" class="slider"></div> -->
-
-			<!-- 		<span class="control-title span_2"> -->
-			<!-- 			{% trans %}Contrast{% endtrans %}: -->
-			<!-- 		</span> -->
-			<!-- 		<input type="text" id="contrast-amount" name="contrast"  class="slider-data fake-input inline"/> -->
-
-			<!-- 		<div id="slider-contrast" class="slider"></div> -->
-
-			<!-- 		<span class="control-title span_2"> -->
-			<!-- 			{% trans %}Exposure{% endtrans %}: -->
-			<!-- 		</span> -->
-			<!-- 		<input type="text" id="exposure-amount" name="exposure"  class="slider-data fake-input inline"/> -->
-
-			<!-- 		<div id="slider-exposure" class="slider"></div> -->
-
-			<!-- 		<span class="control-title span_2"> -->
-			<!-- 			{% trans %}Saturation{% endtrans %}: -->
-			<!-- 		</span> -->
-			<!-- 		<input type="text" id="saturation-amount" name="saturation"  class="slider-data fake-input inline"/> -->
-
-			<!-- 		<div id="slider-saturation" class="slider"></div> -->
-			<!-- 		<p id="see-original" class=" row_1 span_1  center"> -->
-			<!-- 			<a href="#" class="button accept-button" onclick="javascript:seeOriginal()">{% trans %}View Original{% endtrans %}</a> -->
-			<!-- 		</p> -->
-			<!-- 		<p class="row"></p> -->
-			<!-- 	</div> -->
-			<!-- 	{% if image.description %} -->
-			<!-- 	<div class="img-box"> -->
-			<!-- 		<p class="span_2">{{ image.description }}</p> -->
-			<!-- 	</div> -->
-			<!-- 	{% endif %} -->
-
-			<!-- 	<div class="img-box">  -->
-			<!-- 		<ul> -->
-			<!-- 			<li class="pub-date"> -->
-			<!-- 				<span class="info-key">{% trans %}Uploaded{% endtrans %}:</span> {{ image.pubDate | date() }} -->
-			<!-- 			</li> -->
-			<!-- 			<li class="category"> -->
-			<!-- 				<span class="info-key">{% trans %}Category{% endtrans %}:</span> -->
-			<!-- 				<a href="{{ path('img_show', { 'option': 'recents', 'category': image.category}) }}">{{ image.category }}</a> -->
-			<!-- 			</li> -->
-			<!-- 		</ul> -->
-			<!-- 	</div> -->
 				
-			<!-- </section> -->
+				{% if image.description %}
+				<div class="span3">
+					<h4 class="page-header">Description</h4>
+					{{ image.description }}
+				</div>
+				{% endif %}
+
+
+				<div class="span3">
+					<h4 class="page-header">Info</h4>
+					<ul class="unstyled">
+						<li class="pub-date"><i class="icon-upload"></i>
+							<span class="info-key">{% trans %}Uploaded{% endtrans %}:</span> {{ image.pubDate | date("F jS") }}
+						</li>
+						<li class="category"><i class="icon-tag"></i>
+							<span class="info-key">{% trans %}Category{% endtrans %}:</span>
+							{% set category = image.category %}
+							{# <a href="{{ path('img_show', { 'option': 'recents', 'cat': category }) }}">{{ image.category }}</a>						 #}
+							<a href="{{ path('img_show', { 'option': 'recents'}) }}?cat={{ image.category }}">{{ image.category | capitalize }}</a> 
+						</li>
+					</ul>
+				</div>
+
+
+				{% if app.user and  app.user.id == image.user.id  %}
+				<div class="span3">
+					<ul class="inline">
+						<h4 class="page-header">User Actions</h4>
+						<li><a href="{{ path('img_edit', {'id_image': image.idImage}) }}"  class="btn btn-primary">{% trans %}Edit{% endtrans %}</a></li>
+						<li><a href="{{ path('img_delete', { 'idImage': image.idImage }) }}"  class="btn btn-danger">{% trans %}Remove{% endtrans %}</a></li>
+					</ul>
+				</div>
+				{% endif %}
+
+
+
+			</div>
+
 		</section>
-	</form>
+
+</section>
+</form>
 </section>
 {% endblock content %}
