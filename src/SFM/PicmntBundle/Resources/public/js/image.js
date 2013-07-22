@@ -21,7 +21,7 @@ $(document).ready(function() {
 	$( '#saturation-amount' ).val($( "#slider-saturation" ).slider( "value" ));
     };
 
-    $('#reset-retouch').click(function(event) {
+    $('.reset-retouch').click(function(event) {
 	event.preventDefault();
 	applyProposal(0, 0, 0, 0);
     });
@@ -66,13 +66,11 @@ function applyProposal(brightness, contrast, exposure, saturation){
 
     applyFilter();
 
-    $('#see-original').show();
     document.location.href = '#TOP';
 
 };
 
 function seeOriginal() {
     applyProposal(0, 0, 0, 0);
-    $('#see-original').hide();
-    document.location.href = '#image-title';
+    document.location.href = '#TOP';
 }
