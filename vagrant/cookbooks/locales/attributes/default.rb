@@ -1,2 +1,0 @@
-
-default['locales']['locales']  = ['en']
