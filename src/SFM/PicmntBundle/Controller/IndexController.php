@@ -19,15 +19,15 @@ class IndexController extends Controller
         $category = 'all';
 
         $em = $this->get('doctrine')->getManager();
-        $categories = $em->getRepository('SFMPicmntBundle:Category')->findAll();
         $paginator = [];
 
         $imagesPerPage = $this->container->getParameter('images_per_page');
         $paginator = $this->get('ideup.simple_paginator');
         $paginator->setItemsPerPage($imagesPerPage);
-        //$images = $paginator->paginate($em->getRepository('SFMPicmntBundle:Image')->getRecentsDQL($category))->getResult();
+
         $images = $em->getRepository('SFMPicmntBundle:Image')
             ->findByCategoryAndOrder($category, 'popularity',  null, $imagesPerPage);
+
         $loadMore = true;
         if (count($images) < $imagesPerPage) {
             $loadMore = false;

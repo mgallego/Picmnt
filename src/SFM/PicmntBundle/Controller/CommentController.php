@@ -20,7 +20,6 @@ class CommentController extends Controller{
      *
      */
     public function commentAction($idImage){
-	$logger = $this->get('logger');
 	$imageComment = new ImageComment();
 
 	$em = $this->get('doctrine')->getManager();     

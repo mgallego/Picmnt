@@ -84,7 +84,7 @@ class ImageUtil{
 
     public function getExtension($mimeType)
     {
-	if ($mimeType= 'image/png' ){
+	if ($mimeType == 'image/png' ){
 	    return '.png';
 	}
 	return '.jpg';
