@@ -100,7 +100,7 @@ class UserController extends Controller{
      * Return a username or if the parameter is null the current user
      *
      */
-    public function getUser($userName = null){
+    private function getUser($userName = null){
 
 	$em = $this->get('doctrine')->getEntityManager();
 
