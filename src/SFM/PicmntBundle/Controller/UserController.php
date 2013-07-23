@@ -95,19 +95,8 @@ class UserController extends Controller
 	    ->getForm();
     }
 
-    /**
-     * Return the images paginated for an user
-     *
-     */
-    private function getPaginatedImages($user, $em){
-        return $em->getRepository('SFMPicmntBundle:Image')->getByUser($username, null, 10);
-	$paginator = $this->get('ideup.simple_paginator');
-	$paginator->setItemsPerPage(10);
-	return  $paginator->paginate($em->getRepository('SFMPicmntBundle:Image')->getByUserDQL($user->getUsername()))->getResult();
-    }
 
-
-    public function pendingAction($userName){
+    private function pendingAction($userName){
 	$em = $this->get('doctrine')->getManager();     
 	$user = $this->container->get('security.context')->getToken()->getUser();
 

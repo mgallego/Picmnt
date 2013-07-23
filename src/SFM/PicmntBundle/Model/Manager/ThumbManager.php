@@ -52,7 +52,7 @@ class ThumbManager
      * 
      * @param array $params
      */
-    public function getMoreThumbs(Request $request, $imagemanagerResponse )
+    public function getMoreThumbs(Request $request, \Liip\ImagineBundle\Controller\ImagineController $imagemanagerResponse )
     {
         $serializeImages = [];
         
@@ -64,7 +64,7 @@ class ThumbManager
         
         if ($option === 'recents') {
             $images = $this->em->getRepository('SFMPicmntBundle:Image')
-                    ->getRecents($category, $page * $this->imagesPerPage, $this->imagesPerPage);
+                ->findByCategoryAndOrder($category, 'idImage',  $page * $this->imagesPerPage, $this->imagesPerPage);
         } elseif ($option = 'profile') {
             $images = $this->em->getRepository('SFMPicmntBundle:Image')
                 ->getByUsername($username, $page * $this->imagesPerPage, $this->imagesPerPage);
