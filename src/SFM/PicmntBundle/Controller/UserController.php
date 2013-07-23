@@ -15,9 +15,8 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 
 
-class UserController extends Controller{
-
-
+class UserController extends Controller
+{
     /**
      * Show the profile and change avatar
      *
@@ -25,7 +24,7 @@ class UserController extends Controller{
     public function profileAction($userName = null){
 	$em = $this->get('doctrine')->getEntityManager();
 	$user = $this->getUser($userName);
-
+        
 	if (!$user){
 	    $e = $this->get('translator')->trans('The User Not Exists');
 	    throw $this->createNotFoundException($e);
@@ -88,31 +87,13 @@ class UserController extends Controller{
      * Return a form to upload an avatar image
      *
      */
-    private function getAvatarForm($user){
+    private function getAvatarForm($user)
+    {
 	return $this->get('form.factory')
 	    ->createBuilder('form')
 	    ->add('avatar', 'file', array('required'=>false))
 	    ->getForm();
     }
-
-
-    /**
-     * Return a username or if the parameter is null the current user
-     *
-     */
-    private function getUser($userName = null){
-
-	$em = $this->get('doctrine')->getEntityManager();
-
-	if (!$userName && $this->get('security.context')->isGranted('ROLE_USER')){
-	    $user = $this->container->get('security.context')->getToken()->getUser();
-	    $userName = $user->getUsername();
-            return  $em->getRepository('SFMPicmntBundle:User')->findOneByUsername($userName);
-	    //return $this->redirect($this->generateUrl('usr_profile', array("userName"=>$userName)));	
-	}
-	return  $em->getRepository('SFMPicmntBundle:User')->findOneByUsername($userName);
-    }
-
 
     /**
      * Return the images paginated for an user
