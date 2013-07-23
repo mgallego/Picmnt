@@ -23,7 +23,7 @@ class CommentController extends Controller{
 	$logger = $this->get('logger');
 	$imageComment = new ImageComment();
 
-	$em = $this->get('doctrine')->getEntityManager();     
+	$em = $this->get('doctrine')->getManager();     
 	$image = $em->find('SFMPicmntBundle:Image',$idImage);
 
 	$request = $this->get('request');
@@ -66,7 +66,7 @@ class CommentController extends Controller{
      *
      */
     public function deleteAction($idComment){
-	$em = $this->get('doctrine')->getEntityManager();     
+	$em = $this->get('doctrine')->getManager();     
 	$user = $this->container->get('security.context')->getToken()->getUser();
 	$comment = $em->find('SFMPicmntBundle:ImageComment', $idComment);
     

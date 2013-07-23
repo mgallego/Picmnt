@@ -18,7 +18,7 @@ class IndexController extends Controller
     {
         $category = 'all';
 
-        $em = $this->get('doctrine')->getEntityManager();
+        $em = $this->get('doctrine')->getManager();
         $categories = $em->getRepository('SFMPicmntBundle:Category')->findAll();
         $paginator = [];
 

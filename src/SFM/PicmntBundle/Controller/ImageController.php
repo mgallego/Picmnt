@@ -32,7 +32,7 @@ class ImageController extends Controller
         $user = $this->container->get('security.context')->getToken()->getUser();
         $image = new Image();
         $imageUp = new ImageUp();
-        $em = $this->get('doctrine')->getEntityManager();
+        $em = $this->get('doctrine')->getManager();
         $form = $this->createForm(new ImageUpType(), $imageUp);
 
         if ($this->get('request')->getMethod() == 'POST') {
@@ -89,7 +89,7 @@ class ImageController extends Controller
      * @Route ("/img/edit/{id_image}", name="img_edit")     
      */
     public function editAction($id_image){
-        $em = $this->get('doctrine')->getEntityManager();     
+        $em = $this->get('doctrine')->getManager();     
         $image = $em->find('SFMPicmntBundle:Image',$id_image);
         $user = $this->container->get('security.context')->getToken()->getUser();
         $oldSlug = $image->getSlug();
@@ -133,7 +133,7 @@ class ImageController extends Controller
      * @Route ("/img/delete/{idImage}", name="img_delete")     
      */
     public function deleteAction($idImage){
-        $em = $this->get('doctrine')->getEntityManager();     
+        $em = $this->get('doctrine')->getManager();     
         $image = $em->find('SFMPicmntBundle:Image', $idImage);
         $user = $this->container->get('security.context')->getToken()->getUser();
 
@@ -156,12 +156,11 @@ class ImageController extends Controller
      * requirements={"category" = "all|portraits|landscapes|animals|sports|buildings|others", "option" = "random|show|recents|popular"})     
      */
     public function showAction(Request $request, $option, $idImage = 0, $category = 'all'){
-        
         if ($request->get('cat')) {
             $category = $request->get('cat');
         }
 
-        $em = $this->get('doctrine')->getEntityManager();
+        $em = $this->get('doctrine')->getManager();
         $categories = $em->getRepository('SFMPicmntBundle:Category')->findAll();
 
         $paginator = [];
@@ -222,9 +221,9 @@ class ImageController extends Controller
      */
     public function viewAction($user, $slug)
     {
-        $em = $this->get('doctrine')->getEntityManager();
+        $em = $this->get('doctrine')->getManager();
         $image = $em->getRepository('SFMPicmntBundle:Image')->getByUserSlug($user, $slug);
-    
+
         if (!$image) {
             $e = $this->get('translator')->trans('Picture Not Found');
             throw $this->createNotFoundException($e);
@@ -244,7 +243,7 @@ class ImageController extends Controller
      *
      */
     private function deleteNotifications($image){
-        $em = $this->get('doctrine')->getEntityManager();
+        $em = $this->get('doctrine')->getManager();
         $comments = $em->getRepository('SFMPicmntBundle:ImageComment')->findByImage($image);
       
         foreach ($comments as $comment){

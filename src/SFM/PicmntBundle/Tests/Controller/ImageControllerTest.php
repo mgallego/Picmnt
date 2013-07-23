@@ -26,7 +26,7 @@ class ImageControllerTest extends AbstractControllerTest
         $crawler = $client->submit($form);
         $this->assertEquals(302, $client->getResponse()->getStatusCode(), "Status 302");
         $this->assertContains('Redirecting to /img/edit/11', $crawler->text());
-        $em = $this->getContainer()->get('doctrine')->getEntityManager();
+        $em = $this->getContainer()->get('doctrine')->getManager();
         $image = $em->getRepository('SFMPicmntBundle:Image')->findOneByTitle('banner');
 
         $this->assertNotNull($image);
@@ -56,7 +56,7 @@ class ImageControllerTest extends AbstractControllerTest
         $form = $crawler->selectButton('edit-image')->form();
         $form['picmnt_image_imagetype[title]'] = 'editedTitle';
         $crawler = $client->submit($form);
-        $em = $this->getContainer()->get('doctrine')->getEntityManager();
+        $em = $this->getContainer()->get('doctrine')->getManager();
         $image = $em->getRepository('SFMPicmntBundle:Image')->findOneByIdImage(2);
         $this->assertEquals('editedTitle', $image->getTitle());
     }
@@ -83,7 +83,7 @@ class ImageControllerTest extends AbstractControllerTest
         $crawler = $client->request('GET', '/img/delete/1');
         $this->assertEquals(302, $client->getResponse()->getStatusCode(), "Status 302");
         $this->assertContains('Redirecting to /profile/userTest', $crawler->text());
-        $em = $this->getContainer()->get('doctrine')->getEntityManager();
+        $em = $this->getContainer()->get('doctrine')->getManager();
         $image = $em->getRepository('SFMPicmntBundle:Image')->findOneByIdImage(1);
         $this->assertEquals(2, $image->getStatus());
     }

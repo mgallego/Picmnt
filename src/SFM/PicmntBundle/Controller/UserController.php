@@ -22,7 +22,7 @@ class UserController extends Controller
      *
      */
     public function profileAction($userName = null){
-	$em = $this->get('doctrine')->getEntityManager();
+	$em = $this->get('doctrine')->getManager();
 	$user = $this->getUser($userName);
         
 	if (!$user){
@@ -108,7 +108,7 @@ class UserController extends Controller
 
 
     public function pendingAction($userName){
-	$em = $this->get('doctrine')->getEntityManager();     
+	$em = $this->get('doctrine')->getManager();     
 	$user = $this->container->get('security.context')->getToken()->getUser();
 
 	if (!$this->getUser($userName)){
