@@ -12,8 +12,7 @@ use SFM\PicmntBundle\Util\ArrayConverterTrait;
 */
 class ThumbType
 {
-
-    use ArrayConverterTrait;
+    //use ArrayConverterTrait;
     
     protected $imageId;
 

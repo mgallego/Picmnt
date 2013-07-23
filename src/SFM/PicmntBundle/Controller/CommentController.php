@@ -3,13 +3,8 @@
 namespace SFM\PicmntBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use SFM\PicmntBundle\Entity\Image;
 use SFM\PicmntBundle\Entity\ImageComment;
-use Symfony\Component\HttpFoundation\Response;
-use SFM\PicmntBundle\Form\CommentType;
 
 class CommentController extends Controller{
 

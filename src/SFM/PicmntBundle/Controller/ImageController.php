@@ -4,9 +4,7 @@ namespace SFM\PicmntBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use SFM\PicmntBundle\Repositories\ImageUp;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use SFM\PicmntBundle\Entity\Image;
-use SFM\PicmntBundle\Entity\User;
 use SFM\PicmntBundle\Form\ImageType;
 use SFM\PicmntBundle\Form\ImageUpType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;

@@ -4,7 +4,6 @@ namespace SFM\PicmntBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use SFM\PicmntBundle\Entity\Category;
 
 use Doctrine\ORM\EntityRepository;
 

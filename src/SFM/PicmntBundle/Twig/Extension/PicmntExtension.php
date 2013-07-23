@@ -2,7 +2,6 @@
 
 namespace SFM\PicmntBundle\Twig\Extension;
 
-use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 
 class PicmntExtension extends \Twig_Extension

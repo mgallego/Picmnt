@@ -1,7 +1,6 @@
 <?php
 
 namespace SFM\PicmntBundle\Util;
-use Doctrine\ORM\EntityManager;
 
 class Util{
 

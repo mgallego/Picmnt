@@ -3,7 +3,6 @@
 namespace SFM\PicmntBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
-use SFM\PicmntBundle\Entity\User;
 
 class UserRepository extends EntityRepository
 {

@@ -3,7 +3,6 @@
 namespace SFM\PicmntBundle\Repositories;
 
 use Symfony\Component\Validator\Constraints as Assert;
-use SFM\PicmntBundle\Entity\Image;
 
 class ImageUp
 {

@@ -3,17 +3,6 @@
 namespace SFM\PicmntBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-use SFM\PicmntBundle\Entity\User;
-use SFM\PicmntBundle\Entity\UserInfo;
-use FOS\UserBundle\Entity\UserManager;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Doctrine\ORM\Query\ResultSetMapping;
-use SFM\PicmntBundle\Util\ImageUtil;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
-
 
 class UserController extends Controller
 {
