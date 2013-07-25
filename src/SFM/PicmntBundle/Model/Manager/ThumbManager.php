@@ -62,14 +62,21 @@ class ThumbManager
         $option = $request->query->get('option');
         $username = $request->query->get('username');
         
-        if ($option === 'recents') {
-            $images = $this->em->getRepository('SFMPicmntBundle:Image')
-                ->findByCategoryAndOrder($category, 'idImage',  $page * $this->imagesPerPage, $this->imagesPerPage);
-        } elseif ($option = 'profile') {
-            $images = $this->em->getRepository('SFMPicmntBundle:Image')
-                ->getByUsername($username, $page * $this->imagesPerPage, $this->imagesPerPage);
+        switch ($option) {
+            case 'recents':
+                $images = $this->em->getRepository('SFMPicmntBundle:Image')
+                    ->findByCategoryAndOrder($category, 'idImage',  $page * $this->imagesPerPage, $this->imagesPerPage);
+                break;
+            case 'popular':
+                $images = $this->em->getRepository('SFMPicmntBundle:Image')
+                    ->findByCategoryAndOrder($category, 'popularity',  $page * $this->imagesPerPage, $this->imagesPerPage);
+                break;
+            case 'profile':
+                $images = $this->em->getRepository('SFMPicmntBundle:Image')
+                    ->getByUsername($username, $page * $this->imagesPerPage, $this->imagesPerPage);
+                break;
         }
-
+                
         if ($images) {
             foreach ($images as $image) {
                 $user = $image->getUser();
