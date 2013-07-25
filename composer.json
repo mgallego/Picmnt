@@ -22,7 +22,6 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "doctrine/doctrine-fixtures-bundle": "dev-master",
 
-
 	"friendsofsymfony/user-bundle": "dev-master",
         "knplabs/knp-menu":"dev-master",
         "knplabs/knp-menu-bundle":"dev-master",
@@ -32,7 +31,8 @@
         "sfm/ducksboard-bundle": "dev-master",
         "leafo/lessphp": "dev-master",
 	"ideup/simple-paginator-bundle":"*",
-	"raulfraile/ladybug-bundle": "dev-master"
+	"raulfraile/ladybug-bundle": "dev-master",
+	"friendsofsymfony/jsrouting-bundle": "~1.1"
     },
     "scripts": {
         "post-install-cmd": [

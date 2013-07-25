@@ -61,3 +61,6 @@ fos_user_change_password:
 _imagine:
     resource: .
     type:     imagine
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"

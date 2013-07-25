@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "45305e84a2be57bd31daabad5308f9a7",
+    "hash": "1f34db6afefd5165f026f772388dc474",
     "packages": [
         {
             "name": "beberlei/DoctrineExtensions",
@@ -811,6 +811,60 @@
                 "orm"
             ],
             "time": "2013-06-30 08:43:27"
+        },
+        {
+            "name": "friendsofsymfony/jsrouting-bundle",
+            "version": "1.2.0",
+            "target-dir": "FOS/JsRoutingBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FriendsOfSymfony/FOSJsRoutingBundle.git",
+                "reference": "1.2.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSJsRoutingBundle/zipball/1.2.0",
+                "reference": "1.2.0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "symfony/console": "~2.0",
+                "symfony/framework-bundle": "~2.0",
+                "symfony/serializer": "~2.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "FOS\\JsRoutingBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "William Durand",
+                    "email": "william.durand1@gmail.com",
+                    "homepage": "http://www.willdurand.fr"
+                },
+                {
+                    "name": "FriendsOfSymfony Community",
+                    "homepage": "https://github.com/friendsofsymfony/FOSJsRoutingBundle/contributors"
+                }
+            ],
+            "description": "Symfony FOSJsRoutingBundle",
+            "homepage": "http://friendsofsymfony.github.com",
+            "keywords": [
+                "Js Routing"
+            ],
+            "time": "2013-07-15 09:21:37"
         },
         {
             "name": "friendsofsymfony/user-bundle",
@@ -1985,12 +2039,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioDistributionBundle.git",
-                "reference": "370eb0c43ebd532af880f5eeb422b108c58c4823"
+                "reference": "4dad0ba10df54ea44581a51937f1a601b9d64575"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/370eb0c43ebd532af880f5eeb422b108c58c4823",
-                "reference": "370eb0c43ebd532af880f5eeb422b108c58c4823",
+                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/4dad0ba10df54ea44581a51937f1a601b9d64575",
+                "reference": "4dad0ba10df54ea44581a51937f1a601b9d64575",
                 "shasum": ""
             },
             "require": {
@@ -2022,7 +2076,7 @@
                 "configuration",
                 "distribution"
             ],
-            "time": "2013-07-23 14:20:16"
+            "time": "2013-07-24 08:45:20"
         },
         {
             "name": "sensio/framework-extra-bundle",
@@ -2031,12 +2085,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioFrameworkExtraBundle.git",
-                "reference": "v2.3.2"
+                "reference": "cce05719041d952bbec856789ca18646a1891d03"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioFrameworkExtraBundle/zipball/v2.3.2",
-                "reference": "v2.3.2",
+                "url": "https://api.github.com/repos/sensiolabs/SensioFrameworkExtraBundle/zipball/cce05719041d952bbec856789ca18646a1891d03",
+                "reference": "cce05719041d952bbec856789ca18646a1891d03",
                 "shasum": ""
             },
             "require": {
@@ -2069,7 +2123,7 @@
                 "annotations",
                 "controllers"
             ],
-            "time": "2013-07-09 09:29:53"
+            "time": "2013-07-24 08:49:53"
         },
         {
             "name": "sensio/generator-bundle",
@@ -2078,12 +2132,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioGeneratorBundle.git",
-                "reference": "037b0b9e0bfdd7199329d245b4ab7fcbd462df87"
+                "reference": "2e57c0e7ece80a8717768818871329c82931b9d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioGeneratorBundle/zipball/037b0b9e0bfdd7199329d245b4ab7fcbd462df87",
-                "reference": "037b0b9e0bfdd7199329d245b4ab7fcbd462df87",
+                "url": "https://api.github.com/repos/sensiolabs/SensioGeneratorBundle/zipball/2e57c0e7ece80a8717768818871329c82931b9d9",
+                "reference": "2e57c0e7ece80a8717768818871329c82931b9d9",
                 "shasum": ""
             },
             "require": {
@@ -2117,7 +2171,7 @@
                 }
             ],
             "description": "This bundle generates code for you",
-            "time": "2013-07-19 11:05:16"
+            "time": "2013-07-24 09:19:19"
         },
         {
             "name": "sfm/ducksboard-bundle",
@@ -2441,12 +2495,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "b45f18b81d52a730c5857a5f886e6b0d96368c89"
+                "reference": "2e2a36ca2468e3fcd1b41aa40654ea9dcf086a26"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/b45f18b81d52a730c5857a5f886e6b0d96368c89",
-                "reference": "b45f18b81d52a730c5857a5f886e6b0d96368c89",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/2e2a36ca2468e3fcd1b41aa40654ea9dcf086a26",
+                "reference": "2e2a36ca2468e3fcd1b41aa40654ea9dcf086a26",
                 "shasum": ""
             },
             "require": {
@@ -2541,7 +2595,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2013-07-21 20:18:49"
+            "time": "2013-07-24 17:57:25"
         },
         {
             "name": "twig/extensions",
@@ -2596,12 +2650,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Twig.git",
-                "reference": "9fa5410a861427d378f9665e370e997483797cac"
+                "reference": "0e63ef04a00fb238ee457708f8b4e8918aa51d7e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Twig/zipball/9fa5410a861427d378f9665e370e997483797cac",
-                "reference": "9fa5410a861427d378f9665e370e997483797cac",
+                "url": "https://api.github.com/repos/fabpot/Twig/zipball/0e63ef04a00fb238ee457708f8b4e8918aa51d7e",
+                "reference": "0e63ef04a00fb238ee457708f8b4e8918aa51d7e",
                 "shasum": ""
             },
             "require": {
@@ -2637,7 +2691,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2013-07-23 15:49:22"
+            "time": "2013-07-24 03:16:45"
         }
     ],
     "packages-dev": [
