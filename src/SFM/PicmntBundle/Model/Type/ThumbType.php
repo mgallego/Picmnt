@@ -2,7 +2,7 @@
 
 namespace SFM\PicmntBundle\Model\Type;
 
-//use SFM\PicmntBundle\Util\ArrayConverterTrait;
+use SFM\PicmntBundle\Util\ArrayConverterTrait;
 
 /**
 * Thumtype
@@ -12,7 +12,7 @@ namespace SFM\PicmntBundle\Model\Type;
 */
 class ThumbType
 {
-    //use ArrayConverterTrait;
+    use ArrayConverterTrait;
     
     protected $imageId;
 

@@ -251,9 +251,11 @@ class ImageRepository extends EntityRepository
 	if ($category != 'all'){
             $qb->add('where', 'c.name = :category')->setParameter('category',$category);
 	}
-
+        
         $qb->orderBy('p.'.$orderField,'DESC');
 
+        $qb->addOrderBy('p.idImage','DESC');
+        
         return $qb->getQuery();
     }
 

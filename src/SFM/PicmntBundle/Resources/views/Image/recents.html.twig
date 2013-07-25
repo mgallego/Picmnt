@@ -3,17 +3,13 @@
 {% block javascript %}
   {{ parent() }}
 
-  {% javascripts filter='?yui_js'
-      '@SFMPicmntBundle/Resources/public/js/picmnt.js' %}
-        <script src="{{ asset_url }}"></script>
-  {% endjavascripts %}
 
 <script>
 
-	{% if app.request.get('category') == '' %}
+	{% if app.request.get('cat') == '' %}
 	   var category = 'all';
 	{% else %}
-	   var category = "{{ app.request.get('category') }}";
+	   var category = "{{ app.request.get('cat') }}";
 	{% endif %}
 
 	{% if app.request.get('option') == '' %}
@@ -32,10 +28,9 @@
 
 {% block content %}
   {{ parent() }}
-
   <div class="clear"></div>
 
-  <section class="container container_12">
+  <section>
       {% include "SFMPicmntBundle:Image:thumbs.html.twig" with {'images': images, 'loadMore': loadMore} %}
   </section>
 

@@ -4,23 +4,15 @@ $(document).ready(function() {
 
     $('#load-more-thumbs').click(function(event) {
 	event.preventDefault();
-	loadMoreThumbs();
-    });
 
-
-    $('#category-select').change(function() {
-	window.location = '/app_dev.php/'+option+'?cat=' + $('#category-select option:selected').text().toLowerCase();
-    });
-
-});
-
-    function loadMoreThumbs() {
+	route = Routing.generate('ajax_img_get_more', {'option': option, "page": ++page, "category": category, "username": username});
+	console.log(route);
 	$.ajax({
-	    url: '/app_dev.php/ajax/images/get_more?option='+option+'&page=' +  ++page +'&category='+category+'&username='+ username,
+	    url: route,
 	    async: false,
 	    dataType: 'json'
 	}).success(function(images) {
-	    console.log(images);
+	    console.log('b');
 	    for (i in images)
 	    {
 		image = images[i];
@@ -39,8 +31,15 @@ $(document).ready(function() {
                        </li>";
 
 		$('.thumbnails').append(htmlText);
-		//document.location.href = '#load-more-thumbs';
 	    }
-	});
-    };
+	})
+
+    });
+
+
+    $('#category-select').change(function() {
+	window.location = '/app_dev.php/'+option+'?cat=' + $('#category-select option:selected').text().toLowerCase();
+    });
+
+});
 

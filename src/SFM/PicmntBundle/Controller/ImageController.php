@@ -161,8 +161,6 @@ class ImageController extends Controller
         $em = $this->get('doctrine')->getManager();
         $categories = $em->getRepository('SFMPicmntBundle:Category')->findAll();
 
-        $paginator = [];
-
         $imagesPerPage = $this->container->getParameter('images_per_page');
 
         switch ($option) {
@@ -197,13 +195,13 @@ class ImageController extends Controller
                         'categories' => $categories]
             );
         }
-        return $this->render('SFMPicmntBundle:Image:viewImage.html.twig', ['image' => $image, 'paginator' => $paginator]);
+        return $this->render('SFMPicmntBundle:Image:viewImage.html.twig', ['image' => $image]);
     }
 
     /**
      * View an image
      *
-     * @Route ("/ajax/images/get_more", name="ajax_img_get_more")     
+     * @Route ("/ajax/images/get_more", name="ajax_img_get_more", options={"expose"=true})
      */
     public function getMoreImagesAction(Request $request)
     {
