@@ -7,18 +7,6 @@ use Doctrine\ORM\EntityRepository;
 class ImageRepository extends EntityRepository
 {
 
-
-    private function getCategoryCondition($category){
-
-	if ($category != 'all'){
-	    return ' AND c.name = \''.$category.'\'';
-	}
-	return '';
-
-    }
-
-
-
     public function getRandom($category = 'all')
     {
         $qb = $this->_em->createQueryBuilder();
@@ -29,7 +17,7 @@ class ImageRepository extends EntityRepository
             ->where('p.title IS NOT NULL AND p.status = 1');
 
 	if ($category != 'all'){
-            $qb->add('where', 'c.name = :category')->setParameter('category',$category);
+            $qb->andWhere('c.name = :category')->setParameter('category',$category);
 	}
 
 	$idImageRange = $qb->getQuery()->getResult();  
@@ -54,8 +42,6 @@ class ImageRepository extends EntityRepository
 
     }
 
-
-    
     public function getByUserSlug($user, $slug){
 	$query = $this->getEntityManager()->createQuery('SELECT p 
                                                          FROM SFMPicmntBundle:Image p
@@ -129,7 +115,7 @@ class ImageRepository extends EntityRepository
 
 
         if ($category != 'all'){
-            $qb->add('where', 'c.name = :category')->setParameter('category',$category);
+            $qb->andWhere('c.name = :category')->setParameter('category',$category);
 	}
         
         
@@ -155,7 +141,7 @@ class ImageRepository extends EntityRepository
             ->add('where', 'p.idImage < :idImage AND p.status = 1');
 
         if ($category != 'all'){
-            $qb->add('where', 'c.name = :category')->setParameter('category',$category);
+            $qb->andWhere('c.name = :category')->setParameter('category',$category);
 	}
 
 
@@ -172,9 +158,6 @@ class ImageRepository extends EntityRepository
     
     public function findFirst($orderBy, $category = 'all')
     {
-        
-	$category = $this->getCategoryCondition($category);
-
         $qb = $this->_em->createQueryBuilder();
         
         $qb->add('select', 'p')
@@ -183,7 +166,7 @@ class ImageRepository extends EntityRepository
 	    ->add('where','1 = 1 and p.status = 1');
 
         if ($category != 'all'){
-            $qb->add('where', 'category.name = :category')->setParameter('category',$category);
+            $qb->andWhere('category.name = :category')->setParameter('category',$category);
 	}
 
         $qb->add('orderBy', $orderBy)
@@ -249,7 +232,7 @@ class ImageRepository extends EntityRepository
             ->where('p.status = 1');
 
 	if ($category != 'all'){
-            $qb->add('where', 'c.name = :category')->setParameter('category',$category);
+            $qb->andWhere('c.name = :category')->setParameter('category',$category);
 	}
         
         $qb->orderBy('p.'.$orderField,'DESC');
