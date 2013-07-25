@@ -149,9 +149,9 @@ class ImageController extends Controller
     /**
      * Show an Image
      *
-     * @Route ("/{option}/{idImage}", name="img_show",
+     * @Route ("/{option}/{idImage}", name="img_show", options={"expose"=true},
      * defaults={"idImage"=0},
-     * requirements={"category" = "all|portraits|landscapes|animals|sports|buildings|others", "option" = "random|show|recents|popular"})     
+     * requirements={"category" = "all|portraits|landscapes|animals|sports|buildings|others", "option" = "random|show|recents|popular"})
      */
     public function showAction(Request $request, $option, $idImage = 0, $category = 'all'){
         if ($request->get('cat')) {
