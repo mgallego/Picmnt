@@ -3,14 +3,14 @@
 namespace SFM\PicmntBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use SFM\PicmntBundle\Repositories\ImageUp;
 use SFM\PicmntBundle\Entity\Image;
-use SFM\PicmntBundle\Form\ImageType;
-use SFM\PicmntBundle\Form\ImageUpType;
+use SFM\PicmntBundle\Form\Type\ImageFormType;
+use SFM\PicmntBundle\Form\Type\ImageFileFormType;
+use SFM\PicmntBundle\Form\Model\ImageFileModel;
+use SFM\PicmntBundle\Form\Handler\ImageFileFormHandler;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-
 
 /**
  * Image Controller
@@ -27,13 +27,25 @@ class ImageController extends Controller
      */
     public function uploadAction(Request $request)
     {
-        $user = $this->container->get('security.context')->getToken()->getUser();
-        $image = new Image();
-        $imageUp = new ImageUp();
-        $em = $this->get('doctrine')->getManager();
-        $form = $this->createForm(new ImageUpType(), $imageUp);
+        $form = $this->createForm(new ImageFileFormType());
 
-        if ($this->get('request')->getMethod() == 'POST') {
+        if ($request->getMethod() == 'POST') {
+
+            $formHandler = new ImageFileFormHandler(
+                $form,
+                $request,
+                $this->getUser(),
+                $this->get(
+                    'sfm_picmnt.image_file_manager'
+                )
+            );
+
+            if (!$formHandler->process()) {
+                throw new \Exception($formHandler->showFormErrors());
+            }
+
+            die('in progress');
+            
             $form->handleRequest($request);
 
             if ($form->isValid()) {
@@ -47,6 +59,12 @@ class ImageController extends Controller
                     $_SERVER['DOCUMENT_ROOT'].$this->container->getParameter('upload_path'),
                     $newFileName
                 );
+
+
+
+
+
+                
 
                 $image->setUrl($newFileName);
                 $image->setVotes(0);
@@ -63,8 +81,14 @@ class ImageController extends Controller
                 $em->persist($image);
                 $em->flush();
 
+
+
+                
                 $imageUtil->resizeImage($imageDefaults['upload_path'].$newFileName, $imageDefaults['size']);
 
+
+
+                
                 if (!is_dir($imageDefaults['thumbs_path'])) {
                     mkdir($imageDefaults['thumbs_path']);
                 }

@@ -99,15 +99,24 @@ knp_menu:
 
 ornicar_gravatar: ~
 
-parameters:
-    image_defaults:
+sfm_picmnt:
+    image_file:
         size: 800
         small_size: 250
         category: "all"
         status: 1
-        email_noti: 1
+        email_notification: 1
         upload_path: "uploads/"
-        thumbs_path: "uploads/thumbs/"
+
+parameters:
+    # image_defaults:
+    #     size: 800
+    #     small_size: 250
+    #     category: "all"
+    #     status: 1
+    #     email_noti: 1
+    #     upload_path: "uploads/"
+    #     thumbs_path: "uploads/thumbs/"
     upload_path: "/uploads"
     avatar_defaults:
         extension: ".jpg"
