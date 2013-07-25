@@ -29,7 +29,6 @@ class Configuration implements ConfigurationInterface
             ->arrayNode('image_file')
             ->children()
             ->scalarNode('size')->end()
-            ->scalarNode('small_size')->end()
             ->scalarNode('category')->end()
             ->scalarNode('status')->end()
             ->scalarNode('email_notification')->end()

@@ -59,7 +59,11 @@ class ImageFileFormHandler extends AbstractFormHandler
 
 
 
-        $imageUrl = $this->imageFileManager->getUrl($this->form->getData()->dataFile);;
+        $imageUrl = $this->imageFileManager->getUrl(
+            $this->form->getData()->dataFile,
+            $this->user->getId() . '_' . date("ymdHis") . '_' . rand(1, 9999)
+        );
+
 
         echo '<br/> Doctrine Jean Claude var_dump in ImageFileFormHandler Line 63';
         echo '<br/><pre>';

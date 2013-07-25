@@ -13,38 +13,31 @@ class ImageFileManager
     protected $em;
 
     /**
+     * @var array
+     */
+    protected $imageFileConfig;
+
+    /**
      * @param \Doctrine\ORM\EntityManager           $em
      */
-    public function __construct(EntityManager $em, array $config)
+    public function __construct(EntityManager $em, array $imageFileConfig)
     {
         $this->em = $em;
-        echo '<br/> Doctrine Jean Claude var_dump in ImageFileManager Line 21';
-        echo '<br/><pre>';
-        \Doctrine\Common\Util\Debug::dump($config);
-        echo '</pre>';
-        die;
+        $this->imageFileConfig = $imageFileConfig;
     }
 
-    public function getUrl(UploadedFile $file)
+    public function getUrl(UploadedFile $uploadedFile, $newFileName)
     {
-        return 'Path';
+        return $this->saveImageInDisk($uploadedFile, $newFileName);
+    }
 
-
-
-
-
-
-
-        $imageUtil = $this->container->get('image.utils');
-        $imageDefaults = $this->container->getParameter('image_defaults');
-        $uploadedFile = $form['dataFile']->getData();
-        $extension = $imageUtil->getExtension($uploadedFile->getMimeType());
-        $newFileName = $user->getId().'_'.date("ymdHis").'_'.rand(1, 9999).$extension;
-        
+    private function saveImageInDisk($uploadedFile, $newFileName)
+    {
         $uploadedFile->move(
-            $_SERVER['DOCUMENT_ROOT'].$this->container->getParameter('upload_path'),
+            $_SERVER['DOCUMENT_ROOT'].'/'.$this->imageFileConfig['upload_path'],
             $newFileName
         );
-        
+
+        return $newFileName;
     }
 }
