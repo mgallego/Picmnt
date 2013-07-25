@@ -151,7 +151,7 @@ class ImageController extends Controller
      *
      * @Route ("/{option}/{idImage}", name="img_show", options={"expose"=true},
      * defaults={"idImage"=0},
-     * requirements={"category" = "all|portraits|landscapes|animals|sports|buildings|others", "option" = "random|show|recents|popular"})
+     * requirements={"category" = "all|portraits|landscapes|animals|sports|buildings|others", "option" = "random|show|recents|popular"})     
      */
     public function showAction(Request $request, $option, $idImage = 0, $category = 'all'){
         if ($request->get('cat')) {
@@ -161,8 +161,11 @@ class ImageController extends Controller
         $em = $this->get('doctrine')->getManager();
         $categories = $em->getRepository('SFMPicmntBundle:Category')->findAll();
 
+        $paginator = [];
+
         $imagesPerPage = $this->container->getParameter('images_per_page');
 
+        
         switch ($option) {
             case 'random':
                 $image = $em->getRepository('SFMPicmntBundle:Image')->getRandom($category);
@@ -195,7 +198,7 @@ class ImageController extends Controller
                         'categories' => $categories]
             );
         }
-        return $this->render('SFMPicmntBundle:Image:viewImage.html.twig', ['image' => $image]);
+        return $this->render('SFMPicmntBundle:Image:viewImage.html.twig', ['image' => $image, 'paginator' => $paginator]);
     }
 
     /**
