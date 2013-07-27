@@ -15,7 +15,7 @@ parameters:
     node: /usr/local/bin/node
     node_paths: [/usr/local/lib/node_modules]
     
-    secret: ThisTokenIsNotSoSecretChangeIt
+    secret: 7suzDbtyEjhmN8rCDVA88HXN
 
     ducksboard_api: ~
     use_ducksboard: ~

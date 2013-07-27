@@ -16,7 +16,8 @@ framework:
     translator: { fallback: en }
     trusted_proxies: false # Should Request object should trust proxy headers (X_FORWARDED_FOR/HTTP_CLIENT_IP)
     default_locale: %locale% 
-    session: ~
+    session:
+        name: 'picmnt_session'
     
 
 # Twig Configuration
