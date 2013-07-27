@@ -17,7 +17,7 @@ class ImageFormType extends AbstractType
                 'category',
                 'entity',
                 array(
-                    'class' => 'SFMPicmntBundle:Category',
+                    'class' => 'MGPImageBundle:Category',
                     'query_builder' => function (EntityRepository $er) {
                         return $er->createQueryBuilder('c');
                     },
@@ -36,7 +36,7 @@ class ImageFormType extends AbstractType
     {
         $resolver->setDefaults(
             array(
-                'data_class'      => 'SFM\PicmntBundle\Entity\Image',
+                'data_class'      => 'MGP\ImageBundle\Entity\Image',
                 'csrf_protection' => false,
             )
         );

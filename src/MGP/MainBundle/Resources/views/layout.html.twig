@@ -1,0 +1,18 @@
+{% extends "::base.html.twig" %}
+
+{% block header %}
+{{ parent() }}
+
+<header>
+    <nav class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
+			<div class="container-fluid">
+			<a class="brand" href='{{ path("home") }}' title="Picmnt"> 
+				<span class="p-letter">P</span><span class="icmnt-word">icmnt</span>
+			</a>
+			{{ knp_menu_render('MGPMainBundle:MainMenuBuilder:mainMenu', {'allow_safe_labels': true, 'currentClass': 'active', 'currentAsLink': true}) | raw}}
+			{{ knp_menu_render('MGPMainBundle:MainMenuBuilder:loginMenu', {'allow_safe_labels': true, 'currentClass': 'active', 'currentAsLink': true}) | raw}}
+			</div>
+    </nav>
+</header>
+{% endblock header %}

@@ -1,0 +1,52 @@
+ul.tooltip-menu span {
+    color: @darkGrey;
+}
+
+ul.tooltip-menu ul {
+    background: @header-background-color;
+    -webkit-box-shadow: 1px 1px 1px gray;
+    -moz-box-shadow: 1px 1px 1px gray;
+    -o-box-shadow: 1px 1px 1px gray;
+    -ms-box-shadow: 1px 1px 1px gray;
+    box-shadow: 1px 1px 1px gray;
+    display: none;
+    padding: 0;
+
+    position: absolute;
+    top: 31px;
+    left: 0px;
+
+    width: 130px;
+}
+
+ul.tooltip-menu > li {
+    padding-bottom: 20px;
+    position: relative;
+    z-index: 10;
+}
+
+.submenu li {
+    float: left;
+    display: block;
+    padding: 8px 10px;
+    margin: 0 !important;
+}
+
+.submenu li a {
+    display: block;
+    padding: 0 100px 0 0;
+}
+
+ul.tooltip-menu li:hover > ul, ul.tooltip-menu li:focus > ul { 
+   display: block;
+}
+
+.submenu li:hover, .submenu li:focus { 
+    background: @PicmntLightGrey;
+    width: 112px;
+    -webkit-box-shadow: 0 1px 5px @darkGrey;
+    -moz-box-shadow: 0 1px 5px @darkGrey;
+    -o-box-shadow: 0 1px 5px @darkGrey;
+    -ms-box-shadow: 0 1px 5px @darkGrey;
+    box-shadow: 0 1px 5px @darkGrey;
+}

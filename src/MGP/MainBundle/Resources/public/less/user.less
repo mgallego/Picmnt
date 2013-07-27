@@ -1,0 +1,40 @@
+@import url('variables.less');
+
+#login, #request-password, #register {
+    margin-top: 150px;
+    min-height: @minHeight;
+}
+
+h2.form-title {
+    margin-bottom: 0px;
+}
+
+label {
+    margin: 10px 0 0 0;
+}
+
+#login input[type="text"], select, textarea, input[type="checkbox"], input[type="password"],
+#request-password input[type="text"], select, textarea, input[type="checkbox"], input[type="password"],
+#register input[type="text"], select, textarea, input[type="checkbox"], input[type="password"] {
+    margin: 0 0 10px 0;
+}
+
+#password,
+#username,
+#fos_user_registration_form_username,
+#fos_user_registration_form_email,
+#fos_user_registration_form_plainPassword_first,
+#fos_user_registration_form_plainPassword_second
+{
+    width: 300px;
+}
+
+#login a {
+    display: block;
+}
+
+#login input[type="submit"],
+#request-password input[type="submit"],
+#register input[type="submit"] {
+    float: right;
+}

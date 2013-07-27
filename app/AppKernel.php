@@ -18,13 +18,14 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
 
+            new MGP\MainBundle\MGPMainBundle(),
 	    new MGP\ImageBundle\MGPImageBundle(),
             new MGP\CommentBundle\MGPCommentBundle(),
             new MGP\UserBundle\MGPUserBundle(),
             
             new SFM\PicmntBundle\SFMPicmntBundle(),      
 	    new FOS\UserBundle\FOSUserBundle(),
-	    new SFM\UserBundle\SFMUserBundle(),
+        //new SFM\UserBundle\SFMUserBundle(),
 	    new Knp\Bundle\MenuBundle\KnpMenuBundle(),
 	    new Liip\FunctionalTestBundle\LiipFunctionalTestBundle(),
 	    new Ideup\SimplePaginatorBundle\IdeupSimplePaginatorBundle(),

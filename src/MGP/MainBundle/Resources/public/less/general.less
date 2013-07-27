@@ -1,0 +1,40 @@
+@import url('variables.less');
+
+/* GENERAL */
+
+body {
+    background: @body-background-color;
+    font-family: @baseFontFamily;
+    font-size: @baseFontSize;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: @darkGrey;
+    -webkit-transition: color 0.3s ease-in-out;
+    -moz-transition: color 0.3s ease-in-out;
+    -o-transition: color 0.3s ease-in-out;
+    transition: color 0.3s ease-in-out;
+} 
+
+a:hover{
+    text-decoration: none;
+    color: @p-letter-color;
+}
+
+h1 {
+    font-weight: normal !important;
+}
+
+.picmnt-title {
+    font-family: "Nimbus Roman No9 L", Sans, serif;
+}
+
+.p-letter {
+    color: @p-letter-color !important;
+}
+
+#see-original {
+    display: none;
+}
