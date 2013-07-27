@@ -1,6 +1,6 @@
 <?php
 
-namespace SFM\PicmntBundle\Form\Handler;
+namespace MGP\MainBundle\Form\Handler;
 
 abstract class AbstractFormHandler
 {
