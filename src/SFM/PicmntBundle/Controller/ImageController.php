@@ -3,10 +3,7 @@
 namespace SFM\PicmntBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use SFM\PicmntBundle\Entity\Image;
-use SFM\PicmntBundle\Form\Type\ImageFormType;
 use SFM\PicmntBundle\Form\Type\ImageFileFormType;
-use SFM\PicmntBundle\Form\Model\ImageFileModel;
 use SFM\PicmntBundle\Form\Handler\ImageFileFormHandler;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -44,62 +41,61 @@ class ImageController extends Controller
                 throw new \Exception($formHandler->showFormErrors());
             }
 
-            die('in progress');
-            
-            $form->handleRequest($request);
+        /*     //here */
+        /*     $form->handleRequest($request); */
 
-            if ($form->isValid()) {
-                $imageUtil = $this->container->get('image.utils');
-                $imageDefaults = $this->container->getParameter('image_defaults');
-                $uploadedFile = $form['dataFile']->getData();
-                $extension = $imageUtil->getExtension($uploadedFile->getMimeType());
-                $newFileName = $user->getId().'_'.date("ymdHis").'_'.rand(1, 9999).$extension;
+        /*     if ($form->isValid()) { */
+        /*         $imageUtil = $this->container->get('image.utils'); */
+        /*         $imageDefaults = $this->container->getParameter('image_defaults'); */
+        /*         $uploadedFile = $form['dataFile']->getData(); */
+        /*         $extension = $imageUtil->getExtension($uploadedFile->getMimeType()); */
+        /*         $newFileName = $user->getId().'_'.date("ymdHis").'_'.rand(1, 9999).$extension; */
 
-                $uploadedFile->move(
-                    $_SERVER['DOCUMENT_ROOT'].$this->container->getParameter('upload_path'),
-                    $newFileName
-                );
-
+        /*         $uploadedFile->move( */
+        /*             $_SERVER['DOCUMENT_ROOT'].$this->container->getParameter('upload_path'), */
+        /*             $newFileName */
+        /*         ); */
 
 
-
-
-                
-
-                $image->setUrl($newFileName);
-                $image->setVotes(0);
-                $image->setUser($user);
-                $image->setTitle(substr($uploadedFile->getClientOriginalName(), 0, -4));
-                $image->setFirstTitle($image->getTitle());
-                $image->setSlug($this->container->get('picmnt.utils')->getSlug($newFileName, 0, $user->getId()));
-                $image->setFirstSlug($image->getSlug());
-                $image->setPubDate(new \DateTime('today'));
-                $image->setStatus($imageDefaults['status']);
-                $image->getNotifyEmail($imageDefaults['email_noti']);
-                $image->setNotifyEmail(true);
-                $image->setCategory($em->getRepository('SFMPicmntBundle:Category')->findOneById('6'));
-                $em->persist($image);
-                $em->flush();
 
 
 
                 
-                $imageUtil->resizeImage($imageDefaults['upload_path'].$newFileName, $imageDefaults['size']);
+
+        /*         $image->setUrl($newFileName); */
+        /*         $image->setVotes(0); */
+        /*         $image->setUser($user); */
+        /*         $image->setTitle(substr($uploadedFile->getClientOriginalName(), 0, -4)); */
+        /*         $image->setFirstTitle($image->getTitle()); */
+        /*         $image->setSlug($this->container->get('picmnt.utils')->getSlug($newFileName, 0, $user->getId())); */
+        /*         $image->setFirstSlug($image->getSlug()); */
+        /*         $image->setPubDate(new \DateTime('today')); */
+        /*         $image->setStatus($imageDefaults['status']); */
+        /*         $image->getNotifyEmail($imageDefaults['email_noti']); */
+        /*         $image->setNotifyEmail(true); */
+        /*         $image->setCategory($em->getRepository('SFMPicmntBundle:Category')->findOneById('6')); */
+        /*         $em->persist($image); */
+        /*         $em->flush(); */
 
 
 
                 
-                if (!is_dir($imageDefaults['thumbs_path'])) {
-                    mkdir($imageDefaults['thumbs_path']);
-                }
-                if ($this->container->getParameter('use_ducksboard') === 'yes') {
-                    $widget = $this->container->get('ducksboard.widget');
-                    $widgetId = $this->container->getParameter('upload_widget');
-                    $widget->addToCounter($widgetId);
-                }
+        /*         $imageUtil->resizeImage($imageDefaults['upload_path'].$newFileName, $imageDefaults['size']); */
 
-                return $this->redirect($this->generateUrl('img_edit', array("id_image" => $image->getIdImage())));
-            }
+
+
+                
+        /*         if (!is_dir($imageDefaults['thumbs_path'])) { */
+        /*             mkdir($imageDefaults['thumbs_path']); */
+        /*         } */
+        /*         if ($this->container->getParameter('use_ducksboard') === 'yes') { */
+        /*             $widget = $this->container->get('ducksboard.widget'); */
+        /*             $widgetId = $this->container->getParameter('upload_widget'); */
+        /*             $widget->addToCounter($widgetId); */
+        /*         } */
+
+        /*         return $this->redirect($this->generateUrl('img_edit', array("id_image" => $image->getIdImage()))); */
+        /*     } */
         }
 
         return $this->render('SFMPicmntBundle:Image:upload.html.twig', array('form' => $form->createView()));

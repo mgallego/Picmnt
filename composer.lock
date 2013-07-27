@@ -873,12 +873,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "6fc28e41805868c6c635de12266c40595c2e7ce8"
+                "reference": "be211eced9820a7ed4cb5bd80b0774e00eef1845"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/6fc28e41805868c6c635de12266c40595c2e7ce8",
-                "reference": "6fc28e41805868c6c635de12266c40595c2e7ce8",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/be211eced9820a7ed4cb5bd80b0774e00eef1845",
+                "reference": "be211eced9820a7ed4cb5bd80b0774e00eef1845",
                 "shasum": ""
             },
             "require": {
@@ -933,7 +933,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2013-07-18 14:23:03"
+            "time": "2013-07-25 15:37:42"
         },
         {
             "name": "ideup/simple-paginator-bundle",
@@ -2495,12 +2495,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "2e2a36ca2468e3fcd1b41aa40654ea9dcf086a26"
+                "reference": "9d53905b88d55d0bf828e5714c9c012fb8bab3c6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/2e2a36ca2468e3fcd1b41aa40654ea9dcf086a26",
-                "reference": "2e2a36ca2468e3fcd1b41aa40654ea9dcf086a26",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/9d53905b88d55d0bf828e5714c9c012fb8bab3c6",
+                "reference": "9d53905b88d55d0bf828e5714c9c012fb8bab3c6",
                 "shasum": ""
             },
             "require": {
@@ -2595,7 +2595,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2013-07-24 17:57:25"
+            "time": "2013-07-27 05:01:40"
         },
         {
             "name": "twig/extensions",

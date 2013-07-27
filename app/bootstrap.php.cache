@@ -1859,6 +1859,12 @@ $this->services[$id] = $service;
 if (method_exists($this, $method ='synchronize'.strtr($id, array('_'=>'','.'=>'_')).'Service')) {
 $this->$method();
 }
+if (self::SCOPE_CONTAINER !== $scope && null === $service) {
+unset($this->scopedServices[$scope][$id]);
+}
+if (null === $service) {
+unset($this->services[$id]);
+}
 }
 public function has($id)
 {

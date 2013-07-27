@@ -2,8 +2,6 @@
 
 namespace SFM\PicmntBundle\Model\Type;
 
-use SFM\PicmntBundle\Util\ArrayConverterTrait;
-
 /**
 * Thumtype
 *
@@ -12,8 +10,8 @@ use SFM\PicmntBundle\Util\ArrayConverterTrait;
 */
 class ThumbType
 {
-    use ArrayConverterTrait;
-    
+    use \SFM\PicmntBundle\Util\ArrayConverterTrait;
+
     protected $imageId;
 
     protected $url;

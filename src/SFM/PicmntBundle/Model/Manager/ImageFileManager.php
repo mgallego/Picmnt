@@ -31,7 +31,7 @@ class ImageFileManager
         return $this->saveImageInDisk($uploadedFile, $newFileName);
     }
 
-    private function saveImageInDisk($uploadedFile, $newFileName)
+    private function saveImageInDisk(UploadedFile $uploadedFile, $newFileName)
     {
         $uploadedFile->move(
             $_SERVER['DOCUMENT_ROOT'].'/'.$this->imageFileConfig['upload_path'],
