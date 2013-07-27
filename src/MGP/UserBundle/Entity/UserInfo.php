@@ -1,6 +1,6 @@
 <?php
 
-namespace SFM\PicmntBundle\Entity;
+namespace MGP\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,13 +8,11 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * SFM\PicmntBundle\Entity\UserInfo
  *
- * @ORM\Table(name="User_Info")
+ * @ORM\Table(name="user_info")
  * @ORM\Entity
  */
 class UserInfo
 {
-
-  
     /**
      * @var integer $userId
      *

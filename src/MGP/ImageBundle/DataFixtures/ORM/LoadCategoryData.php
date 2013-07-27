@@ -1,9 +1,9 @@
 <?php
 
-namespace SFM\PicmntBundle\DataFixtures\ORM;
+namespace MGP\ImageBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
-use SFM\PicmntBundle\Entity\Category;
+use MGP\ImageBundle\Entity\Category;
 use Doctrine\Common\Persistence\ObjectManager;
 
 /**

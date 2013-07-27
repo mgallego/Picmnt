@@ -1,6 +1,6 @@
 <?php
 
-namespace SFM\PicmntBundle\Entity;
+namespace MGP\UserBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 
@@ -11,7 +11,7 @@ class UserRepository extends EntityRepository
 	$em = $this->getEntityManager();
 	$query = $em->createQuery('
                   SELECT ui.avatar as avatar
-                   FROM SFMPicmntBundle:UserInfo ui
+                   FROM MGPUserBundle:UserInfo ui
                   WHERE ui.userId = :id');
 
 	$query->setParameter('id', $userId);
@@ -31,7 +31,7 @@ class UserRepository extends EntityRepository
 
     public function getPendingCommentsDQL($user){
 	$query = $this->getEntityManager()->createQuery('SELECT p image, count(c.notified) pending
-                                                     FROM SFMPicmntBundle:Image p
+                                                     FROM MGPImageBundle:Image p
                                                      JOIN p.user u JOIN p.imageComments c
                                                      WHERE u.username = :username
 	                                             AND p.title IS NOT NULL

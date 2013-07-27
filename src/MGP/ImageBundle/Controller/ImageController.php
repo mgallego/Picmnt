@@ -3,7 +3,7 @@
 namespace MGP\ImageBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use SFM\PicmntBundle\Form\Type\ImageFileFormType;
+use MGP\ImageBundle\Form\Type\ImageFormType;
 use SFM\PicmntBundle\Form\Handler\ImageFileFormHandler;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,14 +16,21 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class ImageController extends Controller
 {
+
     /**
-     * Upload an Image and set the defaults data
+     * Upload an Image
      *
      * @Route ("/img/upload", name="img_upload")
      */
     public function uploadAction(Request $request)
     {
-        die('entrando por aquí');
+        $form = $this->createForm(new ImageFormType());
 
+        if ($request->getMethod() == 'POST') {
+
+        }
+        
+        return $this->render('SFMPicmntBundle:Image:upload.html.twig', array('form' => $form->createView()));
+            
     }
 }

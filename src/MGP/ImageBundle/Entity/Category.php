@@ -1,13 +1,13 @@
 <?php
 
-namespace SFM\PicmntBundle\Entity;
+namespace MGP\ImageBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * SFM\PicmntBundle\Entity\Category
  *
- * @ORM\Table()
+ * @ORM\Table(name="category")
  * @ORM\Entity
  */
 class Category
@@ -38,9 +38,14 @@ class Category
      * @ORM\OneToMany(targetEntity="Image", mappedBy="category")
      */
     private $images;
-
-
-
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->images = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
     /**
      * Get id
      *
@@ -60,6 +65,7 @@ class Category
     public function setName($name)
     {
         $this->name = $name;
+    
         return $this;
     }
 
@@ -82,6 +88,7 @@ class Category
     public function setStatus($status)
     {
         $this->status = $status;
+    
         return $this;
     }
 
@@ -98,24 +105,33 @@ class Category
     /**
      * Add images
      *
-     * @param SFM\PicmntBundle\Entity\Image $images
+     * @param \MGP\ImageBundle\Entity\Image $images
+     * @return Category
      */
-    public function addImages(\SFM\PicmntBundle\Entity\Image $images)
+    public function addImage(\MGP\ImageBundle\Entity\Image $images)
     {
         $this->images[] = $images;
+    
+        return $this;
+    }
+
+    /**
+     * Remove images
+     *
+     * @param \MGP\ImageBundle\Entity\Image $images
+     */
+    public function removeImage(\MGP\ImageBundle\Entity\Image $images)
+    {
+        $this->images->removeElement($images);
     }
 
     /**
      * Get images
      *
-     * @return Doctrine\Common\Collections\Collection $images
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getImages()
     {
         return $this->images;
-    }
-
-    public function __tostring(){
-	return $this->getName();
     }
 }
