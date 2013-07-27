@@ -33,17 +33,11 @@ class IndexController extends Controller
                 $imagesPerPage
             );
 
-        //load throw twig extension
-        if (count($images) < $imagesPerPage) {
-            $loadMore = false;
-        }
-        
         return $this->render(
-            'MGPMainBundle:Index:index.html.twig',
+            'MGPImageBundle:Image:thumbs.html.twig',
             ['images' => $images,
                 'category' => 'all',
-                'option' => "popular",
-                'loadMore' => $loadMore
+                'option' => 'popular'
                 ]
         );
     }

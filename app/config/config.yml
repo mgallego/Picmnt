@@ -25,9 +25,7 @@ twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
     globals:
-        upload_dir: '/uploads/'
-        thumbs_dir: '/uploads/thumbs/'
-        server: 'http://picmnt.com'
+        images_per_page: %images_per_page%
 
 # Assetic Configuration
 assetic:
@@ -124,7 +122,6 @@ parameters:
         upload_small_path: "uploads/avatarsmall"
         big_size: 100
         small_size: 50
-    images_per_page: 30
 
 liip_imagine:
     filter_sets:

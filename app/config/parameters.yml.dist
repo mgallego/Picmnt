@@ -19,3 +19,5 @@ parameters:
 
     ducksboard_api: ~
     use_ducksboard: ~
+
+    images_per_page: 30
