@@ -29,7 +29,7 @@ class ImageController extends Controller
         if ($request->getMethod() == 'POST') {
 
         }
-        return $this->render('MGPMainBundle::layout.html.twig', array('form' => $form->createView()));
+
         return $this->render('MGPImageBundle:Image:upload.html.twig', array('form' => $form->createView()));
     }
 }
