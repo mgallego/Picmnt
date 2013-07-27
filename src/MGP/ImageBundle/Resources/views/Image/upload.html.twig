@@ -1,0 +1,62 @@
+{% extends "MGPMainBundle::layout.html.twig" %}
+
+{% block javascript %}
+{{ parent() }}
+<script src="{{ asset('bundles/mgpmain/js/upload.js') }}"></script>
+
+{% endblock javascript %}
+
+{% block content %}
+{{ parent() }}
+
+
+<section class="row">
+
+    <article class="row">
+		<div class="span6 text-center">
+			<output id="list"></output>
+			<ul id="thumbs" class="thumbnails">
+			</ul>
+		</div>
+
+		<div class="span5 offset1">			
+
+			<form  action="{{ path('img_upload') }}" method="POST" {{ form_enctype(form) }} >
+				<fieldset>
+					<legend>{{ 'Upload Image' | trans }}</legend>
+
+					{{ form_errors(form.title) }}
+					{{ form_label(form.title, 'Title' | trans) }}
+					{{ form_widget(form.title) }}
+
+					{{ form_errors(form.file) }}
+					{{ form_label(form.file, 'Choose a File to upload' | trans) }}
+					{{ form_widget(form.file) }}
+
+					{{ form_errors(form.description) }}
+					{{ form_label(form.description, 'Description' | trans) }}
+					{{ form_widget(form.description) }}
+
+					{{ form_errors(form.category) }}
+					{{ form_label(form.category, 'Category' | trans) }}
+					{{ form_widget(form.category) }}
+
+					{{ form_errors(form.notify_email) }}
+					<label class="checkbox">
+						{{ form_widget(form.notify_email) }} {{ 'Notify comments by email' | trans }}
+					</label>
+
+					{{ form_rest(form) }}
+					<span class="help-block">{{ 'Remember that the images you upload must be of your property.' | trans }}
+						{{ 'It is forbidden to upload images of nude or erotic.' | trans }}
+					</span>
+					<div class="row">
+						<input id="upload" type="submit" class="btn-large btn btn-primary" value="{{ 'Upload' | trans }}"/>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+    </article>
+
+</section>
+{% endblock %}

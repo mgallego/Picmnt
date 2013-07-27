@@ -4,10 +4,9 @@ namespace MGP\ImageBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use MGP\ImageBundle\Form\Type\ImageFormType;
-use SFM\PicmntBundle\Form\Handler\ImageFileFormHandler;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use MGP\ImageBundle\Entity\Image;
 
 /**
  * Image Controller
@@ -24,10 +23,17 @@ class ImageController extends Controller
      */
     public function uploadAction(Request $request)
     {
-        $form = $this->createForm(new ImageFormType());
+        $image = new Image();
+        $form = $this->createForm(new ImageFormType(),$image);
 
         if ($request->getMethod() == 'POST') {
-
+            $form->handleRequest($request);
+            if ($form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $image->setUser($this->getUser());
+                $em->persist($image);
+                $em->flush();
+            }                
         }
 
         return $this->render('MGPImageBundle:Image:upload.html.twig', array('form' => $form->createView()));

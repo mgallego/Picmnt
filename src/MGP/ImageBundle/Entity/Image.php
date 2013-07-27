@@ -4,6 +4,7 @@ namespace MGP\ImageBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * SFM\PicmntBundle\Entity\Image
@@ -11,25 +12,28 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="image")
  * @ORM\Entity
  * @ORM\Entity(repositoryClass="MGP\ImageBundle\Entity\ImageRepository")
+ *
+ * @ORM\HasLifecycleCallbacks
  */
 class Image
 {
-
+    private $temp;
+    
     /**
-     * @var integer $idImage
+     * @var integer $id
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $idImage;
+    private $id;
 
     /**
-     * @var string $url
+     * @var string $path
      *
-     * @ORM\Column(name="Url", type="string", length=255, nullable=false)
+     * @ORM\Column(name="path", type="string", length=255, nullable=true)
      */
-    private $url;
+    private $path;
 
     /**
      * @var string $title
@@ -39,6 +43,11 @@ class Image
      * @Assert\Length(max = "255")
      */
     private $title;
+
+    /**
+     * @Assert\File(maxSize="6000000")
+     */
+    private $file;
 
     /**
      * @var string $decription
@@ -56,13 +65,6 @@ class Image
      *
      */
     private $tags;
-
-    /**
-     * @var integer $votes
-     *
-     * @ORM\Column(name="likes", type="integer", nullable=true, options={"default" = 0})
-     */
-    private $likes;
 
     /**
      * @ORM\ManyToOne(targetEntity="\MGP\UserBundle\Entity\User", inversedBy="images", cascade={"remove"})
@@ -101,7 +103,7 @@ class Image
      * @ORM\Column(type="integer", nullable=false)
      *
      */
-    protected $status;
+    protected $status = 1;
     
     /**
      * @var boolean $notify_email
@@ -124,37 +126,134 @@ class Image
         $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-    /**
-     * Get idImage
-     *
-     * @return integer 
-     */
-    public function getIdImage()
+    public function getAbsolutePath()
     {
-        return $this->idImage;
+        return null === $this->path
+            ? null
+            : $this->getUploadRootDir().'/'.$this->path;
+    }
+
+    public function getWebPath()
+    {
+        return null === $this->path
+            ? null
+            : $this->getUploadDir().'/'.$this->path;
+    }
+
+    protected function getUploadRootDir()
+    {
+        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+
+    protected function getUploadDir()
+    {
+        return 'uploads/images';
     }
 
     /**
-     * Set url
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function preUpload()
+    {
+        if (null !== $this->getFile()) {
+
+            $filename = sha1(uniqid(mt_rand(), true));
+            $this->path = $filename.'.'.$this->getFile()->guessExtension();
+        }
+    }
+
+    /**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
+    public function upload()
+    {
+        if (null === $this->getFile()) {
+            return;
+        }
+
+        $this->getFile()->move($this->getUploadRootDir(), $this->path);
+
+        if (isset($this->temp)) {
+            unlink($this->getUploadRootDir().'/'.$this->temp);
+            $this->temp = null;
+        }
+        $this->file = null;
+    }
+
+    /**
+     * @ORM\PostRemove()
+     */
+    public function removeUpload()
+    {
+        if ($file = $this->getAbsolutePath()) {
+            unlink($file);
+        }
+    }
+
+    /**
+     * Sets file.
      *
-     * @param string $url
+     * @param UploadedFile $file
+     */
+    public function setFile(UploadedFile $file = null)
+    {
+        $this->file = $file;
+        if (isset($this->path)) {
+            $this->temp = $this->path;
+            $this->path = null;
+        } else {
+            $this->path = 'initial';
+        }
+    }
+    
+    /**
+     * Get file.
+     *
+     * @return UploadedFile
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+
+
+
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set path
+     *
+     * @param string $path
      * @return Image
      */
-    public function setUrl($url)
+    public function setPath($path)
     {
-        $this->url = $url;
+        $this->path = $path;
     
         return $this;
     }
 
     /**
-     * Get url
+     * Get path
      *
      * @return string 
      */
-    public function getUrl()
+    public function getPath()
     {
-        return $this->url;
+        return $this->path;
     }
 
     /**
@@ -224,29 +323,6 @@ class Image
     public function getTags()
     {
         return $this->tags;
-    }
-
-    /**
-     * Set likes
-     *
-     * @param integer $likes
-     * @return Image
-     */
-    public function setLikes($likes)
-    {
-        $this->likes = $likes;
-    
-        return $this;
-    }
-
-    /**
-     * Get likes
-     *
-     * @return integer 
-     */
-    public function getLikes()
-    {
-        return $this->likes;
     }
 
     /**
@@ -367,10 +443,10 @@ class Image
     /**
      * Set user
      *
-     * @param \MGP\UserBundle\User $user
+     * @param \MGP\UserBundle\Entity\User $user
      * @return Image
      */
-    public function setUser(\MGP\UserBundle\User $user = null)
+    public function setUser(\MGP\UserBundle\Entity\User $user = null)
     {
         $this->user = $user;
     
@@ -380,7 +456,7 @@ class Image
     /**
      * Get user
      *
-     * @return \MGP\UserBundle\User 
+     * @return \MGP\UserBundle\Entity\User 
      */
     public function getUser()
     {
@@ -390,10 +466,10 @@ class Image
     /**
      * Add comments
      *
-     * @param \MGP\CommentBundle\Comment $comments
+     * @param \MGP\CommentBundle\Entity\Comment $comments
      * @return Image
      */
-    public function addComment(\MGP\CommentBundle\Comment $comments)
+    public function addComment(\MGP\CommentBundle\Entity\Comment $comments)
     {
         $this->comments[] = $comments;
     
@@ -403,9 +479,9 @@ class Image
     /**
      * Remove comments
      *
-     * @param \MGP\CommentBundle\Comment $comments
+     * @param \MGP\CommentBundle\Entity\Comment $comments
      */
-    public function removeComment(\MGP\CommentBundle\Comment $comments)
+    public function removeComment(\MGP\CommentBundle\Entity\Comment $comments)
     {
         $this->comments->removeElement($comments);
     }

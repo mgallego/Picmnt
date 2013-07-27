@@ -11,8 +11,9 @@ class ImageFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('title', 'text', array('required' => 'true'))
-            ->add('description', 'textarea', array('required' => false))
+        $builder->add('title', 'text', ['required' => 'true'])
+            ->add('description', 'textarea', ['required' => false])
+            ->add('file', 'file', ['required' => true])
             ->add(
                 'category',
                 'entity',
@@ -24,7 +25,7 @@ class ImageFormType extends AbstractType
                     'property' => 'name',
                 )
             )
-            ->add('notify_email', 'checkbox', array("required" => false));
+            ->add('notify_email', 'checkbox', ["required" => false]);
     }
 
     /**
@@ -37,13 +38,13 @@ class ImageFormType extends AbstractType
         $resolver->setDefaults(
             array(
                 'data_class'      => 'MGP\ImageBundle\Entity\Image',
-                'csrf_protection' => false,
+                'csrf_protection' => true,
             )
         );
     }
     
     public function getName()
     {
-        return 'picmnt_image_imagetype';
+        return 'picmnt_image';
     }
 }
