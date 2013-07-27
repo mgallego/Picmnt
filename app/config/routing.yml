@@ -3,6 +3,9 @@ sfm_website:
 
 mgp_image:
     resource: "@MGPImageBundle/Resources/config/routing.yml"
+
+mgp_main:
+    resource: "@MGPMainBundle/Resources/config/routing.yml"
 ##############################  USER CONTROLLER  ##############################
 
 _usr_profile:

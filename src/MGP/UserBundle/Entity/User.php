@@ -51,6 +51,7 @@ class User extends BaseUser
     $this->imageComments = new \Doctrine\Common\Collections\ArrayCollection();
   }
 
+
     /**
      * Get id
      *
@@ -87,10 +88,10 @@ class User extends BaseUser
     /**
      * Add images
      *
-     * @param \MGP\ImageBundle\Image $images
+     * @param \MGP\ImageBundle\Entity\Image $images
      * @return User
      */
-    public function addImage(\MGP\ImageBundle\Image $images)
+    public function addImage(\MGP\ImageBundle\Entity\Image $images)
     {
         $this->images[] = $images;
     
@@ -100,9 +101,9 @@ class User extends BaseUser
     /**
      * Remove images
      *
-     * @param \MGP\ImageBundle\Image $images
+     * @param \MGP\ImageBundle\Entity\Image $images
      */
-    public function removeImage(\MGP\ImageBundle\Image $images)
+    public function removeImage(\MGP\ImageBundle\Entity\Image $images)
     {
         $this->images->removeElement($images);
     }
@@ -143,10 +144,10 @@ class User extends BaseUser
     /**
      * Add imageComments
      *
-     * @param \MGP\CommentBundle\Comment $imageComments
+     * @param \MGP\CommentBundle\Entity\Comment $imageComments
      * @return User
      */
-    public function addImageComment(\MGP\CommentBundle\Comment $imageComments)
+    public function addImageComment(\MGP\CommentBundle\Entity\Comment $imageComments)
     {
         $this->imageComments[] = $imageComments;
     
@@ -156,9 +157,9 @@ class User extends BaseUser
     /**
      * Remove imageComments
      *
-     * @param \MGP\CommentBundle\Comment $imageComments
+     * @param \MGP\CommentBundle\Entity\Comment $imageComments
      */
-    public function removeImageComment(\MGP\CommentBundle\Comment $imageComments)
+    public function removeImageComment(\MGP\CommentBundle\Entity\Comment $imageComments)
     {
         $this->imageComments->removeElement($imageComments);
     }

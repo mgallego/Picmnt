@@ -1,0 +1,44 @@
+{% extends "MGPMainBundle::layout.html.twig" %}
+
+{% block title %} | Login{% endblock %}
+
+{% block content %}
+
+  <section id="login"  class="container container_12">
+      <div class="clear">
+      </div>
+
+	  <article class="span4 offset4">
+
+	      {% if error %}
+			<div class="alert alert-error">
+			    {{ error | trans }}
+			</div>
+	      {% endif %}
+
+	      <form action="{{ path("fos_user_security_check") }}" method="post">
+		  <fieldset>
+			<legend>{{ 'Login' | trans }}</legend>
+		      <label class="control-label" for="username">{{ 'Username:' | trans }}</label>
+		      <input type="text" id="username" name="_username" value="{{ last_username }}" size="30" />
+
+		      <label class="control-label" for="password">{{ 'Password:' | trans }}</label>
+		      <input type="password" id="password" name="_password" size="30" />
+
+			  <div class="control-group">
+		      
+		      <input type="checkbox" id="remember_me" name="_remember_me" value="on" /> {{ 'Remember Me' | trans }}
+			  </div>
+			  <div class="control-group">
+				  <a href="{{ path('fos_user_resetting_request') }}" >{{ 'Remember the password' | trans }}</a>
+			  </div>
+			  <div class="control-group">
+				  <input id="login" type="submit"  class="btn btn-primary" />
+			  </div>
+	      </fieldset>
+	      </form>
+	  </article>
+
+  </section>      
+
+{% endblock content %}

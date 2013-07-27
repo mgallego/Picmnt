@@ -1,0 +1,17 @@
+<section id="register">
+    <article class="span4 offset4">
+
+	<form  action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST">
+	    <fieldset>
+			<legend>{{ 'Sign Up' | trans }}</legend>
+			{{ form_widget(form) }}
+			<div class="control-group">
+				<input type="checkbox" value="0" required="required"/>  <a href="{{ path('static_page', {'page': 'terms'}) }}">{{ 'I agree with the terms and condition of use' | trans }}</a>
+			</div>
+			<div class="control-group">
+				<input type="submit" value="{{ 'registration.submit'|trans({}, 'FOSUserBundle') }}" class="btn btn-primary"/>
+			</div>
+	    </fieldset>
+	</form>
+    </article>
+</section>

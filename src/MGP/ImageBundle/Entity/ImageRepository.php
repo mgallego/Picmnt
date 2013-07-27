@@ -12,4 +12,30 @@ use Doctrine\ORM\EntityRepository;
  */
 class ImageRepository extends EntityRepository
 {
+
+    public function findByCategoryAndOrder($category, $orderField, $offset = 0, $maxResults = 30)
+    {
+        return $this->findByCategoryAndOrderDQL($category, $orderField)
+            ->setFirstResult($offset)
+            ->setMaxResults($maxResults)
+            ->getResult();
+    }
+
+    public function findByCategoryAndOrderDQL($category, $orderField)
+    {
+        $qb = $this->_em->createQueryBuilder();
+        
+        $qb->add('select', 'p')
+            ->add('from', 'MGPImageBundle:Image p')
+            ->join('p.category', 'c')
+            ->where('p.status = 1');
+
+        if ($category != 'all') {
+            $qb->andWhere('c.name = :category')->setParameter('category', $category);
+        }
+        
+        $qb->orderBy('p.'.$orderField, 'DESC');
+        $qb->addOrderBy('p.id', 'DESC');
+        return $qb->getQuery();
+    }
 }

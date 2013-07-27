@@ -1,0 +1,12 @@
+{% extends "MGPMainBundle::layout.html.twig" %}
+
+{% block title %} | {{ 'Join' | trans }} {% endblock title %}
+
+{% block content %}
+
+<section id="request-password">
+    <article class="span8 offset2">
+      <h5>{{ 'registration.check_email'|trans({'%email%': user.email}, 'FOSUserBundle') }}</h5>
+    </article>
+</section>
+{% endblock content %}

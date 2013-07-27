@@ -1,45 +1,51 @@
 <?php
-namespace SFM\PicmntBundle\Controller;
+
+namespace MGP\MainBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
+/**
+ * Index controller
+ *
+ * @author Moises Gallego <moisesgallego@gmail.com>
+ */
 class IndexController extends Controller
 {
-
     /**
      * Index Action
      *
+     * @Route ("/", name="home")
      */
     public function indexAction(Request $request)
     {
-        $category = 'all';
-
         $em = $this->get('doctrine')->getManager();
-        $paginator = [];
 
         $imagesPerPage = $this->container->getParameter('images_per_page');
-        $paginator = $this->get('ideup.simple_paginator');
-        $paginator->setItemsPerPage($imagesPerPage);
 
-        $images = $em->getRepository('SFMPicmntBundle:Image')
-            ->findByCategoryAndOrder($category, 'popularity',  null, $imagesPerPage);
+        //show thumbs order by popularity
+        $images = $em->getRepository('MGPImageBundle:Image')
+            ->findByCategoryAndOrder(
+                'all',
+                'popularity',
+                null,
+                $imagesPerPage
+            );
 
-        $loadMore = true;
+        //load throw twig extension
         if (count($images) < $imagesPerPage) {
             $loadMore = false;
         }
         
         return $this->render(
-            'SFMPicmntBundle:Image:recents.html.twig',
+            'MGPMainBundle:Index:index.html.twig',
             ['images' => $images,
-                'category' => $category,
+                'category' => 'all',
                 'option' => "popular",
                 'loadMore' => $loadMore
                 ]
         );
-
     }
 
     /**
@@ -49,6 +55,6 @@ class IndexController extends Controller
      */
     public function staticAction($page)
     {
-        return $this->render('SFMPicmntBundle:Static:'.$page.'.html.twig');
+        return $this->render('MGPMainBundle:Static:'.$page.'.html.twig');
     }
 }
