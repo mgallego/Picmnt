@@ -77,7 +77,7 @@ swiftmailer:
 fos_user:
     db_driver: orm
     firewall_name: main
-    user_class: SFM\PicmntBundle\Entity\User
+    user_class: MGP\UserBundle\Entity\User
     template:
         engine: twig
         #theme:  FOSUserBundle::form.html.twig	         
