@@ -33,7 +33,7 @@
 	"ideup/simple-paginator-bundle":"*",
 	"raulfraile/ladybug-bundle": "dev-master",
 	"friendsofsymfony/jsrouting-bundle": "~1.1",
-        "gedmo/doctrine-extensions": "2.3.*"
+	"stof/doctrine-extensions-bundle": "~1.1@dev"
     },
     "scripts": {
         "post-install-cmd": [
