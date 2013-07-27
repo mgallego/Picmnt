@@ -20,7 +20,6 @@ class ImageController extends Controller
     /**
      * Upload an Image and set the defaults data
      *
-     * @Route ("/img/upload", name="img_upload")
      */
     public function uploadAction(Request $request)
     {
