@@ -30,5 +30,5 @@ $(document).ready(function(){
 	}
     }
 
-    document.getElementById('picmnt_image_imageuptype_dataFile').addEventListener('change', handleFileSelect, false);
+    document.getElementById('picmnt_image_file').addEventListener('change', handleFileSelect, false);
 });

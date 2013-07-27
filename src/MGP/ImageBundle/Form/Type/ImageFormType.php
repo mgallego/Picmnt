@@ -11,8 +11,8 @@ class ImageFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('title', 'text', ['required' => 'true'])
-            ->add('description', 'textarea', ['required' => false])
+        $builder->add('title', 'text', ['required' => 'true', 'attr' => ['class' => 'input-block-level']])
+            ->add('description', 'textarea', ['required' => false, 'attr' => ['rows' => 4, 'class' => 'input-block-level']])
             ->add('file', 'file', ['required' => true])
             ->add(
                 'category',
