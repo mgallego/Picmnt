@@ -25,17 +25,18 @@ class ImageController extends Controller
     {
         $image = new Image();
         $form = $this->createForm(new ImageFormType(),$image);
-
         if ($request->getMethod() == 'POST') {
             $form->handleRequest($request);
             if ($form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
+
                 $image->setUser($this->getUser());
+                $image->upload();
+
                 $em->persist($image);
                 $em->flush();
             }                
         }
-
         return $this->render('MGPImageBundle:Image:upload.html.twig', array('form' => $form->createView()));
     }
 }

@@ -136,3 +136,10 @@ liip_imagine:
             quality: 75
             filters:
                 thumbnail: { size: [50, 50], mode: outbound }
+
+stof_doctrine_extensions:
+    default_locale: en_US
+    orm:
+        default:
+            timestampable: true
+            sluggable: true

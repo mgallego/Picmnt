@@ -5,6 +5,7 @@ namespace MGP\ImageBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * SFM\PicmntBundle\Entity\Image
@@ -13,7 +14,6 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  * @ORM\Entity
  * @ORM\Entity(repositoryClass="MGP\ImageBundle\Entity\ImageRepository")
  *
- * @ORM\HasLifecycleCallbacks
  */
 class Image
 {
@@ -86,13 +86,13 @@ class Image
     /**
      * @var string $slug
      *
-     * @ORM\Column(name="slug", type="string", length=255, nullable=true)
-     *
-     * @Assert\Length(max = "255")
+     * @Gedmo\Slug(fields={"title"}, updatable=false, unique=true)
+     * @ORM\Column(name="slug", unique=true)
      */
     private $slug;
 
     /**
+     * @Gedmo\Timestampable(on="create")     
      * @ORM\Column(type="datetime", nullable=true)
      *
      * @Assert\DateTime
@@ -150,46 +150,27 @@ class Image
         return 'uploads/images';
     }
 
-    /**
-     * @ORM\PrePersist()
-     * @ORM\PreUpdate()
-     */
-    public function preUpload()
-    {
-        if (null !== $this->getFile()) {
-
-            $filename = sha1(uniqid(mt_rand(), true));
-            $this->path = $filename.'.'.$this->getFile()->guessExtension();
-        }
-    }
-
-    /**
-     * @ORM\PostPersist()
-     * @ORM\PostUpdate()
-     */
     public function upload()
     {
+        // the file property can be empty if the field is not required
         if (null === $this->getFile()) {
             return;
         }
 
-        $this->getFile()->move($this->getUploadRootDir(), $this->path);
+        $filename = sha1(uniqid(mt_rand(), true));
+        $this->path = $filename.'.'.$this->getFile()->guessExtension();
+        // use the original file name here but you should
+        // sanitize it at least to avoid any security issues
 
-        if (isset($this->temp)) {
-            unlink($this->getUploadRootDir().'/'.$this->temp);
-            $this->temp = null;
-        }
+        // move takes the target directory and then the
+        // target filename to move to
+        $this->getFile()->move(
+            $this->getUploadRootDir(),
+            $this->path
+        );
+
+        // clean up the file property as you won't need it anymore
         $this->file = null;
-    }
-
-    /**
-     * @ORM\PostRemove()
-     */
-    public function removeUpload()
-    {
-        if ($file = $this->getAbsolutePath()) {
-            unlink($file);
-        }
     }
 
     /**
@@ -200,12 +181,12 @@ class Image
     public function setFile(UploadedFile $file = null)
     {
         $this->file = $file;
-        if (isset($this->path)) {
-            $this->temp = $this->path;
-            $this->path = null;
-        } else {
-            $this->path = 'initial';
-        }
+        /* if (isset($this->path)) { */
+        /*     $this->temp = $this->path; */
+        /*     $this->path = null; */
+        /* } else { */
+        /*     $this->path = 'initial'; */
+        /* } */
     }
     
     /**
