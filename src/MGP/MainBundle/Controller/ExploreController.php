@@ -44,4 +44,21 @@ class ExploreController extends Controller
                 => $em->getRepository('MGPImageBundle:Image')->findOneBySlug($slug)]
         );
     }
+
+    /**
+     * Random Image
+     *
+     * @Route ("/random", name="random_image")     
+     */
+    public function randomImageAction(Request $request)
+    {
+        $category = !$request->get('cat')? 'all':  $request->get('cat');
+        $em = $this->getDoctrine()->getManager();
+        return $this->render(
+            'MGPImageBundle:Image:viewImage.html.twig',
+            ['image'
+                => $em->getRepository('MGPImageBundle:Image')->getRandom($category),
+                'title_as_link' => true]
+        );
+    }
 }

@@ -38,4 +38,41 @@ class ImageRepository extends EntityRepository
         $qb->addOrderBy('p.id', 'DESC');
         return $qb->getQuery();
     }
+
+    public function getRandom($category = 'all')
+    {
+        $qb = $this->_em->createQueryBuilder();
+
+        //Get the max and min id
+        $qb->add('select', 'min(p.id) minIdImage, max(p.id) maxIdImage')
+            ->add('from', 'MGPImageBundle:Image p')
+            ->join('p.category', 'c')
+            ->where('p.title IS NOT NULL AND p.status = 1');
+
+        if ($category != 'all') {
+            $qb->andWhere('c.name = :category')->setParameter('category', $category);
+        }
+
+        $idImageRange = $qb->getQuery()->getResult();
+
+        //Get a random value between max and min value
+        $randIdImage = rand($idImageRange[0]['minIdImage'], $idImageRange[0]['maxIdImage']);
+
+        $query = $this->_em->createQueryBuilder();
+
+        //Get the image or next image with the random id
+        $query->add('select', 'p')
+            ->add('from', 'MGPImageBundle:Image p')
+            ->join('p.category', 'c')
+            ->where('p.title IS NOT NULL AND p.status = 1 AND p.id >= :randIdImage');
+
+        if ($category != 'all') {
+            $query->add('where', 'c.name = :category')->setParameter('category', $category);
+        }
+
+        $query->setParameter('randIdImage', $randIdImage);
+        $query->setMaxResults(1);
+
+        return $query->getQuery()->getSingleResult();
+    }
 }

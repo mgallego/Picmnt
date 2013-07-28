@@ -32,7 +32,7 @@ class MainMenuBuilder extends ContainerAware
         $exploreMenu->addChild('Popular', ['route' => 'show_thumbnails', 'routeParameters' => ['option'=>'popular']] );        
         $exploreMenu->addChild('New', ['route' => 'show_thumbnails', 'routeParameters' => ['option'=>'new']] );
 
-        //$menu->addChild('Random', ['route' => 'img_show', 'routeParameters' => ['option'=>'random', 'category'=>'all']]);
+        $menu->addChild('Random', ['route' => 'random_image']);
         $menu->addChild('Upload Image', ['route' => 'img_upload']);
 
         $menu->addChild('divider')->setLabel('')->setAttributes(['class' => 'divider-vertical']);
