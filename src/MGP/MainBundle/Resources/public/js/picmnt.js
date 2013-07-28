@@ -38,7 +38,7 @@ $(document).ready(function() {
 
 
     $('#category-select').change(function() {
-	window.location = route = Routing.generate('img_show', {'option': option, 'cat': $('#category-select option:selected').text().toLowerCase() });
+	window.location = route = Routing.generate('show_thumbnails', {'option': option, 'cat': $('#category-select option:selected').text().toLowerCase() });
     });
 
 });
