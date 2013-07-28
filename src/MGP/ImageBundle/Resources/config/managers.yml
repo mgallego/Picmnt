@@ -1,0 +1,4 @@
+services:
+    mgp.image.thumbnail_manager:
+        class: MGP\ImageBundle\Model\Manager\ThumbnailManager
+        arguments: ["@doctrine.orm.entity_manager", %images_per_page%]

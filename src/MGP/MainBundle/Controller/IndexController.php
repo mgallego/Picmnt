@@ -20,21 +20,11 @@ class IndexController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
-        $imagesPerPage = $this->container->getParameter('images_per_page');
-
-        //show thumbs order by popularity
-        $images = $em->getRepository('MGPImageBundle:Image')
-            ->findByCategoryAndOrder(
-                'all',
-                'popularity',
-                null,
-                $imagesPerPage
-            );
+        $thumbailManager = $this->get('mgp.image.thumbnail_manager');
 
         return $this->render(
             'MGPImageBundle:Image:thumbs.html.twig',
-            ['images' => $images,
+            ['images' => $thumbailManager->getThumbnails('all', 'popular'),
                 'category' => 'all',
                 'option' => 'popular',
                 'show_categories' => false

@@ -15,27 +15,16 @@ class ExploreController extends Controller
      * @Route ("/{option}", name="show_thumbnails", options={"expose"=true},
      * requirements={"option" = "new|popular"})     
      */
-    public function showThubsAction(Request $request)
+    public function showThubsAction(Request $request, $option)
     {
-        $em = $this->getDoctrine()->getManager();
-        $imagesPerPage = $this->container->getParameter('images_per_page');
-
         $category = !$request->get('cat')? 'all':  $request->get('cat');
-
-        //show thumbs order by popularity
-        $images = $em->getRepository('MGPImageBundle:Image')
-            ->findByCategoryAndOrder(
-                $category,
-                'popularity',
-                null,
-                $imagesPerPage
-            );
+        $thumbailManager = $this->get('mgp.image.thumbnail_manager');
 
         return $this->render(
             'MGPImageBundle:Image:thumbs.html.twig',
-            ['images' => $images,
+            ['images' => $thumbailManager->getThumbnails($category, $option),
                 'category' => $category,
-                'option' => 'popular',
+                'option' => $option,
                 'show_categories' => true
                 ]
         );
