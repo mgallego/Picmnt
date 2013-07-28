@@ -1,0 +1,6 @@
+services:
+    mgp.twig.category_extension:
+        class: MGP\ImageBundle\Twig\CategoryExtension
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: twig.extension }

@@ -1,3 +1,6 @@
 mgp_index_controller:
     resource: "@MGPMainBundle/Controller/IndexController.php"
     type:     annotation
+mgp_explore_controller:
+    resource: "@MGPMainBundle/Controller/ExploreController.php"
+    type:     annotation

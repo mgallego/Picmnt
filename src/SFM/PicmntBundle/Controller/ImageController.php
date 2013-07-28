@@ -16,90 +16,6 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class ImageController extends Controller
 {
-
-    /**
-     * Upload an Image and set the defaults data
-     *
-     */
-    public function uploadAction(Request $request)
-    {
-        $form = $this->createForm(new ImageFileFormType());
-
-        if ($request->getMethod() == 'POST') {
-
-            $formHandler = new ImageFileFormHandler(
-                $form,
-                $request,
-                $this->getUser(),
-                $this->get(
-                    'sfm_picmnt.image_file_manager'
-                )
-            );
-
-            if (!$formHandler->process()) {
-                throw new \Exception($formHandler->showFormErrors());
-            }
-
-        /*     //here */
-        /*     $form->handleRequest($request); */
-
-        /*     if ($form->isValid()) { */
-        /*         $imageUtil = $this->container->get('image.utils'); */
-        /*         $imageDefaults = $this->container->getParameter('image_defaults'); */
-        /*         $uploadedFile = $form['dataFile']->getData(); */
-        /*         $extension = $imageUtil->getExtension($uploadedFile->getMimeType()); */
-        /*         $newFileName = $user->getId().'_'.date("ymdHis").'_'.rand(1, 9999).$extension; */
-
-        /*         $uploadedFile->move( */
-        /*             $_SERVER['DOCUMENT_ROOT'].$this->container->getParameter('upload_path'), */
-        /*             $newFileName */
-        /*         ); */
-
-
-
-
-
-                
-
-        /*         $image->setUrl($newFileName); */
-        /*         $image->setVotes(0); */
-        /*         $image->setUser($user); */
-        /*         $image->setTitle(substr($uploadedFile->getClientOriginalName(), 0, -4)); */
-        /*         $image->setFirstTitle($image->getTitle()); */
-        /*         $image->setSlug($this->container->get('picmnt.utils')->getSlug($newFileName, 0, $user->getId())); */
-        /*         $image->setFirstSlug($image->getSlug()); */
-        /*         $image->setPubDate(new \DateTime('today')); */
-        /*         $image->setStatus($imageDefaults['status']); */
-        /*         $image->getNotifyEmail($imageDefaults['email_noti']); */
-        /*         $image->setNotifyEmail(true); */
-        /*         $image->setCategory($em->getRepository('SFMPicmntBundle:Category')->findOneById('6')); */
-        /*         $em->persist($image); */
-        /*         $em->flush(); */
-
-
-
-                
-        /*         $imageUtil->resizeImage($imageDefaults['upload_path'].$newFileName, $imageDefaults['size']); */
-
-
-
-                
-        /*         if (!is_dir($imageDefaults['thumbs_path'])) { */
-        /*             mkdir($imageDefaults['thumbs_path']); */
-        /*         } */
-        /*         if ($this->container->getParameter('use_ducksboard') === 'yes') { */
-        /*             $widget = $this->container->get('ducksboard.widget'); */
-        /*             $widgetId = $this->container->getParameter('upload_widget'); */
-        /*             $widget->addToCounter($widgetId); */
-        /*         } */
-
-        /*         return $this->redirect($this->generateUrl('img_edit', array("id_image" => $image->getIdImage()))); */
-        /*     } */
-        }
-
-        return $this->render('SFMPicmntBundle:Image:upload.html.twig', array('form' => $form->createView()));
-    }
-
     /**
      * Edit an image
      *
@@ -168,9 +84,6 @@ class ImageController extends Controller
     /**
      * Show an Image
      *
-     * @Route ("/{option}/{idImage}", name="img_show", options={"expose"=true},
-     * defaults={"idImage"=0},
-     * requirements={"category" = "all|portraits|landscapes|animals|sports|buildings|others", "option" = "random|show|recents|popular"})     
      */
     public function showAction(Request $request, $option, $idImage = 0, $category = 'all'){
         if ($request->get('cat')) {

@@ -29,10 +29,10 @@ class MainMenuBuilder extends ContainerAware
             ->setExtra('safe_label', true);
 
         $exploreMenu->setChildrenAttributes(['class' => 'dropdown-menu', 'role' => 'menu']);
-        $exploreMenu->addChild('popular', ['route' => 'img_show', 'routeParameters' => ['option'=>'popular']] );        
-        $exploreMenu->addChild('recents', ['route' => 'img_show', 'routeParameters' => ['option'=>'recents']] );
+        $exploreMenu->addChild('Popular', ['route' => 'show_thumbnails', 'routeParameters' => ['option'=>'popular']] );        
+        $exploreMenu->addChild('New', ['route' => 'show_thumbnails', 'routeParameters' => ['option'=>'new']] );
 
-        $menu->addChild('Random', ['route' => 'img_show', 'routeParameters' => ['option'=>'random', 'category'=>'all']]);
+        //$menu->addChild('Random', ['route' => 'img_show', 'routeParameters' => ['option'=>'random', 'category'=>'all']]);
         $menu->addChild('Upload Image', ['route' => 'img_upload']);
 
         $menu->addChild('divider')->setLabel('')->setAttributes(['class' => 'divider-vertical']);

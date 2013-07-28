@@ -1,0 +1,8 @@
+{% set categories = getCategories() %}
+
+<select id="category-select" class="pull-right">
+	<option>All</option>
+	{% for opt_category in categories %}
+	    <option {% if opt_category.name == category %} selected {% endif %}>{{ opt_category.name | capitalize | trans }}</option>
+	{% endfor %}
+</select>
