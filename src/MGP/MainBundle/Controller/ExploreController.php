@@ -29,4 +29,19 @@ class ExploreController extends Controller
                 ]
         );
     }
+
+    /**
+     * View Image
+     *
+     * @Route ("/view/{slug}", name="view_image")     
+     */
+    public function viewImageAction(Request $request, $slug)
+    {
+        $em = $this->getDoctrine()->getManager();
+        return $this->render(
+            'MGPImageBundle:Image:viewImage.html.twig',
+            ['image'
+                => $em->getRepository('MGPImageBundle:Image')->findOneBySlug($slug)]
+        );
+    }
 }

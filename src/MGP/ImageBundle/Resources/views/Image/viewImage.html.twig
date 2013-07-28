@@ -1,22 +1,22 @@
-{% extends "SFMPicmntBundle::layout.html.twig" %}
+{% extends "MGPMainBundle::layout.html.twig" %}
 
 {% block stylesheet %}
 
 {{ parent() }}
 
-<link href="{{ asset('bundles/sfmpicmnt/css/ui-lightness/jquery-ui-1.10.0.custom.css') }}" rel="stylesheet">
+<link href="{{ asset('bundles/mgpmain/css/ui-lightness/jquery-ui-1.10.0.custom.css') }}" rel="stylesheet">
 
 {% endblock stylesheet %} 
 
 {% block javascript %}
 {{ parent() }}
 
-<script src="{{ asset('bundles/sfmpicmnt/js/jquery-ui-1.10.0.custom.min.js') }}"></script>
-<script src="{{ asset('bundles/sfmpicmnt/libs/waypoints.min.js') }}"></script>
-<script src="{{ asset('bundles/sfmpicmnt/libs/caman.full.min.js') }}"></script>
+<script src="{{ asset('bundles/mgpmain/js/jquery-ui-1.10.0.custom.min.js') }}"></script>
+{# <script src="{{ asset('bundles/sfmpicmnt/libs/waypoints.min.js') }}"></script> #}
+<script src="{{ asset('bundles/mgpmain/libs/caman.full.min.js') }}"></script>
 
 {% javascripts filter='?yui_js'
-'@SFMPicmntBundle/Resources/public/js/image.js' %}
+'@MGPMainBundle/Resources/public/js/image.js' %}
 <script src="{{ asset_url }}"></script>
 {% endjavascripts %}
 
@@ -47,7 +47,7 @@
 
 <section class="row">
 
-	<form action="{{ path('comment', { 'idImage': image.idImage}) }}"  method="post">
+	<form action="{{ path('comment', { 'idImage': image.id}) }}"  method="post">
 
 		<section class="row">
 
@@ -68,7 +68,7 @@
 
 		<section class="row">
 			<article class="span9">
-				<img class="img-polaroid input-block-level" src="{{ asset(upload_dir ~ image.url) }}" id="image-to-modify" alt="{{image.title}}">
+				<img class="img-polaroid input-block-level" src="{{ asset(image.webPath) }}" id="image-to-modify" alt="{{image.title}}">
 
 
 
@@ -88,7 +88,7 @@
 				
 				<h4 class="page-header">Comments</h4>
 				<ul class="unstyled subsection_1">
-					{% for comment in image.imageComments %}
+					{% for comment in image.comments %}
 					{% set username = comment.user.username %}
 					
 					<li id="comment-{{ loop.index }}" class="row">
@@ -192,11 +192,10 @@
 							<span class="info-key">{% trans %}Category{% endtrans %}:</span>
 							{% set category = image.category %}
 							{# <a href="{{ path('img_show', { 'option': 'recents', 'cat': category }) }}">{{ image.category }}</a>						 #}
-							<a href="{{ path('img_show', { 'option': 'recents'}) }}?cat={{ image.category }}">{{ image.category | capitalize }}</a> 
+							<a href="{{ path('show_thumbnails', { 'option': 'new' }) }}?cat={{ image.category.name }}">{{ image.category.name | capitalize }}</a> 
 						</li>
 					</ul>
 				</div>
-
 
 				{% if app.user and  app.user.id == image.user.id  %}
 				<div class="span3">
@@ -207,9 +206,6 @@
 					</ul>
 				</div>
 				{% endif %}
-
-
-
 			</div>
 
 		</section>

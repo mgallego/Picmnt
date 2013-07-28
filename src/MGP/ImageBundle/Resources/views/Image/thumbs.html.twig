@@ -40,6 +40,7 @@
 			{% else %}
 			<a class="btn btn-row btn-large btn-success" href="{{ path('show_thumbnails', {'option': 'new'}) }}">{{ 'Explore the last uploaded images, comment or modify' | trans }}</a>
 			{% endif %}
+
 		</div>
 	</div>
 
@@ -48,9 +49,9 @@
 		{% for image in images %}
 		<li class="span3">
 			<div class="thumbnail">
-				<a href="{{ path('img_view', {'user': image.user.username, 'slug': image.slug}) }}"><img src="{{ image.webPath | imagine_filter('thumbnail') }}" alt="{{ image.title }}"/></a>
+				<a href="{{ path('view_image', {'slug': image.slug}) }}"><img src="{{ image.webPath | imagine_filter('thumbnail') }}" alt="{{ image.title }}"/></a>
 				<div>
-					<a href="{{ path('img_view', {'user': image.user.username, 'slug': image.slug}) }}"><h5>{{ image.title | truncate(20) }}</h5></a>
+					<a href="{{ path('view_image', {'slug': image.slug}) }}"><h5>{{ image.title | truncate(20) }}</h5></a>
 					<p>
 						{% trans %}By{% endtrans %}: <a href="{{ path('usr_profile', {'userName': image.user.username }) }}">
 							{{ image.user.username | truncate(20)}}
