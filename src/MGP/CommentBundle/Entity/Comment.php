@@ -41,7 +41,7 @@ class Comment
   protected $user;
 
   /**
-   * @ORM\ManyToOne(targetEntity="\MGP\ImageBundle\Entity\Image", inversedBy="imageComments", cascade={"detach"})
+   * @ORM\ManyToOne(targetEntity="\MGP\ImageBundle\Entity\Image", inversedBy="comments", cascade={"detach"})
    * @ORM\JoinColumn(name="id_image", referencedColumnName="id")
    */
   protected $image;

@@ -45,7 +45,7 @@ class UserInfo
     private $avatar;
  
     /**
-     * @ORM\OneToOne(targetEntity="User", inversedBy="user")
+     * @ORM\OneToOne(targetEntity="User", inversedBy="userInfo")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
