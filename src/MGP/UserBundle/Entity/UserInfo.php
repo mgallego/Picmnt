@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 
 /**
- * SFM\PicmntBundle\Entity\UserInfo
+ * MGP\UserBundle\Entity\UserInfo
  *
  * @ORM\Table(name="user_info")
  * @ORM\Entity
@@ -133,9 +133,9 @@ class UserInfo
     /**
      * Set user
      *
-     * @param SFM\PicmntBundle\Entity\User $user
+     * @param MGP\UserBundle\Entity\User $user
      */
-    public function setUser(\SFM\PicmntBundle\Entity\User $user)
+    public function setUser(\MGP\UserBundle\Entity\User $user)
     {
       $this->user = $user;
     }
@@ -144,7 +144,7 @@ class UserInfo
     /**
      * Get user
      *
-     * @return SFM\PicmntBundle\Entity\User $user
+     * @return MGP\UserBundle\Entity\User $user
      */
     public function getUser()
     {

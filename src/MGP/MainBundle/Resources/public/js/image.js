@@ -29,7 +29,7 @@ $(document).ready(function() {
 });
 
 function applyFilter(){
-    Caman.remoteProxy = "/bundles/sfmpicmnt/libs/caman_proxy.php";
+    Caman.remoteProxy = "/bundles/mgpmain/libs/caman_proxy.php";
     Caman("#image-to-modify", function () {
 	this.revert(function(){
 	    this.brightness($( "#slider-brightness" ).slider( "value" ))

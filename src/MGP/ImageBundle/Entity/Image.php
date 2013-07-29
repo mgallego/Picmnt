@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * SFM\PicmntBundle\Entity\Image
+ * MGP\ImageBundle\Entity\Image
  *
  * @ORM\Table(name="image")
  * @ORM\Entity

@@ -1,6 +1,6 @@
 <?php
 
-namespace SFM\PicmntBundle\Util;
+namespace MGP\MainBundle\Util;
 
 use Doctrine\Common\Util\ClassUtils;
 

@@ -10,7 +10,7 @@ namespace MGP\ImageBundle\Model\Type;
 */
 class ThumbType
 {
-    use \SFM\PicmntBundle\Util\ArrayConverterTrait;
+    use \MGP\MainBundle\Util\ArrayConverterTrait;
 
     protected $imageId;
 

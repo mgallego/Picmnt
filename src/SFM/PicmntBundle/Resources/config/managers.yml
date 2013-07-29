@@ -1,8 +1,0 @@
-services:
-    sfm_picmnt.thumb_manager:
-        class: SFM\PicmntBundle\Model\Manager\ThumbManager
-        arguments: [@doctrine.orm.entity_manager, @translator, @router, %images_per_page%, @liip_imagine.cache.manager]
-    sfm_picmnt.image_file_manager:
-        class: SFM\PicmntBundle\Model\Manager\ImageFileManager
-        arguments: [@doctrine.orm.entity_manager, %sfm_picmnt.image_file%]
-

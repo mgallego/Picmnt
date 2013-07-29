@@ -7,7 +7,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
- * SFM\PicmntBundle\Entity\ImageComment
+ * MGP\CommentBundle\Entity\ImageComment
  *
  * @ORM\Table(name="comment")
  * @ORM\Entity

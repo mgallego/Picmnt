@@ -5,7 +5,7 @@ namespace MGP\ImageBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * SFM\PicmntBundle\Entity\Category
+ * MGP\ImageBundle\Entity\Category
  *
  * @ORM\Table(name="category")
  * @ORM\Entity

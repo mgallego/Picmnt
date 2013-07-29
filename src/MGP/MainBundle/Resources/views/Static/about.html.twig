@@ -1,4 +1,4 @@
-{% extends "SFMPicmntBundle::layout.html.twig" %}
+{% extends "MGPMainBundle::layout.html.twig" %}
 
 {% block title %} | About {% endblock title %}
 
@@ -7,7 +7,7 @@
 {{ parent() }}	  
 
 	{% stylesheets filter='lessphp, ?yui_css' output='css/picmnt.css' 
-	            '@SFMPicmntBundle/Resources/public/less/static.less' %}
+	            '@MGPMainBundle/Resources/public/less/static.less' %}
 	<link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="all" />
 	{% endstylesheets %}
 	

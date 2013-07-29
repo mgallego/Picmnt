@@ -12,7 +12,7 @@
 {{ parent() }}
 
 <script src="{{ asset('bundles/mgpmain/js/jquery-ui-1.10.0.custom.min.js') }}"></script>
-{# <script src="{{ asset('bundles/sfmpicmnt/libs/waypoints.min.js') }}"></script> #}
+{# <script src="{{ asset('bundles/mgpmain/libs/waypoints.min.js') }}"></script> #}
 <script src="{{ asset('bundles/mgpmain/libs/caman.full.min.js') }}"></script>
 
 {% javascripts filter='?yui_js'
@@ -83,7 +83,7 @@
 							{% if gravatar_exists(getEmail(username)) %}
 							<img src="{{ gravatar(getEmail(username), 50) }}" class="span1" alt="thumb-small"/>
 							{% else %}
-							<img src="{{ asset('/bundles/sfmpicmnt/images/default_user50x50.png') }}" class="span1" alt="avatar-small" />
+							<img src="{{ asset('/bundles/mgpmain/images/default_user50x50.png') }}" class="span1" alt="avatar-small" />
 							{% endif %}
 							{% endif %}
 						</div>
