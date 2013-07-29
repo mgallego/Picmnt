@@ -41,7 +41,9 @@ class ImageController extends Controller
             if (!$formHandler->process()) {
                 throw new \Exception($formHandler->showFormErrors());
             }
+            return $this->redirect($this->generateUrl('img_view', ["slug" => $image->getSlug()]));
         }
+        
         return $this->render('MGPImageBundle:Image:upload.html.twig', array('form' => $form->createView()));
     }
 
