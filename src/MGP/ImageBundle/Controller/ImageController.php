@@ -49,7 +49,7 @@ class ImageController extends Controller
      *
      * @Route ("/view/{slug}", name="img_view")     
      */
-    public function viewImageAction(Request $request, $slug)
+    public function viewImageAction($slug)
     {
         $em = $this->getDoctrine()->getManager();
         return $this->render(
@@ -69,9 +69,7 @@ class ImageController extends Controller
         $em = $this->getDoctrine()->getManager();
         $image = $em->getRepository('MGPImageBundle:Image')->findOneById($id);
 
-        if ($this->getUser()->getId() !== $image->getUser()->getId()) {
-            return $this->redirect($this->generateUrl('home'));
-        }
+        $this->checkOwner($image);
 
         $form = $this->createForm(new ImageFormType(), $image);
 
@@ -96,5 +94,35 @@ class ImageController extends Controller
             ['form' => $form->createView(),
                 'image' => $image]
         );
+    }
+
+    /**
+     * Change the image status to delete 2
+     *
+     * @Route ("/img/delete/{id}", name="img_delete")     
+     */
+    public function deleteAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $image = $em->getRepository('MGPImageBundle:Image')->findOneById($id);
+
+        $this->checkOwner($image);
+        $image->setStatus(2);
+        $em->persist($image);
+        $em->flush();
+    
+        return $this->redirect($this->generateUrl('show_thumbnails', ['option' => 'new']));
+    }
+
+    /**
+     * Check Owner
+     *
+     * @param Image $image
+     */
+    private function checkOwner(Image $image)
+    {
+        if ($this->getUser()->getId() !== $image->getUser()->getId()) {
+            return $this->redirect($this->generateUrl('home'));
+        }
     }
 }

@@ -182,7 +182,7 @@
 					<ul class="inline">
 						<h4 class="page-header">User Actions</h4>
 						<li><a href="{{ path('img_edit', {'id': image.id}) }}"  class="btn btn-primary">{% trans %}Edit{% endtrans %}</a></li>
-						<li><a href="{{ path('img_delete', { 'idImage': image.id }) }}"  class="btn btn-danger">{% trans %}Remove{% endtrans %}</a></li>
+						<li><a href="{{ path('img_delete', { 'id': image.id }) }}"  class="btn btn-danger">{% trans %}Remove{% endtrans %}</a></li>
 					</ul>
 				</div>
 				{% endif %}
