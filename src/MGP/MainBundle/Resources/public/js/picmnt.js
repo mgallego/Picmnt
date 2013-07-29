@@ -1,10 +1,7 @@
 $(document).ready(function() {
 
-
-
     $('#load-more-thumbs').click(function(event) {
 	event.preventDefault();
-
 	route = Routing.generate('ajax_img_get_more', {'option': option, "page": ++page, "category": category, "username": username});
 	console.log(route);
 	$.ajax({
@@ -12,7 +9,6 @@ $(document).ready(function() {
 	    async: false,
 	    dataType: 'json'
 	}).success(function(images) {
-	    console.log('b');
 	    for (i in images)
 	    {
 		image = images[i];

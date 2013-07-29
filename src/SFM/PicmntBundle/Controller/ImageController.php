@@ -133,17 +133,6 @@ class ImageController extends Controller
         return $this->render('SFMPicmntBundle:Image:viewImage.html.twig', ['image' => $image, 'paginator' => $paginator]);
     }
 
-    /**
-     * View an image
-     *
-     * @Route ("/ajax/images/get_more", name="ajax_img_get_more", options={"expose"=true})
-     */
-    public function getMoreImagesAction(Request $request)
-    {
-        $images = $this->get('sfm_picmnt.thumb_manager')->getMoreThumbs($request, $this->container
-            ->get('liip_imagine.controller'));
-        return new Response(json_encode($images));
-    }
 
     /**
      * View an image

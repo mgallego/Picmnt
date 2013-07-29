@@ -1,3 +1,7 @@
 mgp_image_controller:
     resource: "@MGPImageBundle/Controller/ImageController.php"
     type:     annotation
+
+mgp_image_ajax_controller:
+    resource: "@MGPImageBundle/Controller/AjaxController.php"
+    type:     annotation

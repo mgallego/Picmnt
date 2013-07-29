@@ -1,6 +1,6 @@
 <?php
 
-namespace SFM\PicmntBundle\Model\Type;
+namespace MGP\ImageBundle\Model\Type;
 
 /**
 * Thumtype
