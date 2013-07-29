@@ -3,7 +3,6 @@
 namespace MGP\ImageBundle\Twig;
 
 use Doctrine\ORM\EntityManager;
-use Doctrine\Common\Collections\ArrayCollection;
 
 class CategoryExtension extends \Twig_Extension
 {

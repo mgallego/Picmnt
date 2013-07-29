@@ -34,7 +34,8 @@ class ImageController extends Controller
                 $request,
                 $this->getDoctrine()->getManager(),
                 $image,
-                $this->getUser()
+                $this->getUser(),
+                $this->container->getParameter('kernel.root_dir').'/../web/'
             );
             
             if (!$formHandler->process()) {
@@ -51,7 +52,6 @@ class ImageController extends Controller
      */
     public function viewImageAction($slug)
     {
-        $em = $this->getDoctrine()->getManager();
         $image = $this->getImagerOr404(['slug' => $slug]);
 
         return $this->render(
@@ -81,7 +81,8 @@ class ImageController extends Controller
                 $request,
                 $this->getDoctrine()->getManager(),
                 $image,
-                $this->getUser()
+                $this->getUser(),
+                $this->container->getParameter('kernel.root_dir').'/../web/'
             );
             
             if (!$formHandler->process()) {

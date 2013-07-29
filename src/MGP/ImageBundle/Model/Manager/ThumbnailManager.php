@@ -63,9 +63,7 @@ class ThumbnailManager
 
         $page = $request->query->get('page');
         $category = $request->query->get('category');
-        $username = $request->query->get('username');
         $option = $request->query->get('option');
-        $username = $request->query->get('username');
 
         $images = $this->getThumbnails($category, $option, $page * $this->imagesPerPage);
         

@@ -36,14 +36,20 @@ class ImageFormHandler extends AbstractFormHandler
      * @var Form
      */
     protected $form;
-    
-    public function __construct(Form $form, Request $request, EntityManager $em, Image $image, User $user)
+
+    /**
+     * @var String
+     */
+    protected $uploadDir;
+
+    public function __construct(Form $form, Request $request, EntityManager $em, Image $image, User $user, $uploadDir)
     {
         $this->form = $form;
         $this->request = $request;
         $this->em = $em;
         $this->image = $image;
         $this->user = $user;
+        $this->uploadDir = $uploadDir;
     }
 
     /**
@@ -59,7 +65,7 @@ class ImageFormHandler extends AbstractFormHandler
             return false;
         }
         $this->image->setUser($this->user);
-        $this->image->upload();
+        $this->image->upload($this->uploadDir);
         
         $this->em->persist($this->image);
         $this->em->flush();

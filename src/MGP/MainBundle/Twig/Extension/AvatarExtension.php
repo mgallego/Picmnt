@@ -3,7 +3,6 @@
 namespace MGP\MainBundle\Twig\Extension;
 
 use Doctrine\ORM\EntityManager;
-use Doctrine\Common\Collections\ArrayCollection;
 
 class AvatarExtension extends \Twig_Extension
 {

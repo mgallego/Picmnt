@@ -259,10 +259,10 @@ class Comment
     /**
      * Set user
      *
-     * @param \MGPUserBundle\User $user
+     * @param \MGPUserBundle\Entity\User $user
      * @return ImageComment
      */
-    public function setUser(\MGPUserBundle\User $user = null)
+    public function setUser(\MGPUserBundle\Entity\User $user = null)
     {
         $this->user = $user;
     
@@ -272,7 +272,7 @@ class Comment
     /**
      * Get user
      *
-     * @return \MGPUserBundle\User 
+     * @return \MGPUserBundle\Entiy\User 
      */
     public function getUser()
     {

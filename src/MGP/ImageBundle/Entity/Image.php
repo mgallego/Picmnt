@@ -17,7 +17,6 @@ use Gedmo\Mapping\Annotation as Gedmo;
  */
 class Image
 {
-    private $temp;
     
     /**
      * @var integer $id
@@ -126,13 +125,6 @@ class Image
         $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-    public function getAbsolutePath()
-    {
-        return null === $this->path
-            ? null
-            : $this->getUploadRootDir().'/'.$this->path;
-    }
-
     public function getWebPath()
     {
         return null === $this->path
@@ -140,17 +132,12 @@ class Image
             : $this->getUploadDir().'/'.$this->path;
     }
 
-    protected function getUploadRootDir()
-    {
-        return __DIR__.'/../../../../web/'.$this->getUploadDir();
-    }
-
     protected function getUploadDir()
     {
         return 'uploads/images';
     }
 
-    public function upload()
+    public function upload($rootUploadDir)
     {
         // the file property can be empty if the field is not required
         if (null === $this->getFile()) {
@@ -165,7 +152,7 @@ class Image
         // move takes the target directory and then the
         // target filename to move to
         $this->getFile()->move(
-            $this->getUploadRootDir(),
+            $rootUploadDir.$this->getUploadDir(),
             $this->path
         );
 
