@@ -52,10 +52,12 @@ class ImageController extends Controller
     public function viewImageAction($slug)
     {
         $em = $this->getDoctrine()->getManager();
+        $image = $this->getImagerOr404(['slug' => $slug]);
+
         return $this->render(
             'MGPImageBundle:Image:view.html.twig',
             ['image'
-                => $em->getRepository('MGPImageBundle:Image')->findOneBySlug($slug)]
+                => $image]
         );
     }
 
@@ -66,8 +68,7 @@ class ImageController extends Controller
      */
     public function editAction(Request $request, $id)
     {
-        $em = $this->getDoctrine()->getManager();
-        $image = $em->getRepository('MGPImageBundle:Image')->findOneById($id);
+        $image = $this->getImagerOr404(['id' => $id]);
 
         $this->checkOwner($image);
 
@@ -104,9 +105,10 @@ class ImageController extends Controller
     public function deleteAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-        $image = $em->getRepository('MGPImageBundle:Image')->findOneById($id);
+        $image = $this->getImagerOr404(['id' => $id]);
 
         $this->checkOwner($image);
+
         $image->setStatus(2);
         $em->persist($image);
         $em->flush();
@@ -124,5 +126,24 @@ class ImageController extends Controller
         if ($this->getUser()->getId() !== $image->getUser()->getId()) {
             return $this->redirect($this->generateUrl('home'));
         }
+    }
+
+    /**
+     * Get Image or 404
+     *
+     * @param array $query
+     *
+     * @return Image
+     * @throws NotFoundException
+     */
+    private function getImagerOr404(array $query)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $image = $em->getRepository('MGPImageBundle:Image')->findOneBy($query);
+
+        if (!$image) {
+            throw $this->createNotFoundException('The image does not exist');
+        }
+        return $image;
     }
 }

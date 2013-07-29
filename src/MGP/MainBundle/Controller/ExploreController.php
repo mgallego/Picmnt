@@ -30,7 +30,6 @@ class ExploreController extends Controller
         );
     }
 
-
     /**
      * Random Image
      *
