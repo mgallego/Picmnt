@@ -2,19 +2,19 @@
 
 namespace MGP\ImageBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use MGP\ImageBundle\Form\Type\ImageFormType;
 use MGP\ImageBundle\Form\Handler\ImageFormHandler;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use MGP\ImageBundle\Entity\Image;
+use MGP\ImageBundle\Controller\AbstractImageController;
 
 /**
  * Image Controller
  *
  * @author Moises Gallego <moisesgallego@gmail.com>
  */
-class ImageController extends Controller
+class ImageController extends AbstractImageController
 {
 
     /**
@@ -117,36 +117,5 @@ class ImageController extends Controller
         $em->flush();
     
         return $this->redirect($this->generateUrl('show_thumbnails', ['option' => 'new']));
-    }
-
-    /**
-     * Check Owner
-     *
-     * @param Image $image
-     */
-    private function checkOwner(Image $image)
-    {
-        if ($this->getUser()->getId() !== $image->getUser()->getId()) {
-            return $this->redirect($this->generateUrl('home'));
-        }
-    }
-
-    /**
-     * Get Image or 404
-     *
-     * @param array $query
-     *
-     * @return Image
-     * @throws NotFoundException
-     */
-    private function getImagerOr404(array $query)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $image = $em->getRepository('MGPImageBundle:Image')->findOneBy($query);
-
-        if (!$image) {
-            throw $this->createNotFoundException('The image does not exist');
-        }
-        return $image;
     }
 }
