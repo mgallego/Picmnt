@@ -282,10 +282,10 @@ class Comment
     /**
      * Set image
      *
-     * @param \MGPImageBundle\Image $image
+     * @param \MGP\ImageBundle\Entity\Image $image
      * @return ImageComment
      */
-    public function setImage(\MGPImageBundle\Image $image = null)
+    public function setImage(\MGP\ImageBundle\Entity\Image $image = null)
     {
         $this->image = $image;
     
@@ -295,7 +295,7 @@ class Comment
     /**
      * Get image
      *
-     * @return \MGPImageBundle\Image 
+     * @return \MGP\ImageBundle\Entity\Image 
      */
     public function getImage()
     {
