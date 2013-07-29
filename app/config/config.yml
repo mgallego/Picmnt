@@ -1,7 +1,6 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
-    - { resource: "@SFMPicmntBundle/Resources/config/menu.xml" }
 
 framework:
     secret:          %secret%
@@ -97,31 +96,6 @@ knp_menu:
     default_renderer: twig
 
 ornicar_gravatar: ~
-
-sfm_picmnt:
-    image_file:
-        size: 800
-        category: "all"
-        status: 1
-        email_notification: 1
-        upload_path: "uploads/"
-
-parameters:
-    # image_defaults:
-    #     size: 800
-    #     small_size: 250
-    #     category: "all"
-    #     status: 1
-    #     email_noti: 1
-    #     upload_path: "uploads/"
-    #     thumbs_path: "uploads/thumbs/"
-    upload_path: "uploads"
-    avatar_defaults:
-        extension: ".jpg"
-        upload_big_path: "uploads/avatarbig/"
-        upload_small_path: "uploads/avatarsmall"
-        big_size: 100
-        small_size: 50
 
 liip_imagine:
     filter_sets:

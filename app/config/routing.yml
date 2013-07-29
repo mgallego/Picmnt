@@ -1,6 +1,3 @@
-sfm_website:
-    resource: "@SFMPicmntBundle/Resources/config/routing.yml"
-
 mgp_image:
     resource: "@MGPImageBundle/Resources/config/routing.yml"
 
@@ -33,14 +30,6 @@ usr_redirect_edit:
 comment:
     pattern: /comment/{idImage}
     defaults: { _controller: SFMPicmntBundle:Comment:comment }
-
-sfm_comment:
-    resource: "@SFMPicmntBundle/Controller/CommentController.php"
-    type:     annotation
-
-comment_delete:
-    pattern: /comment/delete/{idComment}
-    defaults: { _controller: SFMPicmntBundle:Comment:delete }
   
 
 ################################ FOS USERBUNDLE #################################

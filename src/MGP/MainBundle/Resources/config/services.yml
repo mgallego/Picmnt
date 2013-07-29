@@ -1,0 +1,11 @@
+services:
+    twig.extension.text:
+        class: Twig_Extensions_Extension_Text
+        tags:
+            - { name: twig.extension }
+
+    mgp.twig.avatar_extension:
+        class: MGP\MainBundle\Twig\Extension\AvatarExtension
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: twig.extension }
