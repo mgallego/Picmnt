@@ -51,7 +51,7 @@ class MainMenuBuilder extends ContainerAware
 
         if ($securityContext->isGranted('ROLE_USER')) {
             $username = $securityContext->getToken()->getUsername();
-            $menu->addChild($username, ['route' => 'usr_profile', 'routeParameters'=> ['userName' => $username]]);
+            $menu->addChild(ucfirst($username), ['route' => 'usr_profile', 'routeParameters'=> ['userName' => $username]]);
             $menu->addChild('Logout', ['route' => 'fos_user_security_logout']);
         } else {
             $menu->addChild('Login', ['route' => 'fos_user_security_login']);

@@ -1,0 +1,196 @@
+{% extends "MGPMainBundle::layout.html.twig" %}
+
+{% block stylesheet %}
+
+{{ parent() }}
+
+<link href="{{ asset('bundles/mgpmain/css/ui-lightness/jquery-ui-1.10.0.custom.css') }}" rel="stylesheet">
+
+{% endblock stylesheet %} 
+
+{% block javascript %}
+{{ parent() }}
+
+<script src="{{ asset('bundles/mgpmain/js/jquery-ui-1.10.0.custom.min.js') }}"></script>
+{# <script src="{{ asset('bundles/sfmpicmnt/libs/waypoints.min.js') }}"></script> #}
+<script src="{{ asset('bundles/mgpmain/libs/caman.full.min.js') }}"></script>
+
+{% javascripts filter='?yui_js'
+'@MGPMainBundle/Resources/public/js/image.js' %}
+<script src="{{ asset_url }}"></script>
+{% endjavascripts %}
+
+{% endblock javascript %}
+
+{% block content %}
+{{ parent() }}
+
+<section class="row">
+
+	<form action="{{ path('comment', { 'idImage': image.id}) }}"  method="post">
+
+		<section class="row">
+
+			<div id="image-title" class="span9">
+				<h1 class="page-header">
+					{% if title_as_link is defined %}
+					<a href="{{ path('img_view', {'slug': image.slug}) }} ">{{ image.title }}</a>
+					{% else %}
+					{{ image.title }}
+					{% endif %}
+					<a href="{{ path('usr_profile', {'userName': image.user.username }) }}"><small>{{ image.user.username }}</small></a>
+				</h1>
+			</div>
+		</section>
+
+
+
+
+		<section class="row">
+			<article class="span9">
+				<img class="img-polaroid input-block-level" src="{{ asset(image.webPath) }}" id="image-to-modify" alt="{{image.title}}">
+
+
+
+
+				<h4 class="page-header">Comment or modify the image</h4>
+				{% if is_granted("IS_AUTHENTICATED_REMEMBERED") or is_granted("IS_AUTHENTICATED_FULLY") %}
+				<textarea rows=5 placeholder="Add your comment here." class="input-block-level" name="comment" required="required"></textarea>
+ 				<button class="btn btn-danger reset-retouch" type="reset">{{ 'Cancel' | trans }}</button>
+				<input class="btn" type="submit" value="{% trans %}Send Comment{% endtrans %}">&nbsp;
+				{% else %}
+				<h5>You must register to post comments</h5>
+				{% endif %}
+
+
+
+
+				
+				<h4 class="page-header">Comments</h4>
+				<ul class="unstyled subsection_1">
+					{% for comment in image.comments %}
+					{% set username = comment.user.username %}
+					
+					<li id="comment-{{ loop.index }}" class="row">
+						<a class="link-to-comment hide" href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}#comment-{{ loop.index }}">#{{ loop.index }}</a>
+
+						{# try to create a twig function #}
+
+						<div>
+							{% if existsAvatar(username) %}
+							<img src="{{ avatarByUsername(username,'big') | imagine_filter('avatar_small') }}" class="span1" alt="avatar-small" />
+							{% else %}
+							{% if gravatar_exists(getEmail(username)) %}
+							<img src="{{ gravatar(getEmail(username), 50) }}" class="span1" alt="thumb-small"/>
+							{% else %}
+							<img src="{{ asset('/bundles/sfmpicmnt/images/default_user50x50.png') }}" class="span1" alt="avatar-small" />
+							{% endif %}
+							{% endif %}
+						</div>
+						
+						<div class="span8">
+						<a href="{{ path('usr_profile', {'userName': comment.user.username }) }}">{{ username }}</a>
+						<span class="pull-right">{{ image.pubDate | date("F jS") }}</span>
+						<p>
+							{{ comment.comment | nl2br }}
+						</p>
+
+							{% if comment.brightness != 0 or comment.contrast != 0 or comment.exposure != 0 or comment.saturation != 0 %}
+							<a class="btn btn-info btn-small pull-right" href="#TOP" onclick="javascript:applyProposal({{ comment.brightness }},{{ comment.contrast }}, {{ comment.exposure }},{{ comment.saturation}})" >{{ 'See Proposal' | trans }}</a>
+							{% endif %}
+
+						<br/>
+						<hr/>
+
+						</div>
+					</li>
+
+					{% else %}
+					<h5>{{ 'There is no comment for this image. Be the first to comment' | trans }}</h5>
+					{% endfor %}
+
+				</ul>
+
+
+
+			</article>
+
+
+			<div class="span3">
+				<div class="span3">
+					<h4 class="page-header">Retouch Image</h4>
+
+					<span class="control-title">
+						{% trans %}Brightness{% endtrans %}:
+					</span>
+					<input type="text" id="brightness-amount" name="brightness"  class="slider-data fake-input"/>
+
+					<div id="slider-brightness" class="slider"></div>
+
+					<span class="control-title">
+						{% trans %}Contrast{% endtrans %}:
+					</span>
+					<input type="text" id="contrast-amount" name="contrast"  class="slider-data fake-input"/>
+
+					<div id="slider-contrast" class="slider"></div>
+
+					<span class="control-title">
+						{% trans %}Exposure{% endtrans %}:
+					</span>
+					<input type="text" id="exposure-amount" name="exposure"  class="slider-data fake-input"/>
+
+					<div id="slider-exposure" class="slider"></div>
+
+					<span class="control-title">
+						{% trans %}Saturation{% endtrans %}:
+					</span>
+					<input type="text" id="saturation-amount" name="saturation"  class="slider-data fake-input"/>
+
+					<div id="slider-saturation" class="slider"></div>
+					<br />
+					<p>
+						<a href="" class="btn pull-right reset-retouch">{% trans %}View Original{% endtrans %}</a>
+					</p>
+				</div>
+
+				
+				{% if image.description %}
+				<div class="span3">
+					<h4 class="page-header">Description</h4>
+					{{ image.description }}
+				</div>
+				{% endif %}
+
+
+				<div class="span3">
+					<h4 class="page-header">Info</h4>
+					<ul class="unstyled">
+						<li class="pub-date"><i class="icon-upload"></i>
+							<span class="info-key">{% trans %}Uploaded{% endtrans %}:</span> {{ image.pubDate | date("F jS") }}
+						</li>
+						<li class="category"><i class="icon-tag"></i>
+							<span class="info-key">{% trans %}Category{% endtrans %}:</span>
+							{% set category = image.category %}
+							{# <a href="{{ path('img_show', { 'option': 'recents', 'cat': category }) }}">{{ image.category }}</a>						 #}
+							<a href="{{ path('show_thumbnails', { 'option': 'new' }) }}?cat={{ image.category.name }}">{{ image.category.name | capitalize }}</a> 
+						</li>
+					</ul>
+				</div>
+
+				{% if app.user and  app.user.id == image.user.id  %}
+				<div class="span3">
+					<ul class="inline">
+						<h4 class="page-header">User Actions</h4>
+						<li><a href="{{ path('img_edit', {'id': image.id}) }}"  class="btn btn-primary">{% trans %}Edit{% endtrans %}</a></li>
+						<li><a href="{{ path('img_delete', { 'idImage': image.id }) }}"  class="btn btn-danger">{% trans %}Remove{% endtrans %}</a></li>
+					</ul>
+				</div>
+				{% endif %}
+			</div>
+
+		</section>
+
+</section>
+</form>
+</section>
+{% endblock content %}

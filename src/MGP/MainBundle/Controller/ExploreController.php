@@ -30,20 +30,6 @@ class ExploreController extends Controller
         );
     }
 
-    /**
-     * View Image
-     *
-     * @Route ("/view/{slug}", name="view_image")     
-     */
-    public function viewImageAction(Request $request, $slug)
-    {
-        $em = $this->getDoctrine()->getManager();
-        return $this->render(
-            'MGPImageBundle:Image:viewImage.html.twig',
-            ['image'
-                => $em->getRepository('MGPImageBundle:Image')->findOneBySlug($slug)]
-        );
-    }
 
     /**
      * Random Image
@@ -55,7 +41,7 @@ class ExploreController extends Controller
         $category = !$request->get('cat')? 'all':  $request->get('cat');
         $em = $this->getDoctrine()->getManager();
         return $this->render(
-            'MGPImageBundle:Image:viewImage.html.twig',
+            'MGPImageBundle:Image:view.html.twig',
             ['image'
                 => $em->getRepository('MGPImageBundle:Image')->getRandom($category),
                 'title_as_link' => true]
