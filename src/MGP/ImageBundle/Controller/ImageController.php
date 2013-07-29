@@ -24,26 +24,14 @@ class ImageController extends AbstractImageController
      */
     public function uploadAction(Request $request)
     {
-        $image = new Image();
-        $form = $this->createForm(new ImageFormType(), $image);
-
+        $form = $this->createForm(new ImageFormType(), new Image());
         if ($request->getMethod() == 'POST') {
-
-            $formHandler = new ImageFormHandler(
-                $form,
-                $request,
-                $this->getDoctrine()->getManager(),
-                $image,
-                $this->getUser(),
-                $this->container->getParameter('kernel.root_dir').'/../web/'
-            );
-            
+            $formHandler = new ImageFormHandler($form, $request, $this->getDoctrine()->getManager(), $image, $this->getUser(), $this->container->getParameter('kernel.root_dir').'/../web/' );
             if (!$formHandler->process()) {
                 throw new \Exception($formHandler->showFormErrors());
             }
             return $this->redirect($this->generateUrl('img_view', ["slug" => $image->getSlug()]));
         }
-        
         return $this->render('MGPImageBundle:Image:upload.html.twig', array('form' => $form->createView()));
     }
 
@@ -70,29 +58,15 @@ class ImageController extends AbstractImageController
      */
     public function editAction(Request $request, $id)
     {
-        $image = $this->getImagerOr404(['id' => $id]);
-
         $this->checkOwner($image);
-
-        $form = $this->createForm(new ImageFormType(), $image);
-
+        $form = $this->createForm(new ImageFormType(), $this->getImagerOr404(['id' => $id]));
         if ($request->getMethod() == 'POST') {
-
-            $formHandler = new ImageFormHandler(
-                $form,
-                $request,
-                $this->getDoctrine()->getManager(),
-                $image,
-                $this->getUser(),
-                $this->container->getParameter('kernel.root_dir').'/../web/'
-            );
-            
+            $formHandler = new ImageFormHandler($form, $request, $this->getDoctrine()->getManager(), $image, $this->getUser(), $this->container->getParameter('kernel.root_dir') . '/../web/');
             if (!$formHandler->process()) {
                 throw new \Exception($formHandler->showFormErrors());
             }
             return $this->redirect($this->generateUrl('img_view', ["slug" => $image->getSlug()]));
         }
-
         return $this->render(
             'MGPImageBundle:Image:edit.html.twig',
             ['form' => $form->createView(),
