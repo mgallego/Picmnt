@@ -40,7 +40,7 @@ class MainMenuBuilder extends ContainerAware
         return $menu;
     }
 
-    public function LoginMenu(FactoryInterface $factory, array $options)
+    public function loginMenu(FactoryInterface $factory, array $options)
     {
         $securityContext = $this->container->get('security.context');
 
