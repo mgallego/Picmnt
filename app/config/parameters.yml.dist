@@ -21,3 +21,5 @@ parameters:
     use_ducksboard: ~
 
     images_per_page: 30
+
+    cache_method: ~

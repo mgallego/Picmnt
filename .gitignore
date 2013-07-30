@@ -12,6 +12,7 @@ app/logs/*
 build/*
 app/build/
 app/check.php
+app/SymfonyRequirements.php
 vendor/
 src/SFM/PicmntBundle/Resources/views/Addons/analytics.html.twig
 src/SFM/PicmntBundle/Resources/views/Addons/uservoice.html.twig
