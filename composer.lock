@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "1a0b9c0e209b5b97eb3d799cda269b93",
+    "hash": "45b73f9bcc6469ff70f7a27594feb0d6",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -2406,7 +2406,6 @@
         "knplabs/knp-menu": 20,
         "knplabs/knp-menu-bundle": 20,
         "liip/functional-test-bundle": 20,
-        "ornicar/gravatar-bundle": 20,
         "leafo/lessphp": 20,
         "stof/doctrine-extensions-bundle": 20
     },

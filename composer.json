@@ -26,7 +26,7 @@
         "knplabs/knp-menu":"2.0.x-dev",
         "knplabs/knp-menu-bundle":"2.0.x-dev",
         "liip/functional-test-bundle": "1.0.x-dev",
-        "ornicar/gravatar-bundle": "dev-master",
+        "ornicar/gravatar-bundle": "master",
         "liip/imagine-bundle": "v0.11.0",
         "sfm/ducksboard-bundle": "v0.1",
         "leafo/lessphp": "0.3.x-dev",
