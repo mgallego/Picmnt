@@ -23,11 +23,9 @@ class AppKernel extends Kernel
             new MGP\CommentBundle\MGPCommentBundle(),
             new MGP\UserBundle\MGPUserBundle(),
             
-        //new SFM\PicmntBundle\SFMPicmntBundle(),      
 	    new FOS\UserBundle\FOSUserBundle(),
 	    new Knp\Bundle\MenuBundle\KnpMenuBundle(),
 	    new Liip\FunctionalTestBundle\LiipFunctionalTestBundle(),
-	    new Ideup\SimplePaginatorBundle\IdeupSimplePaginatorBundle(),
 	    new Ornicar\GravatarBundle\OrnicarGravatarBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
             new SFM\DucksboardBundle\SFMDucksboardBundle(),
