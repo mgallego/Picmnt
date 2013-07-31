@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "45b73f9bcc6469ff70f7a27594feb0d6",
+    "hash": "5283dd17bb9366801be89b0dc1bcb97a",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -82,12 +82,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/cache.git",
-                "reference": "dc3438804c6303f1b5892f184a79aa8e3ce5d81d"
+                "reference": "beb242e0e22eebdca1db571edb1bac788b054124"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/cache/zipball/dc3438804c6303f1b5892f184a79aa8e3ce5d81d",
-                "reference": "dc3438804c6303f1b5892f184a79aa8e3ce5d81d",
+                "url": "https://api.github.com/repos/doctrine/cache/zipball/beb242e0e22eebdca1db571edb1bac788b054124",
+                "reference": "beb242e0e22eebdca1db571edb1bac788b054124",
                 "shasum": ""
             },
             "require": {
@@ -143,7 +143,7 @@
                 "cache",
                 "caching"
             ],
-            "time": "2013-07-04 15:48:06"
+            "time": "2013-07-31 00:07:06"
         },
         {
             "name": "doctrine/collections",
@@ -788,12 +788,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "be211eced9820a7ed4cb5bd80b0774e00eef1845"
+                "reference": "f82149141bedbb966ae409e54f4c6fdeaaab2080"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/be211eced9820a7ed4cb5bd80b0774e00eef1845",
-                "reference": "be211eced9820a7ed4cb5bd80b0774e00eef1845",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/f82149141bedbb966ae409e54f4c6fdeaaab2080",
+                "reference": "f82149141bedbb966ae409e54f4c6fdeaaab2080",
                 "shasum": ""
             },
             "require": {
@@ -848,7 +848,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2013-07-25 15:37:42"
+            "time": "2013-07-31 06:42:13"
         },
         {
             "name": "gedmo/doctrine-extensions",
@@ -1483,17 +1483,17 @@
         },
         {
             "name": "ornicar/gravatar-bundle",
-            "version": "dev-master",
+            "version": "1.0.0",
             "target-dir": "Ornicar/GravatarBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ornicar/GravatarBundle.git",
-                "reference": "82c27e766f2af13ffc4db449a1e7489361562fe1"
+                "reference": "1.0.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ornicar/GravatarBundle/zipball/82c27e766f2af13ffc4db449a1e7489361562fe1",
-                "reference": "82c27e766f2af13ffc4db449a1e7489361562fe1",
+                "url": "https://api.github.com/repos/ornicar/GravatarBundle/zipball/1.0.0",
+                "reference": "1.0.0",
                 "shasum": ""
             },
             "require": {
