@@ -73,8 +73,33 @@ class ImageControllerTest extends AbstractControllerTest
     public function testEditImageWithCorrectUser()
     {
         $client = $this->getLoggedClient();
-        $client->request('GET', '/img/edit/1');
+        $crawler = $client->request('GET', '/img/edit/1');
         $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Status 200");
+
+        $form = $crawler->selectButton('edit-image')->form();
+        $form['picmnt_image[description]'] = 'New Description';
+        $crawler = $client->submit($form);
+
+        $this->assertEquals(302, $client->getResponse()->getStatusCode(), "Status 302");
+        $this->assertContains('Redirecting to /view/title-1', $crawler->text());
+        
+        $em = $this->getContainer()->get('doctrine')->getManager();
+        $image = $em->getRepository('MGPImageBundle:Image')->findOneBySlug('title-1');
+        $this->assertEquals('New Description', $image->getDescription());
     }
+
+    public function testEditImageWithCorrectUserAndInvalidData()
+    {
+        $client = $this->getLoggedClient();
+        $crawler = $client->request('GET', '/img/edit/1');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Status 200");
+
+        $form = $crawler->selectButton('edit-image')->form();
+        $form['picmnt_image[title]'] = null;
+        $crawler = $client->submit($form);
+
+        $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Status 302");
+    }
+
 
 }
