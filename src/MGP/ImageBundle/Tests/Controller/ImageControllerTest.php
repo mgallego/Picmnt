@@ -101,5 +101,30 @@ class ImageControllerTest extends AbstractControllerTest
         $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Status 302");
     }
 
+    public function testDeleteImageWhithAnonUser()
+    {
+        $this->client->request('GET', '/img/delete/1');
+        $this->assertEquals(302, $this->client->getResponse()->getStatusCode(), "Status 302");
+    }
+
+    public function testDeleteImageWithDifferentUser()
+    {
+        $client = $this->getLoggedClient('userTest2', 'passwordTest2');
+        $client->request('GET', '/img/delete/1');
+        $this->assertEquals(302, $client->getResponse()->getStatusCode(), "Status 302");
+        $this->assertContains('Redirecting to /', $client->getResponse()->getContent());
+    }
+
+    public function testDeleteImageWithCorrectUser()
+    {
+        $client = $this->getLoggedClient();
+        $crawler = $client->request('GET', '/img/delete/1');
+        $this->assertEquals(302, $client->getResponse()->getStatusCode(), "Status 200");
+        $this->assertContains('Redirecting to /', $client->getResponse()->getContent());
+
+        $em = $this->getContainer()->get('doctrine')->getManager();
+        $image = $em->getRepository('MGPImageBundle:Image')->findOneBySlug('title-1');
+        $this->assertEquals('2', $image->getStatus());
+    }
 
 }

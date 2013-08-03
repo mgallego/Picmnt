@@ -90,9 +90,6 @@ class ImageController extends AbstractImageController
         if (!$this->isOwner($image)) {
             return $this->redirect($this->generateUrl('home'));
         }
-
-        $this->checkOwner($image);
-
         $image->setStatus(2);
         $em->persist($image);
         $em->flush();
