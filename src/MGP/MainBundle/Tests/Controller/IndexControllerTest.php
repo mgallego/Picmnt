@@ -2,25 +2,11 @@
 
 namespace SFM\PicmntBundle\Tests\Controller;
 
-use SFM\PicmntBundle\Tests\Util\SecureAccess;
+use SFM\PicmntBundle\Tests\Controller\AbstractControllerTest;
 use Liip\FunctionalTestBundle\Test\WebTestCase;
 
-class IndexControllerTest extends WebTestCase
+class IndexControllerTest extends AbstractControllerTest
 {
-
-    private $client;
-    
-    public function setUp()
-    {
-        $this->loadFixtures(
-            [
-                'MGP\MainBundle\Tests\DataFixtures\ORM\LoadUserImageData',
-                'MGP\MainBundle\Tests\DataFixtures\ORM\LoadCategoryData'
-            ]
-        );
-
-        $this->client = $this->createClient();
-    }
 
     public function testStaticPage()
     {
