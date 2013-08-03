@@ -43,28 +43,7 @@ class AvatarExtension extends \Twig_Extension
     public function avatarByUsername($username, $size = 'small')
     {
         $user = $this->em->getRepository('MGPUserBundle:User')->findOneByUsername($username);
-
-        if (!$user->getAvatar()) {
-            return '/bundles/mgpmain/images/user.svg';
-        }
         return '/uploads/avatar'.$size.'/'.$user->getAvatar();
-    }
-
-    /**
-     * Avatar
-     *
-     * @param integer $userId
-     *
-     * @return string
-     */
-    public function avatar($userId)
-    {
-        $user = $this->em->getRepository('MGPUserBundle:User')->findOneById($userId);
-
-        if (!$user->getAvatar()) {
-            return '/bundles/mgpmain/images/user.svg';
-        }
-        return '/uploads/avatarsmall/'.$user->getAvatar();
     }
 
     /**
