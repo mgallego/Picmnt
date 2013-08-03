@@ -39,6 +39,10 @@ class IndexController extends Controller
      */
     public function staticAction($page)
     {
-        return $this->render('MGPMainBundle:Static:'.$page.'.html.twig');
+        try {
+            return $this->render('MGPMainBundle:Static:'.$page.'.html.twig');
+        } catch (\InvalidArgumentException $e) {
+            throw $this->createNotFoundException('The page does not exist');
+        }
     }
 }

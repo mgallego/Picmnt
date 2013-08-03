@@ -8,6 +8,8 @@ use Liip\FunctionalTestBundle\Test\WebTestCase;
 class IndexControllerTest extends WebTestCase
 {
 
+    private $client;
+    
     public function setUp()
     {
         $this->loadFixtures(
@@ -16,12 +18,26 @@ class IndexControllerTest extends WebTestCase
                 'MGP\MainBundle\Tests\DataFixtures\ORM\LoadCategoryData'
             ]
         );
+
+        $this->client = $this->createClient();
     }
 
-    public function testIndex()
+    public function testStaticPage()
     {
-        $client = $this->createClient();
-        $client->request('GET', '/');
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->client->request('GET', '/static/about');
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+    }
+
+    public function testFakeStaticPage()
+    {
+        $this->client->request('GET', '/static/fake');
+        $this->assertEquals(404, $this->client->getResponse()->getStatusCode());
+    }
+
+
+    public function testIndexWithNonLogedUser()
+    {
+        $this->client->request('GET', '/');
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
     }
 }
