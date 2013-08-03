@@ -23,6 +23,9 @@ class ImageRepository extends EntityRepository
 
     public function findByCategoryAndOrderDQL($category, $orderField)
     {
+        if (!$category) {
+            $category = 'all';
+        }
         $qb = $this->_em->createQueryBuilder();
         
         $qb->add('select', 'p')

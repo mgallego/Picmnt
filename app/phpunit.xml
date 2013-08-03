@@ -26,7 +26,7 @@
                 <directory>../src/*/*Bundle/Resources</directory>
                 <directory>../src/*/*Bundle/Entity</directory>
                 <directory>../src/*/*Bundle/DataFixtures</directory>
-                <directory>../src/*/*Bundle/DependencyInyection</directory>
+                <directory>../src/*/*Bundle/DependencyInjection</directory>
                 <directory>../src/*/*Bundle/Model/Type</directory>
                 <directory>../src/*/*Bundle/Tests</directory>
             </exclude>

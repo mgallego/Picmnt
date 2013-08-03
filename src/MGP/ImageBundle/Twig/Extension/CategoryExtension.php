@@ -1,6 +1,6 @@
 <?php
 
-namespace MGP\ImageBundle\Twig;
+namespace MGP\ImageBundle\Twig\Extension;
 
 use Doctrine\ORM\EntityManager;
 

@@ -66,18 +66,18 @@ class ThumbnailManager
         $option = $request->query->get('option');
 
         $images = $this->getThumbnails($category, $option, $page * $this->imagesPerPage);
-        
+
         if ($images) {
             foreach ($images as $image) {
                 $user = $image->getUser();
                 $thumb = new ThumbType();
-                
+
                 $imagemanagerResponse->filterAction(
                     $request,
                     $image->getWebPath(),
                     'thumbnail'
                 );
-                
+
                 $thumb->setSlug($image->getSlug());
                 $thumb->setImageId($image->getId());
                 $thumb->setTitle(substr($image->getTitle(), 0, 20));
