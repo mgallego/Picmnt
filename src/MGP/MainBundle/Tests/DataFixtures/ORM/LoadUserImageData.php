@@ -61,9 +61,12 @@ class LoadUserImageData implements FixtureInterface, ContainerAwareInterface
         $userDifferent->setAvatar('avatarPath');
         $this->userManager->updateUser($userDifferent);
 
-        $comment = $em->getRepository('MGPCommentBundle:Comment')->findOneById(1);
-        $comment->setUser($userDifferent);
-        $em->persist($comment);
+        $image = $em->getRepository('MGPImageBundle:Image')->findOneById(1);
+        $commentNew = new Comment();
+        $commentNew->setComment('Comment Text');
+        $commentNew->setUser($userDifferent);
+        $commentNew->setImage($image);
+        $em->persist($commentNew);
         $em->flush();
     }
 

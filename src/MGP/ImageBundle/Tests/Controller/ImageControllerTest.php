@@ -41,7 +41,19 @@ class ImageControllerTest extends AbstractControllerTest
         $form['picmnt_image[file]']->upload(realpath(dirname(__FILE__)).'/banner.png');
         $crawler = $client->submit($form);
 
-        $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Status 302");
+        $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Status 200");
+    }
+
+    public function testViewImage()
+    {
+        $this->client->request('GET', '/view/title-1');
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode(), "Status 200");
+    }
+
+    public function testViewFakeImage()
+    {
+        $this->client->request('GET', '/view/fake-slug');
+        $this->assertEquals(404, $this->client->getResponse()->getStatusCode(), "Status 404");
     }
 
 }

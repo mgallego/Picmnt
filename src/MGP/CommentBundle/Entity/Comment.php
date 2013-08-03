@@ -25,7 +25,7 @@ class Comment
 
 
     /**
-     *@ var string $comment
+     * @var string $comment
      *
      * @ORM\Column(name="comment", type="string", length=2000, nullable=false)
      *
@@ -41,7 +41,7 @@ class Comment
     protected $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="\MGP\ImageBundle\Entity\Image", inversedBy="comments", cascade={"detach"})
+     * @ORM\ManyToOne(targetEntity="\MGP\ImageBundle\Entity\Image", inversedBy="comments")
      * @ORM\JoinColumn(name="id_image", referencedColumnName="id")
      */
     protected $image;
@@ -99,7 +99,7 @@ class Comment
      * Set comment
      *
      * @param string $comment
-     * @return ImageComment
+     * @return Comment
      */
     public function setComment($comment)
     {
@@ -122,7 +122,7 @@ class Comment
      * Set brightness
      *
      * @param integer $brightness
-     * @return ImageComment
+     * @return Comment
      */
     public function setBrightness($brightness)
     {
@@ -145,7 +145,7 @@ class Comment
      * Set contrast
      *
      * @param integer $contrast
-     * @return ImageComment
+     * @return Comment
      */
     public function setContrast($contrast)
     {
@@ -168,7 +168,7 @@ class Comment
      * Set exposure
      *
      * @param integer $exposure
-     * @return ImageComment
+     * @return Comment
      */
     public function setExposure($exposure)
     {
@@ -191,7 +191,7 @@ class Comment
      * Set saturation
      *
      * @param integer $saturation
-     * @return ImageComment
+     * @return Comment
      */
     public function setSaturation($saturation)
     {
@@ -214,7 +214,7 @@ class Comment
      * Set notified
      *
      * @param integer $notified
-     * @return ImageComment
+     * @return Comment
      */
     public function setNotified($notified)
     {
@@ -237,7 +237,7 @@ class Comment
      * Set email_notified
      *
      * @param integer $emailNotified
-     * @return ImageComment
+     * @return Comment
      */
     public function setEmailNotified($emailNotified)
     {
@@ -260,7 +260,7 @@ class Comment
      * Set user
      *
      * @param \MGP\UserBundle\Entity\User $user
-     * @return ImageComment
+     * @return Comment
      */
     public function setUser(\MGP\UserBundle\Entity\User $user = null)
     {
@@ -272,7 +272,7 @@ class Comment
     /**
      * Get user
      *
-     * @return \MGP\UserBundle\Entiy\User 
+     * @return \MGP\UserBundle\Entity\User 
      */
     public function getUser()
     {
@@ -283,7 +283,7 @@ class Comment
      * Set image
      *
      * @param \MGP\ImageBundle\Entity\Image $image
-     * @return ImageComment
+     * @return Comment
      */
     public function setImage(\MGP\ImageBundle\Entity\Image $image = null)
     {
