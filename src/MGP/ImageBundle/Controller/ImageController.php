@@ -24,12 +24,16 @@ class ImageController extends AbstractImageController
      */
     public function uploadAction(Request $request)
     {
-        $form = $this->createForm(new ImageFormType(), new Image());
+        $image = new Image();
+
+        $form = $this->createForm(new ImageFormType(), $image);
+
         if ($request->getMethod() == 'POST') {
             $formHandler = new ImageFormHandler($form, $request, $this->getDoctrine()->getManager(), $image, $this->getUser(), $this->container->getParameter('kernel.root_dir').'/../web/' );
             if (!$formHandler->process()) {
-                throw new \Exception($formHandler->showFormErrors());
+                return $this->render('MGPImageBundle:Image:upload.html.twig', array('form' => $form->createView()));
             }
+
             return $this->redirect($this->generateUrl('img_view', ["slug" => $image->getSlug()]));
         }
         return $this->render('MGPImageBundle:Image:upload.html.twig', array('form' => $form->createView()));

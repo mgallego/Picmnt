@@ -58,8 +58,13 @@ class LoadUserImageData implements FixtureInterface, ContainerAwareInterface
         $userDifferent->setEmail('test2@picmnt.com');
         $userDifferent->setPlainPassword('passwordTest2');
         $userDifferent->setEnabled(true);
+        $userDifferent->setAvatar('avatarPath');
         $this->userManager->updateUser($userDifferent);
 
+        $comment = $em->getRepository('MGPCommentBundle:Comment')->findOneById(1);
+        $comment->setUser($userDifferent);
+        $em->persist($comment);
+        $em->flush();
     }
 
     private function loadImages()

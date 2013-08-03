@@ -15,84 +15,84 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Comment
 {
     /**
-   * @var integer $idComment
-   *
-   * @ORM\Column(name="id", type="integer", nullable=false)
-   * @ORM\Id
-   * @ORM\GeneratedValue(strategy="IDENTITY")
-   */
-  private $idComment;
+     * @var integer $idComment
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
 
-
-  /**
-   *@ var string $comment
-   *
-   * @ORM\Column(name="comment", type="string", length=2000, nullable=false)
-   *
-   * @Assert\Length(max = "2000")
-   */
-  private $comment;
-
-
-  /**
-   * @ORM\ManyToOne(targetEntity="\MGP\UserBundle\Entity\User", inversedBy="imageComments", cascade={"detach"})
-   * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-   */
-  protected $user;
-
-  /**
-   * @ORM\ManyToOne(targetEntity="\MGP\ImageBundle\Entity\Image", inversedBy="comments", cascade={"detach"})
-   * @ORM\JoinColumn(name="id_image", referencedColumnName="id")
-   */
-  protected $image;
-  
-  /**
-   * @var integer $brightness
-   *
-   * @ORM\Column(name="brightness", type="integer", nullable=true)
-   */
-  protected $brightness;
-
-   /**
-   * @var integer $contrast
-   *
-   * @ORM\Column(name="contrast", type="integer", nullable=true)
-   */
-  protected $contrast;
-
-   /**
-   * @var integer $exposition
-   *
-   * @ORM\Column(name="exposure", type="integer", nullable=true)
-   */
-  protected $exposure;
-
-   /**
-   * @var integer $saturation
-   *
-   * @ORM\Column(name="saturation", type="integer", nullable=true)
-   */
-  protected $saturation;
-
-  /**
-   * @ORM\Column(type="integer", nullable=true)
-   */
-  protected $notified;
-
-  /**
-   * @ORM\Column(type="integer", nullable=true)
-   *
-   */
-  protected $email_notified;
 
     /**
-     * Get idComment
+     *@ var string $comment
+     *
+     * @ORM\Column(name="comment", type="string", length=2000, nullable=false)
+     *
+     * @Assert\Length(max = "2000")
+     */
+    private $comment;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="\MGP\UserBundle\Entity\User", inversedBy="imageComments", cascade={"detach"})
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    protected $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="\MGP\ImageBundle\Entity\Image", inversedBy="comments", cascade={"detach"})
+     * @ORM\JoinColumn(name="id_image", referencedColumnName="id")
+     */
+    protected $image;
+  
+    /**
+     * @var integer $brightness
+     *
+     * @ORM\Column(name="brightness", type="integer", nullable=true)
+     */
+    protected $brightness;
+
+    /**
+     * @var integer $contrast
+     *
+     * @ORM\Column(name="contrast", type="integer", nullable=true)
+     */
+    protected $contrast;
+
+    /**
+     * @var integer $exposition
+     *
+     * @ORM\Column(name="exposure", type="integer", nullable=true)
+     */
+    protected $exposure;
+
+    /**
+     * @var integer $saturation
+     *
+     * @ORM\Column(name="saturation", type="integer", nullable=true)
+     */
+    protected $saturation;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    protected $notified;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     *
+     */
+    protected $email_notified;
+
+    /**
+     * Get id
      *
      * @return integer 
      */
-    public function getIdComment()
+    public function getId()
     {
-        return $this->idComment;
+        return $this->id;
     }
 
     /**

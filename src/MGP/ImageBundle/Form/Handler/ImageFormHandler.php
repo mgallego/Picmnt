@@ -9,7 +9,7 @@ use MGP\UserBundle\Entity\User;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Form\Form;
 
-class ImageFormHandler extends AbstractFormHandler
+class ImageFormHandler
 {
 
     /**

@@ -2,7 +2,7 @@
 
 namespace SFM\PicmntBundle\Tests\Controller;
 
-use SFM\PicmntBundle\Tests\Controller\AbstractControllerTest;
+use MGP\MainBundle\Tests\Controller\AbstractControllerTest;
 use Liip\FunctionalTestBundle\Test\WebTestCase;
 
 class IndexControllerTest extends AbstractControllerTest
@@ -20,10 +20,16 @@ class IndexControllerTest extends AbstractControllerTest
         $this->assertEquals(404, $this->client->getResponse()->getStatusCode());
     }
 
-
     public function testIndexWithNonLogedUser()
     {
         $this->client->request('GET', '/');
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+    }
+
+    public function testIndexWithLogedUser()
+    {
+        $client = $this->getLoggedClient();
+        $client->request('GET', '/');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 }
