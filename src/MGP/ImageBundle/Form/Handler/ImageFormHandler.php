@@ -2,7 +2,6 @@
 
 namespace MGP\ImageBundle\Form\Handler;
 
-use MGP\MainBundle\Form\Handler\AbstractFormHandler;
 use Symfony\Component\HttpFoundation\Request;
 use MGP\ImageBundle\Entity\Image;
 use MGP\UserBundle\Entity\User;
