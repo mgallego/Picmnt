@@ -3,7 +3,7 @@ Picmnt
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/bc72136b-18e1-466f-a311-9bd7890fb90c/big.png)](https://insight.sensiolabs.com/projects/bc72136b-18e1-466f-a311-9bd7890fb90c) 
 
-[![Scrutinizer Continuous Inspections](https://scrutinizer-ci.com/g/mgallego/Picmnt/badges/general.png?s=2184d1afe417338412e70e15fbfaf6eed3ae436c)](https://scrutinizer-ci.com/g/mgallego/Picmnt/) [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/mgallego/Picmnt/badges/quality-score.png?s=442e355a7895e8e81fbd584bdf7266e905023027)](https://scrutinizer-ci.com/g/mgallego/Picmnt/) [![Code Coverage](https://scrutinizer-ci.com/g/mgallego/Picmnt/badges/coverage.png?s=e6d13c70f648db2a758a2b6c0be38d5b8ede807e)](https://scrutinizer-ci.com/g/mgallego/Picmnt/)
+[![Scrutinizer Continuous Inspections](https://scrutinizer-ci.com/g/mgallego/Picmnt/badges/general.png?s=2184d1afe417338412e70e15fbfaf6eed3ae436c)](https://scrutinizer-ci.com/g/mgallego/Picmnt/) [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/mgallego/Picmnt/badges/quality-score.png?s=442e355a7895e8e81fbd584bdf7266e905023027)](https://scrutinizer-ci.com/g/mgallego/Picmnt/)
 
 [![Build Status](https://travis-ci.org/mgallego/Picmnt.png?branch=dev)](https://travis-ci.org/mgallego/Picmnt)
 
