@@ -7,8 +7,21 @@ use Liip\FunctionalTestBundle\Test\WebTestCase;
 
 class IndexControllerTest extends WebTestCase
 {
-    public function testExample()
+
+    public function setUp()
     {
-        $this->assertTrue(true);
+        $this->loadFixtures(
+            [
+                'MGP\MainBundle\Tests\DataFixtures\ORM\LoadUserImageData',
+                'MGP\MainBundle\Tests\DataFixtures\ORM\LoadCategoryData'
+            ]
+        );
+    }
+
+    public function testIndex()
+    {
+        $client = $this->createClient();
+        $client->request('GET', '/');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 }
