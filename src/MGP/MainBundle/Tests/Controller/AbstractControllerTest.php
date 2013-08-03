@@ -14,7 +14,7 @@ abstract class AbstractControllerTest extends WebTestCase
         $this->loadFixtures(
             [
                 'MGP\MainBundle\Tests\DataFixtures\ORM\LoadUserImageData',
-                'MGP\MainBundle\Tests\DataFixtures\ORM\LoadCategoryData'
+                'MGP\ImageBundle\DataFixtures\ORM\LoadCategoryData'
             ]
         );
 
