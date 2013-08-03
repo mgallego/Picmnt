@@ -62,8 +62,14 @@ class ImageController extends AbstractImageController
      */
     public function editAction(Request $request, $id)
     {
-        $this->checkOwner($image);
+        $image = $this->getImagerOr404(['id' => $id]);
+
+        if (!$this->isOwner($image)) {
+            return $this->redirect($this->generateUrl('home'));
+        }
+        
         $form = $this->createForm(new ImageFormType(), $this->getImagerOr404(['id' => $id]));
+
         if ($request->getMethod() == 'POST') {
             $formHandler = new ImageFormHandler($form, $request, $this->getDoctrine()->getManager(), $image, $this->getUser(), $this->container->getParameter('kernel.root_dir') . '/../web/');
             if (!$formHandler->process()) {
@@ -87,6 +93,10 @@ class ImageController extends AbstractImageController
     {
         $em = $this->getDoctrine()->getManager();
         $image = $this->getImagerOr404(['id' => $id]);
+
+        if (!$this->isOwner($image)) {
+            return $this->redirect($this->generateUrl('home'));
+        }
 
         $this->checkOwner($image);
 

@@ -35,9 +35,10 @@ security:
         - { path: ^/user/reset-password/, role: IS_AUTHENTICATED_ANONYMOUSLY }
         # Secured part of the site (all site here and an admin part for admin users)
         - { path: ^/admin/, role: ROLE_ADMIN }
-        - { path: ^/demo/secured/.*, role: ROLE_USER }
         - { path: ^/p/ , role: ROLE_USER }
         - { path: ^/img/upload , role: ROLE_USER }
+        - { path: ^/img/edit , role: ROLE_USER }
+        - { path: ^/img/delete , role: ROLE_USER }
         - { path: ^/img , role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/usr/redirect/ , role: ROLE_USER }
         - { path: ^/comment/ , role: ROLE_USER }

@@ -14,15 +14,18 @@ abstract class AbstractImageController extends Controller
 {
 
     /**
-     * Check Owner
+     * is Owner
      *
      * @param Image $image
+     *
+     * @return boolean
      */
-    protected function checkOwner(Image $image)
+    protected function isOwner(Image $image)
     {
         if ($this->getUser()->getId() !== $image->getUser()->getId()) {
-            return $this->redirect($this->generateUrl('home'));
+            return false;
         }
+        return true;
     }
 
     /**

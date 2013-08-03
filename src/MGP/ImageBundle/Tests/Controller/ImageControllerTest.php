@@ -56,4 +56,25 @@ class ImageControllerTest extends AbstractControllerTest
         $this->assertEquals(404, $this->client->getResponse()->getStatusCode(), "Status 404");
     }
 
+    public function testEditImageWhithAnonUser()
+    {
+        $this->client->request('GET', '/img/edit/1');
+        $this->assertEquals(302, $this->client->getResponse()->getStatusCode(), "Status 302");
+    }
+
+    public function testEditImageWithDifferentUser()
+    {
+        $client = $this->getLoggedClient('userTest2', 'passwordTest2');
+        $client->request('GET', '/img/edit/1');
+        $this->assertEquals(302, $client->getResponse()->getStatusCode(), "Status 302");
+        $this->assertContains('Redirecting to /', $client->getResponse()->getContent());
+    }
+
+    public function testEditImageWithCorrectUser()
+    {
+        $client = $this->getLoggedClient();
+        $client->request('GET', '/img/edit/1');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Status 200");
+    }
+
 }
