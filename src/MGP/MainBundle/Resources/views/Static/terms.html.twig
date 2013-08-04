@@ -3,16 +3,6 @@
 {% block title %} | {{ 'Terms of use' | trans }} {% endblock title %}
 
 
-{% block stylesheet %}
-{{ parent() }}	  
-
-	{% stylesheets filter='lessphp, ?yui_css' output='css/picmnt.css' 
-	            '@MGPMainBundle/Resources/public/less/static.less' %}
-	<link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="all" />
-	{% endstylesheets %}
-	
-{% endblock stylesheet %}
-
 
 {% block content %}
 <section id="terms" class="container container_12">
